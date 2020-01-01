@@ -62,7 +62,11 @@
 	-->
 	<!--<link rel="stylesheet" href="css/template-dark/dark.css" />-->
 	
+	<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>	
 
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!--[if lt IE 9]>
 	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -864,34 +868,46 @@
 						<div class="row">
 							<div class="col col-d-12 col-t-12 col-m-12 border-line-v">
 								<div class="contact_form">
-									<form id="cform" method="post">
+									<form id="contactForm">
 										<div class="row">
 											<div class="col col-d-6 col-t-6 col-m-12">
 												<div class="group-val">
-													<input type="text" name="name" placeholder="Full Name" />
+													<input type="text" name="cname" id="cname" required="true" placeholder="Full Name" />
 												</div>
 											</div>
 											<div class="col col-d-6 col-t-6 col-m-12">
 												<div class="group-val">
-													<input type="text" name="email" placeholder="Email Address" />
+													<input type="email" name="cemail" id="cemail" required="true" placeholder="Email Address" />
+												</div>
+											</div>
+											<div class="col col-d-6 col-t-6 col-m-12">
+												<div class="group-val">
+													<input type="number" name="cphone" id="cphone" required="true" placeholder="Phone No." />
+												</div>
+											</div>
+											<div class="col col-d-6 col-t-6 col-m-12">
+												<div class="group-val">
+													<input type="text" name="ctopics" id="ctopics" required="true" placeholder="Topics, e.g.: Website, Software, etc." />
 												</div>
 											</div>
 											<div class="col col-d-12 col-t-12 col-m-12">
 												<div class="group-val">
-													<textarea name="message" placeholder="Your Message"></textarea>
+													<textarea name="cappid" id="cappid" placeholder="ContactID" style="display: none;"></textarea>
+												</div>
+											</div>
+											<div class="col col-d-12 col-t-12 col-m-12">
+												<div class="group-val">
+													<textarea name="cmsg" id="cmsg" placeholder="Detailed Message"></textarea>
 												</div>
 											</div>
 										</div>
 										<div class="align-left">
-											<a href="#" class="button" onclick="$('#cform').submit(); return false;">
-												<span class="text">Send Message</span>
-												<span class="arrow"></span>
-											</a>
+										<button type="submit" class="button" id="submitbtn"><span class="text">Send Message</span><span class="arrow"></span></button>	
 										</div>
 									</form>
-									<div class="alert-success">
-										<p>Thanks, your message is sent successfully.</p>
-									</div>
+										<div class="alert-success" id="thankyou" style="display:none;font-size:25px">
+											<p id="appidset">Thanks, your message is sent successfully.</p>
+										</div>
 								</div>
 							</div>
 							<div class="clear"></div>
@@ -915,6 +931,7 @@
 	<script src="js/isotope.pkgd.js"></script>
 	<script src="js/jquery.slimscroll.js"></script>
 	<script src="js/owl.carousel.js"></script>
+	<script src="js/contact.js"></script>
 	
 	<!--
 		Google map api
