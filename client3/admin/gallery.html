@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Magic Shoot || Admin Panel</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script> 
+
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 15px;
+      }
+      form {
+      border: 5px solid #f1f1f1;
+      width: 80%;
+      }
+      input[type=text], input[type=password], input[type=URL] {
+      width: 100%;
+      padding: 16px 8px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      }
+      .btn{
+      background-color: #8ebf42;
+      color: white;
+      padding: 14px 0;
+      margin: 10px 0;
+      border: none;
+      cursor: pointer;
+      width: 250px;
+      }
+      button {
+      background-color: #8ebf42;
+      color: white;
+      padding: 14px 0;
+      margin: 10px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      }
+      h1 {
+      text-align:center;
+      fone-size:18;
+      }
+      button:hover {
+      opacity: 0.8;
+      }
+      .formcontainer {
+      text-align: left;
+      margin: 24px 50px 12px;
+      }
+      .container {
+      padding: 16px 0;
+      text-align:left;
+      }
+      span.pww{
+      float: left;
+      padding-top: 0;
+      padding-left: 15px;
+      }
+      span.psw {
+      float: right;
+      padding-top: 0;
+      padding-right: 15px;
+      }
+      /* Change styles for span on extra small screens */
+      @media screen and (max-width: 300px) {
+      span.psw {
+      display: block;
+      float: none;
+      }
+    </style>
+  </head>
+  <body onload="aidset()">
+    <form id="galleryadd">
+      <h1>Admin Panel || Add picture to Album</h1>
+      <div class="formcontainer">
+      <hr>
+      <div class="container">
+        <label for="aid"><strong>Album ID</strong></label>
+        <input type="text" id="aid" placeholder="Enter Album ID" name="aid" disabled="true" required>
+        <input class="btn" type="button" name="editid" value="Edit Album ID" onclick="edited()">
+        <br><br>
+
+        <label for="aname"><strong>Album Name</strong></label>
+        <input type="text" id="aname" placeholder="Enter Album Name" name="aname" required>
+
+        <label for="acv"><strong>Album Background &amp; Album Cover</strong></label>
+        <input type="URL" id="acv" placeholder="Enter Album Cover URL" onchange="chngcover()" name="acv" required>
+        <img src="image.png" id="imgacv" width="auto" height="200px"><br><br>
+
+        <br>
+        <hr>
+        <br>
+
+        <label for="picid"><strong>Image ID</strong></label>
+        <input type="text" id="picid" placeholder="Enter Image ID" name="picid" disabled="true" required>
+        <br>
+
+        <label for="pic"><strong>Image URL</strong></label>
+        <input type="URL" placeholder="Enter Picture Link" id="pic" name="pic" onchange="chngURL()" required>
+        <img src="image.png" id="imgshow" width="auto" height="200px"><br><br>
+
+        <label for="uname"><strong>Image Caption</strong></label>
+        <input type="text" id="icap" placeholder="Enter Image Caption" name="icap">
+
+      </div>
+  	</div>
+      <button type="submit">Add Picture to Album</button>
+      <div class="container" style="background-color: #9b91e3; padding: 45px;">
+        <span class="pww">All rights reserved &copy; <a href="http://www.themagicshoot.com" target="_blank">The Magic Shoot</a> &nbsp; </span>
+        <span class="psw">Powered by <a href="http://quantumwebgarden.in" target="_blank">Quantum Webgarden</a></span>
+      </div>
+    </form>
+
+    <script src="admin.js"></script>
+
+    <script type="text/javascript">
+    	
+	function chngcover() {
+  var str = document.getElementById("acv").value; 
+  var res = str.replace("file/d/", "uc?export=view&id=");
+  var res = res.replace("/view?usp=sharing", "");
+  document.getElementById("acv").value = res;
+  document.getElementById("imgacv").src = res;
+  }
+  	function chngURL() {
+  var str = document.getElementById("pic").value; 
+  var res = str.replace("file/d/", "uc?export=view&id=");
+  var res = res.replace("/view?usp=sharing", "");
+  document.getElementById("pic").value = res;
+  document.getElementById("imgshow").src = res;
+}
+
+    </script>
+
+  </body>
+</html>
