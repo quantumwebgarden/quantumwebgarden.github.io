@@ -29,14 +29,13 @@ function picidset(){
 }
 
 var config = {
-  apiKey: "AIzaSyC5hD8l1JE0G97zlflv8R8UZ4vcDv7JcsU",
-    authDomain: "admission-2020.firebaseapp.com",
-    databaseURL: "https://admission-2020.firebaseio.com",
-    projectId: "admission-2020",
-    storageBucket: "admission-2020.appspot.com",
-    messagingSenderId: "319954780627",
-    appId: "1:319954780627:web:e7619e9df08e54d703af26",
-    measurementId: "G-K3CT148EJR"
+  apiKey: "AIzaSyBfmpYLNt0LKUqzpLE5t1K6rlUsmiTFSz4",
+    authDomain: "technova18-info.firebaseapp.com",
+    databaseURL: "https://technova18-info.firebaseio.com",
+    projectId: "technova18-info",
+    storageBucket: "technova18-info.appspot.com",
+    messagingSenderId: "793790133335",
+    appId: "1:793790133335:web:c06886b1d50a44f32d9f12"
 };
 firebase.initializeApp(config);
 
