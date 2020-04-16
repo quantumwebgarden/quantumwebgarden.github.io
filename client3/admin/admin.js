@@ -1,5 +1,5 @@
 var albumid = "";
-var picid = "";
+var picid = 0;
 function aidset(){
 	var jst = new Date();
   var jstn = jst.valueOf();
@@ -19,12 +19,8 @@ function picedit(){
 }
 
 function picidset(){
-	var jst = new Date();
-  var jstn = jst.valueOf();
-  var lst = new Date("12/31/2050");
-  var lstn = lst.valueOf();
-  var diff = lstn - jstn;
-	picid = diff;
+	
+	picid = picid + 1;
   document.getElementById("picid").value = picid;
 }
 
