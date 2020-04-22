@@ -33,6 +33,7 @@
 <script src="gallery/js/grid.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
 <script src="gallery/js/populate.js"></script>
+<link rel="stylesheet" href="assets/nav.css">
 <script>
   $(function() {
   Grid.init();
@@ -42,7 +43,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">
   
 </head>
-<body onload="ovrly()">
+<body>
 
 <!-- Analytics -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -55,13 +56,10 @@
   gtag('config', 'UA-161919589-1');
 </script>
 
-<!-- /Analytics -->
+<!-- /Analytics --
 
 
   <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-0">
-
-    
-
     <nav style="background: rgba(0, 0, 0, 0.3);" class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
@@ -104,13 +102,32 @@
     </nav>
 </section>
 
-<section class="engine"><a href="http://themagicshoot.com">The Magic Shoot</a></section>
-<div style="height: 75px;">
-  
-</div>
+-->
+<nav class="mobile-menu">
+<label for="show-menu" class="show-menu"><span style="font-family: 'Aclonica', Swap, Arial, sans-serif;">
+The Magic Shoot
+<!--
+  <img src="assets/images/logo.png" width="100px" height="100px">
+-->
+</span><div class="lines"></div></label>
+  <input type="checkbox" id="show-menu">
+    <ul id="menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="album.html">Album</a>   </li>
+    <li><a href="films.html">Films</a></li>
+
+    <li id="brandm" style="margin-right: 20px;"><a href="#" id="brand" style="display: block;"><img src="assets/images/logo.png" width="100px" height="100px"></a></li>
+
+    <li><a href="package.html">Package</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
 <!--
 <iframe style="width: 100%; height: 500px;" src="gallery/index.html" frameborder="0" scrolling="auto"></iframe>
 -->
+<div style="height: 125px;"></div>
 <section>
   <div id="cntgal" class="contnr"> 
     <br>
@@ -124,7 +141,7 @@
     </div>
 </section>
 
-
+<!--
 <section once="footers" class="cid-rUk55UbUwD mbr-reveal" id="footer7-1c">
 
     <div class="container">
@@ -153,7 +170,22 @@
         </div>
     </div>
 </section>
+-->
+<section once="footers" class="cid-rUk55UbUwD mbr-reveal" id="footer7-12">
 
+    <div class="container">
+        <div class="media-container-row mbr-white">
+            
+            <div class="row row-copirayt" style="float: left;">
+                <p class="mbr-text mb-0 mbr-fonts-style mbr-white display-7" style="float: left;">Copyright ©&nbsp;The Magic Shoot - All Rights Reserved || Powered by<a href="http://quantumwebgarden.in" target="_blank"> Quantum Webgarden</a>
+                <a style="margin: 4px;" href="https://www.facebook.com/themagicshoot/" class="fa fa-facebook"></a>
+                <a style="margin: 4px;" href="https://www.instagram.com/themagicshoot/" class="fa fa-instagram"></a>
+                <a style="margin: 4px;" href="https://www.youtube.com/channel/UC1jv0vsyFSMtlJ0tAOZlzOQ" class="fa fa-youtube"></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
 
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
