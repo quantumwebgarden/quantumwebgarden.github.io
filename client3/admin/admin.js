@@ -25,13 +25,14 @@ function picidset(){
 }
 
 var config = {
-  apiKey: "AIzaSyBfmpYLNt0LKUqzpLE5t1K6rlUsmiTFSz4",
-    authDomain: "technova18-info.firebaseapp.com",
-    databaseURL: "https://technova18-info.firebaseio.com",
-    projectId: "technova18-info",
-    storageBucket: "technova18-info.appspot.com",
-    messagingSenderId: "793790133335",
-    appId: "1:793790133335:web:c06886b1d50a44f32d9f12"
+  apiKey: "AIzaSyCefEYt287pgGET2L6LWJRIWxTRs3Ljebo",
+    authDomain: "thems2020.firebaseapp.com",
+    databaseURL: "https://thems2020.firebaseio.com",
+    projectId: "thems2020",
+    storageBucket: "thems2020.appspot.com",
+    messagingSenderId: "611585110346",
+    appId: "1:611585110346:web:45843523d0448ff1d7d1b3",
+    measurementId: "G-H4QF7Z1ZXG"
 };
 firebase.initializeApp(config);
 
