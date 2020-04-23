@@ -22,18 +22,17 @@
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
 
-  <link rel="stylesheet" href="gallery/css/style.css" type="text/css" media="all" />
-<script src="gallery/js/jquery-1.10.1.min.js"></script>
-<script src="gallery/js/modernizr.custom.js"></script>
-<script src="gallery/js/script.js"></script>
+<script src="assets/tms/jquery-1.10.1.min.js"></script>
+<script src="assets/tms/modernizr.custom.js"></script>
+<script src="assets/tms/script.js"></script-->
 <Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script>
 <link href='//fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   
-<script src="gallery/js/grid.js"></script>
+<script src="assets/tms/grid.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-<script src="gallery/js/populate.js"></script>
-<link rel="stylesheet" href="assets/nav.css">
+<script src="assets/tms/populate.js"></script>
+<link rel="stylesheet" href="assets/tms/nav.css">
 <script>
   $(function() {
   Grid.init();
@@ -42,8 +41,75 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">
   
+  <style type="text/css">
+    .contnr {
+  width: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.og-grid {
+  list-style: none;
+  padding: 20px 0;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.og-grid li {
+  display: inline-block;
+  margin: 10px 5px 0 5px;
+  vertical-align: top;
+}
+
+.og-grid li > a,
+.og-grid li > a img {
+  border: none;
+  outline: none;
+  display: block;
+  position: relative;
+}
+
+.og-grid li.og-expanded > a::after {
+  top: auto;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color:#D6E6E7;
+  border-width: 15px;
+  left: 50%;
+  margin: -20px 0 0 -15px;
+}
+  </style>
 </head>
 <body>
+<section style="margin-top: 0; height: 95px;">
+  <nav class="mobile-menu">
+<label for="show-menu" class="show-menu"><span style="font-family: 'Aclonica', Swap, Arial, sans-serif;">
+The Magic Shoot
+<!--
+  <img src="assets/images/logo.png" width="100px" height="100px">
+-->
+</span><div class="lines"></div></label>
+  <input type="checkbox" id="show-menu">
+    <ul id="menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="album.html">Album</a>   </li>
+    <li><a href="films.html">Films</a></li>
+
+    <li id="brandm" style="margin-right: 20px;"><a href="#" id="brand" style="display: block;"><img src="assets/images/logo.png" width="100px" height="100px"></a></li>
+
+    <li><a href="package.html">Package</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+</section>
+
 
 <!-- Analytics -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,8 +125,8 @@
 <!-- /Analytics --
 
 
-  <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-0">
-    <nav style="background: rgba(0, 0, 0, 0.3);" class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+  <section class="mnu cid-qTkzRZLJNu" once="mnu" id="mnu1-0">
+    <nav style="background: rgba(0, 0, 0, 0.3);" class="navbar navbar-expand beta-mnu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
                 <span></span>
@@ -69,7 +135,7 @@
                 <span></span>
             </div>
         </button>
-        <div class="menu-logo">
+        <div class="mnu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="#top">
@@ -81,7 +147,7 @@
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
+            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-mnu="true"><li class="nav-item">
                     <a style="font-family: 'Aclonica', sans-serif;" class="nav-link link text-white display-4" href="index.html">
                         
                         Home</a>
@@ -103,31 +169,12 @@
 </section>
 
 -->
-<nav class="mobile-menu">
-<label for="show-menu" class="show-menu"><span style="font-family: 'Aclonica', Swap, Arial, sans-serif;">
-The Magic Shoot
-<!--
-  <img src="assets/images/logo.png" width="100px" height="100px">
--->
-</span><div class="lines"></div></label>
-  <input type="checkbox" id="show-menu">
-    <ul id="menu">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="album.html">Album</a>   </li>
-    <li><a href="films.html">Films</a></li>
 
-    <li id="brandm" style="margin-right: 20px;"><a href="#" id="brand" style="display: block;"><img src="assets/images/logo.png" width="100px" height="100px"></a></li>
-
-    <li><a href="package.html">Package</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
 
 <!--
 <iframe style="width: 100%; height: 500px;" src="gallery/index.html" frameborder="0" scrolling="auto"></iframe>
 -->
-<div style="height: 125px;"></div>
+
 <section>
   <div id="cntgal" class="contnr"> 
     <br>
