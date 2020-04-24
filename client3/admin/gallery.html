@@ -120,13 +120,14 @@
       </div>
     </form>
 
-    <script src="admin.js"></script>
+    <script src="gallery.js"></script>
 
     <script type="text/javascript">
     	
 	function chngcover() {
   var str = document.getElementById("acv").value; 
   var res = str.replace("file/d/", "uc?export=view&id=");
+  var res = res.replace("open?id=", "uc?export=view&id=");
   var res = res.replace("/view?usp=sharing", "");
   document.getElementById("acv").value = res;
   document.getElementById("imgacv").src = res;
