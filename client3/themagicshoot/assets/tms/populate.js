@@ -42,7 +42,7 @@ ntn = ntn +1;
 //var n = updphoto.indexOf("token=");
 //var pht = updphoto.substring(n + 6, updphoto.length);
 
-$("#og-grid").append("<li><a href=\"#\" data-largesrc=\"" + updphoto + "\" data-title=\"" + appid + "\" data-description=\"" + caption + "\"><img src=\"" + updphoto + "\" width=\"auto\" height=\"210px\" alt=\"img" + ntn + "\" onclick=\"addField(\'" + appid +"\',\'" + updphoto +"\',\'" + caption +"\');\"/></a></li>");
+$("#og-grid").append("<li><a href=\"#\" data-largesrc=\"" + updphoto + "\" data-title=\"" + appid + "\" data-description=\"" + caption + "\"><img style=\"object-fit:cover;\" src=\"" + updphoto + "\" width=\"300px\" height=\"210px\" alt=\"img" + ntn + "\" onclick=\"addField(\'" + appid +"\',\'" + updphoto +"\',\'" + caption +"\');\"/></a></li>");
 document.getElementById("cntgal").style.backgroundImage = "url("+ acv +")";
 $("#galname").html(aname);
 });
