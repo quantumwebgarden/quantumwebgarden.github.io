@@ -135,6 +135,7 @@
   	function chngURL() {
   var str = document.getElementById("pic").value; 
   var res = str.replace("file/d/", "uc?export=view&id=");
+  var res = res.replace("open?id=", "uc?export=view&id=");
   var res = res.replace("/view?usp=sharing", "");
   document.getElementById("pic").value = res;
   document.getElementById("imgshow").src = res;
