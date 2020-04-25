@@ -1,295 +1,772 @@
 <!DOCTYPE html>
-<html  >
+<html>
 <head>
-
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="The Magic Shoot, themagicshoot.com">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="assets/images/logo-122x122.png" type="image/x-icon">
-  <meta name="description" content="Individual Album Gallery of The Magic Shoot">
-  
-  
-  <title>Gallery</title>
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/facebook-plugin/style.css">
-  <link rel="stylesheet" href="assets/tether/tether.min.css">
-  <link rel="stylesheet" href="assets/socicon/css/styles.css">
-  <link rel="stylesheet" href="assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="assets/theme/css/style.css">
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-
-<script src="assets/tms/jquery-1.10.1.min.js"></script>
-<script src="assets/tms/modernizr.custom.js"></script>
-<script src="assets/tms/script.js"></script-->
+	<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script>
 <link href='//fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  
-<script src="assets/tms/grid.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-<script src="assets/tms/insta.js"></script>
-<link rel="stylesheet" href="assets/tms/nav.css">
-<script>
-  $(function() {
-  Grid.init();
-  });
-</script>
+        <script src="populate.js"></script>
+<style type="text/css">
+/*
 
-<link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">
-  
-  <style type="text/css">
-    .contnr {
-  width: 100%;
-  position: relative;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+All grid code is placed in a 'supports' rule (feature query) at the bottom of the CSS (Line 310). 
+        
+The 'supports' rule will only run if your browser supports CSS grid.
+
+Flexbox and floats are used as a fallback so that browsers which don't support grid will still recieve a similar layout.
+
+*/
+
+/* Base Styles */
+
+:root {
+    font-size: 10px;
 }
-.og-grid {
-  list-style: none;
-  padding: 20px 0;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", Arial, sans-serif;
+    min-height: 100vh;
+    background-color: #fafafa;
+    color: #262626;
+    padding-bottom: 3rem;
+}
+
+img {
+    display: block;
+}
+
+.container {
+    max-width: 93.5rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.btn {
+    display: inline-block;
+    font: inherit;
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn:focus {
+    outline: 0.5rem auto #4d90fe;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Profile Section */
+
+.profile {
+    padding: 5rem 0;
+}
+
+.profile::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.profile-image {
+    float: left;
+    width: calc(33.333% - 1rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3rem;
+}
+
+.profile-image img {
+    border-radius: 50%;
+}
+
+.profile-user-settings,
+.profile-stats,
+.profile-bio {
+    float: left;
+    width: calc(66.666% - 2rem);
+}
+
+.profile-user-settings {
+    margin-top: 1.1rem;
+}
+
+.profile-user-name {
+    display: inline-block;
+    font-size: 3.2rem;
+    font-weight: 300;
+}
+
+.profile-edit-btn {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    border: 0.1rem solid #dbdbdb;
+    border-radius: 0.3rem;
+    padding: 0 2.4rem;
+    margin-left: 2rem;
+}
+
+.profile-settings-btn {
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.profile-stats {
+    margin-top: 2.3rem;
+}
+
+.profile-stats li {
+    display: inline-block;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    margin-right: 4rem;
+    cursor: pointer;
+}
+
+.profile-stats li:last-of-type {
+    margin-right: 0;
+}
+
+.profile-bio {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 2.3rem;
+}
+
+.profile-real-name,
+.profile-stat-count,
+.profile-edit-btn {
+    font-weight: 600;
+}
+
+/* Gallery Section */
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -1rem -1rem;
+    padding-bottom: 3rem;
+}
+
+.gallery-item {
+    position: relative;
+    flex: 1 0 22rem;
+    margin: 1rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.gallery-item:hover .gallery-item-info,
+.gallery-item:focus .gallery-item-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item-info {
+    display: none;
+}
+
+.gallery-item-info li {
+    display: inline-block;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.gallery-item-likes {
+    margin-right: 2.2rem;
+}
+
+.gallery-item-type {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+.fa-clone,
+.fa-comment {
+    transform: rotateY(180deg);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Loader */
+
+.loader {
+    width: 5rem;
+    height: 5rem;
+    border: 0.6rem solid #999;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: loader 500ms linear infinite;
+}
+
+/* Media Query */
+
+@media screen and (max-width: 40rem) {
+    .profile {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 4rem 0;
+    }
+
+    .profile::after {
+        display: none;
+    }
+
+    .profile-image,
+    .profile-user-settings,
+    .profile-bio,
+    .profile-stats {
+        float: none;
+        width: auto;
+    }
+
+    .profile-image img {
+        width: 7.7rem;
+    }
+
+    .profile-user-settings {
+        flex-basis: calc(100% - 10.7rem);
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+    }
+
+    .profile-user-name {
+        font-size: 2.2rem;
+    }
+
+    .profile-edit-btn {
+        order: 1;
+        padding: 0;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .profile-edit-btn {
+        margin-left: 0;
+    }
+
+    .profile-bio {
+        font-size: 1.4rem;
+        margin-top: 1.5rem;
+    }
+
+    .profile-edit-btn,
+    .profile-bio,
+    .profile-stats {
+        flex-basis: 100%;
+    }
+
+    .profile-stats {
+        order: 1;
+        margin-top: 1.5rem;
+    }
+
+    .profile-stats ul {
+        display: flex;
+        text-align: center;
+        padding: 1.2rem 0;
+        border-top: 0.1rem solid #dadada;
+        border-bottom: 0.1rem solid #dadada;
+    }
+
+    .profile-stats li {
+        font-size: 1.4rem;
+        flex: 1;
+        margin: 0;
+    }
+
+    .profile-stat-count {
+        display: block;
+    }
+}
+
+/* Spinner Animation */
+
+@keyframes loader {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*
+
+The following code will only run if your browser supports CSS grid.
+
+Remove or comment-out the code block below to see how the browser will fall-back to flexbox & floated styling. 
+
+*/
+
+@supports (display: grid) {
+    .profile {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: repeat(3, auto);
+        grid-column-gap: 3rem;
+        align-items: center;
+    }
+
+    .profile-image {
+        grid-row: 1 / -1;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+        grid-gap: 2rem;
+    }
+
+    .profile-image,
+    .profile-user-settings,
+    .profile-stats,
+    .profile-bio,
+    .gallery-item,
+    .gallery {
+        width: auto;
+        margin: 0;
+    }
+
+    @media (max-width: 40rem) {
+        .profile {
+            grid-template-columns: auto 1fr;
+            grid-row-gap: 1.5rem;
+        }
+
+        .profile-image {
+            grid-row: 1 / 2;
+        }
+
+        .profile-user-settings {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-gap: 1rem;
+        }
+
+        .profile-edit-btn,
+        .profile-stats,
+        .profile-bio {
+            grid-column: 1 / -1;
+        }
+
+        .profile-user-settings,
+        .profile-edit-btn,
+        .profile-settings-btn,
+        .profile-bio,
+        .profile-stats {
+            margin: 0;
+        }
+    }
+}
+
+</style>
+<style type="text/css">
+.sr {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   margin: 0 auto;
-  text-align: center;
-  width: 100%;
+  padding: 20px;
+}
+.sr::-webkit-scrollbar {
+  display: none;
+}
+.sr {
+  -ms-overflow-style: none;
 }
 
-.og-grid li {
-  display: inline-block;
-  margin: 10px 5px 0 5px;
-  vertical-align: top;
+.cd {
+	text-align: center;
+  /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
+  transition: 0.3s;
+  border-radius: 50% 50% 10px 10px;
+  margin: 40px;
+  font-size: 22px;
+  flex: 0 0 150px;
+
+}
+.cd img{
+	width: 150px;
+	border-radius: 50%;
+
+	
 }
 
-.og-grid li > a,
-.og-grid li > a img {
-  border: none;
-  outline: none;
-  display: block;
-  position: relative;
+.cd:hover {
+	background-color: rgba(0,25,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.og-grid li.og-expanded > a::after {
-  top: auto;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-bottom-color:#D6E6E7;
-  border-width: 15px;
-  left: 50%;
-  margin: -20px 0 0 -15px;
-}
-  </style>
+.cr {
+  padding: 2px;
   
+}
+</style>
+
 </head>
 <body>
-<section style="margin-top: 0; height: 95px;">
-  <nav class="mobile-menu">
-<label for="show-menu" class="show-menu"><span style="font-family: 'Aclonica', Swap, Arial, sans-serif;">
-The Magic Shoot
+<header>
+
+	<div class="container">
+
+		<div class="profile">
+
+			<div class="profile-image">
+
+				<img src="sandeep.JPG" width="152px" alt="">
+
+			</div>
+
+			<div class="profile-user-settings">
+
+				<h1 class="profile-user-name">Sandeep Kumar Films</h1>
+
+
+				<!--button class="btn profile-edit-btn">Upload New Posts</button>
+
+				<button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button-->
+
+			</div>
 <!--
-  <img src="assets/images/logo.png" width="100px" height="100px">
+			<div class="profile-stats">
+
+				<ul>
+					<li><span class="profile-stat-count">164</span> Posts</li>
+					<li><span class="profile-stat-count">188</span> Visitors</li>
+					<li><span class="profile-stat-count">26</span> Images</li>
+					<li><span class="profile-stat-count">46</span> Videos</li>
+				</ul>
+
+			</div>
 -->
-</span><div class="lines"></div></label>
-  <input type="checkbox" id="show-menu">
-    <ul id="menu">
+			<div class="profile-bio">
+
+				<p><span class="profile-real-name">Sandeep Kumar Films</span> is a private instagram clone of The Magic Shoot. 📷</p>
+				<p>#themagicshoot</p>
+				<p>#gradientartstudio</p>
+				<p>#privateinstagram</p>
+
+			</div>
+
+		</div>
+		<!-- End of profile section -->
+
+	</div>
+	<!-- End of container -->
+
+</header>
+
+
+
+
+<div>
+	<div class="sr">
+
+
+  <div class="cd">
+  <img src="assets/images/sandeep.JPG" alt="Sandeep" style="width:100%">
+  <div class="cr">
+    <h4><b>Sandeep</b></h4> 
     
-    <li><a href="../admin/instadmin.html">Upload New</a></li>
-
-    <li id="brandm" style="margin-right: 20px;"><a href="#" id="brand" style="display: block;"><img src="assets/images/logo.png" width="100px" height="100px"></a></li>
-
-    <li><a href="../admin/index.html">Admin Panel</a></li>
+  </div>
+</div>
+<div class="cd">
+  <img src="assets/images/kusum.JPG" alt="Kusumr" style="width:100%">
+  <div class="cr">
+    <h4><b>Kusum</b></h4> 
     
-  </ul>
-</nav>
-</section>
-
-
-<!-- Analytics -->
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161919589-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-161919589-1');
-</script>
-
-<!-- /Analytics --
-
-
-  <section class="mnu cid-qTkzRZLJNu" once="mnu" id="mnu1-0">
-    <nav style="background: rgba(0, 0, 0, 0.3);" class="navbar navbar-expand beta-mnu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </button>
-        <div class="mnu-logo">
-            <div class="navbar-brand">
-                <span class="navbar-logo">
-                    <a href="#top">
-                         <img src="assets/images/logo-122x122.png" alt="The Magic Shoot" title="The Magic Shoot" style="height: 3.8rem;">
-                    </a>
-                </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="#top">
-                        The Magic Shoot</a></span>
-            </div>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-mnu="true"><li class="nav-item">
-                    <a style="font-family: 'Aclonica', sans-serif;" class="nav-link link text-white display-4" href="index.html">
-                        
-                        Home</a>
-                </li><li class="nav-item"><a style="font-family: 'Aclonica', sans-serif;" class="nav-link link text-white display-4" href="album.html">
-                        
-                        Album</a></li><li class="nav-item"><a style="font-family: 'Aclonica', sans-serif;" class="nav-link link text-white display-4" href="films.html">
-                        
-                        Films</a></li>
-                <li class="nav-item">
-                    <a style="font-family: 'Aclonica', sans-serif;" class="nav-link link text-white display-4" href="package.html">
-                        
-                        Package</a>
-                </li><li class="nav-item"><a style="font-family: 'Aclonica', sans-serif;" class="nav-link link text-white display-4" href="about.html">
-                        About Us</a></li><li class="nav-item"><a style="font-family: 'Aclonica', sans-serif;" class="nav-link link text-white display-4" href="contact.html">
-                        Contact</a></li></ul>
-            
-        </div>
-    </nav>
-</section>
-
--->
-
-
-<!--
-<iframe style="width: 100%; height: 500px;" src="gallery/index.html" frameborder="0" scrolling="auto"></iframe>
--->
-
-<section>
-  <div id="cntgal" class="contnr"> 
-    <br>
+  </div>
+</div>
+<div class="cd">
+  <img src="assets/images/tushar.jpg" alt="Tushar" style="width:100%">
+  <div class="cr">
+    <h4><b>Tushar</b></h4> 
     
-    <h2 id="galname" class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1" style="font-size: 45px; font-family: 'Aclonica', Swap, Arial, sans-serif; color: black;">Sandip Kumar Films</h2>
-    <br>
-      <div class="main">
-        <ul id="og-grid" class="og-grid">
-          
-        </ul>
-      </div>
-    </div>
-</section>
-
-
-<!--
-<section once="footers" class="cid-rUk55UbUwD mbr-reveal" id="footer7-1c">
-
-    <div class="container">
-        <div class="media-container-row align-center mbr-white">
-            
-            <div class="row social-row">
-                <div class="social-list align-right pb-2">
-
-                <div class="soc-item">
-                        <a href="https://facebook.com/themagicshoot" target="_blank">
-                            <span class="mbr-iconfont mbr-iconfont-social socicon-facebook socicon"></span>
-                        </a>
-                    </div><div class="soc-item">
-                        <a href="https://www.youtube.com/channel/UC1jv0vsyFSMtlJ0tAOZlzOQ" target="_blank">
-                            <span class="mbr-iconfont mbr-iconfont-social socicon-youtube socicon"></span>
-                        </a>
-                    </div><div class="soc-item">
-                        <a href="https://instagram.com/themagicshoot" target="_blank">
-                            <span class="mbr-iconfont mbr-iconfont-social socicon-instagram socicon"></span>
-                        </a>
-                    </div></div>
-            </div>
-            <div class="row row-copirayt">
-                <p class="mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7">Copyright ©&nbsp;The Magic Shoot - All Rights Reserved || Powered by<a href="http://quantumwebgarden.in"> Quantum Webgarden</a></p>
-            </div>
-        </div>
-    </div>
-</section>
--->
-<!--section once="footers" class="cid-rUk55UbUwD mbr-reveal" id="footer7-12">
-
-    <div class="container">
-        <div class="media-container-row mbr-white">
-            
-            <div class="row row-copirayt" style="float: left;">
-                <p class="mbr-text mb-0 mbr-fonts-style mbr-white display-7" style="float: left;">Copyright ©&nbsp;The Magic Shoot - All Rights Reserved || Powered by<a href="http://quantumwebgarden.in" target="_blank"> Quantum Webgarden</a>
-                <a style="margin: 4px;" href="https://www.facebook.com/themagicshoot/" class="fa fa-facebook"></a>
-                <a style="margin: 4px;" href="https://www.instagram.com/themagicshoot/" class="fa fa-instagram"></a>
-                <a style="margin: 4px;" href="https://www.youtube.com/channel/UC1jv0vsyFSMtlJ0tAOZlzOQ" class="fa fa-youtube"></a>
-                </p>
-            </div>
-        </div>
-    </div>
-</section-->
-
-
-  <script src="assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="assets/popper/popper.min.js"></script>
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5"></script>
-  <script src="https://apis.google.com/js/plusone.js"></script>
-  <script src="assets/facebook-plugin/facebook-script.js"></script>
-  <script src="assets/tether/tether.min.js"></script>
-  <script src="assets/dropdown/js/nav-dropdown.js"></script>
-  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-  <script src="assets/smoothscroll/smooth-scroll.js"></script>
-  <script src="assets/theme/js/script.js"></script>
-  
-
-
-  <script type="text/javascript">
-function ovrly(){
-let timerInterval
-Swal.fire({
-  title: 'Please Wait!',
-  html: 'Album Images are loading...',
-  timer: 2000,
-  timerProgressBar: true,
-  padding: '3em',
-  backdrop: `rgba(0,0,123,0.4)`,
-  onBeforeOpen: () => {
-    Swal.showLoading()
-    timerInterval = setInterval(() => {
-      const content = Swal.getContent()
-      if (content) {
-        const b = content.querySelector('b')
-        if (b) {
-          b.textContent = Swal.getTimerLeft()
-        }
-      }
-    }, 100)
-  },
-  onClose: () => {
-    clearInterval(timerInterval)
-  }
-}).then((result) => {
-  /* Read more about handling dismissals below */
-  if (result.dismiss === Swal.DismissReason.timer) {
-    console.log('I was closed by the timer')
-  }
-})
-}
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">var scrolltotop={setting:{startline:100,scrollto:0,scrollduration:1e3,fadeduration:[500,100]},controlHTML:'<img src="https://i1155.photobucket.com/albums/p559/scrolltotop/arrow71.png" />',controlattrs:{offsetx:5,offsety:5},anchorkeyword:"#top",state:{isvisible:!1,shouldvisible:!1},scrollup:function(){this.cssfixedsupport||this.$control.css({opacity:0});var t=isNaN(this.setting.scrollto)?this.setting.scrollto:parseInt(this.setting.scrollto);t="string"==typeof t&&1==jQuery("#"+t).length?jQuery("#"+t).offset().top:0,this.$body.animate({scrollTop:t},this.setting.scrollduration)},keepfixed:function(){var t=jQuery(window),o=t.scrollLeft()+t.width()-this.$control.width()-this.controlattrs.offsetx,s=t.scrollTop()+t.height()-this.$control.height()-this.controlattrs.offsety;this.$control.css({left:o+"px",top:s+"px"})},togglecontrol:function(){var t=jQuery(window).scrollTop();this.cssfixedsupport||this.keepfixed(),this.state.shouldvisible=t>=this.setting.startline?!0:!1,this.state.shouldvisible&&!this.state.isvisible?(this.$control.stop().animate({opacity:1},this.setting.fadeduration[0]),this.state.isvisible=!0):0==this.state.shouldvisible&&this.state.isvisible&&(this.$control.stop().animate({opacity:0},this.setting.fadeduration[1]),this.state.isvisible=!1)},init:function(){jQuery(document).ready(function(t){var o=scrolltotop,s=document.all;o.cssfixedsupport=!s||s&&"CSS1Compat"==document.compatMode&&window.XMLHttpRequest,o.$body=t(window.opera?"CSS1Compat"==document.compatMode?"html":"body":"html,body"),o.$control=t('<div id="topcontrol">'+o.controlHTML+"</div>").css({position:o.cssfixedsupport?"fixed":"absolute",bottom:o.controlattrs.offsety,right:o.controlattrs.offsetx,opacity:0,cursor:"pointer"}).attr({title:"Scroll to Top"}).click(function(){return o.scrollup(),!1}).appendTo("body"),document.all&&!window.XMLHttpRequest&&""!=o.$control.text()&&o.$control.css({width:o.$control.width()}),o.togglecontrol(),t('a[href="'+o.anchorkeyword+'"]').click(function(){return o.scrollup(),!1}),t(window).bind("scroll resize",function(t){o.togglecontrol()})})}};scrolltotop.init();</script>
+  </div>
+</div>
+<div class="cd">
+  <img src="assets/images/sanju.JPG" alt="Sanju" style="width:100%">
+  <div class="cr">
+    <h4><b>Sanju</b></h4> 
+    
+  </div>
+</div>
+<div class="cd">
+  <img src="assets/images/shanu.jpg" alt="Shanu" style="width:100%">
+  <div class="cr">
+    <h4><b>Shanu</b></h4> 
+     
+  </div>
+</div>
 
 
 
 
-  
+</div>
+</div>
+
+
+<main>
+
+	<div class="container">
+
+		<div class="gallery">
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 89</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 5</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 42</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Video</span><i class="fas fa-video" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 38</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 47</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 94</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 3</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 52</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 4</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 66</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 45</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 34</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 41</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Video</span><i class="fas fa-video" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 30</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- End of gallery -->
+
+		<div class="loader"></div>
+
+	</div>
+	<!-- End of container -->
+
+</main>
 </body>
 </html>
