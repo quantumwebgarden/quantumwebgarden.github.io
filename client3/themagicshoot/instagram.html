@@ -4,11 +4,12 @@
 	<title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script>
 <link href='//fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-        <script src="populate.js"></script>
+        <script src="assets/tms/insta.js"></script>
 <style type="text/css">
 /*
 
@@ -164,6 +165,7 @@ img {
     flex-wrap: wrap;
     margin: -1rem -1rem;
     padding-bottom: 3rem;
+
 }
 
 .gallery-item {
@@ -172,6 +174,7 @@ img {
     margin: 1rem;
     color: #fff;
     cursor: pointer;
+    background-color: #665f59;
 }
 
 .gallery-item:hover .gallery-item-info,
@@ -215,8 +218,10 @@ img {
 
 .gallery-image {
     width: 100%;
-    height: 100%;
+    height: 200px;
+    display: flex;
     object-fit: cover;
+    
 }
 
 /* Loader */
@@ -254,6 +259,7 @@ img {
 
     .profile-image img {
         width: 7.7rem;
+        min-width: 120px;
     }
 
     .profile-user-settings {
@@ -410,16 +416,17 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	text-align: center;
   /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
   transition: 0.3s;
-  border-radius: 50% 50% 10px 10px;
-  margin: 40px;
+  border-radius: 50%;
+  margin: 45px;
   font-size: 22px;
-  flex: 0 0 150px;
+  width: 75px;
+  min-width: 40px;
 
 }
 .cd img{
-	width: 150px;
+	width: 75px;
 	border-radius: 50%;
-
+	min-width: 60px;
 	
 }
 
@@ -430,12 +437,104 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 .cr {
   padding: 2px;
+  display: none;
   
+}
+</style>
+<style>
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-y: auto;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+</style>
+<style type="text/css">
+	.swal-wide{
+    width:850px !important;
 }
 </style>
 
 </head>
 <body>
+<!--
+<div id="overlay" class="overlay" onclick="off()">
+  <div id="imgsh">
+  	<img id="imgshsrc" max-width="80%" height="auto" src="">
+
+  </div>
+</div>
+-->
+<div id="overlay1" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="off1()">&times;</a>
+  <div class="overlay-content">
+    <p id="dtls1" style="color: white; font-family: 'Lato', sans-serif; font-size: 26px;">Topic</p>
+    <img id="imgshsrc1" style="margin: 0 auto; object-fit: scale-down;" width="80%" height="500" src="assets/images/logo.png">
+    <br>
+    <p id="tdtls1" style="color: white; font-family: 'Lato', sans-serif; font-size: 26px;">Teacher</p>
+    <br>
+  </div>
+</div>
+
+<div id="overlay2" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="off2()">&times;</a>
+  <div class="overlay-content">
+    <p id="dtls2" style="color: white; font-family: 'Lato', sans-serif; font-size: 26px;">Topic</p>
+    <iframe style="background-color: #FFFFFF;" id="imgshsrc2" width="80%" height="400" src="assets/images/blank.jpg" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br>
+    <p id="tdtls2" style="color: white; font-family: 'Lato', sans-serif; font-size: 26px;">Teacher</p>
+    <br>
+  </div>
+</div>
+
 <header>
 
 	<div class="container">
@@ -472,7 +571,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 -->
 			<div class="profile-bio">
 
-				<p><span class="profile-real-name">Sandeep Kumar Films</span> is a private instagram clone of The Magic Shoot. 📷</p>
+				<p><span class="profile-real-name">Sandeep Kumar Films</span> is a private instagram clone of Sandeep Kumar Films. 📷</p>
 				<p>#themagicshoot</p>
 				<p>#gradientartstudio</p>
 				<p>#privateinstagram</p>
@@ -490,7 +589,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 
 
-<div>
+<div class="container">
 	<div class="sr">
 
 
@@ -532,7 +631,6 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 
 
-
 </div>
 </div>
 
@@ -541,232 +639,51 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 	<div class="container">
 
-		<div class="gallery">
+		<div class="gallery" id="galinsta">
 
+
+<!--
 			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
+				<img src="assets/images/album1.jpeg" class="gallery-image" alt="">
+				<div class="gallery-item-info" onclick="imgfr()">
 					<ul>
 						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
 						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
 					</ul>
-
 				</div>
-
 			</div>
 
 			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 89</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 5</li>
-					</ul>
-
-				</div>
-
-			</div>
-
-			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
-
+				<video width="100%" height="200" controls src="assets/images/test.mp4"></video>
 				<div class="gallery-item-type">
-
 					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
-
 				</div>
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 42</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
-					</ul>
-
-				</div>
-
-			</div>
-
-			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
-
-				<div class="gallery-item-type">
-
-					<span class="visually-hidden">Video</span><i class="fas fa-video" aria-hidden="true"></i>
-
-				</div>
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 38</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-					</ul>
-
-				</div>
-
-			</div>
-
-			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
-
-				<div class="gallery-item-type">
-
-					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
-
-				</div>
-
-				<div class="gallery-item-info">
-
+				<div class="gallery-item-info" onclick="vdofr()">
 					<ul>
 						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 47</li>
 						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
 					</ul>
-
 				</div>
-
 			</div>
+-->
 
-			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 94</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 3</li>
-					</ul>
-
-				</div>
-
-			</div>
-
-			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
-
-				<div class="gallery-item-type">
-
-					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
-
-				</div>
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 52</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 4</li>
-					</ul>
-
-				</div>
-
-			</div>
-
-			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 66</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-					</ul>
-
-				</div>
-
-			</div>
-
-			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
-
-				<div class="gallery-item-type">
-
-					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
-
-				</div>
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 45</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-					</ul>
-
-				</div>
-
-			</div>
-
-			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 34</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
-					</ul>
-
-				</div>
-
-			</div>
-
-			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/shanu.jpg" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 41</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-					</ul>
-
-				</div>
-
-			</div>
-
-			<div class="gallery-item" tabindex="0">
-
-				<img src="assets/images/sandeep.JPG" class="gallery-image" alt="">
-
-				<div class="gallery-item-type">
-
-					<span class="visually-hidden">Video</span><i class="fas fa-video" aria-hidden="true"></i>
-
-				</div>
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 30</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-					</ul>
-
-				</div>
-
-			</div>
 
 		</div>
 		<!-- End of gallery -->
 
-		<div class="loader"></div>
+		
 
 	</div>
 	<!-- End of container -->
-
 </main>
 </body>
 </html>
+<!--
+https://drive.google.com/open?id=1j7gxA9gcgytbjIsDsi6xGLHoa3SeYKuT
+
+https://drive.google.com/uc?export=view&id=1j7gxA9gcgytbjIsDsi6xGLHoa3SeYKuT
+
+https://drive.google.com/file/d/1j7gxA9gcgytbjIsDsi6xGLHoa3SeYKuT/view
+
+<iframe src="https://drive.google.com/file/d/1j7gxA9gcgytbjIsDsi6xGLHoa3SeYKuT/preview" width="640" height="480"></iframe>
+-->
