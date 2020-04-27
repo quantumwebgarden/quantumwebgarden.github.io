@@ -102,7 +102,7 @@ function off1() {
    document.getElementById("overlay1").style.width = "0%";
    document.getElementById("overlay1").style.top = "50%";
   document.getElementById("overlay1").style.left = "50%";
-  document.getElementById("imgshsrc1").src = "";
+  //document.getElementById("imgshsrc1").src = "";
   document.body.style.overflowY = 'auto';
   
 }

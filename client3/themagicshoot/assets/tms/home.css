@@ -39,6 +39,7 @@ button.slick-prev, button.slick-prev:hover {
   width: auto;
   border-radius: 8px;
   box-shadow: 0 8px 14px 0 rgba(86, 152, 50,0.8), 0 6px 15px 0 rgba(56, 73, 207,0.7); 
+  object-fit: cover;
 }
 
 
@@ -375,7 +376,7 @@ button.slick-prev, button.slick-prev:hover {
 }
 
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #5c5d66; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
