@@ -21,9 +21,6 @@ var rootRef = firebase.database().ref('instagram');
 
 rootRef.on("child_added", snap => {
 
-
-var uname = snap.child("uname").val();
-
 var dtype = snap.child("dtype").val();
 
 var cap = snap.child("cap").val();
@@ -36,13 +33,13 @@ ntn = ntn +1;
 
 
 if(dtype == "Image"){
-$("#galinsta").append("<div class=\"gallery-item\" tabindex=\"0\"><img src=\"" + ulnk + "\" class=\"gallery-image\" alt=\"\"><div class=\"gallery-item-type\"><span class=\"visually-hidden\">Gallery</span><i class=\"fas fa-image\" aria-hidden=\"true\"></i></div><div class=\"gallery-item-info\" onclick=\"imgfr(\'" + insid +"\',\'" + ulnk +"\',\'" + uname +"\',\'" + cap +"\');\"><ul><li class=\"gallery-item-likes\"><span class=\"visually-hidden\">Likes:</span><i class=\"fas fa-eye\" aria-hidden=\"true\"></i> View</li></ul></div></div>");
+$("#galinsta").append("<div class=\"gallery-item\" tabindex=\"0\"><img src=\"" + ulnk + "\" class=\"gallery-image\" alt=\"\"><div class=\"gallery-item-type\"><span class=\"visually-hidden\">Gallery</span><i class=\"fas fa-image\" aria-hidden=\"true\"></i></div><div class=\"gallery-item-info\" onclick=\"imgfr(\'" + insid +"\',\'" + ulnk +"\',\'" + cap +"\');\"><ul><li class=\"gallery-item-likes\"><span class=\"visually-hidden\">Likes:</span><i class=\"fas fa-eye\" aria-hidden=\"true\"></i> View</li></ul></div></div>");
 }
 if(dtype == "Video"){
-$("#galinsta").append("<div class=\"gallery-item\" tabindex=\"0\"><iframe width=\"100%\" height=\"200\" src=\"" + ulnk + "\"  frameborder=\"0\" allowfullscreen></iframe><div class=\"gallery-item-type\"><span class=\"visually-hidden\">Gallery</span><i class=\"fas fa-video\" aria-hidden=\"true\"></i></div><div class=\"gallery-item-info\" onclick=\"vdofr(\'" + insid +"\',\'" + ulnk +"\',\'" + uname +"\',\'" + cap +"\');\"><ul><li class=\"gallery-item-likes\"><span class=\"visually-hidden\">Likes:</span><i class=\"fas fa-eye\" aria-hidden=\"true\"></i> View</li></ul></div></div>");
+$("#galinsta").append("<div class=\"gallery-item\" tabindex=\"0\"><iframe width=\"100%\" height=\"200\" src=\"" + ulnk + "\"  frameborder=\"0\" allowfullscreen></iframe><div class=\"gallery-item-type\"><span class=\"visually-hidden\">Gallery</span><i class=\"fas fa-video\" aria-hidden=\"true\"></i></div><div class=\"gallery-item-info\" onclick=\"vdofr(\'" + insid +"\',\'" + ulnk +"\',\'" + cap +"\');\"><ul><li class=\"gallery-item-likes\"><span class=\"visually-hidden\">Likes:</span><i class=\"fas fa-eye\" aria-hidden=\"true\"></i> View</li></ul></div></div>");
 }
 if(dtype == "Gvideo"){
-$("#galinsta").append("<div class=\"gallery-item\" tabindex=\"0\"><iframe width=\"100%\" height=\"200\" src=\"" + ulnk + "\"  frameborder=\"0\" allowfullscreen></iframe><div class=\"gallery-item-type\"><span class=\"visually-hidden\">Gallery</span><i class=\"fas fa-video\" aria-hidden=\"true\"></i></div><div class=\"gallery-item-info\" onclick=\"vdofr(\'" + insid +"\',\'" + ulnk +"\',\'" + uname +"\',\'" + cap +"\');\"><ul><li class=\"gallery-item-likes\"><span class=\"visually-hidden\">Likes:</span><i class=\"fas fa-eye\" aria-hidden=\"true\"></i> View</li></ul></div></div>");
+$("#galinsta").append("<div class=\"gallery-item\" tabindex=\"0\"><iframe width=\"100%\" height=\"200\" src=\"" + ulnk + "\"  frameborder=\"0\" allowfullscreen></iframe><div class=\"gallery-item-type\"><span class=\"visually-hidden\">Gallery</span><i class=\"fas fa-video\" aria-hidden=\"true\"></i></div><div class=\"gallery-item-info\" onclick=\"vdofr(\'" + insid +"\',\'" + ulnk +"\',\'" + cap +"\');\"><ul><li class=\"gallery-item-likes\"><span class=\"visually-hidden\">Likes:</span><i class=\"fas fa-eye\" aria-hidden=\"true\"></i> View</li></ul></div></div>");
 }
 });
 
@@ -79,14 +76,12 @@ function imgfr(insid,ulnk,uname,cap)
   {
     on1();
   document.getElementById("imgshsrc1").src = ulnk;
-  document.getElementById("dtls1").innerHTML = "Uploaded by <b>" + uname+ "</b>";
   document.getElementById("tdtls1").innerHTML = cap;
   }
   function vdofr(insid,ulnk,uname,cap)
   {
     on2();
   document.getElementById("imgshsrc2").src = ulnk;
-  document.getElementById("dtls2").innerHTML = "Uploaded by <b>" + uname+ "</b>";
   document.getElementById("tdtls2").innerHTML = cap;
   
   }
