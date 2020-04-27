@@ -72,13 +72,13 @@ function showimage(insid,ulnk,uname,cap){
 });
   }
 */
-function imgfr(insid,ulnk,uname,cap)
+function imgfr(insid,ulnk,cap)
   {
     on1();
   document.getElementById("imgshsrc1").src = ulnk;
   document.getElementById("tdtls1").innerHTML = cap;
   }
-  function vdofr(insid,ulnk,uname,cap)
+  function vdofr(insid,ulnk,cap)
   {
     on2();
   document.getElementById("imgshsrc2").src = ulnk;
