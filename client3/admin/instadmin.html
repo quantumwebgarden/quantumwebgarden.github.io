@@ -122,8 +122,9 @@ input[type=submit]:hover {
       <div class="col-75">
         <select id="dtype" name="dtype" onchange="chktype(this.value)">
           <option value="" disabled="disabled" selected="selected">-- Choose Any One --</option>
-          <option value="Video">Video</option>
-          <option value="Image">Image</option>
+          <option value="Video">Youtube Video</option>
+          <option value="Gvideo">Google Drive Video</option>
+          <option value="Image">Google Drive Image</option>
           <option value="Audio" disabled="disabled">Audio</option>
         </select>
       </div>
@@ -133,12 +134,21 @@ input[type=submit]:hover {
       function chktype(x){
         if(x == "Video"){
           document.getElementById("yl").style.display = "block";
+          document.getElementById("gl").style.display = "none";
+          document.getElementById("upd").style.display = "none";
+          document.getElementById("yshow").style.display = "block";
+          document.getElementById("imgshow").style.display = "none";
+        }
+        else if(x == "Gvideo"){
+          document.getElementById("yl").style.display = "none";
+          document.getElementById("gl").style.display = "block";
           document.getElementById("upd").style.display = "none";
           document.getElementById("yshow").style.display = "block";
           document.getElementById("imgshow").style.display = "none";
         }
         else{
           document.getElementById("yl").style.display = "none";
+          document.getElementById("gl").style.display = "none";
           document.getElementById("upd").style.display = "block";
           document.getElementById("yshow").style.display = "none";
           document.getElementById("imgshow").style.display = "block";
@@ -155,9 +165,18 @@ input[type=submit]:hover {
       </div>
     </div>
 
+    <div class="row" id="gl" style="display: none;">
+      <div class="col-25">
+        <label for="glnk">Enter Google Drive Video Link</label>
+      </div>
+      <div class="col-75">
+        <input type="url" id="glnk" name="glnk" placeholder="Enter Google Drive Video Link" onchange="glchk()">
+      </div>
+    </div>
+
     <div class="row" id="upd" style="display: none;">
       <div class="col-25">
-        <label for="ylnk">Enter Image Link from Goolge Drive</label>
+        <label for="ylnk">Enter Goolge Drive Image Link</label>
       </div>
       <div class="col-75">
         <input type="url" id="dlnk" name="dlnk" placeholder="Enter Google Drive sharing Link" onchange="chngURL()">
@@ -168,6 +187,12 @@ input[type=submit]:hover {
       function ylchk(){
         var str = document.getElementById("ylnk").value;
         document.getElementById("ulnk").value = "https://www.youtube.com/embed/" + str.substr(str.length - 11);
+        document.getElementById("yshow").src = document.getElementById("ulnk").value;
+      }
+      function glchk(){
+        var str = document.getElementById("glnk").value;
+        var res = str.replace("open?id=", "file/d/");
+        document.getElementById("ulnk").value = res + "/preview";
         document.getElementById("yshow").src = document.getElementById("ulnk").value;
       }
     </script>
