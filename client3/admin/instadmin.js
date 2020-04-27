@@ -31,14 +31,13 @@ function submitForm(e){
   e.preventDefault();
 
   // Get values
-var	uname = getInputVal('uname');
 var	dtype = getInputVal('dtype');
 var	cap = getInputVal('cap');
 var ulnk = getInputVal('ulnk');
 var insid = getInputVal('insid');
 
  // Save message
-  saveMessage(uname,dtype,cap,ulnk,insid);
+  saveMessage(dtype,cap,ulnk,insid);
 
 
   document.getElementById("instagram").style.display = 'none';
@@ -52,13 +51,12 @@ function getInputVal(id){
 }
 
 // Save message to firebase   
-function saveMessage(uname,dtype,cap,ulnk,insid){
+function saveMessage(dtype,cap,ulnk,insid){
   /*
   var newMessageRef = messagesRef.push();
   MessageRef.set({
   */
   firebase.database().ref('instagram/' + insid).set({
-uname:uname,
 dtype:dtype,
 cap:cap,
 ulnk:ulnk,
