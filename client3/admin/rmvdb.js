@@ -14,30 +14,7 @@ var config = {
 
 $(document).ready(function(){
 
-var rootRef = firebase.database().ref('tmscontact');
-
-rootRef.on("child_added", snap => {
-
-var tmsid = snap.child("tmsid").val();
-var name = snap.child("name").val();
-var email = snap.child("email").val();
-var phone = snap.child("phone").val();
-var msg = snap.child("msg").val();
-
-/*if(fclass=="V")
-{*/
-$("#contact").append("<tr id=\"" + tmsid + "\"><td>" + tmsid + "</td><td>" + name + "</td><td><a href =\"mailto:" + email + "\">" + email + "</a></td><td><a href =\"tel:" + phone + "\">" + phone + "</a></td><td>" + msg + "</td><td><button type=\"button\" onclick=\"rmvcontact(\'" + tmsid +"\');\">Delete</button></td></tr>");
-//}
-
-});
-chkanother();
-});
-
-
-
-
-function chkanother(){
-    var rootRef = firebase.database().ref('instagram');
+var rootRef = firebase.database().ref('instagram');
 
 rootRef.on("child_added", snap => {
 
@@ -52,19 +29,7 @@ var insid = snap.child("insid").val();
 $("#insta").append("<tr id=\"" + insid + "\"><td>" + insid + "</td><td>" + cap + "</td><td><iframe src=\"" + ulnk + "\" width=\"150px\" height=\"150px\"></iframe></td><td><button type=\"button\" onclick=\"rmvinsta(\'" + insid +"\');\">Delete</button></td></tr>");
 });
 
-    }
-
-function rmvcontact(id){
-    let userRef = firebase.database().ref('tmscontact/' + id);
-    userRef.remove();
-    document.getElementById(id).style.display = 'none';
-    Swal.fire({
-    icon: 'info',
-    title: 'The Magic Shoot <br>Admin Panel',
-    html: 'Contact Details with ID <b><u>' + id + '</u></b> has been deleted from the database.',
-    footer: '<a href ="contacts.html" target="_blank">Visit Contact Admin Panel</a>'
-    })
-}
+});
 
 function rmvinsta(id){
     let userRef = firebase.database().ref('instagram/' + id);
