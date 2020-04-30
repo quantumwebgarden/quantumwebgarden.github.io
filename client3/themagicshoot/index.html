@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html  >
 <head>
-  <!-- Site made with Mobirise Website Builder v4.12.3, https://mobirise.com -->
+  
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v4.12.3, mobirise.com">
@@ -59,7 +59,7 @@
 
 
 
-<nav class="mobile-menu">
+<nav class="mobile-menu" id="mmnu">
 <label for="show-menu" class="show-menu"><span style="font-family: 'Aclonica', Swap, Arial, sans-serif;">
 The Magic Shoot
 <!--
@@ -136,9 +136,12 @@ The Magic Shoot
 <br>
 <h2 class="h2d">Featured Creations</h2>
 <div class="slider">
-	  	<img src="assets/images/album1.jpeg" onclick="galy(968296750707); return false;"/>
+	  	<img src="assets/images/cover.png" onclick="galy(968296750707); return false;"/>
 	  	<img src="assets/images/album1.jpeg" onclick="galy(968296750707); return false;" />
-	  	<img src="assets/images/album1.jpeg" onclick="galy(968296750707); return false;" />
+	  	<img src="assets/images/cover.png" onclick="galy(968296750707); return false;" />
+      <img src="assets/images/cover.png" onclick="galy(968296750707); return false;" />
+      <img src="assets/images/cover.png" onclick="galy(968296750707); return false;" />
+      <img src="assets/images/album1.jpeg" onclick="galy(968296750707); return false;" />
 	  	<img src="assets/images/album1.jpeg" onclick="galy(968296750707); return false;" />
 	  	<img src="assets/images/album1.jpeg" onclick="galy(968296750707); return false;" />
 	</div>
@@ -218,7 +221,7 @@ The Magic Shoot
                 <iframe id="fstvdo" class="button1" style="border-radius: 5px 15px;" src="https://www.youtube.com/embed/0EEau-oMz_8?rel=0&amp;showinfo=0&amp;autoplay=0&amp;controls=0&amp;loop=1" width="48%" height="100%"
                         frameborder="0" allow="autoplay; encrypted-media">
                 </iframe> &nbsp;
-                <iframe class="button1" style="border-radius: 15px 5px;" src="https://www.youtube.com/embed/0EEau-oMz_8?rel=0&amp;showinfo=0&amp;autoplay=0&amp;controls=0&amp;loop=1" width="48%" height="100%"
+                <iframe id="sndvdo" class="button1" style="border-radius: 15px 5px;" src="https://www.youtube.com/embed/0EEau-oMz_8?rel=0&amp;showinfo=0&amp;autoplay=0&amp;controls=0&amp;loop=1" width="48%" height="100%"
                         frameborder="0" allow="autoplay; encrypted-media">
                 </iframe>
                 <div class="tms-act">
@@ -240,9 +243,9 @@ The Magic Shoot
             
             <div class="row row-copirayt" style="float: left;">
                 <p class="mbr-text mb-0 mbr-fonts-style mbr-white display-7" style="float: left;">Copyright ©&nbsp;The Magic Shoot - All Rights Reserved || Powered by<a href="http://quantumwebgarden.in" target="_blank"> Quantum Webgarden</a>
-                <a style="margin: 4px;" href="https://www.facebook.com/themagicshoot/" class="fa fa-facebook"></a>
-                <a style="margin: 4px;" href="https://www.instagram.com/themagicshoot/" class="fa fa-instagram"></a>
-                <a style="margin: 4px;" href="https://www.youtube.com/channel/UC1jv0vsyFSMtlJ0tAOZlzOQ" class="fa fa-youtube"></a>
+                <a style="margin: 8px;" href="https://www.facebook.com/themagicshoot/" class="fa fa-facebook"></a>
+                <a style="margin: 8px;" href="https://www.instagram.com/themagicshoot/" class="fa fa-instagram"></a>
+                <a style="margin: 8px;" href="https://www.youtube.com/channel/UC1jv0vsyFSMtlJ0tAOZlzOQ" class="fa fa-youtube"></a>
                 </p>
             </div>
         </div>
@@ -255,6 +258,7 @@ The Magic Shoot
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/smoothscroll/smooth-scroll.js"></script>
   <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/tms/tms.js"></script>
   <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
   <script src="assets/ytplayer/jquery.mb.ytplayer.min.js"></script>
   <script src="assets/vimeoplayer/jquery.mb.vimeo_player.js"></script>
@@ -266,26 +270,20 @@ The Magic Shoot
   <script src="assets/theme/js/script.js"></script>
 
 
-<script type="text/javascript">
-  myID = document.getElementById("brand");
-  gap = document.getElementById("brandm");
-  mlogo = document.getElementById("brandl");
-var myScrollFunc = function() {
-  var y = window.scrollY;
-  if (y >= 375) {
-    myID.style.display = "block";
-    gap.style.width = '100px';
-    
-  } else {
-    myID.style.display = "none"
-    gap.style.width = y/4 + 'px';
-    var m = 250 - y/2;
-    mlogo.style.width = m + 'px';
-  }
-};
 
-window.addEventListener("scroll", myScrollFunc);
+<!--script type="text/javascript">
+	function chk(){
+		alert(window.scrollY + "," + me.height);
+	}
 </script>
+<script type="text/javascript">
+	function showRect(elem) {
+  elem = document.getElementById("brandl");
+  let r = elem.getBoundingClientRect();
+  tp = r.top;
+  alert(tp);
+}
+</script-->
   
 </body>
 </html>
