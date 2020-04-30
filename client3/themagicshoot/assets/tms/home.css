@@ -1,11 +1,12 @@
 .slider {
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  background-image: url("../images/bck.jpg");
+  background-color: black;
   background-repeat: no-repeat;
   object-fit: contain;
-  padding: 40px 0 40px 0;
-  box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2), 0 6px 15px 0 rgba(0,0,0,0.19);
+  padding: 20px 0 20px 0;
+  box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2), 
+         0 -8px 14px 0 rgba(0,0,0,0.19);
 }
 .slick-slide {
   margin: 15px;
@@ -40,10 +41,14 @@ button.slick-prev, button.slick-prev:hover {
   font-weight: bold;
 }
 .slider img {
-  height: 270px;
+  height: 300px;
   width: auto;
-  box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2), 0 6px 15px 0 rgba(0,0,0,0.19);
+  /*box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2), 0 6px 15px 0 rgba(0,0,0,0.19);*/
   object-fit: contain;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: 18px dashed white;
+  border-bottom: 18px dashed white;
 }
 
 
