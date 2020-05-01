@@ -2,8 +2,6 @@
   width: 100%;
   margin: 0 auto;
   padding: 20px 0 20px 0;
-  box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2), 
-         0 -8px 14px 0 rgba(0,0,0,0.19);
 }
 .slick-slide {
   margin: 15px;
@@ -38,12 +36,14 @@ button.slick-prev, button.slick-prev:hover {
   font-weight: bold;
 }
 .slider img {
-  height: 300px;
+  height: 400px;
   width: auto;
   /*box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2), 0 6px 15px 0 rgba(0,0,0,0.19);*/
   object-fit: contain;
   padding-top: 15px;
   padding-bottom: 15px;
+  -webkit-filter: drop-shadow(5px 5px 5px #222); 
+  filter: drop-shadow(5px 5px 5px #222);
 }
 
 
