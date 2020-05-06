@@ -1,4 +1,6 @@
-
+html body *{
+	font-weight: 650 !important;
+}
 section {
   padding: 0.2rem;
   background: #e4e4e4;
