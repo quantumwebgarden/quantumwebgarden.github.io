@@ -2,6 +2,13 @@ window.addEventListener('offline', toOff);
     function toOff(){
       alert("You gone Offline. Check Internet Connection");
       document.getElementById("vdy").style.display = "none";
+      document.getElementById("err").style.display = "block";
+    }
+window.addEventListener('online', toOn);
+    function toOn(){
+      alert("You gone Offline. Check Internet Connection");
+      document.getElementById("vdy").style.display = "block";
+      document.getElementById("err").style.display = "none";
     }
 
 function fdsrf() {
@@ -71,19 +78,6 @@ function fdsrf() {
 
 
 
-function navsh() {
-  var x = document.getElementById("myLinks");
-  var y = document.getElementById("mymain");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-    y.style.display = "block";
-  } else {
-    x.style.display = "block";
-    y.style.display = "none";
-  }
-}
-
-
 
 var pntr = "";
   function foods() {
@@ -103,6 +97,11 @@ var pntr = "";
     document.getElementById("mdcshp").style.display = "none";
     document.getElementById("grcshp").style.display = "none";
     document.getElementById("estshp").style.display = "none";
+
+    document.getElementById("fdsrs").style.display = "block";
+    document.getElementById("mdcrs").style.display = "none";
+    document.getElementById("grcrs").style.display = "none";
+    document.getElementById("estrs").style.display = "none";
     
   }
   function medicine() {
@@ -123,6 +122,11 @@ var pntr = "";
     document.getElementById("grcshp").style.display = "none";
     document.getElementById("estshp").style.display = "none";
 
+    document.getElementById("fdsrs").style.display = "none";
+    document.getElementById("mdcrs").style.display = "block";
+    document.getElementById("grcrs").style.display = "none";
+    document.getElementById("estrs").style.display = "none";
+
   }
   function grocery() {
     pntr = "grocery_list";
@@ -141,6 +145,11 @@ var pntr = "";
     document.getElementById("mdcshp").style.display = "none";
     document.getElementById("grcshp").style.display = "block";
     document.getElementById("estshp").style.display = "none";
+
+    document.getElementById("fdsrs").style.display = "none";
+    document.getElementById("mdcrs").style.display = "none";
+    document.getElementById("grcrs").style.display = "block";
+    document.getElementById("estrs").style.display = "none";
 
   }
   function essentials() {
@@ -161,20 +170,120 @@ var pntr = "";
     document.getElementById("grcshp").style.display = "none";
     document.getElementById("estshp").style.display = "block";
 
+    document.getElementById("fdsrs").style.display = "none";
+    document.getElementById("mdcrs").style.display = "none";
+    document.getElementById("grcrs").style.display = "none";
+    document.getElementById("estrs").style.display = "block";
+
   }
 
 function sh_shops(){
+    document.getElementById("vdy").style.display = "block";
+    document.getElementById("ordertrack").style.display = "none";
+    document.getElementById("cartdtls").style.display = "none";
 	document.getElementById("itemlist").style.display = "none";
 	document.getElementById("shoplist").style.display = "block";
 	document.getElementById("item").classList.remove("nav__link--active");
+    document.getElementById("order").classList.remove("nav__link--active");
 	document.getElementById("shop").classList.add("nav__link--active");
+    document.getElementById("itmsrc").style.display = "none";
+    document.getElementById("shpsrc").style.display = "block";
+    document.getElementById("ordsrc").style.display = "none";
+    document.getElementById("krtsrc").style.display = "none";
 
 }
 
 function sh_items(){
+    document.getElementById("vdy").style.display = "block";
+    document.getElementById("ordertrack").style.display = "none";
+    document.getElementById("cartdtls").style.display = "none";
 	document.getElementById("itemlist").style.display = "block";
 	document.getElementById("shoplist").style.display = "none";
 	document.getElementById("item").classList.add("nav__link--active");
 	document.getElementById("shop").classList.remove("nav__link--active");
-	
+    document.getElementById("order").classList.remove("nav__link--active");
+    document.getElementById("itmsrc").style.display = "block";
+    document.getElementById("shpsrc").style.display = "none";
+    document.getElementById("ordsrc").style.display = "none";
+    document.getElementById("krtsrc").style.display = "none";
+
 }
+
+function sh_orders(){
+    document.getElementById("vdy").style.display = "none";
+    document.getElementById("ordertrack").style.display = "block";
+    document.getElementById("cartdtls").style.display = "none";
+    document.getElementById("order").classList.add("nav__link--active");
+    document.getElementById("shop").classList.remove("nav__link--active");
+    document.getElementById("item").classList.remove("nav__link--active");
+    document.getElementById("itmsrc").style.display = "none";
+    document.getElementById("shpsrc").style.display = "none";
+    document.getElementById("ordsrc").style.display = "block";
+    document.getElementById("krtsrc").style.display = "none";
+
+}
+
+function showcart(){
+    document.getElementById("vdy").style.display = "none";
+    document.getElementById("ordertrack").style.display = "none";
+    document.getElementById("cartdtls").style.display = "block";
+    document.getElementById("order").classList.remove("nav__link--active");
+    document.getElementById("shop").classList.remove("nav__link--active");
+    document.getElementById("item").classList.remove("nav__link--active");
+    document.getElementById("itmsrc").style.display = "none";
+    document.getElementById("shpsrc").style.display = "none";
+    document.getElementById("ordsrc").style.display = "none";
+    document.getElementById("krtsrc").style.display = "block";
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+jQuery(function ($) {
+
+    $(".sidebar-dropdown > a").click(function() {
+  $(".sidebar-submenu").slideUp(200);
+  if (
+    $(this)
+      .parent()
+      .hasClass("active")
+  ) {
+    $(".sidebar-dropdown").removeClass("active");
+    $(this)
+      .parent()
+      .removeClass("active");
+  } else {
+    $(".sidebar-dropdown").removeClass("active");
+    $(this)
+      .next(".sidebar-submenu")
+      .slideDown(200);
+    $(this)
+      .parent()
+      .addClass("active");
+  }
+});
+
+$("#close-sidebar").click(function() {
+  $(".page-wrapper").removeClass("toggled");
+});
+$("#show-sidebar").click(function() {
+  $(".page-wrapper").addClass("toggled");
+});
+
+
+   
+   
+});
