@@ -1,14 +1,28 @@
 window.addEventListener('offline', toOff);
     function toOff(){
-      alert("You gone Offline. Check Internet Connection");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<p>Check your Internet Connection</p>'
+        });
       document.getElementById("vdy").style.display = "none";
       document.getElementById("err").style.display = "block";
+      document.getElementById("bnav").style.display = "none";
+      document.getElementById("unav").style.display = "none";
+
+      $('body').addClass('overlay');
+      
     }
 window.addEventListener('online', toOn);
     function toOn(){
-      alert("You gone Offline. Check Internet Connection");
-      document.getElementById("vdy").style.display = "block";
-      document.getElementById("err").style.display = "none";
+      Swal.fire({
+        icon: 'success',
+        title: 'Yay!',
+        text: 'Rule the way you want',
+        footer: '<p>Don\'t keep your hunger active. Order soon.</p>'
+        });
+      location.reload();
     }
 
 function fdsrf() {

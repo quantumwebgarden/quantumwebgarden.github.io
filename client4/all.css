@@ -960,20 +960,19 @@ h1 {
 }
 
 
-
-
 .ordcl{
   width: 100%; 
   height: 100vh; 
   overflow: scroll;
 }
 
-
-
-
-
-
-
+.overlay {
+    background-color: rgba(1, 1, 1, 0);
+    width: 100%;
+    position: fixed;
+    height: 100vh;
+    z-index: 99999999;
+}
 
 
 
