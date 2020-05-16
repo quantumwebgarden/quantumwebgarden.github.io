@@ -297,7 +297,22 @@ $("#show-sidebar").click(function() {
   $(".page-wrapper").addClass("toggled");
 });
 
-
-   
-   
 });
+
+
+function showme(x) {
+    Swal.fire({
+  title: document.getElementById('uname').innerHTML,
+  text: '',
+  html:'<b>' + 
+  document.getElementById('utype').innerHTML + ' </b>user <br>' +
+     document.getElementById('uphone').innerHTML + '<br>' +
+    document.getElementById('umail').innerHTML + '<br>' +
+    document.getElementById('uaddress').innerHTML,
+  imageUrl: x.src,
+  imageWidth: 200,
+  imageHeight: 200,
+  imageAlt: 'DOT User',
+
+})
+}

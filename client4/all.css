@@ -29,9 +29,10 @@ section {
 .productlst li img {
   float: left;
   margin: 0 15px 0 0;
-  width: 130px;
+  width: 135px;
   height: auto;
   border-radius: 5px;
+  object-fit: cover;
 }
 
 .productlst li p {
@@ -63,14 +64,68 @@ section {
 	font-style: normal;
 	font-size: 20px;
 }
+.productlst h4 span{
+  color: grey;
+  font-style: normal;
+  font-size: 19px;
+  padding-left: 15px;
+  position: relative;
+  display: inline-block;/*
+  text-decoration: line-through;
+  text-decoration-style: inherit;
+  text-decoration-color: red; */
+}
+.productlst h4 span::before{
+    content: '';
+    width: 80%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+.productlst h4 span::before {
+    border-bottom: 1px solid red;
+    -webkit-transform: skewY(-10deg);
+    transform: skewY(-10deg);
+}
+
+
+.productlst h3 i{
+  color: #d2691e;
+  font-style: normal;
+  font-size: 12px;
+}
 .productlst b{
 	color: black;
 	font-style: normal;
 }
-.productlst h5 span{
+.productlst h3 span{
 	color: red;
 	font-style: normal;
 	font-size: 17px;
+  float: right;
+}
+
+.productlst h5 span{
+  color: blue;
+  font-size: 15px;
+  padding: 0 5px;
+}
+
+.productlst
+.dt{
+  font-size: 18px;
+  padding: 0 5px 0 5px;
+}
+.productlst
+.dl_tm{
+  font-size: 13px;
+  color: red;
+  margin-bottom: 0;
+}
+.productlst
+.dl_tm i{
+  font-size: 11px;
+  color: black;
 }
 
 .productlst
@@ -86,6 +141,40 @@ display: inline-block;
 transition: all 0.3s ease 0s;
 float: right;
 margin-top: 5px;
+}
+
+.productlst
+.example_fav {
+text-decoration: none;
+background: rgba(0,0,0,0);
+padding: 10px;
+display: inline-block;
+top: 0;
+right: 0;
+transition: all 0.3s ease 0s;
+margin-top: 2px;
+}
+.productlst
+.example_fav i{
+  font-size: 22px;
+  color: white;
+  -webkit-filter: drop-shadow(1px 1px 0 #222); 
+  filter: drop-shadow(1px 1px 0 #222);
+}
+.productlst
+.example_fav i:hover{
+  -webkit-filter: drop-shadow(1px 1px 0 red); 
+  filter: drop-shadow(1px 1px 0 red);
+}
+.example_fav i:active{
+  color: #f081ac;
+  -webkit-filter: drop-shadow(1px 1px 0 blue); 
+  filter: drop-shadow(1px 1px 0 blue);
+}
+.act i{
+  color: red!important;
+  -webkit-filter: drop-shadow(1px 1px 0 black); 
+  filter: drop-shadow(1px 1px 0 black);
 }
 
 .productlst
@@ -199,13 +288,15 @@ transition: all 0.3s ease 0s;
 	.topnav input[type=text] {
   border: none;
   width: 100%;
-  min-width: 150px;
+  min-width: 100px;
   padding-left: 4px;
   padding-right: 4px;
-  border-radius: 100px;
+  border-radius: 2px;
+  height: 25px;
+  font-weight: normal!important;
 }
 .topnav input[type=text]:focus {
-  font-weight: bold;
+  font-weight: bold!important;
 }
 
   .nav {
@@ -392,7 +483,7 @@ h1 {
 }
 @media (max-width: 400px) {
   .tabs input[name="tab-control"]:nth-of-type(1):checked ~ ul > li:nth-child(1) > label {
-    background: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0);
   }
 }
 .tabs input[name="tab-control"]:nth-of-type(1):checked ~ .slider {
@@ -408,7 +499,7 @@ h1 {
 }
 @media (max-width: 400px) {
   .tabs input[name="tab-control"]:nth-of-type(2):checked ~ ul > li:nth-child(2) > label {
-    background: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0);
   }
 }
 .tabs input[name="tab-control"]:nth-of-type(2):checked ~ .slider {
@@ -425,7 +516,7 @@ h1 {
 
 @media (max-width: 400px) {
   .tabs input[name="tab-control"]:nth-of-type(3):checked ~ ul > li:nth-child(3) > label {
-    background: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0);
   }
 }
 .tabs input[name="tab-control"]:nth-of-type(3):checked ~ .slider {
@@ -441,7 +532,7 @@ h1 {
 }
 @media (max-width: 400px) {
   .tabs input[name="tab-control"]:nth-of-type(4):checked ~ ul > li:nth-child(4) > label {
-    background: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0);
   }
 }
 .tabs input[name="tab-control"]:nth-of-type(4):checked ~ .slider {
@@ -488,11 +579,19 @@ h1 {
 }
 @media (max-width: 400px) {
   .tabs ul li label {
-    padding: 5px;
-    border-radius: 5px;
+    padding: 2px;
+    border-radius: 12px;
+    font-size: 12px;
+  }
+  .tabs ul li label i {
+    padding: 2px;
+    border-radius: 50%;
+    font-size: 18px;
+    background-color: rgba(0,0,0,0);
   }
   .tabs ul li label span {
-    display: none;
+    display: block;
+    font-size: 12px;
   }
   .tabs .slider {
     display: none;

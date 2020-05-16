@@ -37,20 +37,21 @@
       <div class="sidebar-header">
         <div class="user-pic">
           <img class="img-responsive img-rounded" src="bikash.png"
-            alt="User picture">
+            alt="User picture" onclick="showme(this)">
         </div>
         <div class="user-info">
-          <span class="user-name">Bikash 
-            <strong>Das</strong>
+          <span class="user-name" id="uname">Bikash Das
           </span>
-          <span class="user-role">Hatuganj</span>
+          <span id="uphone" style="display: none;">0123458965</span>
+          <span id="umail" style="display: none;">myemail@email.com</span>
+          <span class="user-role" id="uaddress">Hatuganj</span>
           <span class="user-status" id="vip_user" style="display: none;">
             <i class="fa fa-star" style="color: orange;"></i>
             <span>VIP</span>
           </span>
           <span class="user-status" id="premium_user" style="display: block;">
             <i class="fa fa-circle" style="color: blue;"></i>
-            <span>Premium</span>
+            <span id="utype">Premium</span>
           </span>
           <span class="user-status" id="general_user" style="display: none;">
           </span>
@@ -310,13 +311,13 @@
   </div>
 
   <div id="krtsrc" style="display: none;">
-  <a style="width: 65%; text-align: center;">
+  <a style="width: 95%; text-align: center;">
       <p>My cart</p>
   	</a>
   </div>
 
   <div id="prfsrc" style="display: none;">
-  <a style="width: 65%; text-align: center;">
+  <a style="width: 95%; text-align: center;">
       <p>My Profile</p>
   	</a>
   </div>
@@ -448,20 +449,24 @@
   <ul class="products" id="fds">
     <li>
       <img src="product.jpg">
-      <h3>Pure Veg Pack</h3>
-      <h4> ₹ 95</h4>
-      <h5>Tejpata <b>|| </b><span>4.6 <i class="fa fa-star" style="color: orange" aria-hidden="true"></i></span></h5>
+      <h3>Pure Veg Pack <b class="dt"><span>4.6 <i class="fa fa-star" aria-hidden="true"></i></span></b></h3>
+      <h4> ₹ 95 <span>₹ 105</span></h4>
+      <p class="dl_tm"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;30 min</p>
+      <h5>Tejpata <span><i class="fas fa-map-marker-alt"></i> Diamond Harbour</span></h5>
       <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 250ml Sprite</p>
+      <a class="example_fav" data-itemid="1237894563"><i class="fa fa-heart" aria-hidden="true"></i></a>
       <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="95" data-itemid="1237894563" data-itemname="Pure Veg Pack" data-pic="product.jpg">Add to Cart</a>    
     </li>
       
     <li>
       <img src="product1.jpg">
-      <h3>Veg Paneer Pack</h3>
-      <h4> ₹ 115</h4>
-      <h5>Gharana <b>|| </b><span>4.3 <i class="fa fa-star" style="color: orange" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + Paneer + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="115" data-itemid="895623741" data-itemname="Veg paneer Pack" data-pic="product1.jpg">Add to Cart</a>
+      <h3>Paneer Pack <b class="dt"><span>4.1 <i class="fa fa-star" aria-hidden="true"></i></span></b></h3>
+      <h4> ₹ 115 <span>₹ 130</span></h4>
+      <p class="dl_tm"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;1hr 30 min</p>
+      <h5>Hotel name <span><i class="fas fa-map-marker-alt"></i> Sarisha</span></h5>
+      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 250ml Sprite</p>
+      <a class="example_fav act" data-itemid="1237894563"><i class="fa fa-heart" aria-hidden="true"></i></a>
+      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="115" data-itemid="345674544" data-itemname="Paneer Pack" data-pic="product1.jpg">Add to Cart</a>
     </li>
 
     <li>
