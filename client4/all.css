@@ -102,7 +102,14 @@ section {
 	color: red;
 	font-style: normal;
 	font-size: 17px;
+  line-height: 0.8;
   float: right;
+}
+.productlst h3 span .trat{
+  color: black;
+  font-style: italic;
+  font-size: 12px;
+  padding-top: 0;
 }
 
 .productlst h5 span{
@@ -763,6 +770,13 @@ h1 {
 
 .page-wrapper.toggled .sidebar-wrapper {
   left: 0px;
+  box-shadow: 5px 0 5px -5px #333;
+}
+
+.page-wrapper.toggled .sidebar-back-main {
+  left: 260px;
+  width: 100%;
+  background-color: rgba(0,0,0,0.01);
 }
 
 @media screen and (min-width: 768px) {
@@ -774,6 +788,15 @@ h1 {
 
 
 /*----------------sidebar-wrapper----------------*/
+.sidebar-back-main{
+  width: 25px;
+  height: 100%;
+  z-index: 998;
+  background-color: rgba(0,0,0,0);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 
 .sidebar-wrapper {
   width: 260px;
