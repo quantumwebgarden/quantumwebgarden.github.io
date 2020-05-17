@@ -253,18 +253,6 @@ function showcart(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 jQuery(function ($) {
 
     $(".sidebar-dropdown > a").click(function() {
@@ -295,30 +283,8 @@ $("#close-sidebar").click(function() {
 $("#show-sidebar").click(function() {
   $(".page-wrapper").addClass("toggled");
 });
-/*$("#divback").click(function() {
-  $(".page-wrapper").removeClass("toggled");
-});*/
-});
-/*
-var element = document.getElementById('divback');
 
-Hammer(element).on("swiperight", function(event) {
-    $(".page-wrapper").addClass("toggled");
 });
-Hammer(element).on("swipeleft", function(event) {
-    $(".page-wrapper").removeClass("toggled");
-});
-*/
-/*
-var touchArea = document.getElementById('divback');
-var myRegion = new ZingTouch.Region(touchArea);
-
-myRegion.bind(touchArea, 'swipe', function(e){
-    console.log(e.detail);
-});
-
-
-*/
 
 
 
@@ -406,11 +372,7 @@ swipedetect(el, function(swipedir){
         $(".page-wrapper").addClass("toggled");
 });
 
-
 }, false) // end window.onload
-
-
-
 
 
 function distance(lat1, lon1, lat2, lon2, unit) {
@@ -463,3 +425,15 @@ function showPosition(position) {
 
 }
 
+var appInventorInput = window.AppInventor.getWebViewString();
+function pjsand() {
+    if (appInventorInput == "backpress") {
+
+    $("body").append("<span class ='toastn'>Press again to exit</span>");
+      setTimeout(function(){
+        $(".toast").remove();
+      },2000);
+            //Check sring.
+            //window.AppInventor.setWebViewString( result );
+        } else {}
+    }

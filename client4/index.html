@@ -23,11 +23,11 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </head>
-<body class="page-wrapper">
+<body class="page-wrapper" onload="pjsand();">
 <article>
 
 <div class="sidebar-back-main" id="divback">
-	</div>
+</div>
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
@@ -174,10 +174,10 @@
             <div class="sidebar-submenu">
               <ul>
                 <li> Selected Address: 
-                  <a href="#">Kapat Hat, Near SBI Parulia Br., Diamond Harbour, 743331</a>
+                  <a href="javascript:void(0)" onclick="getLocation()">Kapat Hat, Near SBI Parulia Br., Diamond Harbour, 743331</a>
                 </li>
                 <li> Add / Modify: 
-                  <a href="javascript: void(0)" onclick="getLocation()">Add New Address</a>
+                  <a href="#">Add New Address</a>
                 </li>
                 <li> 
                   <a href="#">Edit an Address</a>
@@ -477,7 +477,7 @@
       <h4> ₹ 125</h4>
       <h5>Radhuni <b>|| </b><span>4.1 <i class="fa fa-star" style="color: orange" aria-hidden="true"></i></span></h5>
       <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + 1 pc Egg + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="125" data-itemid="124521741" data-itemname="Egg Lunch Pack" data-pic="product2.jpg">Add to Cart</a>     
+      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="125" data-itemid="124521741" data-itemname="Egg Lunch Pack" data-pic="product2.jpg" onclick="getLocation()">Add to Cart</a>     
     </li>
 
     <li>

@@ -193,6 +193,7 @@ margin-top: 2px;
   width: 80%;
 }
 
+
 .srtbtn:hover{
   overflow: auto;
 }
@@ -789,7 +790,7 @@ h1 {
 
 /*----------------sidebar-wrapper----------------*/
 .sidebar-back-main{
-  width: 25px;
+  width: 2px;
   height: 100%;
   z-index: 998;
   background-color: rgba(0,0,0,0);
@@ -805,7 +806,7 @@ h1 {
   max-height: 100%;
   position: fixed;
   top: 0;
-  left: -300px;
+  left: -3000px;
   z-index: 999;
   background-color: #72e89f;
 }
@@ -1101,3 +1102,37 @@ h1 {
 
 
 
+.toastn {
+  position: fixed;
+  display:block;
+  z-index: 99999;
+  bottom: 2em;
+  height: 2em;
+  width: 10em;
+  left: calc(50% - 5em);
+
+  animation: toastn-fade-in 1s 2 alternate;
+
+
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 2em;
+
+  color: white;
+  text-align: center;
+  padding: 1em;
+  line-height: 2em;
+
+  opacity: 0;
+
+}
+
+
+@keyframes toastn-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
