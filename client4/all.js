@@ -408,3 +408,58 @@ swipedetect(el, function(swipedir){
 
 
 }, false) // end window.onload
+
+
+
+
+
+function distance(lat1, lon1, lat2, lon2, unit) {
+
+    if ((lat1 == lat2) && (lon1 == lon2)) {
+        return 0;
+    }
+    else {
+        var radlat1 = Math.PI * lat1/180;
+        var radlat2 = Math.PI * lat2/180;
+        var theta = lon1-lon2;
+        var radtheta = Math.PI * theta/180;
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        if (dist > 1) {
+            dist = 1;
+        }
+        dist = Math.acos(dist);
+        dist = dist * 180/Math.PI;
+        dist = dist * 60 * 1.1515;
+        if (unit=="K") { dist = dist * 1.609344 }
+        if (unit=="N") { dist = dist * 0.8684 }
+        return dist;
+    }
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    alert("Location service is not activated.");
+  }
+}
+
+function showPosition(position) {
+    lat1 = 22.2085069;
+    lon1 = 88.1842761;
+    var dst = distance(lat1, lon1, position.coords.latitude, position.coords.longitude, "K")
+  /*alert("Latitude: " + position.coords.latitude + 
+  "\nLongitude: " + position.coords.longitude + "\n My Distance from Quantum Webgarden is: " + dst + "KM");*/
+  Swal.fire({
+        icon: 'info',
+        title: 'Distance Measurement',
+        text: 'Something went wrong!',
+        html:'My latitude: ' + 
+        position.coords.latitude + ' <br>My Longitude: ' +
+        position.coords.longitude + '<br> My Distance from Quantum Webgarden is: ' +
+        dst.toFixed(3) + 'KM',
+        footer: '<p>Project : DOT</p>'
+        });
+
+}
+
