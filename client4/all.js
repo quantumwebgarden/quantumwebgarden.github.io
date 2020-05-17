@@ -424,16 +424,3 @@ function showPosition(position) {
         });
 
 }
-
-var appInventorInput = window.AppInventor.getWebViewString();
-function pjsand() {
-    if (appInventorInput == "backpress") {
-
-    $("body").append("<span class ='toastn'>Press again to exit</span>");
-      setTimeout(function(){
-        $(".toast").remove();
-      },2000);
-            //Check sring.
-            //window.AppInventor.setWebViewString( result );
-        } else {}
-    }

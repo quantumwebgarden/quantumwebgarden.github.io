@@ -1100,39 +1100,3 @@ h1 {
 
 
 
-
-
-.toastn {
-  position: fixed;
-  display:block;
-  z-index: 99999;
-  bottom: 2em;
-  height: 2em;
-  width: 10em;
-  left: calc(50% - 5em);
-
-  animation: toastn-fade-in 1s 2 alternate;
-
-
-  background-color: rgba(0,0,0,0.5);
-  border-radius: 2em;
-
-  color: white;
-  text-align: center;
-  padding: 1em;
-  line-height: 2em;
-
-  opacity: 0;
-
-}
-
-
-@keyframes toastn-fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
