@@ -287,7 +287,7 @@ transition: all 0.3s ease 0s;
   float: right;
 }
 
-.topnav a:hover {
+.topnav a:active {
   color: black;
 }
 
