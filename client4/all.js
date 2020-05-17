@@ -406,11 +406,5 @@ swipedetect(el, function(swipedir){
         $(".page-wrapper").addClass("toggled");
 });
 
-var el = document.getElementById('sidebar')
-swipedetect(el, function(swipedir){
-    //swipedir contains either "none", "left", "right", "top", or "down"
-    if (swipedir =='left')
-        $(".page-wrapper").removeClass("toggled");
-});
- 
+
 }, false) // end window.onload
