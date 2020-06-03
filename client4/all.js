@@ -194,7 +194,7 @@ var pntr = "";
 function sh_shops(){
     document.getElementById("vdy").style.display = "block";
     document.getElementById("ordertrack").style.display = "none";
-    document.getElementById("cartdtls").style.display = "none";
+    document.getElementById("cartmain").style.display = "none";
 	document.getElementById("itemlist").style.display = "none";
 	document.getElementById("shoplist").style.display = "block";
 	document.getElementById("item").classList.remove("nav__link--active");
@@ -210,7 +210,7 @@ function sh_shops(){
 function sh_items(){
     document.getElementById("vdy").style.display = "block";
     document.getElementById("ordertrack").style.display = "none";
-    document.getElementById("cartdtls").style.display = "none";
+    document.getElementById("cartmain").style.display = "none";
 	document.getElementById("itemlist").style.display = "block";
 	document.getElementById("shoplist").style.display = "none";
 	document.getElementById("item").classList.add("nav__link--active");
@@ -226,7 +226,7 @@ function sh_items(){
 function sh_orders(){
     document.getElementById("vdy").style.display = "none";
     document.getElementById("ordertrack").style.display = "block";
-    document.getElementById("cartdtls").style.display = "none";
+    document.getElementById("cartmain").style.display = "none";
     document.getElementById("order").classList.add("nav__link--active");
     document.getElementById("shop").classList.remove("nav__link--active");
     document.getElementById("item").classList.remove("nav__link--active");
@@ -240,7 +240,7 @@ function sh_orders(){
 function showcart(){
     document.getElementById("vdy").style.display = "none";
     document.getElementById("ordertrack").style.display = "none";
-    document.getElementById("cartdtls").style.display = "block";
+    document.getElementById("cartmain").style.display = "block";
     document.getElementById("order").classList.remove("nav__link--active");
     document.getElementById("shop").classList.remove("nav__link--active");
     document.getElementById("item").classList.remove("nav__link--active");
@@ -422,5 +422,6 @@ function showPosition(position) {
         dst.toFixed(3) + 'KM',
         footer: '<p>Project : DOT</p>'
         });
+  slctupd('ALL','','7894561230',position.coords.latitude,position.coords.longitude)
 
 }

@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"><!--
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,11 +17,19 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="all.css">
   <link rel="stylesheet" href="shop.css">
-  <script src="all.js"></script>
+  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+   
+
+  
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+<script src="all.js"></script>
+<script src="db.js"></script>
 
 </head>
 <body class="page-wrapper">
@@ -86,11 +95,13 @@
             </a>
             <div class="sidebar-submenu">
               <ul>
+
                 <li>
                   <a href="#">Edit Profile
                     <!--span class="badge badge-pill badge-success">Pro</span-->
                   </a>
                 </li>
+
                 <li>
                   <a href="#">Change Password</a>
                 </li>
@@ -108,7 +119,7 @@
               <ul>
                 <li>
                   <a href="javascript: void(0)" onclick="showcart()">My cart
-                  	<span class="badge badge-pill badge-danger">5</span>
+                  	<span class="badge badge-pill badge-danger" id="cartcntside">5</span>
                   </a>
                 </li>
                 <li>
@@ -313,13 +324,13 @@
   </div>
 
   <div id="krtsrc" style="display: none;">
-  <a style="width: 95%; text-align: center;">
+  <a style="width: 75%; text-align: center;">
       <p>My cart</p>
   	</a>
   </div>
 
   <div id="prfsrc" style="display: none;">
-  <a style="width: 95%; text-align: center;">
+  <a style="width: auto; text-align: center;">
       <p>My Profile</p>
   	</a>
   </div>
@@ -333,10 +344,38 @@
 </section>
 </article>
 <main id="vdy">
-<div class="cd-cart cd-cart--empty js-cd-cart">
+
+<!-- Modal ->
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="show-cart table">
+          
+        </table>
+        <div>Total price: $<span class="total-cart"></span></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Order now</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<div id="popupcart" class="cd-cart cd-cart--empty js-cd-cart">
 	<a href="#0" class="cd-cart__trigger text-replace">
 		
-		<ul class="cd-cart__count"> <!-- cart items count -->
+		<ul class="cd-cart__count" id="cartdtls"> <!-- cart items count -->
 			<li>0</li>
 			<li>0</li>
 		</ul> <!-- .cd-cart__count -->
@@ -346,7 +385,7 @@
 		<div class="cd-cart__layout">
 			<header class="cd-cart__header">
 				<h2>Cart</h2>
-				<span class="cd-cart__undo">Item removed. <a href="#0">Undo</a></span>
+				<span class="cd-cart__undo">Item removed. <a href="#0" data-fid="" data-fqty="" id="lstfd">Undo</a></span>
 			</header>
 			
 			<div class="cd-cart__body">
@@ -449,6 +488,7 @@
 
 <div>
   <ul class="products" id="fds">
+<!--
     <li>
       <img src="product.jpg">
       <h3>Pure Veg Pack <b class="dt"><span>4.6 <i class="fa fa-star" aria-hidden="true"></i><br><i class="trat">(2563)</i></span></b></h3>
@@ -488,6 +528,7 @@
       <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 1 pc Egg + 4pc Chicken + papad + salad + 250ml Sprite</p>
       <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="250" data-itemid="7466982145" data-itemname="Biryani" data-pic="product1.jpg">Add to Cart</a>
     </li>
+-->
   </ul>
 </div>
 
@@ -1621,23 +1662,24 @@
 
 
 <main id="ordertrack" translate="no" style="display: none;">
-	<iframe name="dataToFrame" src="delivery.html" class="ordcl"></iframe>
+	<iframe name="orderfr" src="delivery.html" class="ordcl"></iframe>
 </main>
 
-<main id="cartdtls" style="display: none;">
-	<iframe name="dataToFrame" src="cart.html" class="ordcl"></iframe>
+<main id="cartmain" style="display: none;">
+	<iframe name="cartmainfr" src="cart.html" class="ordcl"></iframe>
 </main>
 
 <script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
 <script src="assets/js/main.js"></script> 
 
-<main id="err" style="display: none;">
+<main id="err" style="display: none; margin: 0 auto;">
 	<center>
 	<p style="position: fixed; top: 50%;">Sorry, you are offline. Please check your connection and try again.</p>
 	</center>
 </main>
 
   
+
 </body>
 </html>
 
@@ -1646,3 +1688,4 @@
 	https://codepen.io/suez/pen/MWWPBVo
 	https://codepen.io/onlyveen/pen/mBRabx
 	-->
+

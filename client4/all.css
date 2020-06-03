@@ -1100,3 +1100,14 @@ h1 {
 
 
 
+.qtymdl{
+  margin: 0 auto;
+  display: none;
+}
+
+.mn0{
+  visibility: hidden!important;
+}
+.mn1{
+  visibility: hidden!important;
+}
