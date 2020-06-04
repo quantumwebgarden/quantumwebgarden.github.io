@@ -1,4 +1,3 @@
-var u = "7894561230";
 var cnt = 0;
 var ids = [];
 var qtys = [];
@@ -24,6 +23,8 @@ var lstqty = "";
         initCartEvents();
 
 
+            
+
         function initCartEvents() {
             // add products to cart
             for(var i = 0; i < cartAddBtns.length; i++) {(function(i){
@@ -44,7 +45,8 @@ var lstqty = "";
                     removeProduct(event.target.closest('.cd-cart__product'));
                 }
             });
-
+            
+            
             // update product quantity inside cart
             cart[0].addEventListener('change', function(event) {
                 if(event.target.tagName.toLowerCase() == 'select') quickUpdateCart();
@@ -59,6 +61,8 @@ var lstqty = "";
                     var deletedProduct = cartList.getElementsByClassName('cd-cart__product--deleted')[0];
                     lstid = cartList.getElementsByClassName('cd-cart__product--deleted')[0].getElementsByClassName('cd-cart__delete-item')[0].getAttribute('data-id');
                     lstqty = cartList.getElementsByClassName('cd-cart__product--deleted')[0].getElementsByClassName('cd-cart__delete-item')[0].getAttribute('data-qty');
+                    
+
                     Util.addClass(deletedProduct, 'cd-cart__product--undo');
                     deletedProduct.addEventListener('animationend', function cb(){
                         deletedProduct.removeEventListener('animationend', cb);
@@ -81,17 +85,19 @@ var lstqty = "";
 
             rootRef.on("child_added", snap => {
 
-            var foodid = snap.child("foodid").val();
+            var id = snap.child("id").val();
             var qnty = snap.child("qnty").val();
             var ctid = snap.child("tmst").val();
+            var lmd = snap.child("typ").val();
+            
 
-            if(!ids.includes(foodid)){
-                ids[cnt] = foodid;
+            if(!ids.includes(id) && lmd!="temp"){
+                ids[cnt] = id;
             qtys[cnt] = qnty;
             tmsts[cnt] = ctid;
-            console.log(ids[cnt] + ", " + qtys[cnt] + ", " + tmsts[cnt]);
+            //console.log(ids[cnt] + ", " + qtys[cnt] + ", " + tmsts[cnt]);
             
-            chkfoods(foodid,qnty,ctid);
+            chkfoods(id,qnty,ctid);
             cnt += 1;
             if(cnt==1){Util.removeClass(cart[0], 'cd-cart--empty');}
             
@@ -117,7 +123,7 @@ var lstqty = "";
             }
         }
         });
-            console.log('chkcart');
+
         };
 
         function chkfoods(y,z,m) {
@@ -125,13 +131,13 @@ var lstqty = "";
 
             rootRef.on("child_added", snap => {
 
-            var foodid = snap.child("foodid").val();
+            var id = snap.child("id").val();
             var price = snap.child("price").val();
-            var foodname = snap.child("foodname").val();
-            var foodthumb = snap.child("foodthumb").val();
-            if(foodid == y){
+            var name = snap.child("name").val();
+            var thumb = snap.child("thumb").val();
+            if(id == y){
             price = price * z;
-            addProduct(m,price,foodid,foodname,foodthumb,z);
+            addProduct(m,price,id,name,thumb,z);
 
             updateCartCount(false, z);
 
@@ -147,7 +153,34 @@ var lstqty = "";
             //cartCountItems[0].innerText = sum; //cartCountItems[0].innerText;
         }
         });
-            console.log('chkfoods');
+           
+            var rootRef = firebase.database().ref('medicine');
+
+            rootRef.on("child_added", snap => {
+
+            var id = snap.child("id").val();
+            var price = snap.child("price").val();
+            var name = snap.child("name").val();
+            var thumb = snap.child("thumb").val();
+            if(id == y){
+            price = price * z;
+            addProduct(m,price,id,name,thumb,z);
+
+            updateCartCount(false, z);
+
+            updateCartTotal(price, true);
+
+            document.getElementById(y + "qtys").innerText = z + " added to cart";
+            document.getElementById(y + "qtycnt").setAttribute("data-qty", z);
+            document.getElementById(y + "qtys").style.display = "block";
+            var smj = qtys.reduce(function(a, b){
+            return a + b;
+            }, 0);
+            document.getElementById('cartcntside').innerText = smj;
+            //cartCountItems[0].innerText = sum; //cartCountItems[0].innerText;
+        }
+        });
+                      
         };
         
         function chkchd(x) {
@@ -155,10 +188,11 @@ var lstqty = "";
 
             rootRef.on("child_changed", snap => {
 
-            var foodid = snap.child("foodid").val();
+            var id = snap.child("id").val();
             var qnty = snap.child("qnty").val();
             var ctid = snap.child("tmst").val();
-            var lmd = snap.child("lmd").val();
+            var lmd = snap.child("typ").val();
+                if(lmd!="temp")
                 chkdd(x);
             
         });
@@ -229,7 +263,7 @@ var lstqty = "";
             // you should also check if the product was already in the cart -> if it is, just update the quantity
             //qnty = productId + 1;
             pr_qt = price/qnty;
-            var productAdded = '<li class="cd-cart__product" data-ctid="' + ctid + '"><div class="cd-cart__image"><a href="#0"><img src="' + itempic + '" alt="' + itemname + '"></a></div><div class="cd-cart__details"><h3 class="truncate"><a href="#0">' + itemname + '</a></h3><span class="cd-cart__price">' + price + '</span><div class="cd-cart__actions"><a href="#0" id="del'+ itemid +'" class="cd-cart__delete-item" data-id="' + itemid + '" data-price="' + pr_qt + '" data-qty="' + qnty + '">Delete</a><div class="cd-cart__quantity"><label for="cd-product-'+ itemid +'">Qty</label><span class="cd-cart__select"> <img class="mn' + qnty + '" src="minus.png" width="20px" height="20px" data-qty="' + qnty + '" data-itemid="' + itemid + '" id="minus' + itemid + '" onclick="rmv(this)"> <b class="reset" id="cd-product-'+ itemid +'" name="quantity">' + qnty + '</b> <img src="plus.png" width="20px" height="20px" data-qty="' + qnty + '" data-itemid="' + itemid + '" onclick="adc(this)"></span></div></div></div></li>';
+            var productAdded = '<li class="cd-cart__product" data-ctid="' + ctid + '"><div class="cd-cart__image"><a href="#0"><img src="' + itempic + '" alt="' + itemname + '"></a></div><div class="cd-cart__details"><h3 class="truncate"><a href="#0">' + itemname + '</a></h3><span class="cd-cart__price">' + price + '</span><div class="cd-cart__actions"><a href="#0" id="del'+ itemid +'" class="cd-cart__delete-item" data-id="' + itemid + '" data-price="' + pr_qt + '" data-qty="' + qnty + '">Delete</a><div class="cd-cart__quantity"><label for="cd-product-'+ itemid +'">Qty</label><span class="cd-cart__select"> <img class="rmvcl mn' + qnty + '" src="minus.png" width="20px" height="20px" data-qty="' + qnty + '" data-itemid="' + itemid + '" id="minus' + itemid + '" onclick="rmv(this)"> <b class="reset" id="cd-product-'+ itemid +'" name="quantity">' + qnty + '</b> <img src="plus.png" width="20px" height="20px" data-qty="' + qnty + '" data-itemid="' + itemid + '" onclick="adc(this)"></span></div></div></div></li>';
             cartList.insertAdjacentHTML('beforeend', productAdded);
         };
 
@@ -247,6 +281,9 @@ var lstqty = "";
 
             product.style.top = topPosition+'px';
             Util.addClass(product, 'cd-cart__product--deleted');
+
+            var ctidtemp = document.querySelectorAll('.cd-cart__product--deleted')[0].getAttribute('data-ctid');
+            firebase.database().ref(u + "/cart/" + ctidtemp).update({typ:'temp'});
 
             //update items count + total price
             updateCartTotal(productTotPrice, false);
@@ -276,6 +313,12 @@ var lstqty = "";
             tmsts[ids.indexOf(fdSid)]= '';
             document.getElementById(fdSid + "qtycnt").setAttribute('data-qty', 0);
             upd = fdSid;
+
+            var smj = qtys.reduce(function(a, b){
+            return a + b;
+            }, 0);
+            document.getElementById('cartcntside').innerText = smj;
+
             var userRef = firebase.database().ref(u + '/cart/' + ctid).remove();
                 deletedProduct[0].remove();
             }
@@ -339,7 +382,8 @@ var lstqty = "";
             cartCountItems[0].innerText = quantity;
             cartCountItems[1].innerText = quantity+1;
 
-            
+            firebase.database().ref(u + "/cart/" + tmsts[ids.indexOf(lstid)]).update({typ:'main'});
+            //console.log(tmsts[ids.indexOf(lstid)] + 'Quick');
             document.getElementById(lstid + "qtys").innerText = lstqty + ' added to cart';
             document.getElementById(lstid + "qtycnt").setAttribute('data-qty', lstqty);
             document.getElementById(lstid + "qtys").style.display = 'block';
