@@ -138,11 +138,11 @@ function fvfd(x) {
     if(x.classList.contains("act")){
         x.classList.remove("act");
         
-        firebase.database().ref(x.getAttribute("data-itemid")).update({favlst:x.getAttribute("data-fvl").replaceAll(u + 'splt','')});
+        firebase.database().ref(x.getAttribute("data-itemid")).update({favlst:x.getAttribute("data-fvl").replace(u + 'splt','')});
     }
     else{
         x.classList.add("act");
-        firebase.database().ref(x.getAttribute("data-itemid")).update({favlst:(x.getAttribute("data-fvl").replaceAll(u + 'splt','')).concat(u + 'splt')});
+        firebase.database().ref(x.getAttribute("data-itemid")).update({favlst:(x.getAttribute("data-fvl").replace(u + 'splt','')).concat(u + 'splt')});
     }
 }
 
