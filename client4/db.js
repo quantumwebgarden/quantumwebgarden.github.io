@@ -75,7 +75,7 @@ var bname = rv.replace(/-/g, ' ');
 */
 
 if (x == "ALL") {
-$("#fds").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a class=\"example_fav " + favchk + "\" data-itemid=\"" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\">Add to Cart</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#fds").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\">Add to Cart</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
 }
 
 });
@@ -118,7 +118,7 @@ var favchk = favchkf(favlst,u);
 
 
 if (x == "ALL") {
-$("#mdc").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a class=\"example_fav " + favchk + "\" data-itemid=\"" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\">Add to Cart</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#mdc").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\">Add to Cart</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
 }
 
 });
@@ -133,6 +133,20 @@ function favchkf(x,y) {
   if(n == 1){return z;}
   else{return zz;}
 }
+
+function fvfd(x) {
+    if(x.classList.contains("act")){
+        x.classList.remove("act");
+        
+        firebase.database().ref(x.getAttribute("data-itemid")).update({favlst:x.getAttribute("data-fvl").replace(u + 'splt','')});
+    }
+    else{
+        x.classList.add("act");
+        firebase.database().ref(x.getAttribute("data-itemid")).update({favlst:(x.getAttribute("data-fvl").replace(u + 'splt','')).concat(u + 'splt')});
+    }
+}
+
+
 
 function dtmcal(st,sg,ut,ug) {
     insd = "10 min";
