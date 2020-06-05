@@ -145,6 +145,7 @@ var lstqty = "";
 
             document.getElementById(y + "qtys").innerText = z + " added to cart";
             document.getElementById(y + "qtycnt").setAttribute("data-qty", z);
+            document.getElementById(y + "vw").setAttribute("data-qty", z);
             document.getElementById(y + "qtys").style.display = "block";
             var smj = qtys.reduce(function(a, b){
             return a + b;
@@ -172,6 +173,7 @@ var lstqty = "";
 
             document.getElementById(y + "qtys").innerText = z + " added to cart";
             document.getElementById(y + "qtycnt").setAttribute("data-qty", z);
+            document.getElementById(y + "vw").setAttribute("data-qty", z);
             document.getElementById(y + "qtys").style.display = "block";
             var smj = qtys.reduce(function(a, b){
             return a + b;
@@ -312,6 +314,7 @@ var lstqty = "";
             qtys[ids.indexOf(fdSid)]= '';
             tmsts[ids.indexOf(fdSid)]= '';
             document.getElementById(fdSid + "qtycnt").setAttribute('data-qty', 0);
+            document.getElementById(fdSid + "vw").setAttribute('data-qty', 0);
             upd = fdSid;
 
             var smj = qtys.reduce(function(a, b){
@@ -386,6 +389,7 @@ var lstqty = "";
             //console.log(tmsts[ids.indexOf(lstid)] + 'Quick');
             document.getElementById(lstid + "qtys").innerText = lstqty + ' added to cart';
             document.getElementById(lstid + "qtycnt").setAttribute('data-qty', lstqty);
+            document.getElementById(lstid + "vw").setAttribute('data-qty', lstqty);
             document.getElementById(lstid + "qtys").style.display = 'block';
             document.getElementById(lstid + "qtys").style.color = 'black';
             
