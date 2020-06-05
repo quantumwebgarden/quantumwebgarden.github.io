@@ -302,7 +302,7 @@ function showme(x) {
   imageWidth: 200,
   imageHeight: 200,
   imageAlt: 'DOT User',
-
+  customClass: 'sweet-wid',
 })
 }
 

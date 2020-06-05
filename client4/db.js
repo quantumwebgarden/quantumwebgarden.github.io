@@ -75,7 +75,7 @@ var bname = rv.replace(/-/g, ' ');
 */
 
 if (x == "ALL") {
-$("#fds").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\">Add to Cart</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#fds").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\">Add to Cart</a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
 }
 
 });
@@ -118,7 +118,7 @@ var favchk = favchkf(favlst,u);
 
 
 if (x == "ALL") {
-$("#mdc").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\">Add to Cart</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#mdc").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\">Add to Cart</a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-thumb=\"" + thumb + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
 }
 
 });
@@ -220,31 +220,28 @@ function rmv(x) {
             
             
         }
-        /*
-function dlt(){
-    // definitively removed a product from the cart (undo not possible anymore)
-            var deletedProduct = document.querySelectorAll('cd-cart__product--deleted');
-            console.log(deletedProduct[0]);
-            if(deletedProduct.length > 0 ) {
-            var ctid = document.querySelectorAll('.cd-cart__product--deleted')[0].getAttribute('data-ctid');
-
-            var fdSid = cartList.getElementsByClassName('cd-cart__product--deleted')[0].getElementsByClassName('cd-cart__delete-item')[0].getAttribute('data-id');
-            document.getElementById(fdSid + "qtys").innerHTML = '0';
-            document.getElementById(fdSid + "qtys").style.display = 'none';
-            document.getElementById(fdSid + "qtys").style.color = 'black';
-            ids[ids.indexOf(fdSid)]= '';
-            qtys[ids.indexOf(fdSid)]= '';
-            tmsts[ids.indexOf(fdSid)]= '';
-            document.getElementById(fdSid + "qtycnt").setAttribute('data-qty', 0);
-            upd = fdSid;
-
-            var smj = qtys.reduce(function(a, b){
-            return a + b;
-            }, 0);
-            document.getElementById('cartcntside').innerText = smj;
-
-            var userRef = firebase.database().ref(u + '/cart/' + ctid).remove();
-                deletedProduct[0].remove();
-            }
+function vw(x) {
+Swal.fire({
+  title: x.getAttribute('data-itemname'),
+  text: '',
+  background: 'rgb(184, 222, 227)',
+  backdrop: 'rgba(0,0,123,0.4)',
+  html: x.getAttribute('data-desc') + '<br><b>Price: ₹ </b> <i>' +
+    x.getAttribute('data-price') + '</i><br> <i>' +
+    x.getAttribute('data-shopname') + '</i> - <i>' +
+    x.getAttribute('data-shoploc') + '</i><br> Ratings: ' + 
+    x.getAttribute('data-ratings') + ' <i class=\"fa fa-star alst\" aria-hidden=\"true\"></i> ',
+  imageUrl: x.getAttribute('data-pic'),
+  imageWidth: 400,
+  imageAlt: x.getAttribute('data-itemname'),
+  confirmButtonText:
+    '<i class="fa fa-check-circle" aria-hidden="true"></i> <a data-price="' + x.getAttribute('data-price') + '"  data-itemid="' + x.getAttribute('data-itemid') + '" data-itemname="' + x.getAttribute('data-itemname') + '" data-pic="' + x.getAttribute('data-thumb') + '" data-qty="' + x.getAttribute('data-qty') + '" id="' + x.getAttribute('data-itemid') + 'vs" onclick="adc(this)">Add to Cart</a>',
+  showCancelButton: true,
+  focusConfirm: false,
+  cancelButtonText:
+    '<i class="fa fa-times-circle"> Close</i>',
+  customClass: {
+      title: 'sweet_title_ip',
+    }
+})
 }
-*/

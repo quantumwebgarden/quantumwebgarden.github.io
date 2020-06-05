@@ -151,6 +151,23 @@ margin-top: 5px;
 }
 
 .productlst
+.example_dl_vd {
+color: #494949 !important;
+font-size: small !important;
+background: #fff;
+text-transform: uppercase;
+text-decoration: none;
+border: 2px solid #7973d1 !important;
+border-radius: 20px;
+box-shadow: 1px 5px 5px #b5b5b5;
+padding: 5px;
+display: inline-block;
+float: right;
+margin-top: 5px;
+margin-right: 25px;
+}
+
+.productlst
 .example_fav {
 text-decoration: none;
 background: rgba(0,0,0,0);
@@ -1110,4 +1127,18 @@ h1 {
 }
 .mn1{
   visibility: hidden!important;
+}
+
+.sweet_title_ip{
+  color: #000 !important;
+  font-style: normal !important;
+  font-family: 'Times New Roman' !important;
+}
+.alst{
+  color: #d2691e !important;
+  font-weight: 300 !important;
+}
+.sweet-wid{
+  width: 50% !important;
+  max-width: 400px !important;
 }
