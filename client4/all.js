@@ -184,6 +184,7 @@ function sh_orders(){
 }
 
 function showcart(){
+    /*
     document.getElementById("vdy").style.display = "none";
     document.getElementById("ordertrack").style.display = "none";
     document.getElementById("cartmain").style.display = "block";
@@ -194,7 +195,10 @@ function showcart(){
     document.getElementById("shpsrc").style.display = "none";
     document.getElementById("ordsrc").style.display = "none";
     document.getElementById("krtsrc").style.display = "block";
+    */
 
+    $(".page-wrapper").removeClass("toggled");
+    window.open("cart.html");
 }
 
 
