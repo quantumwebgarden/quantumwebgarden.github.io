@@ -170,7 +170,60 @@ var lstqty = "";
             updateCartCount(false, z);
 
             updateCartTotal(price, true);
+            document.getElementById(y + "qtys").innerText = z + " added to cart";
+            document.getElementById(y + "qtycnt").setAttribute("data-qty", z);
+            document.getElementById(y + "vw").setAttribute("data-qty", z);
+            document.getElementById(y + "qtys").style.display = "block";
+            var smj = qtys.reduce(function(a, b){
+            return a + b;
+            }, 0);
+            document.getElementById('cartcntside').innerText = smj;
+            //cartCountItems[0].innerText = sum; //cartCountItems[0].innerText;
+        }
+        });
 
+            var rootRef = firebase.database().ref('grocery');
+
+            rootRef.on("child_added", snap => {
+
+            var id = snap.child("id").val();
+            var price = snap.child("price").val();
+            var name = snap.child("name").val();
+            var thumb = snap.child("thumb").val();
+            if(id == y){
+            price = price * z;
+            addProduct(m,price,id,name,thumb,z);
+
+            updateCartCount(false, z);
+
+            updateCartTotal(price, true);
+            document.getElementById(y + "qtys").innerText = z + " added to cart";
+            document.getElementById(y + "qtycnt").setAttribute("data-qty", z);
+            document.getElementById(y + "vw").setAttribute("data-qty", z);
+            document.getElementById(y + "qtys").style.display = "block";
+            var smj = qtys.reduce(function(a, b){
+            return a + b;
+            }, 0);
+            document.getElementById('cartcntside').innerText = smj;
+            //cartCountItems[0].innerText = sum; //cartCountItems[0].innerText;
+        }
+        });
+
+            var rootRef = firebase.database().ref('essentials');
+
+            rootRef.on("child_added", snap => {
+
+            var id = snap.child("id").val();
+            var price = snap.child("price").val();
+            var name = snap.child("name").val();
+            var thumb = snap.child("thumb").val();
+            if(id == y){
+            price = price * z;
+            addProduct(m,price,id,name,thumb,z);
+
+            updateCartCount(false, z);
+
+            updateCartTotal(price, true);
             document.getElementById(y + "qtys").innerText = z + " added to cart";
             document.getElementById(y + "qtycnt").setAttribute("data-qty", z);
             document.getElementById(y + "vw").setAttribute("data-qty", z);

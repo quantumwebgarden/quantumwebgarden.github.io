@@ -24,7 +24,9 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
    
 
-  
+  <script type="text/javascript">
+  	var fln = 1;
+  </script>
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
@@ -33,6 +35,7 @@
 
 </head>
 <body class="page-wrapper">
+
 <article>
 
 <div class="sidebar-back-main" id="divback">
@@ -264,7 +267,7 @@
 <nav class="nav" id="bnav">
   <a href="javascript:void(0)" class="nav__link nav__link--active" id="item" onclick="sh_items()">
     <i class="material-icons nav__icon">home</i>
-    <span class="nav__text">Home / Items</span>
+    <span class="nav__text">Items</span>
   </a>
   <a href="javascript:void(0)" class="nav__link" id="shop" onclick="sh_shops()">
     <i class="material-icons nav__icon">storefront</i>
@@ -302,17 +305,17 @@
   <a href="#home"><img src="icon.png" width="25px" height="25px"></a>
   <div id="itmsrc">
     <a style="width: 65%;">
-      <input type="text" id="fdsr" onkeyup="fdsrf()" placeholder="Search for foods..">
-      <input type="text" id="mdcr" onkeyup="mdcrf()" placeholder="Search for medicines.." style="display: none;">
-      <input type="text" id="grcr" onkeyup="grcrf()" placeholder="Search for grocery.." style="display: none;">
-      <input type="text" id="estr" onkeyup="estrf()" placeholder="Search for essentials.." style="display: none;">
+      <input type="text" class="srch" id="fdsr" onkeyup="itemsr('fds')" placeholder="Search for foods..">
+      <input type="text" class="srch" id="mdcr" onkeyup="itemsr('mdc')" placeholder="Search for medicines.." style="display: none;">
+      <input type="text" class="srch" id="grcr" onkeyup="itemsr('grc')" placeholder="Search for grocery.." style="display: none;">
+      <input type="text" class="srch" id="estr" onkeyup="itemsr('est')" placeholder="Search for essentials.." style="display: none;">
   </a></div>
   <div id="shpsrc" style="display: none;">
   <a style="width: 65%;">
-      <input type="text" id="fdsrs" onkeyup="fdcrfs()" placeholder="Search for Restaurant..">
-      <input type="text" id="mdcrs" onkeyup="dcrfs()" placeholder="Search for Pharmacy.." style="display: none;">
-      <input type="text" id="grcrs" onkeyup="grcrfs()" placeholder="Search for Grocery Store.." style="display: none;">
-      <input type="text" id="estrs" onkeyup="estrfs()" placeholder="Search for Sationary Store.." style="display: none;">
+      <input type="text" class="srchs" id="fdsrs" onkeyup="shopsr('fds')" placeholder="Search for Restaurant..">
+      <input type="text" class="srchs" id="mdcrs" onkeyup="shopsr('mdc')" placeholder="Search for Pharmacy.." style="display: none;">
+      <input type="text" class="srchs" id="grcrs" onkeyup="shopsr('grc')" placeholder="Search for Grocery Store.." style="display: none;">
+      <input type="text" class="srchs" id="estrs" onkeyup="shopsr('est')" placeholder="Search for Sationary Store.." style="display: none;">
 
   	</a>
   </div>
@@ -322,19 +325,19 @@
       <input type="text" id="odsrs" onkeyup="odcrfs()" placeholder="Search for Orders by Item name or shop name..">
   	</a>
   </div>
-
+<!--
   <div id="krtsrc" style="display: none;">
   <a style="width: 75%; text-align: center;">
       <p>My cart</p>
   	</a>
   </div>
-
+<!-
   <div id="prfsrc" style="display: none;">
   <a style="width: auto; text-align: center;">
       <p>My Profile</p>
   	</a>
   </div>
-
+-->
   <a class="icon">&nbsp;</a>
   <a href="javascript:void(0);" class="icon" id="show-sidebar" style="padding-top: 10px;">
     <i class="fa fa-bars fa-2x"></i>
@@ -342,6 +345,8 @@
 </div>
 	</div>
 </section>
+
+
 </article>
 <main id="vdy">
 
@@ -389,7 +394,10 @@
 			</header>
 			
 			<div class="cd-cart__body">
-				<ul>
+				<div id="loading_cart" style="margin: 0 auto; display:none; width: 100%; height: 100%;">
+					<img src="assets/img/loading.gif">
+				</div>
+				<ul id="ld_bd">
 					<!-- products added to the cart will be inserted here using JavaScript -->
 				</ul>
 			</div>
@@ -461,10 +469,10 @@
 <input type="radio" id="tab3" name="tab-control">
 <input type="radio" id="tab4" name="tab-control">
 <ul>
-<li title="Food" onclick="foods()"><label for="tab1" role="button"><i class="fas fa-hamburger"></i><br>&nbsp;&nbsp;<span>Food</span></label></li>
-<li title="Medicine" onclick="medicine()"><label for="tab2" role="button"><i class="fa fa-medkit" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Medicine</span></label></li>
-<li title="Grocery" onclick="grocery()"><label for="tab3" role="button"><i class="fa fa-shopping-bag" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Grocery</span></label></li>
-<li title="Essentials" onclick="essentials()"><label for="tab4" role="button"><i class="fa fa-shopping-basket" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Essentials</span></label></li>
+<li title="Food" onclick="showhide('foods')"><label for="tab1" role="button"><i class="fas fa-hamburger"></i><br>&nbsp;&nbsp;<span>Food</span></label></li>
+<li title="Medicine" onclick="showhide('medicine')"><label for="tab2" role="button"><i class="fa fa-medkit" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Medicine</span></label></li>
+<li title="Grocery" onclick="showhide('grocery')"><label for="tab3" role="button"><i class="fa fa-shopping-bag" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Grocery</span></label></li>
+<li title="Essentials" onclick="showhide('essentials')"><label for="tab4" role="button"><i class="fa fa-shopping-basket" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Essentials</span></label></li>
 </ul>
 <div class="slider"><div class="indicator"></div></div>
 <div class="content">
@@ -488,47 +496,7 @@
 
 <div>
   <ul class="products" id="fds">
-<!--
-    <li>
-      <img src="product.jpg">
-      <h3>Pure Veg Pack <b class="dt"><span>4.6 <i class="fa fa-star" aria-hidden="true"></i><br><i class="trat">(2563)</i></span></b></h3>
-      <h4> ₹ 95 <span>₹ 105</span></h4>
-      <p class="dl_tm"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;30 min</p>
-      <h5>Tejpata <span><i class="fas fa-map-marker-alt"></i> Diamond Harbour</span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 250ml Sprite</p>
-      <a class="example_fav" data-itemid="1237894563"><i class="fa fa-heart" aria-hidden="true"></i></a>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="95" data-itemid="1237894563" data-itemname="Pure Veg Pack" data-pic="product.jpg">Add to Cart</a>    
-    </li>
-      
-    <li>
-      <img src="product1.jpg">
-      <h3>Paneer Pack <b class="dt"><span>4.1 <i class="fa fa-star" aria-hidden="true"></i><br><i class="trat">(2)</i></span></b></h3>
-      <h4> ₹ 115 <span>₹ 130</span></h4>
-      <p class="dl_tm"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;1hr 30 min</p>
-      <h5>Hotel name <span><i class="fas fa-map-marker-alt"></i> Sarisha</span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 250ml Sprite</p>
-      <a class="example_fav act" data-itemid="1237894563"><i class="fa fa-heart" aria-hidden="true"></i></a>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="115" data-itemid="345674544" data-itemname="Paneer Pack" data-pic="product1.jpg">Add to Cart</a>
-    </li>
-
-    <li>
-      <img src="product2.jpg">
-      <h3>Egg Lunch Pack</h3>
-      <h4> ₹ 125</h4>
-      <h5>Radhuni <b>|| </b><span>4.1 <i class="fa fa-star" style="color: orange" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + 1 pc Egg + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="125" data-itemid="124521741" data-itemname="Egg Lunch Pack" data-pic="product2.jpg" onclick="getLocation()">Add to Cart</a>     
-    </li>
-
-    <li>
-      <img src="product1.jpg">
-      <h3>Biryani</h3>
-      <h4> ₹ 250</h4>
-      <h5>Haji <b>|| </b><span>4.8 <i class="fa fa-star" style="color: orange" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 1 pc Egg + 4pc Chicken + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="250" data-itemid="7466982145" data-itemname="Biryani" data-pic="product1.jpg">Add to Cart</a>
-    </li>
--->
+    
   </ul>
 </div>
 
@@ -554,43 +522,7 @@
 
 <div>
   <ul class="products" id="mdc">
-  	<!--
-    <li>
-      <img src="product.jpg">
-      <h3>Antibiotic</h3>
-      <h4> ₹ 95</h4>
-      <h5>Tejpata <b>|| </b><span>4.6 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="95" data-itemid="1237894563" data-itemname="Pure Veg Pack" data-pic="product.jpg">Add to Cart</a>    
-    </li>
-      
-    <li>
-      <img src="product1.jpg">
-      <h3>Veg Paneer Pack</h3>
-      <h4> ₹ 115</h4>
-      <h5>Gharana <b>|| </b><span>4.3 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + Paneer + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="115" data-itemid="895623741" data-itemname="Veg paneer Pack" data-pic="product1.jpg">Add to Cart</a>
-    </li>
-
-    <li>
-      <img src="product2.jpg">
-      <h3>Egg Lunch Pack</h3>
-      <h4> ₹ 125</h4>
-      <h5>Radhuni <b>|| </b><span>4.1 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + 1 pc Egg + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="125" data-itemid="124521741" data-itemname="Egg Lunch Pack" data-pic="product2.jpg">Add to Cart</a>     
-    </li>
-
-    <li>
-      <img src="product1.jpg">
-      <h3>Biryani</h3>
-      <h4> ₹ 250</h4>
-      <h5>Haji <b>|| </b><span>4.8 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 1 pc Egg + 4pc Chicken + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="250" data-itemid="7466982145" data-itemname="Biryani" data-pic="product1.jpg">Add to Cart</a>
-    </li>
--->
+  	
   </ul>
 </div>
 
@@ -614,41 +546,7 @@
 
 <div>
   <ul class="products" id="grc">
-    <li>
-      <img src="product.jpg">
-      <h3>Grocery Pack</h3>
-      <h4> ₹ 95</h4>
-      <h5>Tejpata <b>|| </b><span>4.6 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="95" data-itemid="1237894563" data-itemname="Pure Veg Pack" data-pic="product.jpg">Add to Cart</a>    
-    </li>
-      
-    <li>
-      <img src="product1.jpg">
-      <h3>Masoor Daal</h3>
-      <h4> ₹ 115</h4>
-      <h5>Gharana <b>|| </b><span>4.3 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + Paneer + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="115" data-itemid="895623741" data-itemname="Veg paneer Pack" data-pic="product1.jpg">Add to Cart</a>
-    </li>
-
-    <li>
-      <img src="product2.jpg">
-      <h3>Egg Lunch Pack</h3>
-      <h4> ₹ 125</h4>
-      <h5>Radhuni <b>|| </b><span>4.1 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + 1 pc Egg + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="125" data-itemid="124521741" data-itemname="Egg Lunch Pack" data-pic="product2.jpg">Add to Cart</a>     
-    </li>
-
-    <li>
-      <img src="product1.jpg">
-      <h3>Biryani</h3>
-      <h4> ₹ 250</h4>
-      <h5>Haji <b>|| </b><span>4.8 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 1 pc Egg + 4pc Chicken + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="250" data-itemid="7466982145" data-itemname="Biryani" data-pic="product1.jpg">Add to Cart</a>
-    </li>
+    
   </ul>
 </div>
 
@@ -673,41 +571,7 @@
 
 <div>
   <ul class="products" id="est">
-    <li>
-      <img src="product.jpg">
-      <h3>Soap</h3>
-      <h4> ₹ 95</h4>
-      <h5>Tejpata <b>|| </b><span>4.6 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="95" data-itemid="1237894563" data-itemname="Pure Veg Pack" data-pic="product.jpg">Add to Cart</a>    
-    </li>
-      
-    <li>
-      <img src="product1.jpg">
-      <h3>Shampoo</h3>
-      <h4> ₹ 115</h4>
-      <h5>Gharana <b>|| </b><span>4.3 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + Paneer + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="115" data-itemid="895623741" data-itemname="Veg paneer Pack" data-pic="product1.jpg">Add to Cart</a>
-    </li>
-
-    <li>
-      <img src="product2.jpg">
-      <h3>Egg Lunch Pack</h3>
-      <h4> ₹ 125</h4>
-      <h5>Radhuni <b>|| </b><span>4.1 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + 1 pc Egg + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="125" data-itemid="124521741" data-itemname="Egg Lunch Pack" data-pic="product2.jpg">Add to Cart</a>     
-    </li>
-
-    <li>
-      <img src="product1.jpg">
-      <h3>Biryani</h3>
-      <h4> ₹ 250</h4>
-      <h5>Haji <b>|| </b><span>4.8 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 1 pc Egg + 4pc Chicken + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="250" data-itemid="7466982145" data-itemname="Biryani" data-pic="product1.jpg">Add to Cart</a>
-    </li>
+    
   </ul>
 </div>
 
@@ -746,7 +610,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">Tejpata</span>
+          <span class="aspect-name" data-tagshp="Tejpata Diamond Harbour">Tejpata</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">
@@ -820,7 +684,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">Haji</span>
+          <span class="aspect-name" data-tagshp="Haji Diamond Harbour">Haji</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">
@@ -893,7 +757,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">Jisha</span>
+          <span class="aspect-name" data-tagshp="Jisha Diamond Harbour">Jisha</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">
@@ -978,7 +842,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">Sing &amp; Sing</span>
+          <span class="aspect-name" data-tagshp="Sing Diamond Harbour">Sing &amp; Sing</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">
@@ -1052,7 +916,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">Shanti Medical Stores</span>
+          <span class="aspect-name" data-tagshp="Shanti Diamond Harbour">Shanti Medical Stores</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">
@@ -1125,7 +989,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">K.B. Medical Hall</span>
+          <span class="aspect-name" data-tagshp="KB Diamond Harbour">K.B. Medical Hall</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">
@@ -1210,7 +1074,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">Food & Fashion Bazar</span>
+          <span class="aspect-name" data-tagshp="Food fashiom Diamond Harbour">Food & Fashion Bazar</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">
@@ -1284,7 +1148,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">Grocery Shop 1</span>
+          <span class="aspect-name" data-tagshp="Grocery Diamond Harbour">Grocery Shop 1</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">
@@ -1357,7 +1221,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">Grocery Shop 2</span>
+          <span class="aspect-name" data-tagshp="Shop Diamond Harbour">Grocery Shop 2</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">
@@ -1441,7 +1305,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">M Bazar</span>
+          <span class="aspect-name" data-tagshp="MBazar Diamond Harbour">M Bazar</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">
@@ -1515,7 +1379,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">Essentials Shop 1</span>
+          <span class="aspect-name" data-tagshp="Essential Diamond Harbour">Essentials Shop 1</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">
@@ -1588,7 +1452,7 @@
       <div class="aspect-content">
         <div class="aspect-info">
           <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name">Essentials Shop 2</span>
+          <span class="aspect-name" data-tagshp="Shop Diamond Harbour">Essentials Shop 2</span>
         </div>
         <div class="aspect-stat">
           <div class="all-opinions">

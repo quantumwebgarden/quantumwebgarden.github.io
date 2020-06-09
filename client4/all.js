@@ -25,54 +25,63 @@ window.addEventListener('online', toOn);
       location.reload();
     }
 
-function fdsrf() {
+function itemsr(x) {
+    z = document.getElementById(x + "r").value;
+    if(z.charAt(z.length - 1) == " "){}
+    else{
     var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("fdsr");
+    input = document.getElementById(x + "r");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("fds");
+    ul = document.getElementById(x);
     li = ul.getElementsByTagName("li");
+    b = filter.split(" ");
+    
     for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("h3")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        var a = li[i].getElementsByTagName("h3")[0].getAttribute("data-stag");
+        flagsr = 0;
+        for (j = 0; j < b.length; j++) {
+            if(a.toUpperCase().includes(b[j]) || b[j].toUpperCase().indexOf(a) > -1){
+                flagsr ++ ;
+            }
+        }
+        if (flagsr > 0) {
             li[i].style.display = "";
         } else {
             li[i].style.display = "none";
         }
       }
-    }  
-    function mdcrf() {
+    }
+    } 
+function shopsr(x) {
+    z = document.getElementById(x + "rs").value;
+    if(z.charAt(z.length - 1) == " "){}
+    else{
     var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("mdcr");
+    input = document.getElementById(x + "rs");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("mdc");
-    li = ul.getElementsByTagName("li");
+    ul = document.getElementById(x + "shp");
+    li = ul.querySelectorAll(".aspect-tab");
+    b = filter.split(" ");
+    
     for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("h3")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
+        var a = li[i].getElementsByTagName("span")[0].getAttribute("data-tagshp");
+        flagsr = 0;
+        
+        for (j = 0; j < b.length; j++) {
+            if(a.toUpperCase().includes(b[j]) || b[j].toUpperCase().indexOf(a) > -1){
+                flagsr ++ ;
+            }
         }
-      }
-    }  
-    function grcrf() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("grcr");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("grc");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("h3")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        if (flagsr > 0) {
             li[i].style.display = "";
         } else {
             li[i].style.display = "none";
         }
       }
     } 
+    }
+
+    /*
     function estrf() {
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById("estr");
@@ -80,8 +89,9 @@ function fdsrf() {
     ul = document.getElementById("est");
     li = ul.getElementsByTagName("li");
     for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("h3")[0];
-        txtValue = a.textContent || a.innerText;
+        a = li[i].getElementsByTagName("h3")[0].getAttribute("data-stag");
+        b = li[i].getElementsByTagName("h3")[0];
+        txtValue = b.textContent || b.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
         } else {
@@ -89,107 +99,43 @@ function fdsrf() {
         }
       }
     } 
+    */
 
-
-
-
+var allitems = ['foods','medicine','grocery','essentials'];
+var allshorts = ['fds','mdc','grc','est'];
 var pntr = "";
-  function foods() {
-    pntr = "food_list";
 
-    document.getElementById("foods").style.display = "block";
-    document.getElementById("medicine").style.display = "none";
-    document.getElementById("grocery").style.display = "none";
-    document.getElementById("essentials").style.display = "none";
+  function showhide(b) {
 
-    document.getElementById("fdsr").style.display = "block";
-    document.getElementById("mdcr").style.display = "none";
-    document.getElementById("grcr").style.display = "none";
-    document.getElementById("estr").style.display = "none";
+    pntr = allshorts[allitems.indexOf(b)] + "_list";
 
-    document.getElementById("fdsshp").style.display = "block";
-    document.getElementById("mdcshp").style.display = "none";
-    document.getElementById("grcshp").style.display = "none";
-    document.getElementById("estshp").style.display = "none";
+        x = document.querySelectorAll("section.productlst");
+    for (var i = x.length - 1; i >= 0; i--) {
+        x[i].style.display = "none";
+    }
+    document.getElementById(b).style.display = "block";
 
-    document.getElementById("fdsrs").style.display = "block";
-    document.getElementById("mdcrs").style.display = "none";
-    document.getElementById("grcrs").style.display = "none";
-    document.getElementById("estrs").style.display = "none";
+        x = document.querySelectorAll("input.srch");
+    for (var i = x.length - 1; i >= 0; i--) {
+        x[i].style.display = "none";
+    }
+    document.getElementById(allshorts[allitems.indexOf(b)] + "r").style.display = "block";
+
+        x = document.querySelectorAll("input.srchs");
+    for (var i = x.length - 1; i >= 0; i--) {
+        x[i].style.display = "none";
+    }
+    document.getElementById(allshorts[allitems.indexOf(b)] + "rs").style.display = "block";
+
+        x = document.querySelectorAll("div.shlst");
+    for (var i = x.length - 1; i >= 0; i--) {
+        x[i].style.display = "none";
+    }
+    document.getElementById(allshorts[allitems.indexOf(b)] + "shp").style.display = "block";
     
   }
-  function medicine() {
-    pntr = "medicine_list";
 
-    document.getElementById("foods").style.display = "none";
-    document.getElementById("medicine").style.display = "block";
-    document.getElementById("grocery").style.display = "none";
-    document.getElementById("essentials").style.display = "none";
 
-    document.getElementById("fdsr").style.display = "none";
-    document.getElementById("mdcr").style.display = "block";
-    document.getElementById("grcr").style.display = "none";
-    document.getElementById("estr").style.display = "none";
-
-    document.getElementById("fdsshp").style.display = "none";
-    document.getElementById("mdcshp").style.display = "block";
-    document.getElementById("grcshp").style.display = "none";
-    document.getElementById("estshp").style.display = "none";
-
-    document.getElementById("fdsrs").style.display = "none";
-    document.getElementById("mdcrs").style.display = "block";
-    document.getElementById("grcrs").style.display = "none";
-    document.getElementById("estrs").style.display = "none";
-
-  }
-  function grocery() {
-    pntr = "grocery_list";
-
-    document.getElementById("foods").style.display = "none";
-    document.getElementById("medicine").style.display = "none";
-    document.getElementById("grocery").style.display = "block";
-    document.getElementById("essentials").style.display = "none";
-
-    document.getElementById("fdsr").style.display = "none";
-    document.getElementById("mdcr").style.display = "none";
-    document.getElementById("grcr").style.display = "block";
-    document.getElementById("estr").style.display = "none";
-
-    document.getElementById("fdsshp").style.display = "none";
-    document.getElementById("mdcshp").style.display = "none";
-    document.getElementById("grcshp").style.display = "block";
-    document.getElementById("estshp").style.display = "none";
-
-    document.getElementById("fdsrs").style.display = "none";
-    document.getElementById("mdcrs").style.display = "none";
-    document.getElementById("grcrs").style.display = "block";
-    document.getElementById("estrs").style.display = "none";
-
-  }
-  function essentials() {
-    pntr = "essentials_list";
-
-    document.getElementById("foods").style.display = "none";
-    document.getElementById("medicine").style.display = "none";
-    document.getElementById("grocery").style.display = "none";
-    document.getElementById("essentials").style.display = "block";
-
-    document.getElementById("fdsr").style.display = "none";
-    document.getElementById("mdcr").style.display = "none";
-    document.getElementById("grcr").style.display = "none";
-    document.getElementById("estr").style.display = "block";
-
-    document.getElementById("fdsshp").style.display = "none";
-    document.getElementById("mdcshp").style.display = "none";
-    document.getElementById("grcshp").style.display = "none";
-    document.getElementById("estshp").style.display = "block";
-
-    document.getElementById("fdsrs").style.display = "none";
-    document.getElementById("mdcrs").style.display = "none";
-    document.getElementById("grcrs").style.display = "none";
-    document.getElementById("estrs").style.display = "block";
-
-  }
 
 function sh_shops(){
     document.getElementById("vdy").style.display = "block";
@@ -305,7 +251,6 @@ function showme(x) {
   customClass: 'sweet-wid',
 })
 }
-
 
 
 

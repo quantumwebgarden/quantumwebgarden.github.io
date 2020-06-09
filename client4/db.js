@@ -37,9 +37,24 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();     
 
+//var fln = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
 
+$(document).ready(chkmulti(),
+//any function by putting a , after last 2nd bracket
+);
+function chkmulti() {
+    if(fln == 1){
+        foodnxt();
+        mednxt();
+        grcnxt();
+        estnxt();
+    }
+    else if(fln == 2){
+        singledtls(elid);
+    }
+}
 
-$(document).ready(function dofirst(){
+function foodnxt(){
 
 var rootRef = firebase.database().ref('foods');
 
@@ -68,21 +83,18 @@ var pricerev = snap.child("pricerev").val();
 var desc = snap.child("desc").val();
 var favlst = snap.child("favlst").val();
 var favchk = favchkf(favlst,u);
-
+var tagsr = snap.child("tagsr").val();
 /*
 var rv = snap.child("bname").val();
 var bname = rv.replace(/-/g, ' ');
 */
 
 if (x == "ALL") {
-$("#fds").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\">Add to Cart</a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#fds").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
 }
 
 });
-},mednxt(),
-//any function by putting a , after last 2nd bracket
-);
-
+}
 /*
 $(document).ready(*/
     //function slctupd(x,y,u,t,g){}
@@ -115,14 +127,159 @@ var pricerev = snap.child("pricerev").val();
 var desc = snap.child("desc").val();
 var favlst = snap.child("favlst").val();
 var favchk = favchkf(favlst,u);
+var tagsr = snap.child("tagsr").val();
 
 
 if (x == "ALL") {
-$("#mdc").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\">Add to Cart</a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-thumb=\"" + thumb + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#mdc").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-thumb=\"" + thumb + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
 }
 
 });
 
+}
+
+function grcnxt(){
+
+var rootRef = firebase.database().ref('grocery');
+
+rootRef.on("child_added", snap => {
+
+var id = snap.child("id").val();
+var cat = snap.child("cat").val();
+var name = snap.child("name").val();
+var dad = snap.child("dad").val();
+var lastmodify = snap.child("lastmodify").val();
+var modifycnt = snap.child("modifycnt").val();
+var shopname = snap.child("shopname").val();
+var shopaddr = snap.child("shopaddr").val();
+var shoplat = snap.child("shoplat").val();
+var shoplang = snap.child("shoplang").val();
+var dpincode = snap.child("dpincode").val();
+var dtime = dtmcal(shoplat,shoplang,t,g);
+var price = snap.child("price").val();
+var priceshp = snap.child("priceshp").val();
+var rating = snap.child("rating").val();
+var ratcnt = snap.child("ratcnt").val();
+var finalrat = (rating / ratcnt).toFixed(1);
+var thumb = snap.child("thumb").val();
+var img = snap.child("img").val();
+var pricerev = snap.child("pricerev").val();
+var desc = snap.child("desc").val();
+var favlst = snap.child("favlst").val();
+var favchk = favchkf(favlst,u);
+var tagsr = snap.child("tagsr").val();
+
+
+if (x == "ALL") {
+$("#grc").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"groceryA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-thumb=\"" + thumb + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+}
+
+});
+
+}
+
+
+function estnxt(){
+
+var rootRef = firebase.database().ref('essentials');
+
+rootRef.on("child_added", snap => {
+
+var id = snap.child("id").val();
+var cat = snap.child("cat").val();
+var name = snap.child("name").val();
+var dad = snap.child("dad").val();
+var lastmodify = snap.child("lastmodify").val();
+var modifycnt = snap.child("modifycnt").val();
+var shopname = snap.child("shopname").val();
+var shopaddr = snap.child("shopaddr").val();
+var shoplat = snap.child("shoplat").val();
+var shoplang = snap.child("shoplang").val();
+var dpincode = snap.child("dpincode").val();
+var dtime = dtmcal(shoplat,shoplang,t,g);
+var price = snap.child("price").val();
+var priceshp = snap.child("priceshp").val();
+var rating = snap.child("rating").val();
+var ratcnt = snap.child("ratcnt").val();
+var finalrat = (rating / ratcnt).toFixed(1);
+var thumb = snap.child("thumb").val();
+var img = snap.child("img").val();
+var pricerev = snap.child("pricerev").val();
+var desc = snap.child("desc").val();
+var favlst = snap.child("favlst").val();
+var favchk = favchkf(favlst,u);
+var tagsr = snap.child("tagsr").val();
+
+
+if (x == "ALL") {
+$("#est").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"essentialsA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-thumb=\"" + thumb + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+}
+
+});
+
+}
+
+
+function singledtls(x){
+/*
+y = x.split("A_9");
+itemid = y[0];
+itemtag = y[1];
+itemcat = y[2]
+itemshopname = y[3];
+
+var rootRef = firebase.database().ref(itemcat);
+
+rootRef.on("child_added", snap => {
+
+var id = snap.child("id").val();
+var cat = snap.child("cat").val();
+var name = snap.child("name").val();
+var dad = snap.child("dad").val();
+var lastmodify = snap.child("lastmodify").val();
+var modifycnt = snap.child("modifycnt").val();
+var shopname = snap.child("shopname").val();
+var shopaddr = snap.child("shopaddr").val();
+var shoplat = snap.child("shoplat").val();
+var shoplang = snap.child("shoplang").val();
+var dpincode = snap.child("dpincode").val();
+var dtime = dtmcal(shoplat,shoplang,t,g);
+var price = snap.child("price").val();
+var priceshp = snap.child("priceshp").val();
+var rating = snap.child("rating").val();
+var ratcnt = snap.child("ratcnt").val();
+var finalrat = (rating / ratcnt).toFixed(1);
+var thumb = snap.child("thumb").val();
+var img = snap.child("img").val();
+var pricerev = snap.child("pricerev").val();
+var desc = snap.child("desc").val();
+var favlst = snap.child("favlst").val();
+var favchk = favchkf(favlst,u);
+var tagsr = snap.child("tagsr").val();
+
+if(id == itemid){
+    //single
+}
+
+
+if (x == "ALL") {
+$("#sngs").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-thumb=\"" + thumb + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+}
+if (shopname == itemshop) {
+$("#shpall").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+}
+
+});
+*/
+}
+
+function sngl(x) {
+    var sng = [];
+    sng[0] = x.getAttribute('data-sid');
+    sng[1] = x.getAttribute('data-stag');
+    sng[2] = x.getAttribute('data-sname');
+    localStorage.setItem('el_id', sng[0] + 'A_9' + sng[1] + 'A_9' + sng[2]);
+    window.open("single.html");
 }
 
 
@@ -176,7 +333,7 @@ function adc(x) {
             dlt();
             var date = new Date();
             var timestamp = date.getTime();
-            var cartid = timestamp;
+            var cartid = new Date("12/31/2099").getTime() - timestamp;
             if(ids.includes(x.getAttribute('data-itemid'))){
                 firebase.database().ref(u + "/cart/" + tmsts[ids.indexOf(x.getAttribute('data-itemid'))]).update({tmst:tmsts[ids.indexOf(x.getAttribute('data-itemid'))],id: x.getAttribute('data-itemid'),typ:'main',qnty: Number(x.getAttribute('data-qty')) + 1});
                 //x.setAttribute('data-qty', Number(qtys[ids.indexOf(x.getAttribute('data-itemid'))]) + 1);
@@ -204,7 +361,7 @@ function rmv(x) {
             }
             
         }
-        function dlt() {
+function dlt() {
             /*
             var rootRef = firebase.database().ref(u + "/cart/" + tmsts[ids.indexOf(lstid)]).on("child_added", snap => {
 
@@ -212,6 +369,8 @@ function rmv(x) {
 
             });
             */
+            /*$("#loading_cart").css("display","block");$("#ld_bd").css("display","none");
+            setTimeout(function() { $("#loading_cart").css("display","none");$("#ld_bd").css("display","block"); }, 1000);*/
             document.getElementById('undobtn').classList.remove('cd-cart__undo--visible');
             if(document.querySelectorAll('cd-cart__product--deleted').length>0){
                 firebase.database().ref(u + "/cart/" + tmsts[ids.indexOf(document.querySelectorAll('cd-cart__product--deleted')[0].getElementsByClassName('cd-cart__delete-item')[0].getAttribute('data-id'))]).remove();
@@ -221,21 +380,22 @@ function rmv(x) {
             
         }
 function vw(x) {
+    viewrelated(x);
 Swal.fire({
   title: x.getAttribute('data-itemname'),
   text: '',
   background: 'rgb(184, 222, 227)',
   backdrop: 'rgba(0,0,123,0.4)',
-  html: x.getAttribute('data-desc') + '<br><b>Price: ₹ </b> <i>' +
-    x.getAttribute('data-price') + '</i><br> <i>' +
-    x.getAttribute('data-shopname') + '</i> - <i>' +
+  html:'<p class="vwir">' + x.getAttribute('data-desc') + '</p><b class="vwbr">Price: ₹ ' +
+    x.getAttribute('data-price') + '</b><br> <i class="vwir">' +
+    x.getAttribute('data-shopname') + '</i> - <i class="vwir">' +
     x.getAttribute('data-shoploc') + '</i><br> Ratings: ' + 
-    x.getAttribute('data-ratings') + ' <i class=\"fa fa-star alst\" aria-hidden=\"true\"></i> ',
+    x.getAttribute('data-ratings') + ' <i class=\"fa fa-star alst\" aria-hidden=\"true\"></i>',
   imageUrl: x.getAttribute('data-pic'),
   imageWidth: 400,
   imageAlt: x.getAttribute('data-itemname'),
   confirmButtonText:
-    '<i class="fa fa-check-circle" aria-hidden="true"></i> <a data-price="' + x.getAttribute('data-price') + '"  data-itemid="' + x.getAttribute('data-itemid') + '" data-itemname="' + x.getAttribute('data-itemname') + '" data-pic="' + x.getAttribute('data-thumb') + '" data-qty="' + x.getAttribute('data-qty') + '" id="' + x.getAttribute('data-itemid') + 'vs" onclick="adc(this)">Add to Cart</a>',
+    '<i class="fa fa-shopping-cart" aria-hidden="true"></i> <a data-price="' + x.getAttribute('data-price') + '"  data-itemid="' + x.getAttribute('data-itemid') + '" data-itemname="' + x.getAttribute('data-itemname') + '" data-pic="' + x.getAttribute('data-thumb') + '" data-qty="' + x.getAttribute('data-qty') + '" id="' + x.getAttribute('data-itemid') + 'vs" onclick="adc(this)">Add to Cart</a>',
   showCancelButton: true,
   focusConfirm: false,
   cancelButtonText:
@@ -245,3 +405,20 @@ Swal.fire({
     }
 })
 }
+function viewrelated(x) {
+    console.log(x.getAttribute('data-itemname'));
+    //medrl();
+    //foodrel();
+}
+/*
+(function() {
+
+    if (window.history && window.history.pushState) {
+
+        $(window).on('popstate', function() {
+      
+          alert('Back button was pressed.');
+        });
+    }
+})();
+*/
