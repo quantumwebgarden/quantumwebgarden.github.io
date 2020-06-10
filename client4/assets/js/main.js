@@ -142,11 +142,9 @@ var lstqty = "";
             updateCartCount(false, z);
 
             updateCartTotal(price, true);
-
-            document.getElementById(y + "qtys").innerText = z + " added to cart";
-            document.getElementById(y + "qtycnt").setAttribute("data-qty", z);
-            document.getElementById(y + "vw").setAttribute("data-qty", z);
-            document.getElementById(y + "qtys").style.display = "block";
+            
+            updatetext(y,z);
+            
             var smj = qtys.reduce(function(a, b){
             return a + b;
             }, 0);
@@ -170,10 +168,9 @@ var lstqty = "";
             updateCartCount(false, z);
 
             updateCartTotal(price, true);
-            document.getElementById(y + "qtys").innerText = z + " added to cart";
-            document.getElementById(y + "qtycnt").setAttribute("data-qty", z);
-            document.getElementById(y + "vw").setAttribute("data-qty", z);
-            document.getElementById(y + "qtys").style.display = "block";
+            
+            updatetext(y,z);
+            
             var smj = qtys.reduce(function(a, b){
             return a + b;
             }, 0);
@@ -197,10 +194,9 @@ var lstqty = "";
             updateCartCount(false, z);
 
             updateCartTotal(price, true);
-            document.getElementById(y + "qtys").innerText = z + " added to cart";
-            document.getElementById(y + "qtycnt").setAttribute("data-qty", z);
-            document.getElementById(y + "vw").setAttribute("data-qty", z);
-            document.getElementById(y + "qtys").style.display = "block";
+            
+            updatetext(y,z);
+            
             var smj = qtys.reduce(function(a, b){
             return a + b;
             }, 0);
@@ -224,10 +220,9 @@ var lstqty = "";
             updateCartCount(false, z);
 
             updateCartTotal(price, true);
-            document.getElementById(y + "qtys").innerText = z + " added to cart";
-            document.getElementById(y + "qtycnt").setAttribute("data-qty", z);
-            document.getElementById(y + "vw").setAttribute("data-qty", z);
-            document.getElementById(y + "qtys").style.display = "block";
+            
+            updatetext(y,z);
+
             var smj = qtys.reduce(function(a, b){
             return a + b;
             }, 0);
@@ -236,6 +231,19 @@ var lstqty = "";
         }
         });
                       
+        };
+
+        function updatetext(a,b){
+            
+            document.getElementById(a + "qtys").innerText = b + " added to cart";
+            document.getElementById(a + "qtycnt").setAttribute("data-qty", b);
+            document.getElementById(a + "vw").setAttribute("data-qty", b);
+            document.getElementById(a + "qtys").style.display = "block";
+            console.log(a + "," + b);
+            document.getElementById(a + "qtysshp").innerText = b + " added to cart";
+            document.getElementById(a + "qtycntshp").setAttribute("data-qty", b);
+            document.getElementById(a + "vwshp").setAttribute("data-qty", b);
+            document.getElementById(a + "qtysshp").style.display = "block";
         };
         
         function chkchd(x) {
