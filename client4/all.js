@@ -149,7 +149,6 @@ function sh_shops(){
     document.getElementById("itmsrc").style.display = "none";
     document.getElementById("shpsrc").style.display = "block";
     document.getElementById("ordsrc").style.display = "none";
-    document.getElementById("krtsrc").style.display = "none";
 
 }
 
@@ -165,7 +164,6 @@ function sh_items(){
     document.getElementById("itmsrc").style.display = "block";
     document.getElementById("shpsrc").style.display = "none";
     document.getElementById("ordsrc").style.display = "none";
-    document.getElementById("krtsrc").style.display = "none";
 
 }
 
@@ -179,7 +177,6 @@ function sh_orders(){
     document.getElementById("itmsrc").style.display = "none";
     document.getElementById("shpsrc").style.display = "none";
     document.getElementById("ordsrc").style.display = "block";
-    document.getElementById("krtsrc").style.display = "none";
 
 }
 

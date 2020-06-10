@@ -463,7 +463,7 @@
 
 
 
-<div class="tabs" style="padding-bottom: 5px;">
+<div class="tabs" style="padding-bottom: 5px;" id="maintabs">
 <input type="radio" id="tab1" name="tab-control" checked>
 <input type="radio" id="tab2" name="tab-control">
 <input type="radio" id="tab3" name="tab-control">
@@ -473,25 +473,47 @@
 <li title="Medicine" onclick="showhide('medicine')"><label for="tab2" role="button"><i class="fa fa-medkit" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Medicine</span></label></li>
 <li title="Grocery" onclick="showhide('grocery')"><label for="tab3" role="button"><i class="fa fa-shopping-bag" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Grocery</span></label></li>
 <li title="Essentials" onclick="showhide('essentials')"><label for="tab4" role="button"><i class="fa fa-shopping-basket" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Essentials</span></label></li>
+
 </ul>
 <div class="slider"><div class="indicator"></div></div>
 <div class="content">
 </div>
 </div>
 
+<script type="text/javascript">
+
+window.onscroll = function() {myFunction()};
+var header = document.getElementById("maintabs");
+var sticky = header.offsetTop - 62;
+
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    $("#maintabs").css({"position": "fixed", "top" : "57px", "z-index" : "9999"});
+    $(".srtbtn").css({"position": "fixed", "z-index" : "9999", "top" : "160px", "width" : "100%", "padding" : "10px 55px", "margin" : "0 auto", "background-color" : "#e4e4e4", "box-shadow": "0px 15px 10px -15px #111"});
+  } else {
+    $("#maintabs").css({"position": "relative", "top" : "0"});
+    $(".srtbtn").css({"position": "relative", "top" : "0", "width" : "80%", "padding" : "5px 5px", "background-color" : "transparent", "box-shadow": "0px 0px 0px 0px transparent"});
+  }
+}
+</script>
+
+
 <article id="itemlist">
 <section class="productlst" id="foods">
 
 <div class="srtbtn">
-  <button>Veg only</button>
-  <button>Fast Food</button>
+  <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-  <button>Clear <i class="fa fa-times" aria-hidden="true"></i></button>
   <button>Veg only</button>
-  <button>Veg only</button>
-  <button>Veg only</button>
-  <button>Veg only</button>
+  <button>Fast Food</button>
+  <button>Non-veg</button>
+  <button>Paneer</button>
+  <button>Multi Cuisine</button>
+  <button>A to Z</button>
+  <button>Z to A</button>
+  
 </div>
 
 <div>
@@ -509,15 +531,17 @@
 <section class="productlst" id="medicine" style="display: none;">
 
 <div class="srtbtn">
-  <button>Veg only</button>
-  <button>Fast Food</button>
+  <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-  <button>Clear <i class="fa fa-times" aria-hidden="true"></i></button>
-  <button>Veg only</button>
-  <button>Veg only</button>
-  <button>Veg only</button>
-  <button>Veg only</button>
+  <button>Liquid</button>
+  <button>Tablet</button>
+  <button>Capsules</button>
+  <button>Topical medicines</button>
+  <button>Drops</button>
+  <button>Injections</button>
+  <button>A to Z</button>
+  <button>Z to A</button>
 </div>
 
 <div>
@@ -533,15 +557,16 @@
 <section class="productlst" id="grocery" style="display: none;">
 
 <div class="srtbtn">
-  <button>Veg only</button>
-  <button>Fast Food</button>
+  <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-  <button>Clear <i class="fa fa-times" aria-hidden="true"></i></button>
-  <button>Veg only</button>
-  <button>Veg only</button>
-  <button>Veg only</button>
-  <button>Veg only</button>
+  <button>Beverages</button>
+  <button>Baby Food</button>
+  <button>Cookies, Snacks & Candy</button>
+  <button>Dairy, Eggs & Cheese</button>
+  <button>Grains, Pasta & Sides</button>
+  <button>A to Z</button>
+  <button>Z to A</button>
 </div>
 
 <div>
@@ -558,15 +583,16 @@
 <section class="productlst" id="essentials" style="display: none;">
 
 <div class="srtbtn">
-  <button>Veg only</button>
-  <button>Fast Food</button>
+  <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-  <button>Clear <i class="fa fa-times" aria-hidden="true"></i></button>
-  <button>Veg only</button>
-  <button>Veg only</button>
-  <button>Veg only</button>
-  <button>Veg only</button>
+  <button>Health & Beauty</button>
+  <button>Stationary</button>
+  <button>Paper Products</button>
+  <button>Personal Care</button>
+  <button>Cleaning Supplies</button>
+  <button>A to Z</button>
+  <button>Z to A</button>
 </div>
 
 <div>
@@ -601,229 +627,6 @@
 <!------------------------------------------------------->
 <!------------------------------------------------------->
 <div id="fdsshp" class="shlst" style="display: block;">
-
-
-<div class="aspect-tab">
-  <input id="item-11" type="checkbox" class="aspect-input" name="aspect">
-    <label for="item-11" class="aspect-label"></label>
-      
-      <div class="aspect-content">
-        <div class="aspect-info">
-          <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name" data-tagshp="Tejpata Diamond Harbour">Tejpata</span>
-        </div>
-        <div class="aspect-stat">
-          <div class="all-opinions">
-            <span class="all-opinions-count">18</span>
-            <span>opinion</span>
-          </div>
-          <div>
-            <span class="positive-count">4</span>
-            <span class="neutral-count">1</span>
-            <span class="negative-count">13</span>
-          </div>
-        </div>
-      </div>
-
-<div class="aspect-tab-content">
-<div class="sentiment-wrapper">
-
-<div class="productlst">
-  <ul class="products" id="grc">
-    <li>
-      <img src="product.jpg">
-      <h3>Grocery Pack</h3>
-      <h4> ₹ 95</h4>
-      <h5>Tejpata <b>|| </b><span>4.6 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="95" data-itemid="1237894563" data-itemname="Pure Veg Pack" data-pic="product.jpg">Add to Cart</a>    
-    </li>
-      
-    <li>
-      <img src="product1.jpg">
-      <h3>Masoor Daal</h3>
-      <h4> ₹ 115</h4>
-      <h5>Gharana <b>|| </b><span>4.3 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + Paneer + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="115" data-itemid="895623741" data-itemname="Veg paneer Pack" data-pic="product1.jpg">Add to Cart</a>
-    </li>
-
-    <li>
-      <img src="product2.jpg">
-      <h3>Egg Lunch Pack</h3>
-      <h4> ₹ 125</h4>
-      <h5>Radhuni <b>|| </b><span>4.1 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + 1 pc Egg + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="125" data-itemid="124521741" data-itemname="Egg Lunch Pack" data-pic="product2.jpg">Add to Cart</a>     
-    </li>
-
-    <li>
-      <img src="product1.jpg">
-      <h3>Biryani</h3>
-      <h4> ₹ 250</h4>
-      <h5>Haji <b>|| </b><span>4.8 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 1 pc Egg + 4pc Chicken + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="250" data-itemid="7466982145" data-itemname="Biryani" data-pic="product1.jpg">Add to Cart</a>
-    </li>
-  </ul>
-</div>
-
-</div>
-</div>
-
-</div>
-
-
-<!------------------->
-
-
-<div class="aspect-tab">
-  <input id="item-12" type="checkbox" class="aspect-input" name="aspect">
-    <label for="item-12" class="aspect-label"></label>
-      
-      <div class="aspect-content">
-        <div class="aspect-info">
-          <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name" data-tagshp="Haji Diamond Harbour">Haji</span>
-        </div>
-        <div class="aspect-stat">
-          <div class="all-opinions">
-            <span class="all-opinions-count">18</span>
-            <span>opinion</span>
-          </div>
-          <div>
-            <span class="positive-count">4</span>
-            <span class="neutral-count">1</span>
-            <span class="negative-count">13</span>
-          </div>
-        </div>
-      </div>
-
-<div class="aspect-tab-content">
-<div class="sentiment-wrapper">
-
-<div class="productlst">
-  <ul class="products" id="grc">
-    <li>
-      <img src="product.jpg">
-      <h3>Grocery Pack</h3>
-      <h4> ₹ 95</h4>
-      <h5>Tejpata <b>|| </b><span>4.6 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="95" data-itemid="1237894563" data-itemname="Pure Veg Pack" data-pic="product.jpg">Add to Cart</a>    
-    </li>
-      
-    <li>
-      <img src="product1.jpg">
-      <h3>Masoor Daal</h3>
-      <h4> ₹ 115</h4>
-      <h5>Gharana <b>|| </b><span>4.3 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + Paneer + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="115" data-itemid="895623741" data-itemname="Veg paneer Pack" data-pic="product1.jpg">Add to Cart</a>
-    </li>
-
-    <li>
-      <img src="product2.jpg">
-      <h3>Egg Lunch Pack</h3>
-      <h4> ₹ 125</h4>
-      <h5>Radhuni <b>|| </b><span>4.1 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + 1 pc Egg + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="125" data-itemid="124521741" data-itemname="Egg Lunch Pack" data-pic="product2.jpg">Add to Cart</a>     
-    </li>
-
-    <li>
-      <img src="product1.jpg">
-      <h3>Biryani</h3>
-      <h4> ₹ 250</h4>
-      <h5>Haji <b>|| </b><span>4.8 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 1 pc Egg + 4pc Chicken + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="250" data-itemid="7466982145" data-itemname="Biryani" data-pic="product1.jpg">Add to Cart</a>
-    </li>
-  </ul>
-</div>
-
-</div>
-</div>
-
-</div>
-
-<!---------------------->
-
-
-<div class="aspect-tab">
-  <input id="item-13" type="checkbox" class="aspect-input" name="aspect">
-    <label for="item-13" class="aspect-label"></label>
-      
-      <div class="aspect-content">
-        <div class="aspect-info">
-          <img class="chart-pie" src="product1.jpg" width="50px" height="auto">
-          <span class="aspect-name" data-tagshp="Jisha Diamond Harbour">Jisha</span>
-        </div>
-        <div class="aspect-stat">
-          <div class="all-opinions">
-            <span class="all-opinions-count">18</span>
-            <span>opinion</span>
-          </div>
-          <div>
-            <span class="positive-count">4</span>
-            <span class="neutral-count">1</span>
-            <span class="negative-count">13</span>
-          </div>
-        </div>
-      </div>
-
-<div class="aspect-tab-content">
-<div class="sentiment-wrapper">
-
-<div class="productlst">
-  <ul class="products" id="grc">
-    <li>
-      <img src="product.jpg">
-      <h3>Grocery Pack</h3>
-      <h4> ₹ 95</h4>
-      <h5>Tejpata <b>|| </b><span>4.6 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="95" data-itemid="1237894563" data-itemname="Pure Veg Pack" data-pic="product.jpg">Add to Cart</a>    
-    </li>
-      
-    <li>
-      <img src="product1.jpg">
-      <h3>Masoor Daal</h3>
-      <h4> ₹ 115</h4>
-      <h5>Gharana <b>|| </b><span>4.3 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + Paneer + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="115" data-itemid="895623741" data-itemname="Veg paneer Pack" data-pic="product1.jpg">Add to Cart</a>
-    </li>
-
-    <li>
-      <img src="product2.jpg">
-      <h3>Egg Lunch Pack</h3>
-      <h4> ₹ 125</h4>
-      <h5>Radhuni <b>|| </b><span>4.1 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + 1 pc Egg + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="125" data-itemid="124521741" data-itemname="Egg Lunch Pack" data-pic="product2.jpg">Add to Cart</a>     
-    </li>
-
-    <li>
-      <img src="product1.jpg">
-      <h3>Biryani</h3>
-      <h4> ₹ 250</h4>
-      <h5>Haji <b>|| </b><span>4.8 <i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-      <p>2 pc Rooti + 1 Plate Rice + Chatney + Desert + Daal + Vegetable + 1 pc Egg + 4pc Chicken + papad + salad + 250ml Sprite</p>
-      <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="250" data-itemid="7466982145" data-itemname="Biryani" data-pic="product1.jpg">Add to Cart</a>
-    </li>
-  </ul>
-</div>
-
-</div>
-</div>
-
-</div>
-
-
-
-
-<!------------------->
 
 
 </div>
@@ -861,7 +664,7 @@
 <div class="sentiment-wrapper">
 
 <div class="productlst">
-  <ul class="products" id="grc">
+  <ul class="products" id="grcname">
     <li>
       <img src="product.jpg">
       <h3>Grocery Pack</h3>
@@ -935,7 +738,7 @@
 <div class="sentiment-wrapper">
 
 <div class="productlst">
-  <ul class="products" id="grc">
+  <ul class="products" id="grcname">
     <li>
       <img src="product.jpg">
       <h3>Grocery Pack</h3>
@@ -1008,7 +811,7 @@
 <div class="sentiment-wrapper">
 
 <div class="productlst">
-  <ul class="products" id="grc">
+  <ul class="products" id="grcname">
     <li>
       <img src="product.jpg">
       <h3>Grocery Pack</h3>
@@ -1093,7 +896,7 @@
 <div class="sentiment-wrapper">
 
 <div class="productlst">
-  <ul class="products" id="grc">
+  <ul class="products" id="grcname">
     <li>
       <img src="product.jpg">
       <h3>Grocery Pack</h3>
@@ -1167,7 +970,7 @@
 <div class="sentiment-wrapper">
 
 <div class="productlst">
-  <ul class="products" id="grc">
+  <ul class="products" id="grcname">
     <li>
       <img src="product.jpg">
       <h3>Grocery Pack</h3>
@@ -1240,7 +1043,7 @@
 <div class="sentiment-wrapper">
 
 <div class="productlst">
-  <ul class="products" id="grc">
+  <ul class="products" id="grcname">
     <li>
       <img src="product.jpg">
       <h3>Grocery Pack</h3>
@@ -1324,7 +1127,7 @@
 <div class="sentiment-wrapper">
 
 <div class="productlst">
-  <ul class="products" id="grc">
+  <ul class="products" id="grcname">
     <li>
       <img src="product.jpg">
       <h3>Grocery Pack</h3>
@@ -1398,7 +1201,7 @@
 <div class="sentiment-wrapper">
 
 <div class="productlst">
-  <ul class="products" id="grc">
+  <ul class="products" id="grcname">
     <li>
       <img src="product.jpg">
       <h3>Grocery Pack</h3>
@@ -1471,7 +1274,7 @@
 <div class="sentiment-wrapper">
 
 <div class="productlst">
-  <ul class="products" id="grc">
+  <ul class="products" id="grcname">
     <li>
       <img src="product.jpg">
       <h3>Grocery Pack</h3>

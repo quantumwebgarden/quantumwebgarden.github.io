@@ -1,6 +1,7 @@
 html body *{
 	font-weight: 650 !important;
 }
+
 section {
   padding: 0.2rem;
   background: #e4e4e4;
@@ -1154,4 +1155,7 @@ h1 {
 }
 .vwbr{
   color: black !important;
+}
+.swal2-container {
+  z-index: 999999 !important;
 }

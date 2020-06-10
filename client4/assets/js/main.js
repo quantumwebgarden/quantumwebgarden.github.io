@@ -296,6 +296,7 @@ var lstqty = "";
         
             if( cartIsOpen ) {
                 Util.removeClass(cart[0], 'cd-cart--open');
+                document.body.style.overflow = 'auto';
                 //reset undo
                 if(cartTimeoutId) clearInterval(cartTimeoutId);
                 Util.removeClass(cartUndo, 'cd-cart__undo--visible');
@@ -308,6 +309,7 @@ var lstqty = "";
                 }, 500);
             } else {
                 Util.addClass(cart[0], 'cd-cart--open');
+                document.body.style.overflow = 'hidden';
             }
         };
 

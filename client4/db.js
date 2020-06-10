@@ -44,6 +44,7 @@ $(document).ready(chkmulti(),
 );
 function chkmulti() {
     if(fln == 1){
+        foodshp();
         foodnxt();
         mednxt();
         grcnxt();
@@ -54,6 +55,40 @@ function chkmulti() {
     }
 }
 
+function foodshp(){
+
+var rootRef = firebase.database().ref('shopfoods');
+
+rootRef.on("child_added", snap => {
+
+var id = snap.child("id").val();
+var shopname = snap.child("shopname").val();
+var shopaddr = snap.child("shopaddr").val();
+var shoplat = snap.child("shoplat").val();
+var shoplang = snap.child("shoplang").val();
+var dpincode = snap.child("dpincode").val();
+var processtime = snap.child("processtime").val();
+var posopt = snap.child("posopt").val();
+var neuopt = snap.child("neuopt").val();
+var negopt = snap.child("negopt").val();
+var optcnt = posopt + neuopt + negopt;
+var picthumb = snap.child("picthumb").val();
+var tagsr = snap.child("tagsr").val();
+
+if (x == "ALL") {
+$("#fdsshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + '<br><i>Usually prepare foods within ' + processtime + ' minutes</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+}
+
+});
+}
+
+/*48795623
+
+
+48771623
+49395623
+48795073
+*/
 function foodnxt(){
 
 var rootRef = firebase.database().ref('foods');
@@ -84,6 +119,7 @@ var desc = snap.child("desc").val();
 var favlst = snap.child("favlst").val();
 var favchk = favchkf(favlst,u);
 var tagsr = snap.child("tagsr").val();
+var shopid = snap.child("shopid").val();
 /*
 var rv = snap.child("bname").val();
 var bname = rv.replace(/-/g, ' ');
@@ -91,7 +127,10 @@ var bname = rv.replace(/-/g, ' ');
 
 if (x == "ALL") {
 $("#fds").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#" + shopid + "shp").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+
 }
+
 
 });
 }
@@ -410,15 +449,3 @@ function viewrelated(x) {
     //medrl();
     //foodrel();
 }
-/*
-(function() {
-
-    if (window.history && window.history.pushState) {
-
-        $(window).on('popstate', function() {
-      
-          alert('Back button was pressed.');
-        });
-    }
-})();
-*/
