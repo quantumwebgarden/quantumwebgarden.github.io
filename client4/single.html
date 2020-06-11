@@ -25,7 +25,8 @@
    
 
   <script type="text/javascript">
-  	var fln = 1;
+  	var fln = 2;
+    var elid = localStorage.getItem("el_id");
   </script>
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
@@ -133,7 +134,53 @@
               </ul>
             </div>
           </li>
-          
+          <!--li class="sidebar-dropdown">
+            <a href="#">
+              <i class="far fa-gem"></i>
+              <span>Components</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">General</a>
+                </li>
+                <li>
+                  <a href="#">Panels</a>
+                </li>
+                <li>
+                  <a href="#">Tables</a>
+                </li>
+                <li>
+                  <a href="#">Icons</a>
+                </li>
+                <li>
+                  <a href="#">Forms</a>
+                </li>
+              </ul>
+            </div>
+          </li-->
+          <!--li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-chart-line"></i>
+              <span>Charts</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Pie chart</a>
+                </li>
+                <li>
+                  <a href="#">Line chart</a>
+                </li>
+                <li>
+                  <a href="#">Bar chart</a>
+                </li>
+                <li>
+                  <a href="#">Histogram</a>
+                </li>
+              </ul>
+            </div>
+          </li-->
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-globe"></i>
@@ -223,10 +270,10 @@
     <i class="material-icons nav__icon">home</i>
     <span class="nav__text">Items</span>
   </a>
-  <a href="javascript:void(0)" class="nav__link" id="shop" onclick="sh_shops()">
+  <!--a href="javascript:void(0)" class="nav__link" id="shop" onclick="sh_shops()">
     <i class="material-icons nav__icon">storefront</i>
     <span class="nav__text">Shop List</span>
-  </a>
+  </a-->
   <!--
   <a href="javascript:void(0)" class="nav__link" id="favourite" onclick="sh_favourites()">
     <i class="material-icons nav__icon">folder_special</i>
@@ -259,10 +306,10 @@
   <a href="#home"><img src="icon.png" width="25px" height="25px"></a>
   <div id="itmsrc">
     <a style="width: 65%;">
-      <input type="text" class="srch" id="fdsr" onkeyup="itemsr('fds')" placeholder="Search for foods..">
-      <input type="text" class="srch" id="mdcr" onkeyup="itemsr('mdc')" placeholder="Search for medicines.." style="display: none;">
-      <input type="text" class="srch" id="grcr" onkeyup="itemsr('grc')" placeholder="Search for grocery.." style="display: none;">
-      <input type="text" class="srch" id="estr" onkeyup="itemsr('est')" placeholder="Search for essentials.." style="display: none;">
+      <input type="text" class="srch" id="fdsr" onkeyup="itemsr('fds')" placeholder="Search for related items.." >
+      <input type="text" class="srch" id="mdcr" onkeyup="itemsr('mdc')" placeholder="Search for items from the same shop.." style="display: none;">
+      <input type="text" class="srch" id="grcr" onkeyup="itemsr('grc')" placeholder="Search for recently viewed items.." style="display: none;">
+      <input type="text" class="srch" id="estr" onkeyup="itemsr('est')" placeholder="Search for bestseller items.." style="display: none;">
   </a></div>
   <div id="shpsrc" style="display: none;">
   <a style="width: 65%;">
@@ -345,33 +392,18 @@
 </div> <!-- cd-cart -->
 
 
-<section id="topslider" style="padding: 70px 5px 20px 5px; margin: 0;">
+<section id="topslider" style="display: none; padding: 70px 5px 20px 5px; margin: 0;">
 	<div class="container" style="width: 100%;" style="border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
   <div id="myCarousel" class="carousel slide" data-ride="carousel" style="border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <!-- Indicators -->
-    <ol class="carousel-indicators">
+    <ol class="carousel-indicators" id="sngpics">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
     </ol>
 
     <!-- Wrapper for slides -->
-    <div class="carousel-inner" style="border-radius: 20px;">
+    <div class="carousel-inner" id="sngcor" style="border-radius: 20px;">
       <div class="item active">
-        <img src="assets/img/imgld.gif" alt="Los Angeles">
-      </div>
-
-      <div class="item">
-        <img src="assets/img/imgld.gif" alt="Chicago">
-      </div>
-    
-      <div class="item">
-        <img src="assets/img/imgld.gif" alt="New york">
-      </div>
-
-      <div class="item">
-        <img src="assets/img/imgld.gif" alt="New york">
+        <img src="product.jpg" id="firstimg" alt="Los Angeles">
       </div>
     </div>
 
@@ -388,6 +420,88 @@
 </div>
 
 </section>
+<section id="sngdetails" style="padding: 0px 0px 20px 0px; margin: 0 auto;">
+<!--ul class="products" style=" width:80%; margin: 0 auto;">
+<li style="background: transparent !important; box-shadow: none;">
+  
+  <h3 onclick="sngl(this)" data-sid="258963148" data-stag="test shop name 2" data-sname="foodsA_9Test shop Name 2">
+    test Food name 2
+    <p>2 pc rooti + daal + 1 desert + 250ml sprite + rice 200g + test description</p>
+    <b class="dt">
+      <span>
+        4.3 
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <br>
+        <i class="trat">(40)</i>
+      </span>
+    </b>
+  </h3>
+  <h4>
+   ₹ 99 
+   <span>₹ 149</span>
+ </h4>
+ <p class="dl_tm">
+  <i class="fa fa-clock-o" aria-hidden="true"></i>
+   &nbsp;50 min
+ </p>
+ <h5>
+  Test shop Name 2 
+  <span>
+    <i class="fas fa-map-marker-alt"></i>
+     Test Address 2
+   </span>
+ </h5>
+ 
+ <a onclick="fvfd(this)" class="example_fav " data-fvl="1234567890splt" data-itemid="foods/258963148">
+  <i class="fa fa-heart" aria-hidden="true"></i> Add to favourites 
+ </a>
+ <a class="example_dl cd-add-to-cart js-cd-add-to-cart" data-price="99" data-itemid="258963148" data-itemname="test Food name 2" data-pic="product.jpg" data-qty="1" id="258963148qtycnt" onclick="adc(this)">
+  <i class="fa fa-shopping-cart" aria-hidden="true"> Add</i>
+ </a>
+ <a class="example_dl_vd" data-price="99" data-itemid="258963148" data-itemname="test Food name 2" data-pic="product1.jpg" data-qty="1" data-shopname="Test shop Name 2" data-shoploc="Test Address 2" data-desc="2 pc rooti + daal + 1 desert + 250ml sprite + rice 200g + test description" data-ratings="4.3" id="258963148vw" onclick="vw(this)">
+  <i class="fa fa-eye" aria-hidden="true"></i>
+   View
+ </a>
+ <span class="qtymdl" id="258963148qtys" style="display: block;">1 added to cart</span>
+</li>
+</ul-->
+<div class="wrapper">
+
+<div class="food-img"><img id="imgsng" onclick="showimg(this)" src="assets/img/imgld.gif"/></div>
+<div class="food-details">
+<div class="wrap upper">
+<div class="type" id="shopsng"></div>
+<!--div class="price"></div-->
+</div>
+<div class="wrap food-name">
+<span id="namesng">
+
+</span>
+</div>
+<div class="wrap">
+<span class="weight" id="catsng"></span><br>
+<span class="cals" id="descsng"></span>
+</div>
+<div class="wrap timing">
+<div class="time" id="pricesng"><span></span></div>
+<div class="time" id="dtmesng"><i></i><br><i></i></div>
+</div>
+
+<div class="wrap order">
+<div class="quantity">
+<div class="minus" onclick="cntm()">-</div>
+<div class="num" id="cntdiv" data-cnt="1">1</div>
+<div class="plus" onclick="cntp()">+</div>
+</div>
+<div class="order-btn">
+<div class="btn" id="cartsng">
+  <a><i class="fa fa-shopping-cart" aria-hidden="true"> Add</i></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
 
 
@@ -399,10 +513,10 @@
 <input type="radio" id="tab3" name="tab-control">
 <input type="radio" id="tab4" name="tab-control">
 <ul>
-<li title="Food" onclick="showhide('foods')"><label for="tab1" role="button"><i class="fas fa-hamburger"></i><br>&nbsp;&nbsp;<span>Food</span></label></li>
-<li title="Medicine" onclick="showhide('medicine')"><label for="tab2" role="button"><i class="fa fa-medkit" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Medicine</span></label></li>
-<li title="Grocery" onclick="showhide('grocery')"><label for="tab3" role="button"><i class="fa fa-shopping-bag" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Grocery</span></label></li>
-<li title="Essentials" onclick="showhide('essentials')"><label for="tab4" role="button"><i class="fa fa-shopping-basket" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Essentials</span></label></li>
+<li title="Related Food" onclick="showhide('foods')"><label for="tab1" role="button"><br>&nbsp;&nbsp;<span>Related Food</span></label></li>
+<li title="More from the Shop" onclick="showhide('medicine')"><label for="tab2" role="button"><br>&nbsp;&nbsp;<span>More from the Shop</span></label></li>
+<li title="Grocery" onclick="showhide('grocery')"><label for="tab3" role="button"><br>&nbsp;&nbsp;<span>Recently Viewed</span></label></li>
+<li title="Essentials" onclick="showhide('essentials')"><label for="tab4" role="button"><br>&nbsp;&nbsp;<span>BestSellers</span></label></li>
 
 </ul>
 <div class="slider"><div class="indicator"></div></div>
@@ -416,6 +530,7 @@ window.onscroll = function() {myFunction()};
 var header = document.getElementById("maintabs");
 var sticky = header.offsetTop - 62;
 function myFunction() {
+  
   yx = document.getElementById("maintabs").offsetHeight + document.getElementById("maintabs").offsetTop;
   if (window.pageYOffset > sticky) {
     $("#maintabs").css({"position": "fixed", "top" : "57px", "z-index" : "9"});
@@ -435,20 +550,16 @@ function myFunction() {
   <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-  <button>Veg only</button>
-  <button>Fast Food</button>
-  <button>Non-veg</button>
-  <button>Paneer</button>
-  <button>Multi Cuisine</button>
   <button>A to Z</button>
   <button>Z to A</button>
   
 </div>
 
 <div>
-  <ul class="products" id="fds">
+  <ul class="products" id="rld">
     
   </ul>
+  <p class="itemfooter">No more rlated items found...</p>
 </div>
 
 </section>
@@ -463,20 +574,15 @@ function myFunction() {
   <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-  <button>Liquid</button>
-  <button>Tablet</button>
-  <button>Capsules</button>
-  <button>Topical medicines</button>
-  <button>Drops</button>
-  <button>Injections</button>
   <button>A to Z</button>
   <button>Z to A</button>
 </div>
 
 <div>
-  <ul class="products" id="mdc">
+  <ul class="products" id="shpall">
   	
   </ul>
+  <p class="itemfooter">No more items found...</p>
 </div>
 
 </section>
@@ -489,19 +595,15 @@ function myFunction() {
   <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-  <button>Beverages</button>
-  <button>Baby Food</button>
-  <button>Cookies, Snacks & Candy</button>
-  <button>Dairy, Eggs & Cheese</button>
-  <button>Grains, Pasta & Sides</button>
   <button>A to Z</button>
   <button>Z to A</button>
 </div>
 
 <div>
-  <ul class="products" id="grc">
+  <ul class="products" id="rcnt">
     
   </ul>
+  <p class="itemfooter">No more items found...</p>
 </div>
 
 </section>
@@ -515,19 +617,15 @@ function myFunction() {
   <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-  <button>Health & Beauty</button>
-  <button>Stationary</button>
-  <button>Paper Products</button>
-  <button>Personal Care</button>
-  <button>Cleaning Supplies</button>
   <button>A to Z</button>
   <button>Z to A</button>
 </div>
 
 <div>
-  <ul class="products" id="est">
+  <ul class="products" id="bstsell">
     
   </ul>
+  <p class="itemfooter">No more items found...</p>
 </div>
 
 </section>

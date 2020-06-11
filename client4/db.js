@@ -5,8 +5,10 @@ var y = "";
 var u = "7894561230";
 var t = "22.12542";
 var g = "88.195623";
-
-
+var dtimes = ["5 Minutes","10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","45 Minutes","1 Hour","Out of Delivery Area"];
+var ditems = ["foods","medicine","grocery","essentials"];
+var delgb = ["3","6","5","7"];
+var dshorts = ["fds","mdc","grc","est"];
 
 function fldtls() {/*
     strm = document.getElementById("strmslct").value;
@@ -45,6 +47,9 @@ $(document).ready(chkmulti(),
 function chkmulti() {
     if(fln == 1){
         foodshp();
+        medicineshp();
+        groceryshp();
+        essentialsshp();
         foodnxt();
         mednxt();
         grcnxt();
@@ -102,7 +107,7 @@ var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 
 if (x == "ALL") {
-$("#mdcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + '<br><i>Usually prepare foods within ' + processtime + ' minutes</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#mdcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + '<br><i>' + processtime + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
 
 });
@@ -128,7 +133,7 @@ var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 
 if (x == "ALL") {
-$("#grcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + '<br><i>Usually prepare foods within ' + processtime + ' minutes</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#grcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + '<br><i>' + processtime + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
 
 });
@@ -154,7 +159,7 @@ var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 
 if (x == "ALL") {
-$("#estshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + '<br><i>Usually prepare foods within ' + processtime + ' minutes</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#estshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + '<br><i>' + processtime + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
 
 });
@@ -184,7 +189,9 @@ var shopaddr = snap.child("shopaddr").val();
 var shoplat = snap.child("shoplat").val();
 var shoplang = snap.child("shoplang").val();
 var dpincode = snap.child("dpincode").val();
-var dtime = dtmcal(shoplat,shoplang,t,g);
+var dtimechk = distance(shoplat,shoplang,t,g,"K");
+if(dtimechk > Number(delgb[ditems.indexOf("foods")])){dtimechk = 8}
+var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
 var priceshp = snap.child("priceshp").val();
 var rating = snap.child("rating").val();
@@ -203,9 +210,9 @@ var rv = snap.child("bname").val();
 var bname = rv.replace(/-/g, ' ');
 */
 
-if (x == "ALL") {
-$("#fds").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
-$("#" + shopid + "shp").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycntshp\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vwshp\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtysshp\"> 0 </span></li>");
+if (x = "ALL") {
+$("#fds").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopid + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopid + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#" + shopid + "shp").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopid + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopid + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycntshp\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vwshp\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtysshp\"> 0 </span></li>");
 
 }
 
@@ -232,7 +239,9 @@ var shopaddr = snap.child("shopaddr").val();
 var shoplat = snap.child("shoplat").val();
 var shoplang = snap.child("shoplang").val();
 var dpincode = snap.child("dpincode").val();
-var dtime = dtmcal(shoplat,shoplang,t,g);
+var dtimechk = distance(shoplat,shoplang,t,g,"K");
+if(dtimechk > Number(delgb[ditems.indexOf("medicine")])){dtimechk = 8}
+var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
 var priceshp = snap.child("priceshp").val();
 var rating = snap.child("rating").val();
@@ -245,10 +254,13 @@ var desc = snap.child("desc").val();
 var favlst = snap.child("favlst").val();
 var favchk = favchkf(favlst,u);
 var tagsr = snap.child("tagsr").val();
+var shopid = snap.child("shopid").val();
 
 
 if (x == "ALL") {
-$("#mdc").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-thumb=\"" + thumb + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#mdc").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopid + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopid + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#" + shopid + "shp").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medicineA_9" + shopid + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medicineA_9" + shopid + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycntshp\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vwshp\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtysshp\"> 0 </span></li>");
+
 }
 
 });
@@ -272,7 +284,9 @@ var shopaddr = snap.child("shopaddr").val();
 var shoplat = snap.child("shoplat").val();
 var shoplang = snap.child("shoplang").val();
 var dpincode = snap.child("dpincode").val();
-var dtime = dtmcal(shoplat,shoplang,t,g);
+var dtimechk = distance(shoplat,shoplang,t,g,"K");
+if(dtimechk > Number(delgb[ditems.indexOf("grocery")])){dtimechk = 8}
+var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
 var priceshp = snap.child("priceshp").val();
 var rating = snap.child("rating").val();
@@ -285,10 +299,13 @@ var desc = snap.child("desc").val();
 var favlst = snap.child("favlst").val();
 var favchk = favchkf(favlst,u);
 var tagsr = snap.child("tagsr").val();
+var shopid = snap.child("shopid").val();
 
 
 if (x == "ALL") {
-$("#grc").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"groceryA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-thumb=\"" + thumb + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#grc").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"groceryA_9" + shopid + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"groceryA_9" + shopid + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"grocery/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#" + shopid + "shp").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"groceryA_9" + shopid + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"groceryA_9" + shopid + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"grocery/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycntshp\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vwshp\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtysshp\"> 0 </span></li>");
+
 }
 
 });
@@ -313,7 +330,9 @@ var shopaddr = snap.child("shopaddr").val();
 var shoplat = snap.child("shoplat").val();
 var shoplang = snap.child("shoplang").val();
 var dpincode = snap.child("dpincode").val();
-var dtime = dtmcal(shoplat,shoplang,t,g);
+var dtimechk = distance(shoplat,shoplang,t,g,"K");
+if(dtimechk > Number(delgb[ditems.indexOf("essentials")])){dtimechk = 8}
+var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
 var priceshp = snap.child("priceshp").val();
 var rating = snap.child("rating").val();
@@ -326,10 +345,13 @@ var desc = snap.child("desc").val();
 var favlst = snap.child("favlst").val();
 var favchk = favchkf(favlst,u);
 var tagsr = snap.child("tagsr").val();
+var shopid = snap.child("shopid").val();
 
 
 if (x == "ALL") {
-$("#est").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"essentialsA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-thumb=\"" + thumb + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#est").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"essentialsA_9" + shopid + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"essentialsA_9" + shopid + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"essentials/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+$("#" + shopid + "shp").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"essentialsA_9" + shopid + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"essentialsA_9" + shopid + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"essentials/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycntshp\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vwshp\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtysshp\"> 0 </span></li>");
+
 }
 
 });
@@ -338,13 +360,15 @@ $("#est").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid
 
 
 function singledtls(x){
-/*
-y = x.split("A_9");
-itemid = y[0];
-itemtag = y[1];
-itemcat = y[2]
-itemshopname = y[3];
-
+var cntdt = 0;
+var cntvw = 0;
+var sngitem = x.split("A_9");
+var str1 ="img";
+var str2 =["0","1","2","3"];
+itemid = sngitem[0];
+itemtag = sngitem[1];
+itemcat = sngitem[2];
+itemshopid = sngitem[3];
 var rootRef = firebase.database().ref(itemcat);
 
 rootRef.on("child_added", snap => {
@@ -360,7 +384,9 @@ var shopaddr = snap.child("shopaddr").val();
 var shoplat = snap.child("shoplat").val();
 var shoplang = snap.child("shoplang").val();
 var dpincode = snap.child("dpincode").val();
-var dtime = dtmcal(shoplat,shoplang,t,g);
+var dtimechk = distance(shoplat,shoplang,t,g,"K");
+if(dtimechk > Number(delgb[ditems.indexOf(itemcat)])){dtimechk = 8}
+var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
 var priceshp = snap.child("priceshp").val();
 var rating = snap.child("rating").val();
@@ -373,22 +399,61 @@ var desc = snap.child("desc").val();
 var favlst = snap.child("favlst").val();
 var favchk = favchkf(favlst,u);
 var tagsr = snap.child("tagsr").val();
+var shopid = snap.child("shopid").val();
+var rcntvw = snap.child("rcntvw").val();
+var dotpriority = snap.child("dotpriority").val();
+
 
 if(id == itemid){
-    //single
+    
+    document.getElementById("imgsng").src = img;
+    document.getElementById("namesng").innerHTML = name;
+    document.getElementById("shopsng").innerHTML = shopname;
+    document.getElementById("catsng").innerHTML = cat;
+    document.getElementById("descsng").innerHTML = desc;
+    document.getElementById("pricesng").innerHTML = "₹ " + price + " <span>₹ " + priceshp + "</span>";
+    document.getElementById("dtmesng").innerHTML = "<i class=\"dtsng" + dtimechk.toFixed(0) + "\">Delivery Time : " + dtime + "</i><br>";
+    document.getElementById("cartsng").innerHTML = "<a data-price=" + price + "data-itemid=" + id + "data-itemname=" + name + "data-pic=" + thumb + "data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"doit(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a>";
+    
 }
 
+var tagmatch = itemsrch(itemtag,tagsr);
+if (Number(tagmatch) > 0 && id != itemid) {
+$("#rld").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"" + itemcat + "A_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"" + itemcat + "A_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"" + itemcat + "/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+}
+if (shopid == itemshopid) {
+$("#shpall").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"" + itemcat + "A_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"" + itemcat + "A_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"" + itemcat + "/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+}
 
-if (x == "ALL") {
-$("#sngs").append("<li><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"medcineA_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"medicine/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-thumb=\"" + thumb + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+if(rcntvw.includes(id) && id != itemid && cntvw < 20){
+$("#rcnt").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"" + itemcat + "A_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"" + itemcat + "A_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"" + itemcat + "/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");  
+cntvw ++;
 }
-if (shopname == itemshop) {
-$("#shpall").append("<li><img src=\"" + thumb + "\"><h3>" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+if(dotpriority > 290 && cntdt < 30){
+$("#bstsell").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"" + itemcat + "A_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"" + itemcat + "A_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"" + itemcat + "/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");  
+cntdt ++;
 }
+
 
 });
-*/
+
 }
+
+
+function itemsrch(x,y) {
+    var filter, ul, li, a, i, txtValue;
+    var a = y.toUpperCase();
+    var b = x.toUpperCase().split(" ");
+    var flagsrs = 0;
+        for (j = 0; j < b.length; j++) {
+            if(a.includes(b[j]) || b[j].toUpperCase().indexOf(a) > -1){
+                flagsrs ++ ;
+            }
+        }
+        return flagsrs; 
+    }
+
+
 
 function sngl(x) {
     var sng = [];

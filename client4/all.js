@@ -149,6 +149,7 @@ function sh_shops(){
     document.getElementById("itmsrc").style.display = "none";
     document.getElementById("shpsrc").style.display = "block";
     document.getElementById("ordsrc").style.display = "none";
+    window.scrollTo(0, 0);
 
 }
 
@@ -164,7 +165,7 @@ function sh_items(){
     document.getElementById("itmsrc").style.display = "block";
     document.getElementById("shpsrc").style.display = "none";
     document.getElementById("ordsrc").style.display = "none";
-
+    window.scrollTo(0, 0);
 }
 
 function sh_orders(){
@@ -177,7 +178,7 @@ function sh_orders(){
     document.getElementById("itmsrc").style.display = "none";
     document.getElementById("shpsrc").style.display = "none";
     document.getElementById("ordsrc").style.display = "block";
-
+    window.scrollTo(0, 0);
 }
 
 function showcart(){
@@ -338,6 +339,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
         dist = Math.acos(dist);
         dist = dist * 180/Math.PI;
         dist = dist * 60 * 1.1515;
+        //unit ="K";
         if (unit=="K") { dist = dist * 1.609344 }
         if (unit=="N") { dist = dist * 0.8684 }
         return dist;
@@ -371,3 +373,41 @@ function showPosition(position) {
   slctupd('ALL','','7894561230',position.coords.latitude,position.coords.longitude)
 
 }
+function showimg(x){
+    Swal.fire({
+        imageUrl: x.src,
+        imageWidth: 800,
+        showCancelButton: false,
+        showConfirmButton: false,
+        background: 'rgba(0,0,0,0.5)',
+        backdrop: 'rgba(0,0,0,0)'
+    });
+
+}
+
+function cntm() {
+    sngcntdiv = document.getElementById("cntdiv").getAttribute("data-cnt");
+    if(sngcntdiv > 1){
+        sngcntdiv --;
+        document.getElementById("cntdiv").setAttribute("data-cnt", sngcntdiv);
+        document.getElementById("cntdiv").innerHTML = sngcntdiv;
+    }
+}
+function cntp() {
+    sngcntdiv = document.getElementById("cntdiv").getAttribute("data-cnt");
+    if(sngcntdiv < 10){
+        sngcntdiv ++;
+        document.getElementById("cntdiv").setAttribute("data-cnt", sngcntdiv);
+        document.getElementById("cntdiv").innerHTML = sngcntdiv;
+    }
+}
+
+function doit(x) {
+    sngcntdiv = document.getElementById("cntdiv").getAttribute("data-cnt");
+    for (var i = 0; i < sngcntdiv; i++) {
+        adc(x);
+    }
+    document.getElementById("cntdiv").setAttribute("data-cnt", 1);
+    document.getElementById("cntdiv").innerHTML = 1;
+}
+

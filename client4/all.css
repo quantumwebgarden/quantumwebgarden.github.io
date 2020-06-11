@@ -10,7 +10,7 @@ section {
   z-index: 1;
 }
 
-	.productlst * {margin: 0; padding: 0;}
+.productlst * {margin: 0; padding: 0;}
 
 .productlst div {
 	align-content: center;
@@ -1150,6 +1150,7 @@ h1 {
   max-width: 400px !important;
 }
 
+
 .vwir{
   font-weight: 350 !important;
 }
@@ -1158,4 +1159,178 @@ h1 {
 }
 .swal2-container {
   z-index: 999999 !important;
+}
+
+
+.dtf8:hover{
+  background-color: rgba(214, 133, 133,0.5) !important;
+}
+.dtf8:active{
+  background-color: rgba(214, 133, 133,0.5) !important;
+}
+.dtsng8{
+  color: red!important;
+}
+
+
+
+
+
+
+
+.wrapper {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  position: relative;
+  padding-top: 10px;
+  border-bottom: double;
+}
+
+.food-img {
+  width: 50%;
+  height: auto;
+  display: block;
+  flex-direction: all;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.food-img img {
+  margin: 80px 20px;
+  width: 100%;
+  border-radius: 10px;
+  transition: all 0.4s ease-in-out;
+}
+.food-img img:hover {
+  transform: translateX(-40px);
+}
+
+.food-details {
+  width: 50%;
+  padding-top: 80px;
+}
+.food-details .wrap {
+  margin: 10px 0px;
+  padding: 0px 50px;
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+.food-details .upper {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Titillium Web', sans-serif;
+}
+.food-details .upper .type {
+  font-size: 20px;
+  color: #23895d;
+}
+.food-details .upper .price {
+  background: #000;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 40%;
+}
+.food-details .food-name {
+  font-family: 'PT Sans Narrow', sans-serif;
+  line-height: 28px;
+  font-size: 25px;
+  padding-top: 10px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #545454;
+}
+.food-details .weight {
+  font-size: 17px;
+  color: #666;
+  font-family: 'Titillium Web', sans-serif;
+}
+.food-details .cals {
+  font-size: 15px;
+  color: #666;
+  font-family: 'Titillium Web', sans-serif;
+}
+.food-details .timing {
+  margin: 40px 0px;
+  color: #a4a4a4;
+  font-family: 'Titillium Web', sans-serif;
+}
+.food-details .timing .time {
+  font-size: 20px;
+  color: blue;
+
+}
+.food-details .timing .time span {
+  color: #666;
+  font-size: small;
+  vertical-align: super;
+  display: inline-block;
+  position: relative;
+}
+.food-details .timing .time span::before{
+    content: '';
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+.food-details .timing .time span::before {
+    border-bottom: 1px solid red;
+    -webkit-transform: skewY(-10deg);
+    transform: skewY(-10deg);
+}
+
+
+.food-details .timing i {
+  color: #666;
+  font-size: 16px;
+  font-style: italic;
+}
+.food-details .order {
+  display: flex;
+  justify-content: space-between;
+
+}
+.food-details .order .quantity {
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+.food-details .order .quantity .num {
+  color: #444;
+  padding: 10px 15px;
+  border: 1px solid #999;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.food-details .order .quantity .minus, .food-details .order .quantity .plus {
+  transform: scale(2);
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  cursor: pointer;
+}
+.food-details .order .order-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+}
+.food-details .order .order-btn .btn {
+  background: rgb(179, 227, 187);
+  padding: 10px 20px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  border: 2px solid black;
 }
