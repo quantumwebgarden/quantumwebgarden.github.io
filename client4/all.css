@@ -1163,16 +1163,17 @@ h1 {
 
 
 .dtf8:hover{
-  background-color: rgba(214, 133, 133,0.5) !important;
+  background-color: rgba(214, 133, 133,0.2) !important;
 }
 .dtf8:active{
-  background-color: rgba(214, 133, 133,0.5) !important;
+  background-color: rgba(214, 133, 133,0.2) !important;
 }
 .dtsng8{
   color: red!important;
 }
 .dsb8{
   pointer-events: none;
+  opacity: 0.7;
 }
 
 
