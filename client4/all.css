@@ -1171,6 +1171,9 @@ h1 {
 .dtsng8{
   color: red!important;
 }
+.dsb8{
+  pointer-events: none;
+}
 
 
 
@@ -1179,12 +1182,12 @@ h1 {
 
 
 .wrapper {
-  width: 90%;
+  width: 95%;
   height: auto;
   margin: 0 auto;
   background: transparent;
-  display: flex;
-  justify-content: space-between;
+  
+  justify-content: center;
   border-radius: 5px;
   position: relative;
   padding-top: 10px;
@@ -1192,27 +1195,24 @@ h1 {
 }
 
 .food-img {
-  width: 50%;
+  width: 95%;
   height: auto;
   display: block;
-  flex-direction: all;
   align-items: center;
   justify-content: center;
   position: relative;
 }
 .food-img img {
-  margin: 80px 20px;
+  margin: 70px 10px 15px 7px;
   width: 100%;
   border-radius: 10px;
-  transition: all 0.4s ease-in-out;
-}
-.food-img img:hover {
-  transform: translateX(-40px);
+  object-position: center;
 }
 
+
 .food-details {
-  width: 50%;
-  padding-top: 80px;
+  width: 95%;
+  padding-top: 20px;
 }
 .food-details .wrap {
   margin: 10px 0px;

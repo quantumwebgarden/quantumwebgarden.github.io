@@ -166,8 +166,8 @@ function sh_items(){
 
 function sh_orders(){
     Swal.fire({
-        title: 'Delivery On Time',
-        text: 'Will be available soon',
+        title: 'DOT',
+        text: 'Other Services Will be available soon',
         showConfirmButton: true,
         background: 'white',
         backdrop: 'rgba(0,0,0,0.5)'
@@ -392,3 +392,6 @@ function doit(x) {
     document.getElementById("cntdiv").innerHTML = 1;
 }
 
+function chkback() {
+    history.back();
+}

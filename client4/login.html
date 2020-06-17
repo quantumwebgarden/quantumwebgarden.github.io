@@ -183,7 +183,7 @@ a{color:inherit;text-decoration:none}
                     <label for="check"><span class="icon"></span> Keep me Signed in</label>
                 </div>
                 <div class="group">
-                    <input type="submit" class="button" value="Sign In" onclick="window.open('index.html?uid=' + udd + '&elid=' + elid);">
+                    <input type="submit" class="button" value="Sign In" onclick="lgchk()">
                 </div>
                 <div class="hr"></div>
                 <div class="foot-lnk">
@@ -218,7 +218,11 @@ a{color:inherit;text-decoration:none}
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+    function lgchk() {
+        window.open('index.html?uid=' + udd + '&elid=' + elid);
+    }
+</script>
 
 
 </body>
