@@ -139,8 +139,6 @@ var pntr = "";
 
 function sh_shops(){
     document.getElementById("vdy").style.display = "block";
-    document.getElementById("ordertrack").style.display = "none";
-    document.getElementById("cartmain").style.display = "none";
 	document.getElementById("itemlist").style.display = "none";
 	document.getElementById("shoplist").style.display = "block";
 	document.getElementById("item").classList.remove("nav__link--active");
@@ -155,8 +153,6 @@ function sh_shops(){
 
 function sh_items(){
     document.getElementById("vdy").style.display = "block";
-    document.getElementById("ordertrack").style.display = "none";
-    document.getElementById("cartmain").style.display = "none";
 	document.getElementById("itemlist").style.display = "block";
 	document.getElementById("shoplist").style.display = "none";
 	document.getElementById("item").classList.add("nav__link--active");
@@ -169,32 +165,17 @@ function sh_items(){
 }
 
 function sh_orders(){
-    document.getElementById("vdy").style.display = "none";
-    document.getElementById("ordertrack").style.display = "block";
-    document.getElementById("cartmain").style.display = "none";
-    document.getElementById("order").classList.add("nav__link--active");
-    document.getElementById("shop").classList.remove("nav__link--active");
-    document.getElementById("item").classList.remove("nav__link--active");
-    document.getElementById("itmsrc").style.display = "none";
-    document.getElementById("shpsrc").style.display = "none";
-    document.getElementById("ordsrc").style.display = "block";
-    window.scrollTo(0, 0);
+    Swal.fire({
+        title: 'Delivery On Time',
+        text: 'Will be available soon',
+        showConfirmButton: true,
+        background: 'white',
+        backdrop: 'rgba(0,0,0,0.5)'
+    });
+
 }
 
 function showcart(){
-    /*
-    document.getElementById("vdy").style.display = "none";
-    document.getElementById("ordertrack").style.display = "none";
-    document.getElementById("cartmain").style.display = "block";
-    document.getElementById("order").classList.remove("nav__link--active");
-    document.getElementById("shop").classList.remove("nav__link--active");
-    document.getElementById("item").classList.remove("nav__link--active");
-    document.getElementById("itmsrc").style.display = "none";
-    document.getElementById("shpsrc").style.display = "none";
-    document.getElementById("ordsrc").style.display = "none";
-    document.getElementById("krtsrc").style.display = "block";
-    */
-
     $(".page-wrapper").removeClass("toggled");
     window.open("cart.html");
 }

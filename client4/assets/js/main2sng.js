@@ -240,10 +240,7 @@ var lstqty = "";
             document.getElementById(a + "vw").setAttribute("data-qty", b);
             document.getElementById(a + "qtys").style.display = "block";
             console.log(a + "," + b);
-            document.getElementById(a + "qtysshp").innerText = b + " added to cart";
-            document.getElementById(a + "qtycntshp").setAttribute("data-qty", b);
-            document.getElementById(a + "vwshp").setAttribute("data-qty", b);
-            document.getElementById(a + "qtysshp").style.display = "block";
+            
         };
         
         function chkchd(x) {

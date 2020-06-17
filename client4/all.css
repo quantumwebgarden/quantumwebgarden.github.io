@@ -1334,3 +1334,7 @@ h1 {
   border-radius: 5px;
   border: 2px solid black;
 }
+.footer_main{
+  background-color: transparent;
+  height: 70px;
+}
