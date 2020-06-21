@@ -1339,3 +1339,11 @@ h1 {
   background-color: transparent;
   height: 70px;
 }
+
+.addsngl{
+  color: blue !important;
+  font-size: small !important;
+}
+.nonvw{
+  display: none!important;
+}

@@ -74,6 +74,9 @@ function chkmulti() {
     else if(fln == 2){
         singledtls(elid);
     }
+    else if(fln == 3){
+        
+    }
 }
 
 function foodshp(){
@@ -217,7 +220,7 @@ var favchk = favchkf(favlst,u);
 var tagsr = snap.child("tagsr").val();
 var shopid = snap.child("shopid").val();
 var rcntvw = snap.child("rcntvw").val();
-var dotpriority = snap.child("dotpriority").val();
+var dotpriority = snap.child("dotpri").val();
 
 
 if (x = "ALL") {
@@ -266,7 +269,7 @@ var favchk = favchkf(favlst,u);
 var tagsr = snap.child("tagsr").val();
 var shopid = snap.child("shopid").val();
 var rcntvw = snap.child("rcntvw").val();
-var dotpriority = snap.child("dotpriority").val();
+var dotpriority = snap.child("dotpri").val();
 
 
 if (x == "ALL") {
@@ -313,7 +316,7 @@ var favchk = favchkf(favlst,u);
 var tagsr = snap.child("tagsr").val();
 var shopid = snap.child("shopid").val();
 var rcntvw = snap.child("rcntvw").val();
-var dotpriority = snap.child("dotpriority").val();
+var dotpriority = snap.child("dotpri").val();
 
 
 if (x == "ALL") {
@@ -361,7 +364,7 @@ var favchk = favchkf(favlst,u);
 var tagsr = snap.child("tagsr").val();
 var shopid = snap.child("shopid").val();
 var rcntvw = snap.child("rcntvw").val();
-var dotpriority = snap.child("dotpriority").val();
+var dotpriority = snap.child("dotpri").val();
 
 
 if (x == "ALL") {
@@ -417,20 +420,21 @@ var favchk = favchkf(favlst,u);
 var tagsr = snap.child("tagsr").val();
 var shopid = snap.child("shopid").val();
 var rcntvw = snap.child("rcntvw").val();
-var dotpriority = snap.child("dotpriority").val();
+var dotpriority = snap.child("dotpri").val();
 
 
 if(id == itemid){
     
     document.getElementById("imgsng").src = img;
     document.getElementById("namesng").innerHTML = name;
-    document.getElementById("shopsng").innerHTML = shopname;
+    document.getElementById("shopsng").innerHTML = shopname + "&nbsp;&nbsp;&nbsp;<span class=\"addsngl\"><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span>";
     document.getElementById("catsng").innerHTML = cat;
     document.getElementById("descsng").innerHTML = desc;
     document.getElementById("pricesng").innerHTML = "₹ " + price + " <span>₹ " + priceshp + "</span>";
     document.getElementById("dtmesng").innerHTML = "<i class=\"dtsng" + dtimechk.toFixed(0) + "\">Delivery Time : " + dtime + "</i><br>";
-    document.getElementById("cartsng").innerHTML = "<a data-price=\"" + price + "\" data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"doit(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a>";
-    
+    document.getElementById("cartsng").innerHTML = "<a class=\"example_dl cd-add-to-cart js-cd-add-to-cart dsb" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\"onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a>";
+    document.getElementById("favd").innerHTML = "<span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span>&nbsp;&nbsp;<a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"" + itemcat + "/" + id + "\">Add to favourites <i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a>";
+    document.getElementById("cartqty").innerHTML = "<a class=\"nonvw example_dl_vd\" data-dsb=\"" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\"onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span>";
 }
 
 var tagmatch = itemsrch(itemtag,tagsr);

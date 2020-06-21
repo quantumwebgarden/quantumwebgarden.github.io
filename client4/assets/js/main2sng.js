@@ -234,7 +234,7 @@ var lstqty = "";
         };
 
         function updatetext(a,b){
-            
+
             document.getElementById(a + "qtys").innerText = b + " added to cart";
             document.getElementById(a + "qtycnt").setAttribute("data-qty", b);
             document.getElementById(a + "vw").setAttribute("data-qty", b);
