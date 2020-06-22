@@ -25,6 +25,7 @@ function codeverify() {
     coderesult.confirm(code).then(function (result) {
         alert("Successfully registered");
         var user=result.user;
+        window.AppInventor.setWebViewString(user + "ussd");
         console.log(user);
     }).catch(function (error) {
         alert(error.message);
