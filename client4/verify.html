@@ -1,7 +1,7 @@
 <html>
 <head>
-    <title>DOT : Registration</title>
-<style type="text/css">
+    <title>DOT : Verify</title>
+    <style type="text/css">
     *{
         width: 80%;
         margin: 0 auto;
@@ -37,25 +37,22 @@ button:hover {
 
 div {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: transparent;
   padding: 20px;
 }
 </style>
-<script type="text/javascript">
-    var fln = 5;
-  </script>
 </head>
 <body>
-
+<h1>Enter number to create account</h1>
 <form>
-    <input type="text" id="number" placeholder="Enter 10 Digit Phone No">
+    <input type="text" id="number" placeholder="+910123456789">
     <div id="recaptcha-container"></div>
-    <button type="submit" onclick="phoneAuth();">SendCode</button>
+    <button type="button" onclick="phoneAuth();">SendCode</button>
 </form><br>
 <h1>Enter Verification code</h1>
 <form>
     <input type="text" id="verificationCode" placeholder="Enter verification code">
-    <button type="submit" onclick="codeverify();">Verify code</button>
+    <button type="button" onclick="codeverify();">Verify code</button>
 
 </form>
 
@@ -66,6 +63,22 @@ div {
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
+    authDomain: "quantumdot20.firebaseapp.com",
+    databaseURL: "https://quantumdot20.firebaseio.com",
+    projectId: "quantumdot20",
+    storageBucket: "quantumdot20.appspot.com",
+    messagingSenderId: "1011845585600",
+    appId: "1:1011845585600:web:cdd2e4e8ee38046b262b25",
+    measurementId: "G-Y98ZR7S8EQ"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
 <script src="verify.js" type="text/javascript"></script>
 </body>
 </html>
