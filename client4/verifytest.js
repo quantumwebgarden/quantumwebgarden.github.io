@@ -45,10 +45,12 @@ function codeverify() {
         window.AppInventor.setWebViewString(user + "ussd" + phno);
         //console.log(user);
     }).catch(function (error) {
+      if(error.message!="Cannot read property 'setWebViewString' of undefined"){
         Swal.fire(
   'DOT',
   'Some Error occured. Contact Support with the error message - ' + error.message,
   'error'
 );
+        }
     });
 }
