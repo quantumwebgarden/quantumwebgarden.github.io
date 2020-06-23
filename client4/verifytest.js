@@ -37,20 +37,19 @@ function codeverify() {
     var code=document.getElementById('verificationCode').value;
     coderesult.confirm(code).then(function (result) {
         Swal.fire(
-  'DOT',
-  'Verified Successfully',
-  'success'
-);
+        'DOT',
+        'Verified Successfully',
+        'success'
+          );
         var user=result.user;
         window.AppInventor.setWebViewString(user + "ussd" + phno);
-        //console.log(user);
+        console.log(user);
     }).catch(function (error) {
-      if(error.message!="Cannot read property 'setWebViewString' of undefined"){
+      
         Swal.fire(
-  'DOT',
-  'Some Error occured. Contact Support with the error message - ' + error.message,
-  'error'
-);
-        }
+        'DOT',
+        'Some Error occured. Contact Support with the error message - ' + error.message,
+        'error'
+         );
     });
 }
