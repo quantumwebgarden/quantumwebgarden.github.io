@@ -177,7 +177,7 @@ function sh_orders(){
 
 function showcart(){
     $(".page-wrapper").removeClass("toggled");
-    window.open("cart.html");
+    window.open("https://deliveryontime.000webhostapp.com/rdot/rp/dp/pay.php?checkout=automatic");
 }
 
 
