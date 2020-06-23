@@ -13,8 +13,23 @@ var t = "22.12542";
 var g = "88.195623";
 var dtimes = ["5 Minutes","10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","45 Minutes","1 Hour","Out of Delivery Area"];
 var ditems = ["foods","medicine","grocery","essentials"];
-var delgb = ["3","6","5","7"];
+var delgb = ["6","7","5","7"];
 var dshorts = ["fds","mdc","grc","est"];
+var utypes = ["GENERAL","PREMIUM","VIP"];
+var ucolors = ["green","blue","orange"];
+
+function chkval(){
+    if(fln == 5)/*Register Page*/{
+        
+    }
+    else if(fln == 6)/*skip*/{
+        
+    }
+    else{
+        getuid();
+    }
+}
+
 
 
 function getuid() {
@@ -55,12 +70,15 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();     
 
+
+//FwgVDnETesZDSAby7r8Od4kCcaz1
 //var fln = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
 
 $(document).ready(chkmulti(),
 //any function by putting a , after last 2nd bracket
 );
 function chkmulti() {
+    uid_dtls();
     if(fln == 1){
         foodshp();
         medicineshp();
@@ -78,6 +96,77 @@ function chkmulti() {
         
     }
 }
+function uid_dtls(){
+    var rootRef = firebase.database().ref('user');
+
+rootRef.on("child_added", snap => {
+
+var uuid = snap.child("id").val().replace(/\"/g, "");
+var uuname = snap.child("name").val().replace(/\"/g, "");
+var uuimg = snap.child("img").val().replace(/\"/g, "");
+var uuphone = snap.child("phone").val().replace(/\"/g, "");
+var uumail = snap.child("email").val().replace(/\"/g, "");
+var sltadd = snap.child("sltadd").val().replace(/\"/g, "");
+var uutype = snap.child("type").val().replace(/\"/g, "");
+console.log(uuid);
+if(uuid == u){
+    $("#uname").html(uuname);
+    $("#uphone").html(uuphone);
+    $("#umail").html(uumail);
+    $("#uimg").attr("src",uuimg);
+
+    $("#utype").html("<i class=\"fa fa-circle\" style=\"color: " + ucolors[utypes.indexOf(uutype)] + ";\"></i><span>" + uutype + "</span>");
+    uid_add(u,sltadd);
+
+}
+
+
+});
+}
+
+function uid_add(x,y) {
+    console.log(x + "," + y);
+    var rootRef = firebase.database().ref('user/' + x + '/address');
+
+rootRef.on("child_added", snap => {
+console.log(x + "," + y);
+var adrid = snap.child("id").val().replace(/\"/g, "");
+var adrdtl = snap.child("dtl").val().replace(/\"/g, "");
+var adrpin = snap.child("PIN").val().replace(/\"/g, "");
+var adrhometown = snap.child("hometown").val();
+var adrlang = snap.child("lang").val().replace(/\"/g, "");
+var adrlat = snap.child("lat").val().replace(/\"/g, "");
+
+if(adrid == y){
+    $("#uaddress").html(adrhometown);
+    $("#udtl").html(adrdtl);
+    t = adrlat;
+    g = adrlang;
+    upin = adrpin;
+}
+
+
+});
+}
+
+
+
+function initskip() {
+    var count = 25; // set secconds
+    var counter = setTimeout(function() {
+        Swal.fire({
+  title: 'DOT: Delivery On Time',
+  text: 'Register or Log In to DOT to save your favourites &amp; cart items',
+  confirmButtonText:
+    'Register / Login',
+  showCancelButton: true,
+  focusConfirm: false,
+  cancelButtonText:
+    'Not Now',
+    });
+    }, 1000 * count);
+}
+
 
 function foodshp(){
 
