@@ -17,39 +17,22 @@ function phoneAuth() {
         window.confirmationResult=confirmationResult;
         coderesult=confirmationResult;
         console.log(coderesult);
-        Swal.fire(
-  'DOT',
-  'Message sent to your phone number',
-  'success'
-);
+        Swal.fire('Message sent to your phone number');
       document.getElementById('mainsec').style.display = "none";
       document.getElementById('verifysec').style.display = "block";
     }).catch(function (error) {
-      Swal.fire(
-  'DOT',
-  'Some Error occured. Contact Support with the error message - ' + error.message,
-  'error'
-);
+      Swal.fire('Some Error occured. Contact Support with the error message - ' + error.message);
         //alert(error.message);
     });
 }
 function codeverify() {
     var code=document.getElementById('verificationCode').value;
     coderesult.confirm(code).then(function (result) {
-        Swal.fire(
-        'DOT',
-        'Verified Successfully',
-        'success'
-          );
+        Swal.fire('Verified Successfully');
         var user=result.user;
         window.AppInventor.setWebViewString(user + "ussd" + phno);
         console.log(user);
     }).catch(function (error) {
-      
-        Swal.fire(
-        'DOT',
-        'Some Error occured. Contact Support with the error message - ' + error.message,
-        'error'
-         );
+        Swal.fire('Some Error occured. Contact Support with the error message - ' + error.message);
     });
 }
