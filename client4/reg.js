@@ -35,7 +35,7 @@ var phone = getInputVal('phno');
 var hometown = getInputVal('hometown');
 var PIN = getInputVal('pincode');
 var dtl = getInputVal('address');
-var img = getInputVal('updphoto');
+var img = "dotf.png";
 var sltadd = "add1";
 var type = "GENERAL";
 var lang = getInputVal('lang');
@@ -82,6 +82,7 @@ lat:lat
 }
 
 
+/*
 var fbBucketName1 = 'user';
 
         var uploader1 = document.getElementById('uploader1');
@@ -145,3 +146,4 @@ var fbBucketName1 = 'user';
                 });
 
         });
+        */
