@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Registration Form :: DOT</title>
+  <link rel="stylesheet" href="reg.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>  
+
+</head>
+
+<body onload="getuid()">
+  <!-- contact1 -->
+  <section class="w3l-simple-contact-form1">
+    <div class="contact-form section-gap">
+      <div class="wrapper">
+        <div class="contact-form" style="margin: 0 auto;">
+          <div class="form-mid">
+            <form id="dotreg">
+              <div class="field">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required="" autocomplete="off">
+              </div>
+              <div class="field">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                  required="" autocomplete="off">
+                  <p style="font-size: x-small;">A verification email will be sent to your given email address within 1/2 day(s).</p>
+              </div>
+              <div class="field">
+                <input type="number" class="form-control" name="phno" id="phno" placeholder="Phone Number" required="" readonly="true" autocomplete="off">
+              </div>
+              <div class="field">
+                <input type="number" class="form-control" name="pincode" id="pincode" placeholder="PINCODE" required="" autocomplete="off">
+              </div>
+
+              <div class="field">
+                <input type="text" class="form-control" name="lat" id="lat" required="" autocomplete="off">
+              </div>
+              <div class="field">
+                <input type="text" class="form-control" name="lang" id="lang" required="" autocomplete="off">
+              </div>
+
+
+              <div class="field">
+                <input type="text" class="form-control" name="hometown" id="hometown" placeholder="Enter hometown (e.g: Diamond Harbour)" required="" autocomplete="off">
+              </div>
+              <textarea name="address" class="form-control" id="address" placeholder="Delivery Address"
+                required=""></textarea>
+
+              <div class="inner-wrap">
+                <img id="photo" src="blank.png" style="height:200px;width:200px;" alt="Choose your photo" /> <br>
+                <progress value="0" max="100" id="uploader1">0%</progress>
+                <input type="file" value="upload1" accept="image/png, image/jpeg" id="fileButton1">
+                <input type="text" name="updphoto" id="updphoto" required="true" value="" style="display:none">
+              </div>
+
+              <button type="submit" id="submitbtn" class="btn btn-contact">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="reg.js"></script>
+</body>
+
+</html>
