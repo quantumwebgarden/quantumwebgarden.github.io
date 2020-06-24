@@ -177,7 +177,7 @@ function sh_orders(){
 
 function showcart(){
     $(".page-wrapper").removeClass("toggled");
-    window.open("https://deliveryontime.000webhostapp.com/rdot/rp/dp/pay.php?checkout=automatic");
+    window.open("cart.html");
 }
 
 
@@ -326,7 +326,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
         return dist;
     }
 }
-
+/*
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -334,7 +334,7 @@ function getLocation() {
     alert("Location service is not activated.");
   }
 }
-
+*/
 function showPosition(position) {
     lat1 = 22.2085069;
     lon1 = 88.1842761;
