@@ -50,25 +50,24 @@
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
-          <img class="img-responsive img-rounded" src="bikash.png"
+          <img class="img-responsive img-rounded" id="uimg" src="bikash.png"
             alt="User picture" onclick="showme(this)">
         </div>
         <div class="user-info">
-          <span class="user-name" id="uname">Bikash Das
-          </span>
-          <span id="uphone" style="display: none;">0123458965</span>
-          <span id="umail" style="display: none;">myemail@email.com</span>
-          <span class="user-role" id="uaddress">Hatuganj</span>
-          <span class="user-status" id="vip_user" style="display: none;">
+          <span class="user-name" id="uname">DOt User</span>
+          <span id="uphone" style="display: none;">user Phone No.</span>
+          <span id="umail" style="display: none;">useremail@dot.com</span>
+          <span class="user-role" id="uaddress">User Hometown</span>
+          <!--span class="user-status" id="vip_user" style="display: none;">
             <i class="fa fa-star" style="color: orange;"></i>
             <span>VIP</span>
+          </span-->
+          <span class="user-status" id="utype" style="display: block;">
+            <i class="fa fa-circle" style="color: green;"></i> 
+            <span>GENERAL</span>
           </span>
-          <span class="user-status" id="premium_user" style="display: block;">
-            <i class="fa fa-circle" style="color: blue;"></i>
-            <span id="utype">Premium</span>
-          </span>
-          <span class="user-status" id="general_user" style="display: none;">
-          </span>
+          <!--span class="user-status" id="general_user" style="display: none;">
+          </span-->
         </div>
       </div>
       <!-- sidebar-header  ->
@@ -88,7 +87,7 @@
       <div class="sidebar-menu">
         <ul>
           <li class="header-menu">
-            <span>General</span>
+            <span>My Account</span>
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
@@ -100,13 +99,13 @@
               <ul>
 
                 <li>
-                  <a href="#">Edit Profile
+                  <a href="javascript:void(0)" onclick="chngloc()">Edit Profile
                     <!--span class="badge badge-pill badge-success">Pro</span-->
                   </a>
                 </li>
 
                 <li>
-                  <a href="#">Change Password</a>
+                  <a href="javascript:void(0)" onclick="chngloc()">Change Password</a>
                 </li>
                 
               </ul>
@@ -122,64 +121,18 @@
               <ul>
                 <li>
                   <a href="javascript: void(0)" onclick="showcart()">My cart
-                  	<span class="badge badge-pill badge-danger" id="cartcntside">5</span>
+                  	<span class="badge badge-pill badge-warning" id="cartcntside">0</span>
                   </a>
                 </li>
                 <li>
-                  <a href="javascript: void(0)" onclick="sh_orders()">My Orders
-                  	<span class="badge badge-pill badge-danger">1</span></a>
+                  <a href="javascript: void(0)" onclick="sh_orders_show()">My Orders
+                  	<span class="badge badge-pill badge-warning">0</span></a>
                 </li>
                 
               </ul>
             </div>
           </li>
-          <!--li class="sidebar-dropdown">
-            <a href="#">
-              <i class="far fa-gem"></i>
-              <span>Components</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">General</a>
-                </li>
-                <li>
-                  <a href="#">Panels</a>
-                </li>
-                <li>
-                  <a href="#">Tables</a>
-                </li>
-                <li>
-                  <a href="#">Icons</a>
-                </li>
-                <li>
-                  <a href="#">Forms</a>
-                </li>
-              </ul>
-            </div>
-          </li-->
-          <!--li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-chart-line"></i>
-              <span>Charts</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Pie chart</a>
-                </li>
-                <li>
-                  <a href="#">Line chart</a>
-                </li>
-                <li>
-                  <a href="#">Bar chart</a>
-                </li>
-                <li>
-                  <a href="#">Histogram</a>
-                </li>
-              </ul>
-            </div>
-          </li-->
+          
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-globe"></i>
@@ -188,13 +141,13 @@
             <div class="sidebar-submenu">
               <ul>
                 <li> Selected Address: 
-                  <a href="javascript:void(0)" onclick="getLocation()">Kapat Hat, Near SBI Parulia Br., Diamond Harbour, 743331</a>
+                  <a href="javascript:void(0)" id="udtl" onclick="chngloc()">Kapat Hat, Near SBI Parulia Br., Diamond Harbour, 743331</a>
                 </li>
                 <li> Add / Modify: 
-                  <a href="#">Add New Address</a>
+                  <a href="javascript:void(0)" onclick="chngloc()">Add New Address</a>
                 </li>
                 <li> 
-                  <a href="#">Edit an Address</a>
+                  <a href="javascript:void(0)" onclick="chngloc()">Edit an Address</a>
                 </li>
               </ul>
             </div>
@@ -210,12 +163,12 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">How to Order
+                  <a href="javascript:void(0)" onclick="videoshow()">How to Order
                   	<span class="badge badge-pill badge-danger">Video</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">Order Flow
+                  <a href="javascript:void(0)" onclick="videoshow()">Order Flow
                   	<span class="badge badge-pill badge-danger">Image</span></a>
                 </li>
                 
@@ -223,13 +176,13 @@
             </div>
           </li>
           <li>
-            <a href="#">
+            <a href="javascript:void(0)" onclick="termshow()">
               <i class="fa fa-gavel"></i>
               <span>Terms &amp; Conditions</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="javascript:void(0)" onclick="aboutshow()">
               <i class="fa fa-info-circle"></i>
               <span>About Us</span>
             </a>
@@ -240,19 +193,19 @@
     </div>
     <!-- sidebar-content  -->
     <div class="sidebar-footer">
-      <a href="#">
+      <a href="javascript: void(0)" onclick="prmchk()">
         <i class="fa fa-bell"></i>
-        <span class="badge badge-pill badge-warning notification">3</span>
+        <span class="badge badge-pill badge-warning notification">0</span>
       </a>
-      <a href="#">
+      <a href="javascript: void(0)" onclick="otpchk()">
         <i class="fa fa-envelope"></i>
-        <span class="badge badge-pill badge-success notification">7</span>
+        <span class="badge badge-pill badge-success notification">0</span>
       </a>
       <!--a href="#">
         <i class="fa fa-cog"></i>
         <span class="badge-sonar"></span>
       </a-->
-      <a href="javascript: void(0)" onclick="window.open('login.html'); window.close();">
+      <a href="javascript: void(0)" onclick="window.AppInventor.setWebViewString('logout');">
         <i class="fa fa-power-off"></i>
       </a>
     </div>

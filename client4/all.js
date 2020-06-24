@@ -175,6 +175,11 @@ function sh_orders(){
 
 }
 
+function sh_orders_show(){
+    $(".page-wrapper").removeClass("toggled");
+    window.open("del.html");
+}
+
 function showcart(){
     $(".page-wrapper").removeClass("toggled");
     window.open("cart.html");
@@ -223,7 +228,7 @@ function showme(x) {
   title: document.getElementById('uname').innerHTML,
   text: '',
   html:'<b>' + 
-  document.getElementById('utype').innerHTML + ' </b>user <br>' +
+  document.getElementById('utype').innerHTML.replace("<i class=\"fa fa-circle\" style=\"color: green;\"></i>", " ") + ' </b>user <br>' +
      document.getElementById('uphone').innerHTML + '<br>' +
     document.getElementById('umail').innerHTML + '<br>' +
     document.getElementById('uaddress').innerHTML,
@@ -394,4 +399,31 @@ function doit(x) {
 
 function chkback() {
     history.back();
+}
+
+function chngloc(){
+    swal("This feature will be available soon...", {
+  buttons: false,
+  timer: 2500,
+});
+}
+
+
+function videoshow(){
+    swal("This feature will be available soon...", {
+  buttons: false,
+  timer: 2500,
+});
+}
+function termshow(){
+    swal("This feature will be available soon...", {
+  buttons: false,
+  timer: 2500,
+});
+}
+function aboutshow(){
+    swal("This feature will be available soon...", {
+  buttons: false,
+  timer: 2500,
+});
 }

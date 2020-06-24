@@ -5,6 +5,8 @@ var y = "";
 var u = 0;
 var elid = "";
 var upin = 743368;
+var otplst = 0;
+var prmlst = ""
 getuid();
 //var u = getuid(); //"7894561230";
 console.log(u);
@@ -216,7 +218,7 @@ if(adrid == y){
 
 
 function initskip() {
-    var count = 25; // set secconds
+    var count = 55; // set secconds
     var counter = setTimeout(function() {
         Swal.fire({
   title: 'DOT: Delivery On Time',
@@ -640,6 +642,57 @@ cntdt ++;
 }
 
 
+
+});
+
+}
+
+
+function otpchk(){
+
+var rootRef = firebase.database().ref('orders');
+
+rootRef.on("child_added", snap => {
+
+var uid = snap.child("uid").val();
+var otp = snap.child("otp").val();
+
+if (uid == u) {
+otplst = otp;
+swal('Your OTP for the Order is : ' + otplst);
+}
+
+});
+
+var rootRef = firebase.database().ref('orders');
+
+rootRef.on("child_changed", snap => {
+
+var uid = snap.child("uid").val();
+var otp = snap.child("otp").val();
+
+if (uid == u) {
+otplst = otp;
+swal('Your OTP for the Order is : ' + otplst);
+}
+
+});
+
+}
+
+function prmchk(){
+
+var rootRef = firebase.database().ref('user');
+
+rootRef.on("child_added", snap => {
+
+var id = snap.child("id").val();
+var promo = snap.child("promo").val();
+
+if (id == u) {
+prmlst = promo;
+swal('Your new promocode is : ' + prmlst);
+}
 
 });
 
