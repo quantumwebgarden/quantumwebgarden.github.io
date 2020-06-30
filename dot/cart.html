@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="cart.css">
+
+</head>
+<body translate="no" onload="loadtime()">
+<div class="wrap">
+<header class="cart-header cf">
+<strong>Items in Your Cart</strong>
+<span class="btn" onclick="window.open('https://deliveryontime.000webhostapp.com/rdot/rp/dp/pay.php?checkout=automatic&orderid=9876543210');">Checkout</span>
+</header>
+
+
+<div class="bonus-products">
+<strong>Bonus Products Block <span class="bp-toggle">(hide this block)</span></strong>
+</div>
+
+<div class="cart-table">
+<ul id="miancart">
+
+<li class="item">
+
+<div class="item-main cf">
+
+<div class="item-block ib-info cf">
+
+<img class="product-img" src="http://fakeimg.pl/150/e5e5e5/adadad/?text=IMG" />
+<div class="ib-info-meta">
+<span class="title">Item Name</span>
+<span class="itemno">Shop Name</span>
+</div>
+
+</div>
+
+<div class="item-block ib-qty">
+<input type="text" readonly value="3" class="qty" />
+<span class="price"><span>x</span> $25.00</span>
+</div>
+
+<div class="item-block ib-total-price">
+<span class="tp-price">$75.00</span>
+</div>
+
+</div>
+<br>
+<!--div class="item-foot cf">
+<div class="if-left"><span class="if-status">In Stock</span></div>
+<div class="if-right"><span class="blue-link">Add to Wishlist</span></div>
+</div-->
+
+</li>
+
+
+<!--li class="item">
+<div class="item-main cf">
+<div class="item-block ib-info cf">
+<img class="product-img" src="http://fakeimg.pl/150/e5e5e5/adadad/?text=IMG" />
+<div class="ib-info-meta">
+<span class="title">Drink Up Nalgene Water Bottle</span>
+<span class="itemno">#3498765</span>
+<span class="styles">
+<span><strong>Color</strong>: Neon Green</span>
+<span><strong>Size</strong>: 32oz</span>
+<span><strong>Warranty</strong>: 3 Years</span>
+<span class="blue-link">Edit Details</span>
+</span>
+</div>
+</div>
+<div class="item-block ib-qty">
+<input type="text" value="3" class="qty" />
+<span class="price"><span>x</span> $25.00</span>
+ </div>
+<div class="item-block ib-total-price">
+<span class="tp-price">$75.00</span>
+<span class="tp-remove"><i class="i-cancel-circle"></i></span>
+</div>
+</div>
+<div class="item-foot cf">
+<div class="if-message"><p> Item/promo related messaging shows up here</p></div>
+<div class="if-left"><span class="if-status">In Stock</span></div>
+<div class="if-right"><span class="blue-link">Gift Options</span> | <span class="blue-link">Add to Registry</span> | <span class="blue-link">Add to Wishlist</span></div>
+</div>
+</li-->
+
+
+<!--li class="item">
+<div class="item-main cf">
+<div class="item-block ib-info cf">
+<img class="product-img" src="http://fakeimg.pl/150/e5e5e5/adadad/?text=IMG" />
+<div class="ib-info-meta">
+<span class="title">Drink Up Nalgene Water Bottle</span>
+<span class="itemno">#3498765</span>
+<span class="styles">
+<span><strong>Color</strong>: Neon Green</span>
+<span><strong>Size</strong>: 32oz</span>
+<span><strong>Warranty</strong>: 3 Years</span>
+<span class="blue-link">Edit Details</span>
+</span>
+</div>
+</div>
+<div class="item-block ib-qty">
+<input type="text" value="3" class="qty" />
+<span class="price"><span>x</span> $25.00</span>
+</div>
+<div class="item-block ib-total-price">
+<span class="tp-price">$75.00</span>
+<span class="tp-remove"><i class="i-cancel-circle"></i></span>
+</div>
+</div>
+<div class="bundle-block">
+<ul>
+<li class="cf">
+<i class="i-down-right-arrow"></i>
+<img class="bundle-img" src="http://fakeimg.pl/100/e5e5e5/adadad/?text=IMG" />
+<span class="bundle-title">Nalgene Orange Cap</span>
+<span class="bundle-itemno">#9872656</span>
+</li>
+<li class="cf">
+<i class="i-down-right-arrow"></i>
+<img class="bundle-img" src="http://fakeimg.pl/100/e5e5e5/adadad/?text=IMG" />
+<span class="bundle-title">Nalgene Orange Cap</span>
+<span class="bundle-itemno">#9872656</span>
+</li>
+</ul>
+</div>
+<div class="item-foot cf">
+<div class="if-left"><span class="if-status">In Stock</span></div>
+<div class="if-right"><span class="blue-link">Gift Options</span> | <span class="blue-link">Add to Registry</span> | <span class="blue-link">Add to Wishlist</span></div>
+</div>
+</li-->
+
+</ul>
+
+</div>
+
+<div class="sub-table cf">
+
+<div class="summary-block">
+
+<div class="sb-promo">
+<input type="text" placeholder="Enter Promo Code" />
+<span class="btn">Apply</span>
+</div>
+
+<ul>
+<li class="subtotal"><span class="sb-label">Subtotal</span><span class="sb-value">$25.99</span></li>
+<li class="shipping"><span class="sb-label">Shipping</span><span class="sb-value">$5.00</span></li>
+<li class="tax"><span class="sb-label">Discount</span><span class="sb-value">$2.00</span></li>
+
+<li class="grand-total"><span class="sb-label">Total</span><span class="sb-value">$28.99</span></li>
+</ul>
+
+</div>
+
+<div class="copy-block">
+<p>Items will be delivered to your selected address. You may modify address from your profile.</p>
+<p class="customer-care">
+  For any query : <br>
+Call us within 7:00 am to 9:00 pm at:
+<a href="tel:+918768626927">(+91) 876-862-6927</a><br> or email us at: <a href="mailto:support@dot-deliveryontime.com">support@dot-deliveryontime.com</a>. <br/>
+We usually reply emails within 12 hours.
+</p>
+</div>
+</div>
+<div class="cart-footer cf">
+<span class="btn"onclick="window.open('https://deliveryontime.000webhostapp.com/rdot/rp/dp/pay.php?checkout=automatic&orderid=9876543210');">Checkout</span>
+<span class="cont-shopping" onclick="history.back()"><i class="fa fa-angle-left" aria-hidden="true"></i></i>Continue Shopping</span>
+</div>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script id="rendered-js">
+$(".tax-edit").click(function () {
+  $(this).toggleClass('te-open').parent;
+  $('.tax-calculate').slideToggle(200);
+});
+
+$(".if-left").click(function () {
+  $(this).prev('.if-message').slideToggle(200);
+});
+
+$(".bp-toggle").click(function () {
+  $('.bonus-products').slideToggle(200);
+});
+//# sourceURL=pen.js
+    </script>
+</body>
+</html>
