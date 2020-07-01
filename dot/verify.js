@@ -42,7 +42,7 @@ function codeverify() {
     coderesult.confirm(code).then(function (result) {
         Swal.fire('Verified Successfully');
         var user=result.user;
-        window.open("https://quantumwebgarden.github.io/client4/index.html?uid=" + uid + "=0=" + lats + "=" + langs + "=0");
+        window.open("https://quantumwebgarden.github.io/dot/index.html?uid=" + uid + "=0=" + lats + "=" + langs + "=0");
 		window.close();
         console.log(user);
     }).catch(function (error) {
