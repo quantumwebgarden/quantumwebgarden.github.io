@@ -1,3 +1,4 @@
+var allids = "";
 var uid = 0;
 var elid = "";
 var lats = 0;
@@ -7,6 +8,7 @@ console.log(uid);
 
 function getuid() {
 	render();
+	checkreg();
     var parameters = location.search.substring(1).split("=");
     uid = parameters[1];
 	elid = parameters[2];
@@ -31,23 +33,17 @@ var firebaseConfig = {
   };
   firebase.initializeApp(firebaseConfig);
 
-/*function checkreg(){
+function checkreg(){
 	
-	var rootRef = firebase.database().ref('allusers');
+	var rootRef = firebase.database().ref('users');
 
 rootRef.on("child_added", snap => {
 
-var uuid = snap.child("allid").val();
-if(uuid.includes(phone + "splt")){
-	window.open("verify.html?uid=" + phone + "=0=" + lat + "=" + lang");
-}
-else{
-	
-}
+var uuid = snap.child("allusers").val();
 
-
+allids = uuid;
 });
-}*/
+}
 
 
   document.getElementById('dotreg').addEventListener('submit', xif);
@@ -72,7 +68,7 @@ var lat = getInputVal('lat');
 
  // Save message
   saveMessage(name,id,email,phone,hometown,PIN,dtl,img,sltadd,type,lang,lat);
-
+	firebase.database().ref("users/allid").update({allusers: allids + uid + "splt"});
   document.getElementById('dotreg').reset();
   window.open("https://quantumwebgarden.github.io/client4/index.html?uid=" + uid + "=0=" + lats + "=" + langs + "=0");
 }
