@@ -6,6 +6,7 @@ var locst= "";
 console.log(uid);
 
 function getuid() {
+	render();
     var parameters = location.search.substring(1).split("=");
     uid = parameters[1];
 	elid = parameters[2];
