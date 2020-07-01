@@ -193,6 +193,7 @@ function phoneAuth() {
         console.log(coderesult);
         Swal.fire('Message sent to your phone number');
       document.getElementById('sendbtn').style.display = "none";
+	document.getElementById('recaptcha-container').style.display = "none";
       document.getElementById('verifydiv').style.display = "block";
     }).catch(function (error) {
       Swal.fire('Some Error occured. Contact Support with the error message - ' + error.message);
