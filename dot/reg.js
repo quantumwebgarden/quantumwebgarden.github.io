@@ -18,7 +18,7 @@ function getuid() {
     document.getElementById('phno').value = uid;
     document.getElementById('lat').value = lats;
     document.getElementById('lang').value = langs;
-	console.log("https://quantumwebgarden.github.io/client4/reg.html?uid=" + uid + "=0=" + lats + "=" + langs + "=0")
+	console.log("https://quantumwebgarden.github.io/dot/reg.html?uid=" + uid + "=0=" + lats + "=" + langs + "=0")
 }
 
 var firebaseConfig = {
@@ -70,7 +70,7 @@ var lat = getInputVal('lat');
   saveMessage(name,id,email,phone,hometown,PIN,dtl,img,sltadd,type,lang,lat);
 	firebase.database().ref("users/allid").update({allusers: allids + uid + "splt"});
   document.getElementById('dotreg').reset();
-  window.open("https://quantumwebgarden.github.io/client4/index.html?uid=" + uid + "=0=" + lats + "=" + langs + "=0");
+  window.open("https://quantumwebgarden.github.io/dot/index.html?uid=" + uid + "=0=" + lats + "=" + langs + "=0");
 }
 
 
