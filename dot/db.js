@@ -40,7 +40,7 @@ function chkval(){
 function getuid() {
     var parameters = location.search.substring(1).split("=");
     u = parameters[1];
-	elid = parameters[2];
+	elid = parameters[2].split("%20").join(" ");
 	t = parameters[3];
 	g = parameters[4];
 	locst = parameters[5];
@@ -583,6 +583,7 @@ itemid = sngitem[0];
 itemtag = sngitem[1];
 itemcat = sngitem[2];
 itemshopid = sngitem[3];
+console.log(itemcat);
 var rootRef = firebase.database().ref(itemcat);
 
 rootRef.on("child_added", snap => {
@@ -631,7 +632,7 @@ if(id == itemid){
     document.getElementById("favd").innerHTML = "<span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span>&nbsp;&nbsp;<a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"" + itemcat + "/" + id + "\">Add to favourites <i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a>";
     document.getElementById("cartqty").innerHTML = "<a class=\"nonvw example_dl_vd\" data-dsb=\"" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\" data-itemtype=\"" + itemcat + "\" onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span>";
 }
-
+console.log(itemtag + "," + tagsr);
 var tagmatch = itemsrch(itemtag,tagsr);
 if (Number(tagmatch) > 0 && id != itemid) {
 $("#rld").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-rcntvw=\"" + rcntvw + "s\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"" + itemcat + "A_9" + shopname + "\"><h3 onclick=\"sngl(this)\" data-rcntvw=\"" + rcntvw + "s\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"" + itemcat + "A_9" + shopname + "\">" + name + "<b class=\"dt\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span>₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"" + itemcat + "/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart dsb" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\" data-itemtype=\"" + itemcat + "\" onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-dsb=\"" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\" data-itemtype=\"" + itemcat + "\" onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
@@ -734,7 +735,7 @@ function sngl(x) {
         else{
             firebase.database().ref(sng[2].split("A_9")[0] + "/" + sng[0]).update({rcntvw: sng[3].concat(u + "splt")});
         }
-    window.open("single.html?uid=" + u + "=" + elid + "=" + t + "=" + g + "=" + locst);
+    window.open("single.html?uid=" + u + "=" + el_id + "=" + t + "=" + g + "=" + locst);
 }
 
 
