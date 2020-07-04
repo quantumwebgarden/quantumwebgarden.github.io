@@ -89,6 +89,7 @@ var lstqty = "";
             var qnty = snap.child("qnty").val();
             var ctid = snap.child("tmst").val();
             var lmd = snap.child("typ").val();
+            var itype = snap.child("shptype").val();
             
 
             if(!ids.includes(id) && lmd!="temp"){
@@ -97,7 +98,7 @@ var lstqty = "";
             tmsts[cnt] = ctid;
             //console.log(ids[cnt] + ", " + qtys[cnt] + ", " + tmsts[cnt]);
             
-            chkfoods(id,qnty,ctid);
+            chkfoods(id,qnty,ctid,itype);
             cnt += 1;
             if(cnt==1){Util.removeClass(cart[0], 'cd-cart--empty');}
             
@@ -126,8 +127,8 @@ var lstqty = "";
 
         };
 
-        function chkfoods(y,z,m) {
-            var rootRef = firebase.database().ref('foods');
+        function chkfoods(y,z,m,typ) {
+            var rootRef = firebase.database().ref(typ);
 
             rootRef.on("child_added", snap => {
 
@@ -137,7 +138,7 @@ var lstqty = "";
             var thumb = snap.child("thumb").val();
             if(id == y){
             price = price * z;
-            addProduct(m,price,id,name,thumb,z);
+            addProduct(m,price,id,name,thumb,z,typ);
 
             updateCartCount(false, z);
 
@@ -151,7 +152,7 @@ var lstqty = "";
             document.getElementById('cartcntside').innerText = smj;
             //cartCountItems[0].innerText = sum; //cartCountItems[0].innerText;
         }
-        });
+        });/*
            
             var rootRef = firebase.database().ref('medicine');
 
@@ -229,7 +230,7 @@ var lstqty = "";
             document.getElementById('cartcntside').innerText = smj;
             //cartCountItems[0].innerText = sum; //cartCountItems[0].innerText;
         }
-        });
+        });*/
                       
         };
 
@@ -252,6 +253,7 @@ var lstqty = "";
             var qnty = snap.child("qnty").val();
             var ctid = snap.child("tmst").val();
             var lmd = snap.child("typ").val();
+            var itype = snap.child("shptype").val();
                 if(lmd!="temp")
                 chkdd(x);
             
@@ -318,14 +320,14 @@ var lstqty = "";
             }
         };
 
-        function addProduct(ctid,price,itemid,itemname,itempic,qnty) {
+        function addProduct(ctid,price,itemid,itemname,itempic,qnty,itemtype) {
             // this is just a product placeholder
             // you should insert an item with the selected product info
             // replace productId, productName, price and url with your real product info
             // you should also check if the product was already in the cart -> if it is, just update the quantity
             //qnty = productId + 1;
             pr_qt = price/qnty;
-            var productAdded = '<li class="cd-cart__product" data-ctid="' + ctid + '"><div class="cd-cart__image"><a href="#0"><img src="' + itempic + '" alt="' + itemname + '"></a></div><div class="cd-cart__details"><h3 class="truncate"><a href="#0">' + itemname + '</a></h3><span class="cd-cart__price">' + price + '</span><div class="cd-cart__actions"><a href="#0" id="del'+ itemid +'" class="cd-cart__delete-item" data-id="' + itemid + '" data-price="' + pr_qt + '" data-qty="' + qnty + '" style="color:red!important;">Delete</a><div class="cd-cart__quantity"><label for="cd-product-'+ itemid +'">Qty</label><span class="cd-cart__select"> <img class="rmvcl mn' + qnty + '" src="minus.png" width="20px" height="20px" data-qty="' + qnty + '" data-itemid="' + itemid + '" id="minus' + itemid + '" onclick="rmv(this)"> <b class="reset" id="cd-product-'+ itemid +'" name="quantity">' + qnty + '</b> <img src="plus.png" width="20px" height="20px" data-qty="' + qnty + '" data-itemid="' + itemid + '" onclick="adc(this)"></span></div></div></div></li>';
+            var productAdded = '<li class="cd-cart__product" data-ctid="' + ctid + '"><div class="cd-cart__image"><a href="#0"><img src="' + itempic + '" alt="' + itemname + '"></a></div><div class="cd-cart__details"><h3 class="truncate"><a href="#0">' + itemname + '</a></h3><span class="cd-cart__price">' + price + '</span><div class="cd-cart__actions"><a href="#0" id="del'+ itemid +'" class="cd-cart__delete-item" data-id="' + itemid + '" data-price="' + pr_qt + '" data-qty="' + qnty + '" style="color:red!important;">Delete</a><div class="cd-cart__quantity"><label for="cd-product-'+ itemid +'">Qty</label><span class="cd-cart__select"> <img class="rmvcl mn' + qnty + '" src="minus.png" width="20px" height="20px" data-qty="' + qnty + '" data-itemid="' + itemid + '" id="minus' + itemid + '" onclick="rmv(this)"> <b class="reset" id="cd-product-'+ itemid +'" name="quantity">' + qnty + '</b> <img src="plus.png" width="20px" height="20px" data-qty="' + qnty + '" data-itemid="' + itemid + '" data-itemtype="' + itemtype + '" onclick="adc(this)"></span></div></div></div></li>';
             cartList.insertAdjacentHTML('beforeend', productAdded);
         };
 
