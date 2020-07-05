@@ -738,6 +738,9 @@ function sngl(x) {
     window.open("single.html?uid=" + u + "=" + el_id + "=" + t + "=" + g + "=" + locst);
 }
 
+function toshowcart() {
+  window.open("cart.html?uid=" + u + "=0=" + t + "=" + g + "=" + locst);
+}
 
 function favchkf(x,y) {
     z = "act";
