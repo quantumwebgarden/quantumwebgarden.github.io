@@ -6,54 +6,50 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="cart.css">
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<!--link rel="stylesheet" href="assets/js/jquery.sweet-dropdown.min.css" />
+<script src="assets/js/jquery.sweet-dropdown.min.js"></script-->
 </head>
 <body translate="no" onload="loadtime()">
 <div class="wrap">
 <header class="cart-header cf">
 <strong>Items in Your Cart</strong>
-<span class="btn" onclick="window.open('https://deliveryontime.000webhostapp.com/rdot/rp/dp/pay.php?checkout=automatic&orderid=9876543210');">Checkout</span>
+
+<!--span id="checkoutbtn" class="btn" onclick="placeorder()">Checkout</span-->
 </header>
+<p id="removeline" style="color: red; display: none;">Remove all "Out of Delivery" Products to place an order</p>
 
 
-<div class="bonus-products">
-<strong>Bonus Products Block <span class="bp-toggle">(hide this block)</span></strong>
-</div>
 
 <div class="cart-table">
+	
 <ul id="miancart">
 
-<li class="item">
-
+<!--li id="iditem" class="item">
 <div class="item-main cf">
-
 <div class="item-block ib-info cf">
-
 <img class="product-img" src="http://fakeimg.pl/150/e5e5e5/adadad/?text=IMG" />
 <div class="ib-info-meta">
 <span class="title">Item Name</span>
 <span class="itemno">Shop Name</span>
 </div>
-
 </div>
-
 <div class="item-block ib-qty">
 <input type="text" readonly value="3" class="qty" />
 <span class="price"><span>x</span> $25.00</span>
 </div>
-
 <div class="item-block ib-total-price">
 <span class="tp-price">$75.00</span>
 </div>
-
 </div>
 <br>
-<!--div class="item-foot cf">
-<div class="if-left"><span class="if-status">In Stock</span></div>
-<div class="if-right"><span class="blue-link">Add to Wishlist</span></div>
-</div-->
+<div class="item-foot cf">
+<div class="if-left"><span class="if-status">Time</span></div>
+<div class="if-right"><span class="red-link">REMOVE</span></div>
+</div>
 
-</li>
+</li-->
 
 
 <!--li class="item">
@@ -138,41 +134,62 @@
 
 </div>
 
+<div class="bonus-products">
+<ul id="bonusitems"></ul>
+<strong>No Bonus Product available right now <span class="bp-toggle">(Check your Message Box to know more)</span></strong>
+
+</div>
+
 <div class="sub-table cf">
 
 <div class="summary-block">
 
 <div class="sb-promo">
-<input type="text" placeholder="Enter Promo Code" />
-<span class="btn">Apply</span>
+<input type="text" id="pcode" placeholder="Enter Promo Code" />
+<span class="btn" onclick="pcodecheck()">Apply</span>
+<p id="pinvalid" style="color: red; display: none;">Sorry, invalid promo code. View your App Inbox for promo codes.</p>
 </div>
-
+<br><br>
 <ul>
-<li class="subtotal"><span class="sb-label">Subtotal</span><span class="sb-value">$25.99</span></li>
-<li class="shipping"><span class="sb-label">Shipping</span><span class="sb-value">$5.00</span></li>
-<li class="tax"><span class="sb-label">Discount</span><span class="sb-value">$2.00</span></li>
+<li class="subtotal"><span class="sb-label">Subtotal</span><span class="sb-value" id="itemsub">₹ 0.00</span></li>
+<li class="shipping"><span class="sb-label">Shipping</span><span class="sb-value" id="itemdc">₹ 0.00</span></li>
+<li class="tax"><span class="sb-label">Discount</span><span class="sb-value" id="itemdisc">₹ 0.00</span></li>
 
-<li class="grand-total"><span class="sb-label">Total</span><span class="sb-value">$28.99</span></li>
+<li class="grand-total"><span class="sb-label">Total</span><span class="sb-value" id="itemgrand">₹ 0.00</span></li>
 </ul>
 
 </div>
 
 <div class="copy-block">
-<p>Items will be delivered to your selected address. You may modify address from your profile.</p>
+<p>Items will be delivered to your selected address. 
+<select id="alladdr" onchange="addrchange()">
+
+</select>
+</p>
 <p class="customer-care">
   For any query : <br>
-Call us within 7:00 am to 9:00 pm at:
+Call us within 8:00 am to 10:00 pm at:
 <a href="tel:+918768626927">(+91) 876-862-6927</a><br> or email us at: <a href="mailto:support@dot-deliveryontime.com">support@dot-deliveryontime.com</a>. <br/>
 We usually reply emails within 12 hours.
 </p>
 </div>
 </div>
 <div class="cart-footer cf">
-<span class="btn"onclick="window.open('https://deliveryontime.000webhostapp.com/rdot/rp/dp/pay.php?checkout=automatic&orderid=9876543210');">Checkout</span>
-<span class="cont-shopping" onclick="history.back()"><i class="fa fa-angle-left" aria-hidden="true"></i></i>Continue Shopping</span>
+
+<!--button data-dropdown="#dropdown-standard">Try out!</button-->
+<span id="checkoutbtn" class="btn" onclick="chkordertotal()">Confirm Order</span>
+
+<span class="cont-shopping" onclick="backtohome()"><i class="fa fa-angle-left" aria-hidden="true"></i></i>back to  shopping</span>
 </div>
 </div>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+<script src="cart.js"></script>
 <script id="rendered-js">
 $(".tax-edit").click(function () {
   $(this).toggleClass('te-open').parent;

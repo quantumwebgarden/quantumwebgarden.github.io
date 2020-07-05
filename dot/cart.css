@@ -63,9 +63,10 @@ strong {
   opacity: 0.8;
 }
 
-.blue-link {
-  color: #659BAF;
+.red-link {
+  color: #ff0004;
   cursor: pointer;
+  font-weight: bolder;
 }
 .blue-link:hover {
   color: #223840;
@@ -481,4 +482,17 @@ strong {
   .item .item-block.ib-info img.product-img {
     width: 70px;
   }
+}
+
+.oda{
+  background-color: #f0cbc7;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.showme{
+  display: block !important;
+}
+.hideme{
+  display: none !important;
 }
