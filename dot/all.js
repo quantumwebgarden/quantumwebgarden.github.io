@@ -182,7 +182,7 @@ function sh_orders_show(){
 
 function showcart(){
     $(".page-wrapper").removeClass("toggled");
-    window.open("cart.html");
+    toshowcart();
 }
 
 
