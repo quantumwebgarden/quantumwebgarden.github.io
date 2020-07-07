@@ -49,3 +49,8 @@ function codeverify() {
         Swal.fire('Some Error occured. Contact Support with the error message - ' + error.message);
     });
 }
+
+function resendit() {
+    document.getElementById('mainsec').style.display = "block";
+    document.getElementById('verifysec').style.display = "none";
+}
