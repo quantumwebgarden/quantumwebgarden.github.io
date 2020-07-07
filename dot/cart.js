@@ -156,6 +156,36 @@ function formatNum(num) {
 }
 
 function loadtime(){
+  var qtload = Math.floor(Math.random() * 4);
+    let timerInterval;
+  Swal.fire({
+  title: 'DOT',
+  html: '<img width="80%" height="auto" src="assets/img/loading.gif"><br><b>' + qtarray[qtload] + '</b>',
+  timer: 2000,
+  timerProgressBar: true,
+  allowEscapeKey: false,
+  allowOutsideClick: false,
+  onBeforeOpen: () => {
+    Swal.showLoading()
+    timerInterval = setInterval(() => {
+      const content = Swal.getContent()
+      if (content) {
+        const b = content.querySelector('b')
+        if (b) {
+          //b.textContent = Swal.getTimerLeft()
+        }
+      }
+    }, 100)
+  },
+  onClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer && u.includes("GUser")) {
+    initskip();
+  }
+})
   var parameters = location.search.substring(1).split("=");
   u = parameters[1];
   elid = parameters[2];
