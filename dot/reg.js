@@ -202,8 +202,15 @@ function codeverify() {
         Swal.fire('Verified Successfully');
         var user=result.user;
       document.getElementById('verifydiv').style.display = "none";
+	    document.getElementById('submitbtn').style.display = "block";
         console.log(user);
     }).catch(function (error) {
         Swal.fire('Some Error occured. Contact Support with the error message - ' + error.message);
     });
+}
+
+function resendit() {
+    document.getElementById('sendbtn').style.display = "block";
+      document.getElementById('recaptcha-container').style.display = "block";
+      document.getElementById('verifydiv').style.display = "none";
 }
