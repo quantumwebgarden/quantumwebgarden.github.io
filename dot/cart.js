@@ -16,6 +16,7 @@ var uadrid = "";
 var upin = "";
 var totalquantity = 0;
 var totalprice = 0;
+var qtarray = ["Now Loading...","The more you sweat in practice the less you bleed in battle - Michael Jordan","Work hard in silence, let your success be your noise - Frank Ocean","Slow network may create delay","Welcome To DOT: Delivery on Time"];
 var dtimes = ["5 Minutes","10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","45 Minutes","1 Hour","Out of Delivery Area"];
 var ditems = ["foods","medicine","grocery","essentials"];
 var delgb = ["6","7","5","7"];
