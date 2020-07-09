@@ -15,6 +15,14 @@
   zoom: 1;
 }
 
+.header {
+  padding: 5px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 20px;
+}
+
 html {
   box-sizing: border-box;
   overflow-y: scroll;

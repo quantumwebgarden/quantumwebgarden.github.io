@@ -49,7 +49,11 @@ allids = uuid;
   document.getElementById('dotreg').addEventListener('submit', xif);
 
   function xif(e){
-  e.preventDefault();
+    if(document.getElementById("hometown").value == "0"){
+        Swal.fire('Choose your area to proceed');
+    }
+        else{
+      e.preventDefault();
 
   // Get values
 var name = getInputVal('name');
@@ -71,7 +75,7 @@ var lat = getInputVal('lat');
 	firebase.database().ref("users/allid").update({allusers: allids + uid + "splt"});
   document.getElementById('dotreg').reset();
   window.open("https://quantumwebgarden.github.io/dot/index.html?uid=" + uid + "=0=" + lats + "=" + langs + "=0");
-}
+}}
 
 
 

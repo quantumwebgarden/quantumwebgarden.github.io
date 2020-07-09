@@ -264,6 +264,13 @@ Swal.fire({
   },
   onClose: () => {
     clearInterval(timerInterval)
+    console.log(fln + "me");
+    if(fln == 1){
+      document.getElementById("imgc1").src = "assets/banner/imgc1.jpg";
+      document.getElementById("imgc2").src = "assets/banner/imgc2.jpg";
+      document.getElementById("imgc3").src = "assets/banner/imgc1.gif";
+      document.getElementById("imgc4").src = "assets/banner/imgc1.png";
+    }
   }
 }).then((result) => {
   /* Read more about handling dismissals below */
@@ -383,7 +390,7 @@ $("#estshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkb
 
 function foodnxt(){
 
-var rootRef = firebase.database().ref('foods');
+var rootRef = firebase.database().ref('foods').orderByChild('dotpri');
 
 rootRef.on("child_added", snap => {
 
@@ -432,7 +439,7 @@ $(document).ready(*/
     //function slctupd(x,y,u,t,g){}
 function mednxt(){
 
-var rootRef = firebase.database().ref('medicine');
+var rootRef = firebase.database().ref('medicine').orderByChild('dotpri');
 
 rootRef.on("child_added", snap => {
 
@@ -479,7 +486,7 @@ $("#" + shopid + "shp").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><im
 
 function grcnxt(){
 
-var rootRef = firebase.database().ref('grocery');
+var rootRef = firebase.database().ref('grocery').orderByChild('dotpri');
 
 rootRef.on("child_added", snap => {
 
@@ -527,7 +534,7 @@ $("#" + shopid + "shp").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><im
 
 function estnxt(){
 
-var rootRef = firebase.database().ref('essentials');
+var rootRef = firebase.database().ref('essentials').orderByChild('dotpri');
 
 rootRef.on("child_added", snap => {
 
@@ -584,7 +591,7 @@ itemtag = sngitem[1];
 itemcat = sngitem[2];
 itemshopid = sngitem[3];
 console.log(itemcat);
-var rootRef = firebase.database().ref(itemcat);
+var rootRef = firebase.database().ref(itemcat).orderByChild('dotpri');
 
 rootRef.on("child_added", snap => {
 
@@ -629,7 +636,7 @@ if(id == itemid){
     document.getElementById("pricesng").innerHTML = "₹ " + price + " <span>₹ " + priceshp + "</span>";
     document.getElementById("dtmesng").innerHTML = "<i class=\"dtsng" + dtimechk.toFixed(0) + "\">Delivery Time : " + dtime + "</i><br>";
     document.getElementById("cartsng").innerHTML = "<a class=\"example_dl cd-add-to-cart js-cd-add-to-cart dsb" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\" data-itemtype=\"" + itemcat + "\" onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a>";
-    document.getElementById("favd").innerHTML = "<span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span>&nbsp;&nbsp;<a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"" + itemcat + "/" + id + "\">Add to favourites <i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a>";
+    document.getElementById("favd").innerHTML = "<span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span>&nbsp;&nbsp;<a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"" + itemcat + "/" + id + "\"> <i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a>";
     document.getElementById("cartqty").innerHTML = "<a class=\"nonvw example_dl_vd\" data-dsb=\"" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\" data-itemtype=\"" + itemcat + "\" onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span>";
 }
 console.log(itemtag + "," + tagsr);
@@ -868,4 +875,10 @@ function viewrelated(x) {
     console.log(x.getAttribute('data-itemname'));
     //medrl();
     //foodrel();
+}
+
+function tocountorder() {
+  firebase.database().ref(u).child("order").on("value", function(snapshot) {
+  console.log("There are "+snapshot.numChildren()+" messages");
+    })
 }

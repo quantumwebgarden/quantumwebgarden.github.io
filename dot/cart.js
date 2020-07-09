@@ -14,13 +14,17 @@ var ulat = "";
 var ulang = "";
 var uadrid = "";
 var upin = "";
+var uhome = "";
 var totalquantity = 0;
 var totalprice = 0;
 var qtarray = ["Now Loading...","The more you sweat in practice the less you bleed in battle - Michael Jordan","Work hard in silence, let your success be your noise - Frank Ocean","Slow network may create delay","Welcome To DOT: Delivery on Time"];
 var dtimes = ["5 Minutes","10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","45 Minutes","1 Hour","Out of Delivery Area"];
 var ditems = ["foods","medicine","grocery","essentials"];
 var delgb = ["6","7","5","7"];
-var dchargearray = ["0","7","10","13","15","20","22","25","30","35"];
+var dchargearray = ["0","3","5","7","10","13","15","20","22","25","30","35"];
+var dhomes = ["","Diamond Harbour","Sarisha","Karanjali"];
+var dsts = ["offline","sit","road"];
+var dmsg = ["","","For Lockdown issues we are working with less staff. It may take longer than usual"];
 var dflag = 0;
 var dchtotal = 0;
 var pricetotal = 0;
@@ -179,7 +183,8 @@ function loadtime(){
     }, 100)
   },
   onClose: () => {
-    clearInterval(timerInterval)
+    clearInterval(timerInterval);
+    document.getElementById("mainbody").style.display = "block";
   }
 }).then((result) => {
   /* Read more about handling dismissals below */
@@ -196,6 +201,7 @@ function loadtime(){
   console.log(u + "," + lat);
   userdtls(u);
   chkcart(u,ulat,ulang,upin);
+
 }
 
 
@@ -252,6 +258,7 @@ var adrdtl = snap.child("dtl").val();
 var adrpin = snap.child("PIN").val();
 var adrlang = snap.child("lang").val();
 var adrlat = snap.child("lat").val();
+var adrhome = snap.child("hometown").val();
 
 //rmvalloptions();
 
@@ -260,6 +267,7 @@ if(adrid == y){
     ulang = adrlang;
     upin = adrpin;
     uadrid = adrid;
+    uhome = adrhome;
     $("#alladdr").append("<option value=\"" + adrid+ "\" selected>" + adrdtl + "</option>");
 }
 else{
@@ -357,20 +365,23 @@ function calculateall(argument) {
 function dchargecal(tm,price,qty,dtime) {
   var dcr = 0;
   if(dtime!=8){
-    if(qty > 10){
+    if(qty > 9){
       if (price > 300) {
-        dcr = (Number(dchargearray[1])*dtime).toFixed(2);console.log(dcr);
+        dcr = (Number(dchargearray[0])*qty).toFixed(2);
+      }
+      else if (price > 200) {
+        dcr = (Number(dchargearray[0])*qty).toFixed(2);
       }
       else{
-        dcr = (Number(dchargearray[1])*(dtime/qty)).toFixed(2);console.log(dcr);
+        dcr = (Number(dchargearray[1])*(dtime/qty)).toFixed(2);
       }
     }
     else{
       if (price > 300) {
-        dcr = (Number(dchargearray[1])*dtime).toFixed(2);console.log(dcr);
+        dcr = (Number(dchargearray[1])*dtime).toFixed(2);
       }
       else{
-        dcr = (Number(dchargearray[1])*dtime).toFixed(2);console.log(dcr);
+        dcr = (Number(dchargearray[1])*dtime).toFixed(2);
       }
     }
   }
@@ -404,8 +415,10 @@ function pcodecheck(){
     var pid = snap.child("id").val();
     var flat = snap.child("flat").val();
     var per = snap.child("per").val();
+    var minam = snap.child("minam").val();
+    var puser = snap.child("puser").val();
             
-    if(pid == appliedp){
+    if(pid == appliedp && pricetotal >= minam && !puser.includes(u + "splt")){
        discounttotal = Number((pricetotal*per/100)+flat);
        pflag = 1;
        chkflg(pflag,appliedp);
@@ -469,16 +482,16 @@ function chkordertotal(){
   title: '<strong><i>Choose to Proceed</i></strong>',
   icon: 'info',
   html:
-    'Order amount of less than<b>120</b>, ' +
-    'is eligible for Pay On Delivery',
+    'Note: Order amount of less than<b> ₹120</b>, ' +
+    'is eligible for Cash On Delivery',
   showCloseButton: true,
   showCancelButton: true,
   focusConfirm: false,
   confirmButtonText:
-    '<b onclick="placepod()"><i class="fa fa-money" aria-hidden="true"></i> Pay On Delivery</b>',
+    '<b onclick="findDeliveryBoy(\'cod\',\'21\')"><i class="fa fa-money" aria-hidden="true"></i> Cash On Delivery</b>',
   //confirmButtonAriaLabel: 'Thumbs up, great!',
   cancelButtonText:
-    '<b onclick="placeorder()"><i class="fa fa-credit-card" aria-hidden="true"></i> Pay Online</b>',
+    '<b onclick="findDeliveryBoy(\'online\',\'11\')"><i class="fa fa-credit-card" aria-hidden="true"></i> Pay Online</b>',
   //cancelButtonAriaLabel: 'Thumbs down'
 })
   }
@@ -487,13 +500,13 @@ function chkordertotal(){
   title: '<strong><i>Pay Online</i></strong>',
   icon: 'info',
   html:
-    'Order amount of less than<b>120</b>, ' +
-    'is eligible for Pay On Delivery',
+    'Note: Order amount of less than<b> ₹120</b>, ' +
+    'is eligible for Cash On Delivery',
   showCloseButton: true,
   showCancelButton: false,
   focusConfirm: false,
   confirmButtonText:
-    '<b onclick="placeorder()"><i class="fa fa-credit-card" aria-hidden="true"></i> Pay Online</b>',
+    '<b onclick="findDeliveryBoy(\'online\',\'11\')"><i class="fa fa-credit-card" aria-hidden="true"></i> Pay Online</b>',
   //confirmButtonAriaLabel: 'Thumbs up, great!',
   
 })
@@ -509,20 +522,38 @@ function chkordertotal(){
   
 }
 
-function placeorder() {
+function placeorder(astatus,bcode,did,dname,dst) {
+  if(bcode == "11"){
   var date = new Date();
   var timestamp = date.getTime();
   var ordid = new Date("12/31/2099").getTime() - timestamp;
-  firebase.database().ref(u + "/order/" + ordid).update({ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),orderstatus:"11",ordpcode:pcodefinal});//First 1 for Payment Pending & 2nd 1 for not ready for delivery
-  window.open('https://deliveryontime.000webhostapp.com/rdot/rp/dp/pay.php?checkout=automatic&orderid=9876543210');
-}
+  firebase.database().ref(u + "/order/" + ordid).update({did:did,ordhome:uhome,ordpay:astatus,orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});//First 1 for Payment Pending & 2nd 1 for not ready for delivery
+  window.open("https://deliveryontime.000webhostapp.com/rdot/rp/dp/jspay.php?checkout=automatic&ordid=" + ordid + "&uid=" + u + "&uname=" + uname + "&uphone=" + u + "&umail=" + uemail + "&amt=" + grandtotalall + "&uhome=" + uhome);
+  //location.search.split("=")[2]; to get at next page
+  }
+  else{
+  var date = new Date();
+  var timestamp = date.getTime();
+  var ordid = new Date("12/31/2099").getTime() - timestamp;
+  firebase.database().ref(u + "/order/" + ordid).update({did:did,ordhome:uhome,ordpay:astatus,orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
+  document.getElementById("successshow").style.display = "block";
+  document.getElementById("mainbody").style.display = "none";
+  Swal.fire({
+  title: 'DOT',
+  text: 'Your order has been placed successfully. ' + dmsg[dsts.indexOf(dst)],
+  icon: 'success',
+  showCancelButton: false,
+  allowEscapeKey: false,
+  allowOutsideClick: false,
+}).then((result) => {
+  if (result.value) {
+    window.open("index.html" + location.search);
+  }
+})
 
-function placepod(){
-  var date = new Date();
-  var timestamp = date.getTime();
-  var ordid = new Date("12/31/2099").getTime() - timestamp;
-  firebase.database().ref(u + "/order/" + ordid).update({ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),orderstatus:"21",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
-}
+  
+  }
+  }
 
 
 function backtohome() {
@@ -531,8 +562,38 @@ function backtohome() {
   window.open(loc);
 }
 
+function findDeliveryBoy(x,y){
+  var rootRef = firebase.database().ref("dboy");
+
+    rootRef.on("child_added", snap => {
+
+    var did = snap.child("id").val();
+    var darea = snap.child("darea").val();
+    var dstatus = snap.child("status").val();
+    var dcount = snap.child("dcount").val();
+    var dname = snap.child("name").val();
+    
+
+    if(dhomes[darea] == uhome){      
+    if(dstatus == "offline"){
+       Swal.fire('DOT',
+        'Delivery Boy is not Available right now. We generally supply orders from 8:00 AM to 8:00 PM',
+        'info'
+        )
+    }
+    else if(dstatus == "sit"){
+      
+       placeorder(x,y,did,dname,dstatus);
+    }
+    else if(dstatus == "road"){
+        console.log(dname);
+        placeorder(x,y,did,dname,dstatus);
+    }
+    }
 
 
+  });
+}
 
 
 

@@ -12,6 +12,14 @@
 <script src="assets/js/jquery.sweet-dropdown.min.js"></script-->
 </head>
 <body translate="no" onload="loadtime()">
+	<section id="successshow" style="display: none;">
+	<div class="header">
+   Your order has been placed Successfully. <a href="javascript:void(0)" onclick="backtohome()"> Click here.</a>
+</section>
+<section id="mainbody" style="display: none;">
+	<div class="header">
+  <h1>Confirm Order</h1>
+</div>
 <div class="wrap">
 <header class="cart-header cf">
 <strong>Items in Your Cart</strong>
@@ -25,110 +33,6 @@
 <div class="cart-table">
 	
 <ul id="miancart">
-
-<!--li id="iditem" class="item">
-<div class="item-main cf">
-<div class="item-block ib-info cf">
-<img class="product-img" src="http://fakeimg.pl/150/e5e5e5/adadad/?text=IMG" />
-<div class="ib-info-meta">
-<span class="title">Item Name</span>
-<span class="itemno">Shop Name</span>
-</div>
-</div>
-<div class="item-block ib-qty">
-<input type="text" readonly value="3" class="qty" />
-<span class="price"><span>x</span> $25.00</span>
-</div>
-<div class="item-block ib-total-price">
-<span class="tp-price">$75.00</span>
-</div>
-</div>
-<br>
-<div class="item-foot cf">
-<div class="if-left"><span class="if-status">Time</span></div>
-<div class="if-right"><span class="red-link">REMOVE</span></div>
-</div>
-
-</li-->
-
-
-<!--li class="item">
-<div class="item-main cf">
-<div class="item-block ib-info cf">
-<img class="product-img" src="http://fakeimg.pl/150/e5e5e5/adadad/?text=IMG" />
-<div class="ib-info-meta">
-<span class="title">Drink Up Nalgene Water Bottle</span>
-<span class="itemno">#3498765</span>
-<span class="styles">
-<span><strong>Color</strong>: Neon Green</span>
-<span><strong>Size</strong>: 32oz</span>
-<span><strong>Warranty</strong>: 3 Years</span>
-<span class="blue-link">Edit Details</span>
-</span>
-</div>
-</div>
-<div class="item-block ib-qty">
-<input type="text" value="3" class="qty" />
-<span class="price"><span>x</span> $25.00</span>
- </div>
-<div class="item-block ib-total-price">
-<span class="tp-price">$75.00</span>
-<span class="tp-remove"><i class="i-cancel-circle"></i></span>
-</div>
-</div>
-<div class="item-foot cf">
-<div class="if-message"><p> Item/promo related messaging shows up here</p></div>
-<div class="if-left"><span class="if-status">In Stock</span></div>
-<div class="if-right"><span class="blue-link">Gift Options</span> | <span class="blue-link">Add to Registry</span> | <span class="blue-link">Add to Wishlist</span></div>
-</div>
-</li-->
-
-
-<!--li class="item">
-<div class="item-main cf">
-<div class="item-block ib-info cf">
-<img class="product-img" src="http://fakeimg.pl/150/e5e5e5/adadad/?text=IMG" />
-<div class="ib-info-meta">
-<span class="title">Drink Up Nalgene Water Bottle</span>
-<span class="itemno">#3498765</span>
-<span class="styles">
-<span><strong>Color</strong>: Neon Green</span>
-<span><strong>Size</strong>: 32oz</span>
-<span><strong>Warranty</strong>: 3 Years</span>
-<span class="blue-link">Edit Details</span>
-</span>
-</div>
-</div>
-<div class="item-block ib-qty">
-<input type="text" value="3" class="qty" />
-<span class="price"><span>x</span> $25.00</span>
-</div>
-<div class="item-block ib-total-price">
-<span class="tp-price">$75.00</span>
-<span class="tp-remove"><i class="i-cancel-circle"></i></span>
-</div>
-</div>
-<div class="bundle-block">
-<ul>
-<li class="cf">
-<i class="i-down-right-arrow"></i>
-<img class="bundle-img" src="http://fakeimg.pl/100/e5e5e5/adadad/?text=IMG" />
-<span class="bundle-title">Nalgene Orange Cap</span>
-<span class="bundle-itemno">#9872656</span>
-</li>
-<li class="cf">
-<i class="i-down-right-arrow"></i>
-<img class="bundle-img" src="http://fakeimg.pl/100/e5e5e5/adadad/?text=IMG" />
-<span class="bundle-title">Nalgene Orange Cap</span>
-<span class="bundle-itemno">#9872656</span>
-</li>
-</ul>
-</div>
-<div class="item-foot cf">
-<div class="if-left"><span class="if-status">In Stock</span></div>
-<div class="if-right"><span class="blue-link">Gift Options</span> | <span class="blue-link">Add to Registry</span> | <span class="blue-link">Add to Wishlist</span></div>
-</div>
-</li-->
 
 </ul>
 
@@ -147,7 +51,7 @@
 <div class="sb-promo">
 <input type="text" id="pcode" placeholder="Enter Promo Code" />
 <span class="btn" onclick="pcodecheck()">Apply</span>
-<p id="pinvalid" style="color: red; display: none;">Sorry, invalid promo code. View your App Inbox for promo codes.</p>
+<p id="pinvalid" style="color: red; display: none;">Sorry, not an applicable promocode.</p>
 </div>
 <br><br>
 <ul>
@@ -184,8 +88,7 @@ We usually reply emails within 12 hours.
 </div>
 
 
-
-
+</section>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
@@ -205,5 +108,6 @@ $(".bp-toggle").click(function () {
 });
 //# sourceURL=pen.js
     </script>
+
 </body>
 </html>

@@ -77,7 +77,13 @@ div {
 
 
               <div class="field">
-                <input type="text" class="form-control" name="hometown" id="hometown" placeholder="Enter hometown (e.g: Diamond Harbour)" required="" autocomplete="off">
+                <!--input type="text" class="form-control" name="hometown" id="hometown" placeholder="Enter hometown (e.g: Diamond Harbour)" required="" autocomplete="off"-->
+                <select class="form-control" name="hometown" id="hometown" required="" autocomplete="off">
+                  <option value="0" selected disabled>Your Hometwon</option>
+                  <option value="Diamond Harbour">Diamond Harbour</option>
+                  <option value="Sarisha">Sarisha</option>
+                  <option value="Karanjali">Karanjali</option>
+                </select>
               </div>
               <textarea name="address" class="form-control" id="address" placeholder="Delivery Address"
                 required=""></textarea>
