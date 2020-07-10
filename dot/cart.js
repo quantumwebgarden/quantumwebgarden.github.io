@@ -47,6 +47,31 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
 
+window.addEventListener('offline', toOff);
+    function toOff(){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<p>Check your Internet Connection</p>'
+        });
+
+      document.getElementById('nonet').style.display = "block";
+      document.getElementById('allnet').style.display = "none";
+      $('body').addClass('overlay');
+      
+    }
+window.addEventListener('online', toOn);
+    function toOn(){
+      Swal.fire({
+        icon: 'success',
+        title: 'Yay!',
+        text: 'Rule the way you want',
+        footer: '<p>Don\'t keep your hunger active. Order soon.</p>'
+        });
+      location.reload();
+    }
+
 $(function () {
   // calculate the values at the start
   calculatePrices();
@@ -478,7 +503,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 }
 
 function confirmpay() {
-if(dflag == 0){
+if(dflag == 0 && grandtotalall > 0){
     if(grandtotalall < 120 && uhome != "Karanjali"){
   Swal.fire({
   title: 'Ready to Pay?',
@@ -522,11 +547,11 @@ else {
 }
 }
 else{
-  Swal.fire(
-  'DOT',
-  'Remove all items marked as Out of Delivery Area to prooceed',
-  'error'
-);
+  Swal.fire({
+  title: 'DOT',
+  html: 'Check items in your cart. <u>Possible Error</u><br>1. No item in cart. <br>2. Cart include out of delivery items.',
+  icon: 'error'
+});
 }
 
 }
@@ -536,6 +561,9 @@ function codpay(){
   var timestamp = date.getTime();
   var ordid = new Date("12/31/2099").getTime() - timestamp;
   firebase.database().ref(u + "/order/" + ordid).update({did:finaldid,ordhome:uhome,paymode:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
+  for (var i = tmsts.length - 1; i >= 0; i--) {
+    firebase.database().ref(u + "/cart/" + tmsts[i]).update({typ:"temp"});
+    }
   document.getElementById("successshow").style.display = "block";
   document.getElementById("mainbody").style.display = "none";
   Swal.fire({
@@ -606,7 +634,7 @@ function payonline() {
 
 
     var options = {
-        "key": "rzp_live_YPo2RGGlsiggb4", // Enter the Key ID generated from the Dashboard
+        "key": "rzp_test_sHykl1RRfyGvFW", // rzp_test_sHykl1RRfyGvFW
         "amount": Number(grandtotalall)*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 means 50000 paise or ₹500.
         "currency": "INR",
         "name": "DOT : Delivery On Time",
@@ -646,12 +674,15 @@ function savetoDB(response) {
     payRef.child(ordid).set({
     payment_id : response.razorpay_payment_id
     })
+    for (var i = tmsts.length - 1; i >= 0; i--) {
+    firebase.database().ref(u + "/cart/" + tmsts[i]).update({typ:"temp"});
+    }
 
   document.getElementById("successshow").style.display = "block";
   document.getElementById("mainbody").style.display = "none";
   Swal.fire({
   title: 'DOT',
-  text: 'Your order has been placed successfully. ' + dmsg[dsts.indexOf(finaldst)],
+  html: 'Your order has been placed successfully. ' + dmsg[dsts.indexOf(finaldst)] + "<br/><u>Track delivery status from \'My orders\'.</u>",
   icon: 'success',
   showCancelButton: false,
   confirmButtonText: 'Back to Home',
