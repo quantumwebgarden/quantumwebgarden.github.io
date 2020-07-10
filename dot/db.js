@@ -99,9 +99,11 @@ function chkmulti() {
         mednxt();
         grcnxt();
         estnxt();
+        ordchk();
     }
     else if(fln == 2){
         singledtls(elid);
+        ordchk();
     }
     else if(fln == 3){
         
@@ -663,6 +665,23 @@ cntdt ++;
 
 }
 
+function ordchk(){
+var cntord = 0;
+var rootRef = firebase.database().ref(u + '/order');
+
+rootRef.on("child_added", snap => {
+
+var ordst = snap.child("orderstatus").val();
+if (ordst == "11" || ordst == "22") {
+  cntord ++;
+  document.getElementById("ordcntshow").innerHTML = cntord;
+}
+
+});
+
+}
+
+
 
 function otpchk(){
 
@@ -878,7 +897,7 @@ function viewrelated(x) {
 }
 
 function tocountorder() {
-  firebase.database().ref(u).child("order").on("value", function(snapshot) {
+  /*firebase.database().ref(u).child("order").on("value", function(snapshot) {
   console.log("There are "+snapshot.numChildren()+" messages");
-    })
+    })*/
 }

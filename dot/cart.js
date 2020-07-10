@@ -32,6 +32,8 @@ var discounttotal = 0;
 var flagpch = 0;
 var pcodefinal = "";
 var grandtotalall = 0;
+var finaldid = "";
+var finaldst = "";
 var firebaseConfig = {
     apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
     authDomain: "quantumdot20.firebaseapp.com",
@@ -475,74 +477,73 @@ function distance(lat1, lon1, lat2, lon2, unit) {
     }
 }
 
-function chkordertotal(){
-  if(dflag == 0){
-    if(grandtotalall < 120){
-    Swal.fire({
-  title: '<strong><i>Choose to Proceed</i></strong>',
+function confirmpay() {
+if(dflag == 0){
+    if(grandtotalall < 120 && uhome != "Karanjali"){
+  Swal.fire({
+  title: 'Ready to Pay?',
+  text: "Choose one of the options below",
   icon: 'info',
-  html:
-    'Note: Order amount of less than<b> ₹120</b>, ' +
-    'is eligible for Cash On Delivery',
-  showCloseButton: true,
   showCancelButton: true,
-  focusConfirm: false,
-  confirmButtonText:
-    '<b onclick="findDeliveryBoy(\'cod\',\'21\')"><i class="fa fa-money" aria-hidden="true"></i> Cash On Delivery</b>',
-  //confirmButtonAriaLabel: 'Thumbs up, great!',
-  cancelButtonText:
-    '<b onclick="findDeliveryBoy(\'online\',\'11\')"><i class="fa fa-credit-card" aria-hidden="true"></i> Pay Online</b>',
-  //cancelButtonAriaLabel: 'Thumbs down'
-})
-  }
-  else{
-    Swal.fire({
-  title: '<strong><i>Pay Online</i></strong>',
-  icon: 'info',
-  html:
-    'Note: Order amount of less than<b> ₹120</b>, ' +
-    'is eligible for Cash On Delivery',
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#dd3333',
+  confirmButtonText: 'Pay Online',
   showCloseButton: true,
-  showCancelButton: false,
-  focusConfirm: false,
-  confirmButtonText:
-    '<b onclick="findDeliveryBoy(\'online\',\'11\')"><i class="fa fa-credit-card" aria-hidden="true"></i> Pay Online</b>',
-  //confirmButtonAriaLabel: 'Thumbs up, great!',
-  
+  cancelButtonText: 'Cash On Delivery',
+  footer: '<a href="javascript:void(0)">Payments are secured and safe</a>'
+}).then((result) => {
+  if (result.value) {
+    console.log("Online");
+    payonline();
+    }
+  else if(result.dismiss === Swal.DismissReason.cancel){
+    console.log("COD");
+    codpay();
+  }
 })
+}
+else {
+  Swal.fire({
+  title: 'Ready to Pay?',
+  text: "Pay Online now",
+  icon: 'info',
+  showCancelButton: false,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#dd3333',
+  confirmButtonText: 'Pay Online',
+  showCloseButton: true,
+  footer: '<a href="javascript:void(0)">Payments are secured and safe</a>'
+}).then((result) => {
+  if (result.value) {
+    console.log("online");
+    payonline();
   }
-  }
-  else{
-    Swal.fire(
+})
+}
+}
+else{
+  Swal.fire(
   'DOT',
   'Remove all items marked as Out of Delivery Area to prooceed',
   'error'
 );
-  }
-  
 }
 
-function placeorder(astatus,bcode,did,dname,dst) {
-  if(bcode == "11"){
+}
+
+function codpay(){
   var date = new Date();
   var timestamp = date.getTime();
   var ordid = new Date("12/31/2099").getTime() - timestamp;
-  firebase.database().ref(u + "/order/" + ordid).update({did:did,ordhome:uhome,ordpay:astatus,orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});//First 1 for Payment Pending & 2nd 1 for not ready for delivery
-  window.open("https://deliveryontime.000webhostapp.com/rdot/rp/dp/jspay.php?checkout=automatic&ordid=" + ordid + "&uid=" + u + "&uname=" + uname + "&uphone=" + u + "&umail=" + uemail + "&amt=" + grandtotalall + "&uhome=" + uhome);
-  //location.search.split("=")[2]; to get at next page
-  }
-  else{
-  var date = new Date();
-  var timestamp = date.getTime();
-  var ordid = new Date("12/31/2099").getTime() - timestamp;
-  firebase.database().ref(u + "/order/" + ordid).update({did:did,ordhome:uhome,ordpay:astatus,orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
+  firebase.database().ref(u + "/order/" + ordid).update({did:finaldid,ordhome:uhome,paymode:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
   document.getElementById("successshow").style.display = "block";
   document.getElementById("mainbody").style.display = "none";
   Swal.fire({
   title: 'DOT',
-  text: 'Your order has been placed successfully. ' + dmsg[dsts.indexOf(dst)],
+  text: 'Your order has been placed successfully. ' + dmsg[dsts.indexOf(finaldst)],
   icon: 'success',
   showCancelButton: false,
+  confirmButtonText: 'Back to Home',
   allowEscapeKey: false,
   allowOutsideClick: false,
 }).then((result) => {
@@ -550,11 +551,7 @@ function placeorder(astatus,bcode,did,dname,dst) {
     window.open("index.html" + location.search);
   }
 })
-
-  
-  }
-  }
-
+}
 
 function backtohome() {
   var loc = "index.html" + location.search;
@@ -562,7 +559,13 @@ function backtohome() {
   window.open(loc);
 }
 
-function findDeliveryBoy(x,y){
+function findDeliveryBoy(){
+  Swal.fire({
+  position: 'top-end',
+  title: 'please wait...',
+  showConfirmButton: false,
+  timer: 500
+})
   var rootRef = firebase.database().ref("dboy");
 
     rootRef.on("child_added", snap => {
@@ -582,12 +585,15 @@ function findDeliveryBoy(x,y){
         )
     }
     else if(dstatus == "sit"){
-      
-       placeorder(x,y,did,dname,dstatus);
+      finaldid = did;
+      finaldst = dstatus;
+      confirmpay();
     }
     else if(dstatus == "road"){
-        console.log(dname);
-        placeorder(x,y,did,dname,dstatus);
+        //console.log(dname);
+      finaldid = did;
+      finaldst = dstatus;
+      confirmpay();
     }
     }
 
@@ -595,49 +601,66 @@ function findDeliveryBoy(x,y){
   });
 }
 
+function payonline() {
 
 
 
-
-
-
-
-        /*
-        
-        function chkchd(x) {
-            var rootRef = firebase.database().ref(x + '/cart');
-
-            rootRef.on("child_changed", snap => {
-
-            var id = snap.child("id").val();
-            var qnty = snap.child("qnty").val();
-            var ctid = snap.child("tmst").val();
-            var lmd = snap.child("typ").val();
-            var itype = nap.child("shptype").val();
-
-                if(lmd!="temp")
-                chkdd(x);
-            
-        });
-
+    var options = {
+        "key": "rzp_test_sHykl1RRfyGvFW", // Enter the Key ID generated from the Dashboard
+        "amount": Number(grandtotalall)*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 means 50000 paise or ₹500.
+        "currency": "INR",
+        "name": "DOT : Delivery On Time",
+        "description": "Home Delivery Services",
+        "image": "https://quantumwebgarden.github.io/dot/dotf.png",// Replace this with the order_id created using Orders API (https://razorpay.com/docs/api/orders).
+        "email": uemail,
+        "handler": function (response){
+            savetoDB(response);
+            //$('#myModal').modal();
+        },
+        "prefill": {
+            "name": uname,
+            "email": uemail,
+            "contact": uphone
+        },
+        "notes": {
+            "address": uhome
+        },
+        "theme": {
+            "color": "#9932CC"
         }
-        
-        function chkdd(y) {
-            document.getElementsByClassName('js-cd-cart')[0].getElementsByClassName('cd-cart__checkout')[0].getElementsByTagName('span')[0] = 0.00;
-            document.getElementsByClassName('js-cd-cart')[0].getElementsByClassName('cd-cart__count')[0].getElementsByTagName('li')[0] = 1;
-            document.getElementsByClassName('js-cd-cart')[0].getElementsByClassName('cd-cart__count')[0].getElementsByTagName('li')[0] = 2;            
-            price = 0;
-            quantity = 0;
-            cartCountItems[0].innerText = 0;
-            cartTotal.innerText = 0;
-             var x = document.querySelectorAll(".cd-cart__product");
-                var i;
-                for (i = 0; i < x.length; i++) {
-                x[i].remove();
-            }
-            ids = [];
-            qtys = [];
-            tmsts = [];
-            chkcart(y);
-        }
-        */
+    }
+    var propay = new Razorpay(options);
+    propay.open();
+}
+
+
+function savetoDB(response) {
+    console.log(response)
+    var bcode = "22";
+    var date = new Date();
+    var timestamp = date.getTime();
+    var ordid = new Date("12/31/2099").getTime() - timestamp;
+    firebase.database().ref(u + "/order/" + ordid).update({payment_id : response.razorpay_payment_id,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});
+
+    var payRef = firebase.database().ref('payments/' + u);
+    payRef.child(ordid).set({
+    payment_id : response.razorpay_payment_id
+    })
+
+  document.getElementById("successshow").style.display = "block";
+  document.getElementById("mainbody").style.display = "none";
+  Swal.fire({
+  title: 'DOT',
+  text: 'Your order has been placed successfully. ' + dmsg[dsts.indexOf(finaldst)],
+  icon: 'success',
+  showCancelButton: false,
+  confirmButtonText: 'Back to Home',
+  allowEscapeKey: false,
+  allowOutsideClick: false,
+}).then((result) => {
+  if (result.value) {
+    window.open("index.html" + location.search);
+  }
+})
+
+}

@@ -14,7 +14,7 @@
 <body translate="no" onload="loadtime()">
 	<section id="successshow" style="display: none;">
 	<div class="header">
-   Your order has been placed Successfully. <a href="javascript:void(0)" onclick="backtohome()"> Click here.</a>
+   Your order has been placed Successfully.
 </section>
 <section id="mainbody" style="display: none;">
 	<div class="header">
@@ -81,7 +81,8 @@ We usually reply emails within 12 hours.
 <div class="cart-footer cf">
 
 <!--button data-dropdown="#dropdown-standard">Try out!</button-->
-<span id="checkoutbtn" class="btn" onclick="chkordertotal()">Confirm Order</span>
+<span id="checkoutbtn" class="btn" onclick="findDeliveryBoy()">Pay Now</span>
+
 
 <span class="cont-shopping" onclick="backtohome()"><i class="fa fa-angle-left" aria-hidden="true"></i></i>back to  shopping</span>
 </div>
@@ -93,6 +94,8 @@ We usually reply emails within 12 hours.
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
 <script src="cart.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script id="rendered-js">
 $(".tax-edit").click(function () {
   $(this).toggleClass('te-open').parent;
