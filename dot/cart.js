@@ -606,7 +606,7 @@ function payonline() {
 
 
     var options = {
-        "key": "rzp_test_sHykl1RRfyGvFW", // Enter the Key ID generated from the Dashboard
+        "key": "rzp_live_YPo2RGGlsiggb4", // Enter the Key ID generated from the Dashboard
         "amount": Number(grandtotalall)*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 means 50000 paise or ₹500.
         "currency": "INR",
         "name": "DOT : Delivery On Time",
