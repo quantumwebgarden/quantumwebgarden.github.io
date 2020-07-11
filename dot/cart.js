@@ -639,10 +639,7 @@ function payupi() {
 
 }
 
-function testpay(){
-  window.location.replace('market://details?id=com.android.chrome')
-  //document.location = 'googlechrome://navigate?url=www.quantumwebgarden.github.io/dot/cart.html' + location.search;
-}
+
 
 function payonline() {
 
