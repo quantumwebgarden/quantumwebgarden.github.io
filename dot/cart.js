@@ -507,7 +507,7 @@ if(dflag == 0 && grandtotalall > 0){
     if(grandtotalall < 120 && uhome != "Karanjali"){
   Swal.fire({
   title: 'Ready to Pay?',
-  text: "Choose one of the options below",
+  text: "Choose one of the options below. Once accepted, you cannot revert back.",
   icon: 'info',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
@@ -519,7 +519,7 @@ if(dflag == 0 && grandtotalall > 0){
 }).then((result) => {
   if (result.value) {
     console.log("Online");
-    payonline();
+    payupi();
     }
   else if(result.dismiss === Swal.DismissReason.cancel){
     console.log("COD");
@@ -530,7 +530,7 @@ if(dflag == 0 && grandtotalall > 0){
 else {
   Swal.fire({
   title: 'Ready to Pay?',
-  text: "Pay Online now",
+  text: "Pay Online now. Once accepted, you cannot revert back.",
   icon: 'info',
   showCancelButton: false,
   confirmButtonColor: '#3085d6',
@@ -541,7 +541,7 @@ else {
 }).then((result) => {
   if (result.value) {
     console.log("online");
-    payonline();
+    payupi();
   }
 })
 }
@@ -560,7 +560,7 @@ function codpay(){
   var date = new Date();
   var timestamp = date.getTime();
   var ordid = new Date("12/31/2099").getTime() - timestamp;
-  firebase.database().ref(u + "/order/" + ordid).update({did:finaldid,ordhome:uhome,paymode:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
+  firebase.database().ref(u + "/order/" + ordid).update({dstatus:finaldst,did:finaldid,ordhome:uhome,paymode:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
   for (var i = tmsts.length - 1; i >= 0; i--) {
     firebase.database().ref(u + "/cart/" + tmsts[i]).update({typ:"temp"});
     }
@@ -629,6 +629,16 @@ function findDeliveryBoy(){
   });
 }
 
+function payupi() {
+  var bcode = "21";
+    var date = new Date();
+    var timestamp = date.getTime();
+    var ordid = new Date("12/31/2099").getTime() - timestamp;
+    firebase.database().ref(u + "/order/" + ordid).update({dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});
+  window.open("upipay.html" + location.search + "=" + ordid);
+
+}
+
 function payonline() {
 
 
@@ -637,6 +647,7 @@ function payonline() {
         "key": "rzp_test_sHykl1RRfyGvFW", // rzp_test_sHykl1RRfyGvFW
         "amount": Number(grandtotalall)*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 means 50000 paise or ₹500.
         "currency": "INR",
+        "method": "upi",
         "name": "DOT : Delivery On Time",
         "description": "Home Delivery Services",
         "image": "https://quantumwebgarden.github.io/dot/dotf.png",// Replace this with the order_id created using Orders API (https://razorpay.com/docs/api/orders).
@@ -695,3 +706,4 @@ function savetoDB(response) {
 })
 
 }
+
