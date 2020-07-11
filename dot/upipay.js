@@ -89,6 +89,10 @@ if(odid == ordid && ordstatus == "29"){
 
 }
 
+function backtohome() {
+  window.open("cart.html" + location.search.substring(0, location.search.lastIndexOf("=")));
+}
+
 
 
 
