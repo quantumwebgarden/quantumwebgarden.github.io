@@ -639,8 +639,9 @@ function payupi() {
 
 }
 
-function test2pay(){
-  document.location = 'googlechrome://navigate?url=www.quantumwebgarden.github.io/dot/cart.html' + location.search;
+function testpay(){
+  window.location.replace('market://details?id=com.android.chrome')
+  //document.location = 'googlechrome://navigate?url=www.quantumwebgarden.github.io/dot/cart.html' + location.search;
 }
 
 function payonline() {
