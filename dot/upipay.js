@@ -65,7 +65,9 @@ if (odid == ordid && ordstatus == "22") {
   }
 })
 }
-
+if(odid == ordid && ordstatus == "29"){
+	window.open("cart.html" + location.search.substring(0, location.search.lastIndexOf("=")));
+}
 });
 
 }
