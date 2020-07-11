@@ -12,13 +12,14 @@
 <script src="assets/js/jquery.sweet-dropdown.min.js"></script-->
 </head>
 <body translate="no" onload="loadtime()">
+	<main id="allnet">
 	<section id="successshow" style="display: none;">
 	<div class="header">
    Your order has been placed Successfully.
 </section>
 <section id="mainbody" style="display: none;">
 	<div class="header">
-  <h1>Confirm Order</h1>
+  <h1>Confirm Order & Pay</h1>
 </div>
 <div class="wrap">
 <header class="cart-header cf">
@@ -82,19 +83,24 @@ We usually reply emails within 12 hours.
 
 <!--button data-dropdown="#dropdown-standard">Try out!</button-->
 <span id="checkoutbtn" class="btn" onclick="findDeliveryBoy()">Pay Now</span>
-
-
-<span class="cont-shopping" onclick="backtohome()"><i class="fa fa-angle-left" aria-hidden="true"></i></i>back to  shopping</span>
+<span id="checkoutbtn" class="btn" onclick="test2pay()">Test 2 Pay</span>
+<a href="intent://stackoverflow.com/questions/29250152/what-is-the-intent-to-launch-any-website-link-in-google-chrome#Intent;scheme=http;package=com.android.chrome;end">Test Pay</span>
+<span class="cont-shopping" onclick="backtohome()"><i class="fa fa-angle-left" aria-hidden="true"></i>back to  shopping</span>
 </div>
 </div>
 
 
 </section>
+</main>
+<main id="nonet" style="display: none;">
+	No Network Found. Check Internet Connection.
+</main>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
 <script src="cart.js"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 
 <script id="rendered-js">
 $(".tax-edit").click(function () {
