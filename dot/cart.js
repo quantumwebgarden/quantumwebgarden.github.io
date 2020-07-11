@@ -560,7 +560,7 @@ function codpay(){
   var date = new Date();
   var timestamp = date.getTime();
   var ordid = new Date("12/31/2099").getTime() - timestamp;
-  firebase.database().ref(u + "/order/" + ordid).update({dstatus:finaldst,did:finaldid,ordhome:uhome,paymode:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
+  firebase.database().ref(u + "/order/" + ordid).update({cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,paymode:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
   for (var i = tmsts.length - 1; i >= 0; i--) {
     firebase.database().ref(u + "/cart/" + tmsts[i]).update({typ:"temp"});
     }
@@ -634,7 +634,7 @@ function payupi() {
     var date = new Date();
     var timestamp = date.getTime();
     var ordid = new Date("12/31/2099").getTime() - timestamp;
-    firebase.database().ref(u + "/order/" + ordid).update({dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});
+    firebase.database().ref(u + "/order/" + ordid).update({cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});
   window.open("upipay.html" + location.search + "=" + ordid);
 
 }

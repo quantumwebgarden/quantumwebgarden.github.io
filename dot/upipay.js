@@ -43,11 +43,12 @@ var odid = snap.child("ordid").val();
 var ordstatus = snap.child("orderstatus").val();
 var orditems = snap.child("orditems").val().split(",");
 var dstatus = snap.child("dstatus").val();
+var cartitems = snap.child("cartids").val().split(",");
 
 if (odid == ordid && ordstatus == "22") {
 
-	for (var i = orditems.length - 1; i >= 0; i--) {
-    firebase.database().ref(u + "/cart/" + orditems[i]).update({typ:"temp"});
+	for (var i = cartitems.length - 1; i >= 0; i--) {
+    firebase.database().ref(u + "/cart/" + cartitems[i]).update({typ:"temp"});
     }
 
 	Swal.fire({
