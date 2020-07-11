@@ -65,9 +65,26 @@ if (odid == ordid && ordstatus == "22") {
   }
 })
 }
+
 if(odid == ordid && ordstatus == "29"){
-	window.open("cart.html" + location.search.substring(0, location.search.lastIndexOf("=")));
+	Swal.fire({
+  title: 'DOT',
+  html: 'Sorry, Payment Failed.<br>If amount transacted from your account, please contact DOT Customer Care with ID: \'' + odid + '\'<br>Email: deliverontime2020@gmail.com<br>Call us at: +91 8768626927',
+  icon: 'error',
+  showCancelButton: false,
+  confirmButtonText: 'Back to Home',
+  allowEscapeKey: false,
+  allowOutsideClick: false,
+}).then((result) => {
+  if (result.value) {
+    window.open("index.html" + location.search.substring(0, location.search.lastIndexOf("=")));
+  }
+})
+
 }
+
+
+
 });
 
 }
