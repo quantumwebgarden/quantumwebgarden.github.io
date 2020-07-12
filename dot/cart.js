@@ -1,9 +1,15 @@
 var removedItem,
 sum = 0;
 var cnt = 0;
+var cnts = 0;
 var ids = [];
 var qtys = [];
 var tmsts = [];
+var shopnames = [];
+var shopaddrs = [];
+var shopids = [];
+var dapprox = [];
+var dtimeapprox = "";
 var lstid = "";
 var lstqty = "";
 var u = "";
@@ -15,6 +21,10 @@ var ulang = "";
 var uadrid = "";
 var upin = "";
 var uhome = "";
+var uadrdtl = "";
+var udphone = "";
+var udname = "";
+var udimg = "";
 var totalquantity = 0;
 var totalprice = 0;
 var qtarray = ["Now Loading...","The more you sweat in practice the less you bleed in battle - Michael Jordan","Work hard in silence, let your success be your noise - Frank Ocean","Slow network may create delay","Welcome To DOT: Delivery on Time"];
@@ -295,6 +305,7 @@ if(adrid == y){
     upin = adrpin;
     uadrid = adrid;
     uhome = adrhome;
+    uadrdtl = adrdtl;
     $("#alladdr").append("<option value=\"" + adrid+ "\" selected>" + adrdtl + "</option>");
 }
 else{
@@ -332,10 +343,11 @@ function chkcart(x) {
                 ids[cnt] = id;
             qtys[cnt] = qnty;
             tmsts[cnt] = ctid;
-            console.log(ids[cnt] + ", " + qtys[cnt] + ", " + tmsts[cnt]);
+            //console.log(ids[cnt] + ", " + qtys[cnt] + ", " + tmsts[cnt]);
             
             chkfoods(id,qnty,ctid,itype);
             cnt += 1;
+            
         }
         });
 
@@ -353,6 +365,8 @@ function chkcart(x) {
             var thumb = snap.child("thumb").val();
             var shoplat = snap.child("shoplat").val();
             var shoplang = snap.child("shoplang").val();
+            var shopaddr = snap.child("shopaddr").val();
+            var shopid = snap.child("shopid").val();
             var dpincode = snap.child("dpincode").val();
             var dtimechk = distance(shoplat,shoplang,ulat,ulang,"K");
               if(dtimechk > Number(delgb[ditems.indexOf(typ)]) || !dpincode.includes(upin)){dtimechk = 8}
@@ -363,6 +377,16 @@ function chkcart(x) {
             if(id == y){
             price = eachprice * z;
             pricetotal = pricetotal + price;
+            
+            if(shopids.includes(shopid)){}
+              else{
+            shopnames[cnts] = shopname;
+            shopaddrs[cnts] = shopaddr;
+            shopids[cnts] = shopid;
+            dapprox[cnts] = dtimechk;
+            cnts+= 1;
+              }
+            
 
             additem(m,price,eachprice,id,name,thumb,z,typ,shopname,dtime);
 
@@ -557,10 +581,14 @@ else{
 }
 
 function codpay(){
+  var dotp = Math.floor(1000 + Math.random() * 9000);
+  dtimeapprox = dtimes[(Math.max.apply(null, dapprox)).toFixed(0)];
   var date = new Date();
   var timestamp = date.getTime();
   var ordid = new Date("12/31/2099").getTime() - timestamp;
-  firebase.database().ref(u + "/order/" + ordid).update({cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,paymode:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
+  var dtnow = date.getDate() + "/" + Number(date.getMonth()+1) + "/" + date.getFullYear();
+  var timenow = date.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ":" + date.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  firebase.database().ref(u + "/order/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,paymode:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
   for (var i = tmsts.length - 1; i >= 0; i--) {
     firebase.database().ref(u + "/cart/" + tmsts[i]).update({typ:"temp"});
     }
@@ -603,9 +631,15 @@ function findDeliveryBoy(){
     var dstatus = snap.child("status").val();
     var dcount = snap.child("dcount").val();
     var dname = snap.child("name").val();
-    
+    var dphone = snap.child("phone").val();
+        
 
-    if(dhomes[darea] == uhome){      
+    if(dhomes[darea] == uhome){    
+
+      udname = dname;
+      udphone = dphone;
+      udimg = "blank.png";
+
     if(dstatus == "offline"){
        Swal.fire('DOT',
         'Delivery Boy is not Available right now. We generally supply orders from 8:00 AM to 8:00 PM',
@@ -630,11 +664,16 @@ function findDeliveryBoy(){
 }
 
 function payupi() {
-  var bcode = "21";
+  var dotp = Math.floor(1000 + Math.random() * 9000);
+  dtimeapprox = dtimes[(Math.max.apply(null, dapprox)).toFixed(0)];
+  console.log(dtimeapprox);
+  var bcode = "28";
     var date = new Date();
     var timestamp = date.getTime();
+    var dtnow = date.getDate() + "/" + Number(date.getMonth()+1) + "/" + date.getFullYear();
+    var timenow = date.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ":" + date.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     var ordid = new Date("12/31/2099").getTime() - timestamp;
-    firebase.database().ref(u + "/order/" + ordid).update({cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});
+    firebase.database().ref(u + "/order/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});
   window.open("upipay.html" + location.search + "=" + ordid);
 
 }
@@ -642,9 +681,6 @@ function payupi() {
 
 
 function payonline() {
-
-
-
 
     var options = {
         "key": "rzp_test_sHykl1RRfyGvFW", // rzp_test_sHykl1RRfyGvFW

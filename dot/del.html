@@ -1,15 +1,20 @@
 <html lang="en"><head><style>.dismissButton{background-color:#fff;border:1px solid #dadce0;color:#1a73e8;border-radius:4px;font-family:Roboto,sans-serif;font-size:14px;height:36px;cursor:pointer;padding:0 24px}.dismissButton:hover{background-color:rgba(66,133,244,0.04);border:1px solid #d2e3fc}.dismissButton:focus{background-color:rgba(66,133,244,0.12);border:1px solid #d2e3fc;outline:0}.dismissButton:hover:focus{background-color:rgba(66,133,244,0.16);border:1px solid #d2e2fd}.dismissButton:active{background-color:rgba(66,133,244,0.16);border:1px solid #d2e2fd;box-shadow:0 1px 2px 0 rgba(60,64,67,0.3),0 1px 3px 1px rgba(60,64,67,0.15)}.dismissButton:disabled{background-color:#fff;border:1px solid #f1f3f4;color:#3c4043}
 </style><link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans:400,500,700"><style>.gm-style-pbc{transition:opacity ease-in-out;background-color:rgba(0,0,0,0.45);text-align:center}.gm-style-pbt{font-size:22px;color:white;font-family:Roboto,Arial,sans-serif;position:relative;margin:0;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}
 </style><style>.gm-style img{max-width: none;}.gm-style {font: 400 11px Roboto, Arial, sans-serif; text-decoration: none;}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style><style id="stndz-style">div[class*="item-container-obpd"], a[data-redirect*="paid.outbrain.com"], a[onmousedown*="paid.outbrain.com"] { display: none !important; } a div[class*="item-container-ad"] { height: 0px !important; overflow: hidden !important; position: absolute !important; } div[data-item-syndicated="true"] { display: none !important; } .grv_is_sponsored { display: none !important; } .zergnet-widget-related { display: none !important; } </style>
-<meta charset="UTF-8">
-<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
-<meta name="apple-mobile-web-app-title" content="CodePen">
-<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
-<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
-<title>CodePen - Delivery Card Animation</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+<script src="del.js"></script>
 <style>
+
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
@@ -33,10 +38,9 @@ body {
   height: 879px;
   margin: 2rem auto 2rem;
   padding: 106px 24px;
-  background-color: #f8f8f8;
-  border-radius: 56px;
+  background-color: #525A75;
 }
-@media (max-width: 480px) {
+@media (max-width: 1080px) {
   .phone {
     width: 100%;
     height: 100vh;
@@ -482,12 +486,12 @@ body {
   transition: width 0.3s;
 }
 .card__face:hover .card__face__colored-side {
-  width: 80px;
+  width: 110px;
 }
 .card__face__price {
   margin-top: -3px;
   font-weight: normal;
-  font-size: 22px;
+  font-size: 17px;
   color: #555A5F;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
@@ -497,7 +501,7 @@ body {
 }
 .card__face__divider {
   position: absolute;
-  left: 80px;
+  left: 110px;
   top: 10px;
   width: 1px;
   height: calc(100% - 20px);
@@ -505,7 +509,7 @@ body {
 }
 .card__face__path {
   position: absolute;
-  left: 105px;
+  left: 125px;
   top: 36px;
   width: 2px;
   height: 23px;
@@ -528,7 +532,7 @@ body {
 }
 .card__face__from-to {
   position: absolute;
-  left: 120px;
+  left: 140px;
   top: 20px;
   width: 300px;
   color: #555A5F;
@@ -552,7 +556,7 @@ body {
   top: 105px;
   color: #9A9E9E;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 14px;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
 }
@@ -580,13 +584,13 @@ body {
   font-weight: bold;
 }
 .card__face__stats--req {
-  left: 100px;
+  left: 125px;
 }
 .card__face__stats--pledge {
-  left: 190px;
+  left: 220px;
 }
 .card__face__stats--weight {
-  left: 270px;
+  left: 310px;
 }
 .card__face__stats--weight p {
   text-transform: lowercase;
@@ -1050,45 +1054,48 @@ body {
 .card.req-active2 .card__counter {
   display: none;
 }
+#map{
+        height: 100% !important;
+      }
 </style>
 <script>
   window.console = window.console || function(t) {};
 </script>
 
 </head>
-<body translate="no">
+<body translate="no" onload="loadtime()">
+<main id="allnet">
 <div class="phone ng-scope" ng-app="delivcard">
 <div class="phone__screen">
 <div class="phone__scroll-cont">
-<div class="phone__content ng-scope" ng-controller="DelivCtrl">
+<div class="phone__content ng-scope" ng-controller="DelivCtrl" id="orderbody">
 
+<!--iframe src="maponly.html?lat=22.19001=88.23695" width="100%" height="100%"></iframe--> <!-- delivered.html cancelled.html error.html incomplete.html-->
+<!--
 
-
-<section ng-repeat="card in cards" class="card theme-purple" data-color="#BA68C8">
+<section ng-repeat="card in cards" class="card theme-green" data-color="#BA68C8">
 <div class="card__map">
-
-  <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyAfBvxXzy9qpdei7jOXXWyK4QGts2sjM-Y&center=22.208473,88.1842726&zoom=16&maptype=roadmap" allowfullscreen></iframe>
 
 </div>
 <section class="card__part card__part-1">
 <div class="card__part__inner">
 <header class="card__header">
 <div class="card__header__close-btn"></div>
-<span class="card__header__id ng-binding"># 2257</span>
-<span class="card__header__price ng-binding">$25</span>
+<span class="card__header__id ng-binding"># 123265457898</span>
+<span class="card__header__price ng-binding">₹1822</span>
 </header>
-<div class="card__stats" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/deliv-1.jpg');">
+<div class="card__stats" style="background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);">
 <div class="card__stats__item card__stats__item--req">
-<p class="card__stats__type">Requests</p>
-<span class="card__stats__value ng-binding">5</span>
+<p class="card__stats__type">Quantity</p>
+<span class="card__stats__value ng-binding">9</span>
 </div>
 <div class="card__stats__item card__stats__item--pledge">
-<p class="card__stats__type">Pledge</p>
-<span class="card__stats__value ng-binding">$150</span>
+<p class="card__stats__type">Pay Mode</p>
+<span class="card__stats__value ng-binding">COD</span>
 </div>
 <div class="card__stats__item card__stats__item--weight">
-<p class="card__stats__type">Weight</p>
-<span class="card__stats__value ng-binding">50 oz</span>
+<p class="card__stats__type">OTP</p>
+<span class="card__stats__value ng-binding">1597</span>
 </div>
 </div>
 </div>
@@ -1097,67 +1104,62 @@ body {
 <div class="card__part__side m--back">
 <div class="card__part__inner card__face">
 <div class="card__face__colored-side"></div>
-<h3 class="card__face__price ng-binding">$25</h3>
+<h3 class="card__face__price ng-binding">₹8407.00</h3>
 <div class="card__face__divider"></div>
 <div class="card__face__path"></div>
 <div class="card__face__from-to">
-<p class="ng-binding">W 90th St, New York, NY 10025</p>
-<p class="ng-binding">46th Ave, Woodside, NY 11101</p>
+<p class="ng-binding">Station Bazar, Diamond Harbour</p>
+<p class="ng-binding">Kapat Hat, Near SBI Parulia Br.</p>
 </div>
 <div class="card__face__deliv-date ng-binding">
-Today
+99/99/9999
 <p class="ng-binding">06:30 pm</p>
 </div>
 <div class="card__face__stats card__face__stats--req">
-Requests
-<p class="ng-binding">5</p>
+Quantity
+<p class="ng-binding">9</p>
 </div>
 <div class="card__face__stats card__face__stats--pledge">
-Pledge
-<p class="ng-binding">$150</p>
+OTP
+<p class="ng-binding">1897</p>
 </div>
 <div class="card__face__stats card__face__stats--weight">
-Weight
+View Details
 <p class="card__face__stats__weight">
- <span ng-show="card.weight < 60">Light</span>
-<span ng-show="card.weight > 60" class="ng-hide">Heavy</span>
+ <p class="ng-binding"><i class="fa fa-arrow-right" aria-hidden="true"></i></p>
 </p>
 </div>
 </div>
 </div>
 <div class="card__part__side m--front">
 <div class="card__sender">
-<h4 class="card__sender__heading">Sender</h4>
+<h4 class="card__sender__heading">Delivery Person</h4>
 <div class="card__sender__img-cont">
 <div class="card__sender__img-cont__inner">
-<img ng-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/deliv-sender.jpg" class="card__sender__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/deliv-sender.jpg">
+<img class="card__sender__img" src="https://quantumwebgarden.github.io/dot/blank.png">
 </div>
 </div>
 <div class="card__sender__name-and-rating">
-<p class="card__sender__name ng-binding">Edward Norton</p>
-<p class="card__sender__rating card__sender__rating-5">
-<span class="card__sender__rating__star">★</span>
-<span class="card__sender__rating__star">★</span>
-<span class="card__sender__rating__star">★</span>
-<span class="card__sender__rating__star">★</span>
-<span class="card__sender__rating__star">★</span>
-<span class="card__sender__rating__count ng-binding">(26)</span>
+<p class="card__sender__name ng-binding">Delivery Boy Name</p>
+<p class="card__sender__rating card__sender__rating-5"> Call: 
+<span class="card__sender__rating__star" style="color: green!important;"><i class="fa fa-phone" aria-hidden="true"></i></span>
+<span class="card__sender__rating__count ng-binding">(<a href="tel:+91 8768626927">8768626927</a>)</span>
 </p>
 <p class="card__sender__address ng-binding">
-W 90th St, New York, NY 10025
+4.7 <b style="color: chocolate!important;">★</b><i>(29)</i>
 </p>
 </div>
 <div class="card__receiver">
 <div class="card__receiver__inner">
 <div class="card__sender__img-cont">
 <div class="card__sender__img-cont__inner">
-<img ng-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/deliv-sender.jpg" class="card__sender__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/deliv-sender.jpg">
+<img class="card__sender__img" src="https://quantumwebgarden.github.io/dot/dotf.png">
 </div>
 </div>
 <div class="card__sender__name-and-rating">
-<p class="card__sender__name ng-binding">Edward Norton</p>
+<p class="card__sender__name ng-binding">user Name</p>
 <p class="card__sender__address ng-binding">
-46th Ave, Woodside, NY 11101
+User Address
 </p>
 </div>
 </div>
@@ -1168,13 +1170,13 @@ W 90th St, New York, NY 10025
 <div class="card__from-to__inner">
 <div class="card__text card__text--left">
 <p class="card__text__heading">From</p>
-<p class="card__text__middle ng-binding">W 90th St</p>
-<p class="card__text__bottom ng-binding">New York, NY 10025</p>
+<p class="card__text__middle ng-binding">Shop Name</p>
+<p class="card__text__bottom ng-binding">Shop Location</p>
 </div>
 <div class="card__text card__text--right">
 <p class="card__text__heading">To</p>
-<p class="card__text__middle ng-binding">46th Ave</p>
-<p class="card__text__bottom ng-binding">Woodside, NY 11101</p>
+<p class="card__text__middle ng-binding">User Name</p>
+<p class="card__text__bottom ng-binding">User Address</p>
 </div>
 </div>
 </div>
@@ -1184,25 +1186,25 @@ W 90th St, New York, NY 10025
 <div class="card__timings">
 <div class="card__timings__inner">
 <div class="card__text card__text--left">
-<p class="card__text__heading">Delivery Date</p>
+<p class="card__text__heading">Delivery Time</p>
 <p class="card__text__middle ng-binding">06:30 pm</p>
-<p class="card__text__bottom ng-binding">06:30 pm</p>
+<p class="card__text__bottom ng-binding">99/99/9999</p>
 </div>
 <div class="card__text card__text--right">
-<p class="card__text__heading">Request Deadline</p>
-<p class="card__text__middle ng-binding">24 minutes</p>
+<p class="card__text__heading">Approx Delivery Time</p>
+<p class="card__text__middle ng-binding">37 minutes</p>
 </div>
 </div>
 </div>
-<div class="card__timer">60 min 00 sec</div>
+<div class="card__timer">37 Minutes 22 Seconds</div>
 <section class="card__part card__part-4">
 <div class="card__part__side m--back"></div>
 <div class="card__part__side m--front">
 <button type="button" class="card__request-btn">
-<span class="card__request-btn__text-1">Request</span>
-<span class="card__request-btn__text-2" onclick="alert('done2')">Start</span>
+<span class="card__request-btn__text-1">Track</span>
+<span class="card__request-btn__text-2">Close</span>
 </button>
-<p class="card__counter ng-binding">5 people have sent a request</p>
+<p class="card__counter ng-binding">Automatically reloads location in every 2 minutes</p>
 </div>
 </section>
 </div>
@@ -1215,41 +1217,6 @@ W 90th St, New York, NY 10025
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-// Initialize and add the map
-function initMap() {
-  // The location of Uluru
-  var uluru = {lat: 25.344, lng: 88.036};
-  // The map, centered at Uluru
-  var map = new google.maps.Map(
-      document.getElementById('mapo'), {zoom: 12, center: uluru});
-  // The marker, positioned at Uluru
-  var marker = new google.maps.Marker({position: uluru, map: map});
-}
-    </script>
-    <!--Load the API from the specified URL
-    * The async attribute allows the browser to render the page while the API loads
-    * The key parameter will contain your own API key (which is not needed for this tutorial)
-    * The callback parameter executes the initMap() function
-    -->
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfBvxXzy9qpdei7jOXXWyK4QGts2sjM-Y&callback=initMap">
-    </script>
 
 
 
@@ -1259,29 +1226,27 @@ function initMap() {
 
 <section ng-repeat="card in cards" class="card theme-purple" data-color="#BA68C8">
 <div class="card__map">
-<div class="card__map__inner" style="overflow: hidden;" id="mapo">
-  
-</div>
+<iframe src="error.html" width="100%" height="100%"></iframe>
 </div>
 <section class="card__part card__part-1">
 <div class="card__part__inner">
 <header class="card__header">
 <div class="card__header__close-btn"></div>
-<span class="card__header__id ng-binding"># 2289 5457</span>
-<span class="card__header__price ng-binding">$25</span>
+<span class="card__header__id ng-binding"># 123265457898</span>
+<span class="card__header__price ng-binding">₹1822</span>
 </header>
-<div class="card__stats" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/deliv-1.jpg');">
+<div class="card__stats" style="background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);">
 <div class="card__stats__item card__stats__item--req">
-<p class="card__stats__type">Requests</p>
-<span class="card__stats__value ng-binding">5</span>
+<p class="card__stats__type">Quantity</p>
+<span class="card__stats__value ng-binding">9</span>
 </div>
 <div class="card__stats__item card__stats__item--pledge">
-<p class="card__stats__type">Pledge</p>
-<span class="card__stats__value ng-binding">$150</span>
+<p class="card__stats__type">Pay Mode</p>
+<span class="card__stats__value ng-binding">COD</span>
 </div>
 <div class="card__stats__item card__stats__item--weight">
-<p class="card__stats__type">Weight</p>
-<span class="card__stats__value ng-binding">50 oz</span>
+<p class="card__stats__type">OTP</p>
+<span class="card__stats__value ng-binding">1597</span>
 </div>
 </div>
 </div>
@@ -1290,67 +1255,63 @@ function initMap() {
 <div class="card__part__side m--back">
 <div class="card__part__inner card__face">
 <div class="card__face__colored-side"></div>
-<h3 class="card__face__price ng-binding">$25</h3>
+<h3 class="card__face__price ng-binding">₹8407.00</h3>
 <div class="card__face__divider"></div>
 <div class="card__face__path"></div>
 <div class="card__face__from-to">
-<p class="ng-binding">W 90th St, New York, NY 10025</p>
-<p class="ng-binding">46th Ave, Woodside, NY 11101</p>
+<p class="ng-binding">Station Bazar, Diamond Harbour</p>
+<p class="ng-binding">Kapat Hat, Near SBI Parulia Br.</p>
 </div>
 <div class="card__face__deliv-date ng-binding">
-Today
+99/99/9999
 <p class="ng-binding">06:30 pm</p>
 </div>
 <div class="card__face__stats card__face__stats--req">
-Requests
-<p class="ng-binding">5</p>
+Quantity
+<p class="ng-binding">9</p>
 </div>
 <div class="card__face__stats card__face__stats--pledge">
-Pledge
-<p class="ng-binding">$150</p>
+OTP
+<p class="ng-binding">1897</p>
 </div>
 <div class="card__face__stats card__face__stats--weight">
-Weight
+View Details
 <p class="card__face__stats__weight">
- <span ng-show="card.weight < 60">Light</span>
-<span ng-show="card.weight > 60" class="ng-hide">Heavy</span>
+ <p class="ng-binding"><i class="fa fa-arrow-right" aria-hidden="true"></i>
 </p>
 </div>
 </div>
 </div>
 <div class="card__part__side m--front">
 <div class="card__sender">
-<h4 class="card__sender__heading">Sender</h4>
+<h4 class="card__sender__heading">Delivery Person</h4>
 <div class="card__sender__img-cont">
 <div class="card__sender__img-cont__inner">
-<img ng-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/deliv-sender.jpg" class="card__sender__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/deliv-sender.jpg">
+<img class="card__sender__img" src="https://quantumwebgarden.github.io/dot/blank.png">
 </div>
 </div>
 <div class="card__sender__name-and-rating">
-<p class="card__sender__name ng-binding">Edward Norton</p>
-<p class="card__sender__rating card__sender__rating-5">
-<span class="card__sender__rating__star">★</span>
-<span class="card__sender__rating__star">★</span>
-<span class="card__sender__rating__star">★</span>
-<span class="card__sender__rating__star">★</span>
-<span class="card__sender__rating__star">★</span>
+<p class="card__sender__name ng-binding">Delivery Boy Name</p>
+<p class="card__sender__rating card__sender__rating-5"> 3.4
+<span class="card__sender__rating__star" style="color: chocolate!important;">★</span>
+
 <span class="card__sender__rating__count ng-binding">(26)</span>
+<span class="card__sender__rating__count ng-binding" style="color: blue!important; font-weight: bold;"><i class="fa fa-phone" aria-hidden="true"></i> [<a href="tel:+91 8768626927">8768626927</a>]</span>
 </p>
-<p class="card__sender__address ng-binding">
-W 90th St, New York, NY 10025
+<p>3.4 <span class="card__sender__rating__star" style="color: chocolate!important;">★</span><span class="card__sender__rating__count ng-binding">(26)</span>
 </p>
 </div>
 <div class="card__receiver">
 <div class="card__receiver__inner">
 <div class="card__sender__img-cont">
 <div class="card__sender__img-cont__inner">
-<img ng-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/deliv-sender.jpg" class="card__sender__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/deliv-sender.jpg">
+<img class="card__sender__img" src="https://quantumwebgarden.github.io/dot/dotf.png">
 </div>
 </div>
 <div class="card__sender__name-and-rating">
-<p class="card__sender__name ng-binding">Edward Norton</p>
+<p class="card__sender__name ng-binding">user Name</p>
 <p class="card__sender__address ng-binding">
-46th Ave, Woodside, NY 11101
+User Address
 </p>
 </div>
 </div>
@@ -1361,13 +1322,13 @@ W 90th St, New York, NY 10025
 <div class="card__from-to__inner">
 <div class="card__text card__text--left">
 <p class="card__text__heading">From</p>
-<p class="card__text__middle ng-binding">W 90th St</p>
-<p class="card__text__bottom ng-binding">New York, NY 10025</p>
+<p class="card__text__middle ng-binding">Shop Name</p>
+<p class="card__text__bottom ng-binding">Shop Location</p>
 </div>
 <div class="card__text card__text--right">
 <p class="card__text__heading">To</p>
-<p class="card__text__middle ng-binding">46th Ave</p>
-<p class="card__text__bottom ng-binding">Woodside, NY 11101</p>
+<p class="card__text__middle ng-binding">User Name</p>
+<p class="card__text__bottom ng-binding">User Address</p>
 </div>
 </div>
 </div>
@@ -1377,25 +1338,25 @@ W 90th St, New York, NY 10025
 <div class="card__timings">
 <div class="card__timings__inner">
 <div class="card__text card__text--left">
-<p class="card__text__heading">Delivery Date</p>
+<p class="card__text__heading">Delivery Time</p>
 <p class="card__text__middle ng-binding">06:30 pm</p>
-<p class="card__text__bottom ng-binding">06:30 pm</p>
+<p class="card__text__bottom ng-binding">99/99/9999</p>
 </div>
 <div class="card__text card__text--right">
-<p class="card__text__heading">Request Deadline</p>
-<p class="card__text__middle ng-binding">24 minutes</p>
+<p class="card__text__heading">Approx Delivery Time</p>
+<p class="card__text__middle ng-binding">37 minutes</p>
 </div>
 </div>
 </div>
-<div class="card__timer">60 min 00 sec</div>
+<div class="card__timer">37 Minutes 22 Seconds</div>
 <section class="card__part card__part-4">
 <div class="card__part__side m--back"></div>
 <div class="card__part__side m--front">
 <button type="button" class="card__request-btn">
-<span class="card__request-btn__text-1">Request</span>
-<span class="card__request-btn__text-2" onclick="alert('done')">Start</span>
+<span class="card__request-btn__text-1">Track</span>
+<span class="card__request-btn__text-2">Close</span>
 </button>
-<p class="card__counter ng-binding">5 people have sent a request</p>
+<p class="card__counter ng-binding">Automatically reloads location in every 2 minutes</p>
 </div>
 </section>
 </div>
@@ -1404,12 +1365,7 @@ W 90th St, New York, NY 10025
 </section>
 </section>
 
-
-
-
-
-
-
+-->
 
 
 
@@ -1423,10 +1379,12 @@ W 90th St, New York, NY 10025
 </div>
 </div>
 </div>
-<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
 
+
+</main>
+<main id="nonet" style="display: none;">
+  No Network Found. Please Check Internet Connection.
+</main>
 <script id="rendered-js">
 'use strict';
 
@@ -1443,6 +1401,7 @@ $(document).ready(function () {
   var $scrollCont = $(".phone__scroll-cont");
 
   function initMap($card) {
+
   };
 
   initMap($(".card"));
@@ -1507,7 +1466,7 @@ $(document).ready(function () {
 
     $card.addClass("req-active1 map-active");
 
-    initMap($card);
+    //initMap();
 
     setTimeout(function () {
       $card.addClass("req-active2");
