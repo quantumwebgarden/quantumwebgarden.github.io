@@ -1162,16 +1162,16 @@ h1 {
 }
 
 
-.dtf8:hover{
+.dtf8,.dtf9:hover{
   background-color: rgba(214, 133, 133,0.2) !important;
 }
-.dtf8:active{
+.dtf8,.dtf9:active{
   background-color: rgba(214, 133, 133,0.2) !important;
 }
-.dtsng8{
+.dtsng8,.dtsng9{
   color: red!important;
 }
-.dsb8{
+.dsb8,.dsb9{
   pointer-events: none;
   opacity: 0.7;
 }
@@ -1346,4 +1346,20 @@ h1 {
 }
 .nonvw{
   display: none!important;
+}
+
+.online{
+  height: 8px;
+  width: 8px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.offline{
+  height: 8px;
+  width: 8px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
 }

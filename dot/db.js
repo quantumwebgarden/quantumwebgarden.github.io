@@ -8,13 +8,15 @@ var upin = 743331;
 var otplst = 0;
 var prmlst = "";
 var locst = 0;// 0 for Current , 1 for Saved Location
+var shopoffline = [];
+var cntsh = 0;
 getuid();
 
 console.log(u);
 console.log(elid);
 var t = "22.1910091";
 var g = "88.1904741";
-var dtimes = ["5 Minutes","10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","45 Minutes","1 Hour","Out of Delivery Area"];
+var dtimes = ["5 Minutes","10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","45 Minutes","1 Hour","Out of Delivery Area","Shop Closed"];
 var ditems = ["foods","medicine","grocery","essentials"];
 var delgb = ["6","7","5","7"];
 var dshorts = ["fds","mdc","grc","est"];
@@ -58,7 +60,6 @@ function fldtls() {/*
     cnt = 0;
     $("#table_body").empty();
     */
-    
     slctupd("ALL","price");
     }        
 
@@ -302,9 +303,14 @@ var negopt = snap.child("negopt").val();
 var optcnt = posopt + neuopt + negopt;
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
+var shopstatus = snap.child("shopstatus").val();
+if(shopstatus == "offline"){
+  shopoffline[cntsh] = id;
+  cntsh++;
+} 
 
 if (x == "ALL") {
-$("#fdsshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + '<br><i>Usually prepare foods within ' + processtime + ' minutes</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#fdsshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Usually prepare foods within ' + processtime + ' minutes</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
 
 });
@@ -328,9 +334,14 @@ var negopt = snap.child("negopt").val();
 var optcnt = posopt + neuopt + negopt;
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
+var shopstatus = snap.child("shopstatus").val();
+if(shopstatus == "offline"){
+  shopoffline[cntsh] = id;
+  cntsh++;
+} 
 
 if (x == "ALL") {
-$("#mdcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + '<br><i>' + processtime + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#mdcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>' + processtime + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
 
 });
@@ -355,9 +366,14 @@ var negopt = snap.child("negopt").val();
 var optcnt = posopt + neuopt + negopt;
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
+var shopstatus = snap.child("shopstatus").val();
+if(shopstatus == "offline"){
+  shopoffline[cntsh] = id;
+  cntsh++;
+} 
 
 if (x == "ALL") {
-$("#grcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + '<br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#grcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
 
 });
@@ -382,9 +398,14 @@ var negopt = snap.child("negopt").val();
 var optcnt = posopt + neuopt + negopt;
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
+var shopstatus = snap.child("shopstatus").val();
+if(shopstatus == "offline"){
+  shopoffline[cntsh] = id;
+  cntsh++;
+} 
 
 if (x == "ALL") {
-$("#estshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + '<br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#estshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
 
 });
@@ -406,9 +427,11 @@ var shopname = snap.child("shopname").val();
 var shopaddr = snap.child("shopaddr").val();
 var shoplat = snap.child("shoplat").val();
 var shoplang = snap.child("shoplang").val();
+var shopstatus = snap.child("shopstatus").val();
 var dpincode = snap.child("dpincode").val();
 var dtimechk = distance(shoplat,shoplang,t,g,"K");
 if(dtimechk > Number(delgb[ditems.indexOf("foods")]) || !dpincode.includes(upin)){dtimechk = 8}
+if(shopstatus == "offline"){dtimechk = 9}
 var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
 var priceshp = snap.child("priceshp").val();
@@ -455,9 +478,11 @@ var shopname = snap.child("shopname").val();
 var shopaddr = snap.child("shopaddr").val();
 var shoplat = snap.child("shoplat").val();
 var shoplang = snap.child("shoplang").val();
+var shopstatus = snap.child("shopstatus").val();
 var dpincode = snap.child("dpincode").val();
 var dtimechk = distance(shoplat,shoplang,t,g,"K");
 if(dtimechk > Number(delgb[ditems.indexOf("foods")]) || !dpincode.includes(upin)){dtimechk = 8}
+if(shopstatus == "offline"){dtimechk = 9}
 var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
 var priceshp = snap.child("priceshp").val();
@@ -502,9 +527,11 @@ var shopname = snap.child("shopname").val();
 var shopaddr = snap.child("shopaddr").val();
 var shoplat = snap.child("shoplat").val();
 var shoplang = snap.child("shoplang").val();
+var shopstatus = snap.child("shopstatus").val();
 var dpincode = snap.child("dpincode").val();
 var dtimechk = distance(shoplat,shoplang,t,g,"K");
 if(dtimechk > Number(delgb[ditems.indexOf("foods")]) || !dpincode.includes(upin)){dtimechk = 8}
+if(shopstatus == "offline"){dtimechk = 9}
 var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
 var priceshp = snap.child("priceshp").val();
@@ -550,9 +577,11 @@ var shopname = snap.child("shopname").val();
 var shopaddr = snap.child("shopaddr").val();
 var shoplat = snap.child("shoplat").val();
 var shoplang = snap.child("shoplang").val();
+var shopstatus = snap.child("shopstatus").val();
 var dpincode = snap.child("dpincode").val();
 var dtimechk = distance(shoplat,shoplang,t,g,"K");
 if(dtimechk > Number(delgb[ditems.indexOf("foods")]) || !dpincode.includes(upin)){dtimechk = 8}
+if(shopstatus == "offline"){dtimechk = 9}
 var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
 var priceshp = snap.child("priceshp").val();
@@ -607,9 +636,11 @@ var shopname = snap.child("shopname").val();
 var shopaddr = snap.child("shopaddr").val();
 var shoplat = snap.child("shoplat").val();
 var shoplang = snap.child("shoplang").val();
+var shopstatus = snap.child("shopstatus").val();
 var dpincode = snap.child("dpincode").val();
 var dtimechk = distance(shoplat,shoplang,t,g,"K");
 if(dtimechk > Number(delgb[ditems.indexOf("foods")]) || !dpincode.includes(upin)){dtimechk = 8}
+if(shopstatus == "offline"){dtimechk = 9}
 var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
 var priceshp = snap.child("priceshp").val();
