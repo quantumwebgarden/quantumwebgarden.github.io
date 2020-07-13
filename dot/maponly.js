@@ -1,28 +1,36 @@
 
 var latf = "";
 var langf = "";
+var orderID = "";
+var u = "";
+var firebaseConfig = {
+    apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
+    authDomain: "quantumdot20.firebaseapp.com",
+    databaseURL: "https://quantumdot20.firebaseio.com",
+    projectId: "quantumdot20",
+    storageBucket: "quantumdot20.appspot.com",
+    messagingSenderId: "1011845585600",
+    appId: "1:1011845585600:web:cdd2e4e8ee38046b262b25",
+    measurementId: "G-Y98ZR7S8EQ"
+  };
+  firebase.initializeApp(firebaseConfig);
 
 
-function getLocation() {
+      function getLocation() {
         latf = location.search.substring(1).split("=")[1];
         langf = location.search.substring(1).split("=")[2];
+        orderID = location.search.substring(1).split("=")[3];
+        u = location.search.substring(1).split("=")[4];
         initMap();
-        }      
-
-
+      }      
 
       (function(exports) {
         "use strict";
 
-        // In this example, we center the map, and add a marker, using a LatLng object
-        // literal instead of a google.maps.LatLng object. LatLng object literals are
-        // a convenient way to add a LatLng coordinate and, in most cases, can be used
-        // in place of a google.maps.LatLng object.
-
         function initMap() {
           
           var mapOptions = {
-            zoom: 8,
+            zoom: 14,
             center: {
               lat: Number(latf),
               lng: Number(langf)
@@ -33,19 +41,14 @@ function getLocation() {
             mapOptions
           );
           var marker = new google.maps.Marker({
-            // The below line is equivalent to writing:
-            // position: new google.maps.LatLng(-34.397, 150.644)
+            
             position: {
               lat: Number(latf),
               lng: Number(langf)
             },
             icon: "https://quantumwebgarden.github.io/dot/dotfico.png",
             map: exports.map
-          }); // You can use a LatLng literal in place of a google.maps.LatLng object when
-          // creating the Marker object. Once the Marker object is instantiated, its
-          // position will be available as a google.maps.LatLng object. In this case,
-          // we retrieve the marker's position using the
-          // google.maps.LatLng.getPosition() method.
+          });
 
           var infowindow = new google.maps.InfoWindow({
             content: "<p>Marker Location:" + marker.getPosition() + "</p>"
@@ -53,6 +56,21 @@ function getLocation() {
           google.maps.event.addListener(marker, "click", function() {
             infowindow.open(exports.map, marker);
           });
+
+          var rootRef = firebase.database().ref(u + '/order');
+
+          rootRef.on("child_changed", snap => {
+
+          var id = snap.child("ordid").val();
+          var lastlat = snap.child("lastlat").val();
+          var lastlang = snap.child("lastlang").val();
+
+          if(id == orderID){
+            latf = Number(lastlat);
+            langf = Number(lastlang);
+            initMap();
+          }
+        });
         }
 
         exports.initMap = initMap;
