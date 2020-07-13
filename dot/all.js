@@ -178,7 +178,7 @@ function sh_orders(){
 function sh_orders_show(){
     //tocountorder();
     $(".page-wrapper").removeClass("toggled");
-    window.open("delivery.html");
+    window.open("del.html" + location.search);
 }
 
 function showcart(){
