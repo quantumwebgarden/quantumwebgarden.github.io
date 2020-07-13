@@ -588,7 +588,7 @@ function codpay(){
   var ordid = new Date("12/31/2099").getTime() - timestamp;
   var dtnow = date.getDate() + "/" + Number(date.getMonth()+1) + "/" + date.getFullYear();
   var timenow = date.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ":" + date.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  firebase.database().ref(u + "/order/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,paymode:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
+  firebase.database().ref(u + "/order/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
   for (var i = tmsts.length - 1; i >= 0; i--) {
     firebase.database().ref(u + "/cart/" + tmsts[i]).update({typ:"temp"});
     }
