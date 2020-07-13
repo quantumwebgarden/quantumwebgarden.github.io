@@ -1,3 +1,5 @@
+window.androidObj = function AndroidClass(){};
+
 window.addEventListener('offline', toOff);
     function toOff(){
       Swal.fire({
@@ -427,4 +429,8 @@ function aboutshow(){
   buttons: false,
   timer: 2500,
 });
+}
+
+function sharefriends(x){
+    window.androidObj.textToAndroid(x);
 }

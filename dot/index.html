@@ -156,6 +156,12 @@
           <li class="header-menu">
             <span>Others</span>
           </li>
+          <li>
+            <a href="javascript:void(0)" onclick="sharefriends('share')">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+              <span>Share with friends</span>
+            </a>
+          </li>
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-shopping-cart"></i>
@@ -400,12 +406,12 @@
 <input type="radio" id="tab4" name="tab-control">
 <ul>
 <li title="Food" onclick="showhide('foods')"><label for="tab1" role="button"><i class="fas fa-hamburger"></i><br>&nbsp;&nbsp;<span>Food</span></label></li>
-<li title="Medicine" onclick="showhide('medicine')"><label for="tab2" role="button"><i class="fa fa-medkit" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Medicine</span></label></li>
+<li title="Medicine" onclick="showhide('medicine')" style="display: none;"><label for="tab2" role="button"><i class="fa fa-medkit" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Medicine</span></label></li>
 <li title="Grocery" onclick="showhide('grocery')"><label for="tab3" role="button"><i class="fa fa-shopping-bag" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Grocery</span></label></li>
-<li title="Essentials" onclick="showhide('essentials')"><label for="tab4" role="button"><i class="fa fa-shopping-basket" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Essentials</span></label></li>
+<li title="Essentials" onclick="showhide('essentials')"><label for="tab4" role="button"><i class="fa fa-shopping-basket" aria-hidden="true"></i><br>&nbsp;&nbsp;<span>Others</span></label></li>
 
 </ul>
-<div class="slider"><div class="indicator"></div></div>
+<div class="slider"><div class="indicator" style="display: none;"></div></div>
 <div class="content">
 </div>
 </div>
