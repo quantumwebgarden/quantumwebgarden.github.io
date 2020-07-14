@@ -932,3 +932,16 @@ function tocountorder() {
   console.log("There are "+snapshot.numChildren()+" messages");
     })*/
 }
+
+function openVideo(){
+  //<iframe width="560" height="315" src="https://www.youtube.com/embed/glwEulk0oxI?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  Swal.fire({
+  title: '',
+  background: 'rgba(0,0,123,0.4)',
+  backdrop: 'rgba(0,0,123,0.4)',
+  html:'<iframe width="100%" height="315" src="https://www.youtube.com/embed/glwEulk0oxI?controls=0&rel=0&autoplay=1&loop=1&playlist=glwEulk0oxI" frameborder="0"></iframe>',
+  showCancelButton: false,
+  showConfirmButton: false,
+  focusConfirm: false
+})
+}
