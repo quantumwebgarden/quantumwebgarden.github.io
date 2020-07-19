@@ -49,8 +49,6 @@ var cartitems = snap.child("cartids").val().split(",");
 
 if (odid == ordid && ordstatus == "22") {
 
-  sendsms("order" + ordid);
-
 	for (var i = cartitems.length - 1; i >= 0; i--) {
     firebase.database().ref(u + "/cart/" + cartitems[i]).update({typ:"temp"});
     }
@@ -68,6 +66,9 @@ if (odid == ordid && ordstatus == "22") {
     window.open("index.html" + location.search.substring(0, location.search.lastIndexOf("=")));
   }
 })
+
+sendsms("order" + ordid);
+
 }
 
 if(odid == ordid && ordstatus == "29"){
