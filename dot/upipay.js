@@ -1,3 +1,5 @@
+window.androidObj = function AndroidClass(){};
+
 var dhomes = ["","Diamond Harbour","Sarisha","Karanjali"];
 var dsts = ["offline","sit","road"];
 var dmsg = ["","","For Lockdown issues we are working with less staff. It may take longer than usual"];

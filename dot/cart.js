@@ -1,3 +1,5 @@
+window.androidObj = function AndroidClass(){};
+
 var removedItem,
 sum = 0;
 var cnt = 0;
