@@ -434,3 +434,4 @@ function aboutshow(){
 function sharefriends(x){
     window.androidObj.textToAndroid(x);
 }
+
