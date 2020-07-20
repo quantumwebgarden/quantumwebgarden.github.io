@@ -432,7 +432,8 @@ function aboutshow(){
 }
 
 function logoutcall(){
-    Swal.fire({
+    window.open("loggedout.html");
+	/*Swal.fire({
   title: 'Are you sure?',
   html: "You won't be able to revert this! <br> You will need to Login again.",
   icon: 'warning',
@@ -445,7 +446,7 @@ function logoutcall(){
     window.open("loggedout.html");
 
   }
-})
+})*/
     
 }
 
