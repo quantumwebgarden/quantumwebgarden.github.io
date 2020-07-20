@@ -1,10 +1,20 @@
 <html>
 <head>
 <title>DOt: Logged Out</title>
+<script type="text/javascript">
+	window.androidObj = function AndroidClass(){};
+</script>
 </head>
-<body>
+<body onload="callforlogout('Logged Out Successfully')">
 <br><br><br><br><br><br>
 <center><p>You have sucessfully logged Out</p></center>
 
 </body>
+<script type="text/javascript">
+
+
+function callforlogout(x){
+    window.androidObj.textToAndroid(x);
+}
+</script>
 </html>

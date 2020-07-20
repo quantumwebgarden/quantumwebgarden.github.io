@@ -431,6 +431,24 @@ function aboutshow(){
 });
 }
 
+function logoutcall(){
+    Swal.fire({
+  title: 'Are you sure?',
+  html: "You won't be able to revert this! <br> You will need to Login again.",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#d33',
+  cancelButtonColor: '#3085d6',
+  confirmButtonText: 'Log Out'
+}).then((result) => {
+  if (result.value) {
+    window.open("loggedout.html");
+
+  }
+})
+    
+}
+
 function sharefriends(x){
     window.androidObj.textToAndroid(x);
 }

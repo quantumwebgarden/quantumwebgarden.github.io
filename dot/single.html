@@ -182,15 +182,27 @@
             </div>
           </li>
           <li>
-            <a href="javascript:void(0)" onclick="termshow()">
+            <a href="javascript:void(0)" onclick="window.open('termsandconditions.html')">
               <i class="fa fa-gavel"></i>
               <span>Terms &amp; Conditions</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0)" onclick="aboutshow()">
+            <a href="javascript:void(0)" onclick="window.open('privacypolicy.html')">
+              <i class="fa fa-lock" aria-hidden="true"></i>
+              <span>Privacy Policy</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" onclick="sharefriends('about')">
               <i class="fa fa-info-circle"></i>
               <span>About Us</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);" onclick="logoutcall()">
+              <i class="fa fa-power-off"></i>
+              <span>Log Out</span>
             </a>
           </li>
         </ul>
@@ -198,7 +210,7 @@
       <!-- sidebar-menu  -->
     </div>
     <!-- sidebar-content  -->
-    <div class="sidebar-footer">
+    <div class="sidebar-footer" style="display: none;">
       <a href="javascript: void(0)" onclick="prmchk()">
         <i class="fa fa-bell"></i>
         <span class="badge badge-pill badge-warning notification">0</span>

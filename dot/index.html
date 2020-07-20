@@ -56,8 +56,8 @@
         </div>
         <div class="user-info">
           <span class="user-name" id="uname">DOt User</span>
-          <span id="uphone" style="display: none;">user Phone No.</span>
-          <span id="umail" style="display: none;">useremail@dot.com</span>
+          <span id="uphone" style="display: none;">0123456789</span>
+          <span id="umail" style="display: none;">email@dot.com</span>
           <span class="user-role" id="uaddress">User Hometown</span>
           <!--span class="user-status" id="vip_user" style="display: none;">
             <i class="fa fa-star" style="color: orange;"></i>
@@ -142,7 +142,7 @@
             <div class="sidebar-submenu">
               <ul>
                 <li> Selected Address: 
-                  <a href="javascript:void(0)" id="udtl" onclick="chngloc()">Kapat Hat, Near SBI Parulia Br., Diamond Harbour, 743331</a>
+                  <a href="javascript:void(0)" id="udtl" onclick="chngloc()">Selected Address</a>
                 </li>
                 <li> Add / Modify: 
                   <a href="javascript:void(0)" onclick="chngloc()">Add New Address</a>
@@ -183,15 +183,27 @@
             </div>
           </li>
           <li>
-            <a href="javascript:void(0)" onclick="termshow()">
+            <a href="javascript:void(0)" onclick="window.open('termsandconditions.html')">
               <i class="fa fa-gavel"></i>
               <span>Terms &amp; Conditions</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0)" onclick="aboutshow()">
+            <a href="javascript:void(0)" onclick="window.open('privacypolicy.html')">
+              <i class="fa fa-lock" aria-hidden="true"></i>
+              <span>Privacy Policy</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" onclick="sharefriends('about')">
               <i class="fa fa-info-circle"></i>
               <span>About Us</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);" onclick="logoutcall()">
+              <i class="fa fa-power-off"></i>
+              <span>Log Out</span>
             </a>
           </li>
         </ul>
@@ -199,7 +211,7 @@
       <!-- sidebar-menu  -->
     </div>
     <!-- sidebar-content  -->
-    <div class="sidebar-footer">
+    <div class="sidebar-footer" style="display: none;">
       <a href="javascript: void(0)" onclick="prmchk()">
         <i class="fa fa-bell"></i>
         <span class="badge badge-pill badge-warning notification">0</span>
@@ -261,8 +273,9 @@
 
 <section id="unav" style="margin: 0; top: 0; left: 0; position: fixed; z-index: 10; width: 100%; background-color: transparent; background-image: linear-gradient(to bottom, rgba(228,228,228,1), rgba(228,228,228,0));/*#e4e4e4;*/">
 	<div class="navzmt">
+
 		<div class="topnav">
-  <a href="#home"><img src="icon.png" width="25px" height="25px"></a>
+  <a href="javascript:void(0);"><b>DOT</b></a>
   <div id="itmsrc">
     <a style="width: 65%;">
       <input type="text" class="srch" id="fdsr" onkeyup="itemsr('fds')" placeholder="Search for foods..">
