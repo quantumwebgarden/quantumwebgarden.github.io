@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>My Orders</title>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<style>
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  }
+
+html, body {
+  width: 100%;
+  height: 100vh;
+
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #fff;
+  
+  align-items: center;
+  justify-content: center;
+  
+}
+b{
+  color: blue;
+}
+.wrapper {
+  background-color: #fff;
+  width: 100%;
+  height: 100vh;
+}
+
+.menu {
+  width: 100%;
+  height: 7.5%;
+  border-radius: 10px 10px 0px 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: no-wrap;
+  justify-content: space-between;
+}
+.menu__icon {
+  width: 17.5px;
+  height: 50%;
+  margin: 0 10px;
+  align-self: flex-end;
+}
+.menu__title {
+  font-size: 25px;
+  align-self: flex-end;
+  color: #43639d;
+  margin-bottom: 2.5px;
+  text-decoration: underline;
+}
+
+.card-list {
+  width: 100%;
+  overflow-y: hidden;
+  padding: 30px 0 0;
+  flex-grow: 1;
+}
+
+.card {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 12.5px;
+  border-radius: 5px;
+  padding: 15px 25px;
+  box-shadow: 0 10px 25px #dcdcdc;
+}
+.card__number {
+  text-align: center;
+  letter-spacing: 1.77px;
+  color: #fff;
+  margin-bottom: 15px;
+  font-weight: bolder;
+}
+.card__owner {
+  color: #000;
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+.card__info {
+  display: inline-block;
+  margin-right: 30px;
+}
+.card__amount {
+  margin-bottom: 20px;
+}
+
+.card__integral, .card__amount {
+  font-size: 15.5px;
+  color: #000;
+  font-weight: 500!important;
+  letter-spacing: 0.25px;
+  margin-top: 20px;
+}
+.card--one {
+  background: linear-gradient(to right, #d194ff, #9389ff);
+}
+.card--two {
+  background: linear-gradient(to right, #7cbfee, #00d0b8);
+}
+.card--three {
+  background: linear-gradient(to right, #ff77a7, #ff7b7e);
+}
+
+.author {
+  text-decoration: none;
+  font-size: 12.5px;
+}
+.author:link, .author:visited, .author:hover, .author:active {
+  color: #43639d;
+}
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.opcone{
+  display: block;
+}
+.opctwo{
+  display: none;
+}
+</style>
+
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no" onload="loadingtime()">
+  
+<div class="wrapper">
+<br><br><br>
+<header class="menu">
+
+<svg class="menu__icon" enable-background="new 0 0 129 129" version="1.1" viewBox="0 0 129 129" xmlns="http://www.w3.org/2000/svg"><path d="m88.6 121.3c0.8 0.8 1.8 1.2 2.9 1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8 0l-54 53.9c-1.6 1.6-1.6 4.2 0 5.8l54 53.9z" fill="transparent" /></svg>
+
+<h1 class="menu__title">My Orders</h1>
+
+<svg class="menu__icon" enable-background="new 0 0 129 129" version="1.1" viewBox="0 0 129 129" xmlns="http://www.w3.org/2000/svg"><path d="m88.6 121.3c0.8 0.8 1.8 1.2 2.9 1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8 0l-54 53.9c-1.6 1.6-1.6 4.2 0 5.8l54 53.9z" fill="transparent" /></svg>
+
+</header>
+
+<div class="card-list" id="allordercard">
+
+<!--div class="card card--one">
+<p class="card__number">Order No.: 123456789012345</p>
+<center><hr style="width: 50%"></center>
+<br>
+<p class="card__owner"><b>Customer Name: </b>I am Delivery Boy</p>
+
+<p class="card__owner"><b>Contact no. : </b>+91 0123456789</p>
+
+<p class="card__owner"><b>Delivery Address : </b>Some Address short. (Sometimes it may be BIG)</p>
+
+<div class="card__info">
+<p class="card__integral"><b>Total Quantity :</b> 5</p>
+
+<p class="card__amount"><b>Total Amount: ₹</b>1092.00</p>
+</div>
+<div class="card__info">
+<p class="card__integral"><b>Payment Status :</b> COD</p>
+
+<p class="card__amount"><b>OTP: </b> 8956</p>
+</div>
+<center>
+  
+  <br>
+<div class="card__info">
+  <p class="card__integral"><button class="opcone" data-ordid="" data-uid="" onclick="picked(x)">Picked Up</button></p>
+  <p class="card__amount"><button class="opctwo" data-ordid="" data-uid="" onclick="delivered(x)">Delivered</button></p>
+</div>
+</center>
+
+<div>
+  <ul>
+    <li>
+      <p class="card__owner"><b>Customer Name: </b>I am Delivery Boy</p>
+      <div class="card__info">
+        <p class="card__integral"><b>Total Quantity :</b> 5</p>
+        <p class="card__amount"><b>Total Amount: ₹</b>1092.00</p>
+      </div>
+    </li>
+    <li>
+      <p class="card__owner"><b>Customer Name: </b>I am Delivery Boy</p>
+      <div class="card__info">
+        <p class="card__integral"><b>Total Quantity :</b> 5</p>
+        <p class="card__amount"><b>Total Amount: ₹</b>1092.00</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+</div>
+
+<div class="card card--two">
+<p class="card__number">543210987654321</p>
+<p class="card__owner">Delivery Boy Name</p>
+<div class="card__info">
+<p class="card__integral">Quantity: 3</p>
+<p class="card__amount">Amount: 3502.00</p>
+</div>
+</div>
+<br-->
+
+
+</div>
+</div>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+<script src="delp.js"></script>
+</body>
+</html>
