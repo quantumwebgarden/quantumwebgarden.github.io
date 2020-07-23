@@ -50,8 +50,8 @@ var firebaseConfig = {
   }*/
 })
   var parameters = location.search.substring(1).split("=");
-  orderID = parameters[1];
-  dpid = parameters[2];
+  //orderID = parameters[1];
+  dpid = parameters[1];
   orderdetails(orderID);
 }
   
