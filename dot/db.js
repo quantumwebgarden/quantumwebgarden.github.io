@@ -244,6 +244,17 @@ function initskip() {
 }
 
   function loadtime(){
+
+    Swal.fire({
+      html: '<img src="assets/img/loading.gif"><br><b>Will be available at your service soon ...</b>',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        showCancelButton: false,
+        showConfirmButton: false,
+        focusConfirm: false,
+        footer: '<p>DOT : Delivery On Time</p>'
+        });
+  /*
     var qtload = Math.floor(Math.random() * 4);
     let timerInterval
 Swal.fire({
@@ -276,12 +287,12 @@ Swal.fire({
     }
   }
 }).then((result) => {
-  /* Read more about handling dismissals below */
+  /* Read more about handling dismissals below 
   if (result.dismiss === Swal.DismissReason.timer && u.includes("Guest")) {
     initskip();
   }
 })
-  }
+  */}
 
 
 function foodshp(){
