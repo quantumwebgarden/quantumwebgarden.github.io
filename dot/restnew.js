@@ -100,6 +100,8 @@ function chkall() {
    document.getElementById("dotpri").focus();}
     else{
     	mcnewadd();
+	    swal("Success","Item Details Successfully Submitted","success");
+	location.reload();
     }
 }
 
