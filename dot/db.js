@@ -287,7 +287,7 @@ Swal.fire({
     }
   }
 }).then((result) => {
-  /* Read more about handling dismissals below 
+  /* Read more about handling dismissals below */
   if (result.dismiss === Swal.DismissReason.timer && u.includes("Guest")) {
     initskip();
   }
