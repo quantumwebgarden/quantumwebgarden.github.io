@@ -11,6 +11,11 @@ var shopnames = [];
 var shopaddrs = [];
 var shopids = [];
 var dapprox = [];
+var shopgroups = [];
+var shoppays = [];
+var shopitemnames = [];
+var shopitemqtys = [];
+var shopgrpids = [];
 var dtimeapprox = "";
 var lstid = "";
 var lstqty = "";
@@ -250,6 +255,7 @@ function chkcart(x) {
 
             var id = snap.child("id").val();
             var eachprice = snap.child("price").val();
+            var shpprice = snap.child("priceshp").val();
             var name = snap.child("name").val();
             var shopname = snap.child("shopname").val();
             var thumb = snap.child("thumb").val();
@@ -270,18 +276,30 @@ function chkcart(x) {
             if(id == y){
             price = eachprice * z;
             weight = weight * z;
+            var shppriceall = shpprice * z;
             pricetotal = pricetotal + price;
             weighttotal = weighttotal + weight;
 
             
-            if(shopids.includes(shopid)){}
+            if(shopids.includes(shopid)){
+              shopgroups[shopids.indexOf(shopid)] = shopgroups[shopids.indexOf(shopid)] + "sp2lt" + y;
+              shoppays[shopids.indexOf(shopid)] = shoppays[shopids.indexOf(shopid)] + "sp2lt" + shppriceall;
+              shopitemnames[shopids.indexOf(shopid)] = shopitemnames[shopids.indexOf(shopid)] + "sp2lt" + name;
+              shopitemqtys[shopids.indexOf(shopid)] = shopitemqtys[shopids.indexOf(shopid)] + "sp2lt" + z;
+            }
               else{
             shopnames[cnts] = shopname;
             shopaddrs[cnts] = shopaddr;
             shopids[cnts] = shopid;
             dapprox[cnts] = dtimechk;
+            shopgroups[cnts] = y;
+            shoppays[cnts] = shppriceall;
+            shopitemnames[cnts] = name;
+            shopitemqtys[cnts] = z;
             cnts+= 1;
               }
+            
+
             
 
             additem(m,price,eachprice,id,name,thumb,z,typ,shopname,dtime);
@@ -332,6 +350,11 @@ function dchargecal(tm,price,qty,dtime) {
       }
     }
     else{
+      Swal.fire(
+  'DOT',
+  'Maximum 10 items can be placed in a single order. Remove some items and try again.',
+  'warning'
+);
       //Not Deliverable more than 10 items
     }
   }
@@ -490,7 +513,26 @@ function codpay(){
   firebase.database().ref(u + "/order/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
   firebase.database().ref("allorders/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
   
+  for (var i = shopids.length - 1; i >= 0; i--) {
+    if(shopgroups[i].includes("sp2lt")){
+      firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({id:ordid,productids:shopgroups[i].replace("sp2lt", ","),products:shopitemnames[i].replace("sp2lt", ","),prices:shoppays[i].replace("sp2lt", ","),qtys:shopitemqtys[i].replace("sp2lt", ",")});
+        }
+        else{
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],qtys:shopitemqtys[i]});
+        }
+    }
   
+  /*
+http://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=8768626927&Msg=Checking%20Message%20ith%20Some%20Order%20Details
+
+http://nimbusit.biz/api/SmsApi/SendMultipleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=8768626927,9883196152&Msg=Checking%20Message%20With%20Some%20Order%20Details
+
+http://nimbusit.biz/api/SmsApi/SendSingleUnicodeApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=8768626927&Msg=my%20test.asp?name=st%C3%A5le&car=saab
+
+
+var uri = "my test.asp?name=ståle&car=saab";
+  var res = encodeURI(uri);
+*/
 
   for (var i = tmsts.length - 1; i >= 0; i--) {
     firebase.database().ref(u + "/cart/" + tmsts[i]).update({typ:"temp"});

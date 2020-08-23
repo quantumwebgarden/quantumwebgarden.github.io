@@ -100,8 +100,8 @@ function chkall() {
    document.getElementById("dotpri").focus();}
     else{
     	mcnewadd();
-	    swal("Success","Item Details Successfully Submitted","success");
-	location.reload();
+    	swal("Success","Item Details Successfully Submitted","success");
+		location.reload();
     }
 }
 
@@ -125,8 +125,10 @@ function mcnewadd(){
 		dpincode:mcpin,
 		price:Number(document.getElementById("price").value),
 		priceshp:Number(document.getElementById("price").value),
-		rating:"4.0",
-		ratcnt:1,
+		rating:0,
+		ratcnt:0,
+		img:"noimg.jpg",
+		thumb:"noimg.jpg",
 		pricerev:Number(2000 - Number(document.getElementById("price").value)),
 		desc:document.getElementById("desc").value,
 		favlst:"8768626927splt",
