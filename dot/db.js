@@ -244,7 +244,7 @@ function initskip() {
 }
 
   function loadtime(){
-
+/*
     Swal.fire({
       html: '<img src="assets/img/loading.gif"><br><b>Will be available at your service from upcoming <i><u>1st September, 2020</u></i></b>',
         allowEscapeKey: false,
@@ -253,8 +253,8 @@ function initskip() {
         showConfirmButton: false,
         focusConfirm: false,
         footer: '<p>DOT : Delivery On Time</p>'
-        });
-  /*
+        });*/
+  
     var qtload = Math.floor(Math.random() * 4);
     let timerInterval
 Swal.fire({
@@ -292,7 +292,7 @@ Swal.fire({
     initskip();
   }
 })
-  */}
+  }
 
 
 function foodshp(){
