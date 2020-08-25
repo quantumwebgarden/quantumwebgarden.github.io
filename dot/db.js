@@ -250,7 +250,7 @@ function initskip() {
     Swal.fire({
       html: '<img src="assets/img/loading.gif"><br><b>Will be available at your service soon ...</b>',
         allowEscapeKey: true,
-        allowOutsideClick: true,
+        allowOutsideClick: false,
         showCancelButton: false,
         showConfirmButton: false,
         focusConfirm: false,
