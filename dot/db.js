@@ -289,10 +289,10 @@ Swal.fire({
     }
   }
 }).then((result) => {
-
+/*
   if (result.dismiss === Swal.DismissReason.timer && u.includes("Guest")) {
     initskip();
-  }
+  }*/
 })
   }
 
