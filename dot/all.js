@@ -108,7 +108,7 @@ var allshorts = ['fds','mdc','grc','est'];
 var pntr = "";
 
   function showhide(b) {
-	alert(b);
+	
     pntr = allshorts[allitems.indexOf(b)] + "_list";
 
         x = document.querySelectorAll("section.productlst");
