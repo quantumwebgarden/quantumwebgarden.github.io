@@ -365,7 +365,7 @@ function dchargecal(tm,price,qty,dtime) {
     $("#removeline").addClass("showme");
 
   }
-  
+
   return dcr;
 }
 
@@ -510,16 +510,11 @@ function codpay(){
   var ordid = new Date("12/31/2099").getTime() - timestamp;
   var dtnow = date.getDate() + "/" + Number(date.getMonth()+1) + "/" + date.getFullYear();
   var timenow = date.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ":" + date.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  firebase.database().ref(u + "/order/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
-  firebase.database().ref("allorders/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal});//2 for Payment POD & 1 for not ready for delivery
+  firebase.database().ref(u + "/order/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});//2 for Payment POD & 1 for not ready for delivery
+  firebase.database().ref("allorders/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});//2 for Payment POD & 1 for not ready for delivery
   
   for (var i = shopids.length - 1; i >= 0; i--) {
-    if(shopgroups[i].includes("sp2lt")){
-      firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({id:ordid,productids:shopgroups[i].replace("sp2lt", ","),products:shopitemnames[i].replace("sp2lt", ","),prices:shoppays[i].replace("sp2lt", ","),qtys:shopitemqtys[i].replace("sp2lt", ",")});
-        }
-        else{
-          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],qtys:shopitemqtys[i]});
-        }
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:"11"});
     }
   
   /*
@@ -623,9 +618,13 @@ function payupi() {
     var dtnow = date.getDate() + "/" + Number(date.getMonth()+1) + "/" + date.getFullYear();
     var timenow = date.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ":" + date.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     var ordid = new Date("12/31/2099").getTime() - timestamp;
-    firebase.database().ref(u + "/order/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});
-    firebase.database().ref("allorders/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal});
+    firebase.database().ref(u + "/order/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});
+    firebase.database().ref("allorders/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});
     
+    for (var i = shopids.length - 1; i >= 0; i--) {
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:bcode});
+    }
+
   window.open("upipay.html" + location.search + "=" + ordid);
 
 }

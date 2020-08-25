@@ -46,11 +46,23 @@ var ordstatus = snap.child("orderstatus").val();
 var orditems = snap.child("orditems").val().split(",");
 var dstatus = snap.child("dstatus").val();
 var cartitems = snap.child("cartids").val().split(",");
+var shopgroups = snap.child("productids").val().split(",");
+var shopitemnames = snap.child("products").val().split(",");
+var shoppays = snap.child("prices").val().split(",");
+var shopitemqtys = snap.child("qtys").val().split(",");
+var dotp = snap.child("dotp").val();
+var shopids = snap.child("shopids").val().split(",");
+
 
 if (odid == ordid && ordstatus == "22") {
 
+  firebase.database().ref("allorders/" + odid).update({orderstatus:ordstatus});
+
 	for (var i = cartitems.length - 1; i >= 0; i--) {
     firebase.database().ref(u + "/cart/" + cartitems[i]).update({typ:"temp"});
+    }
+    for (var i = shopids.length - 1; i >= 0; i--) {
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({orderstatus:ordstatus});
     }
 
 	Swal.fire({

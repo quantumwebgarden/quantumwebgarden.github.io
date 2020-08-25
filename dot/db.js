@@ -12,6 +12,7 @@ var shopoffline = [];
 var cntsh = 0;
 var offer = 1;
 var ratg = 1;
+var optc = 1;
 getuid();
 
 console.log(u);
@@ -246,7 +247,8 @@ function initskip() {
 }
 
   function loadtime(){
-    /*Swal.fire({
+
+    Swal.fire({
       html: '<img src="assets/img/loading.gif"><br><b>Will be available at your service soon ...</b>',
         allowEscapeKey: true,
         allowOutsideClick: false,
@@ -254,8 +256,8 @@ function initskip() {
         showConfirmButton: false,
         focusConfirm: false,
         footer: '<p>DOT : Delivery On Time</p>'
-        });*/
-  
+        });
+  /*
     var qtload = Math.floor(Math.random() * 4);
     let timerInterval
 Swal.fire({
@@ -288,11 +290,12 @@ Swal.fire({
     }
   }
 }).then((result) => {
+  /* Read more about handling dismissals below 
   if (result.dismiss === Swal.DismissReason.timer && u.includes("Guest")) {
     initskip();
   }
 })
-  }
+  */}
 
 
 function foodshp(){
@@ -312,6 +315,7 @@ var posopt = snap.child("posopt").val();
 var neuopt = snap.child("neuopt").val();
 var negopt = snap.child("negopt").val();
 var optcnt = posopt + neuopt + negopt;
+if(optcnt == 0){optc = 0;}
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 var shopstatus = snap.child("shopstatus").val();
@@ -321,9 +325,9 @@ if(shopstatus == "offline"){
 } 
 
 if (x == "ALL") {
-$("#fdsshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Usually prepare foods within ' + processtime + ' minutes</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#fdsshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Usually prepare foods within ' + processtime + ' minutes</i></span></div><div class="aspect-stat"><div class="all-opinions optc' + optc + '"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
-
+optc = 1;
 });
 }
 function medicineshp(){
@@ -343,6 +347,7 @@ var posopt = snap.child("posopt").val();
 var neuopt = snap.child("neuopt").val();
 var negopt = snap.child("negopt").val();
 var optcnt = posopt + neuopt + negopt;
+if(optcnt == 0){optc = 0;}
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 var shopstatus = snap.child("shopstatus").val();
@@ -352,8 +357,9 @@ if(shopstatus == "offline"){
 } 
 
 if (x == "ALL") {
-$("#mdcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>' + processtime + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#mdcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>' + processtime + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count optc' + optc + '">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
+optc = 1;
 
 });
 }
@@ -375,6 +381,7 @@ var posopt = snap.child("posopt").val();
 var neuopt = snap.child("neuopt").val();
 var negopt = snap.child("negopt").val();
 var optcnt = posopt + neuopt + negopt;
+if(optcnt == 0){optc = 0;}
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 var shopstatus = snap.child("shopstatus").val();
@@ -384,8 +391,9 @@ if(shopstatus == "offline"){
 } 
 
 if (x == "ALL") {
-$("#grcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#grcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions optc' + optc + '"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
+optc = 1;
 
 });
 }
@@ -407,6 +415,7 @@ var posopt = snap.child("posopt").val();
 var neuopt = snap.child("neuopt").val();
 var negopt = snap.child("negopt").val();
 var optcnt = posopt + neuopt + negopt;
+if(optcnt == 0){optc = 0;}
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 var shopstatus = snap.child("shopstatus").val();
@@ -416,8 +425,9 @@ if(shopstatus == "offline"){
 } 
 
 if (x == "ALL") {
-$("#estshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#estshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions optc' + optc + '"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
+optc = 1;
 
 });
 }
