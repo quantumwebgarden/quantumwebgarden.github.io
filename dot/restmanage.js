@@ -69,7 +69,7 @@ if(id == mcid){
   mclang = shoplang;
   mcpin = dpincode;
   mcstatus = shopstatus;
-  $("#checkstatus").html('<input type="checkbox" ' + stocker[mcstatus] + ' id="shst' + id + '"  onchange="shopchange(this)"><span class="slider"></span>');
+  $("#checkstatus").html('<input type="checkbox" ' + stocker[mcstatus] + ' data-val="' + mcstatus + '" id="shst' + id + '" onclick="shopchange(this)"><span class="slider"></span>');
   getallitems(mcid,prtype);
 } 
 /*if (x == "ALL") {
@@ -77,6 +77,8 @@ $("#fdsshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkb
 }*/
 });
 }
+
+
 
 function getallitems(mcid,prtype){
   var rootRef = firebase.database().ref(prtype);
@@ -91,7 +93,7 @@ var stockst = snap.child("stock").val();
 var stock = stocker[stockst];
 if(shopid == mcid){
   
-$("#allitems").append('<tr><td>' + id + '</td><td>' + name + '</td><td>' + price + '</td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '"  onchange="productchange(this)"><span class="slider round"></span></label></td></tr>');
+$("#allitems").append('<tr><td>' + id + '</td><td>' + name + '</td><td>' + price + '</td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td></tr>');
   
 } 
 
@@ -101,12 +103,34 @@ $("#allitems").append('<tr><td>' + id + '</td><td>' + name + '</td><td>' + price
 function shopchange(x){
   var shid = x.id;
   shid = shid.substring(4,shid.length);
-  alert(shid + " - " + x.value);
-  //firebase.database().ref("").update({rcntvw: sng[3].concat(u + "splt")});
+  var oldst = document.getElementById(x.id).getAttribute("data-val");
+  var newst = Number(1 - Number(oldst)); 
+  console.log(newst);
+  document.getElementById(x.id).setAttribute("data-val", newst);
+  firebase.database().ref(mctype + "/" + shid).update({shopstatus:newst});
+  updateallitems(shid,newst);
 }
 
 function productchange(x){
   var prid = x.id;
   prid = prid.substring(4,prid.length);
-  alert(prid);
+  var oldst = document.getElementById(x.id).getAttribute("data-val");
+  var newst = Number(1 - Number(oldst)); 
+  console.log(newst);
+  document.getElementById(x.id).setAttribute("data-val", newst);
+  firebase.database().ref(prtype + "/" + prid).update({stock:newst});
+}
+
+function updateallitems(x,y){
+  var rootRef = firebase.database().ref(prtype);
+
+rootRef.on("child_added", snap => {
+
+var id = snap.child("id").val();
+var shopid = snap.child("shopid").val();
+if(shopid == x){
+  firebase.database().ref(prtype + "/" + id).update({shopstatus:y});
+} 
+
+});
 }

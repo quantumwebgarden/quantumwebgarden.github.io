@@ -10,7 +10,7 @@ var prid = "";
 var today = "";
 var mcstatus = "";
 var mcshare = 10;
-
+var mcphone = "";
 
 var firebaseConfig = {
     apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
@@ -61,8 +61,9 @@ var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 var shopstatus = snap.child("shopstatus").val();
 var shareamount = snap.child("shareperc").val();
+var shopphone = snap.child("phone").val();
 if(id == mcid){
-  $("#mcname").val(shopname);
+  $("#mcname").html(shopname);
   mcname = shopname;
   mcaddr = shopaddr;
   mclat = shoplat;
@@ -70,6 +71,7 @@ if(id == mcid){
   mcpin = dpincode;
   mcstatus = shopstatus;
   mcshare = shareamount;
+  mcphone = shopphone;
 } 
 
 /*if (x == "ALL") {
@@ -86,9 +88,6 @@ function chkall() {
 	if(document.getElementById("name").value===""){
    swal("Oops..","Enter Product Name","error");
    document.getElementById("name").focus();}
- 	else if(document.getElementById("desc").value===""){
-   swal("Oops..","Enter Product Description","error");
-   document.getElementById("desc").focus();}
    	else if(document.getElementById("category").value==="" || document.getElementById("category").value==="NA"){
    swal("Oops..","Enter Product Category","error");
    document.getElementById("category").focus();}
@@ -99,6 +98,9 @@ function chkall() {
    swal("Oops..","Enter Product Priority","error");
    document.getElementById("dotpri").focus();}
     else{
+    	if(document.getElementById("pic").value==""){
+    		document.getElementById("pic").value="noimg.jpg";
+    	}
     	mcnewadd();
     	swal("Success","Item Details Successfully Submitted","success");
 		location.reload();
@@ -116,26 +118,28 @@ function mcnewadd(){
 		name:document.getElementById("name").value,
 		dad:today,
 		lastmodify:today,
-		modifycnt:1,
 		shopname:mcname,
 		shopaddr:mcaddr,
 		shoplat:mclat,
 		shoplang:mclang,
+		shopphone:mcphone,
 		shopstatus:mcstatus,
 		dpincode:mcpin,
 		price:Number(document.getElementById("price").value),
 		priceshp:Number(document.getElementById("price").value),
+		priceoffer:Number(document.getElementById("price").value),
 		rating:0,
 		ratcnt:0,
-		img:"noimg.jpg",
-		thumb:"noimg.jpg",
-		pricerev:Number(2000 - Number(document.getElementById("price").value)),
+		img:document.getElementById("pic").value,
+		thumb:document.getElementById("pic").value,
+		pricerev:Number(5000 - Number(document.getElementById("price").value)),
 		desc:document.getElementById("desc").value,
-		favlst:"8768626927splt",
+		favlst:"splt",
 		tagsr:document.getElementById("name").value + " " + mcname,
 		shopid:mcid,
-		rcntvw:"8768626927splt",
-		dotpri:Number(2000 - Number(document.getElementById("dotpri").value))
-
+		rcntvw:"splt",
+		dotpri:Number(2000 - Number(document.getElementById("dotpri").value)),
+		stock:0,
+		weight:Number(document.getElementById("weight").value)
 		});
 }
