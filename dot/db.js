@@ -249,7 +249,7 @@ function initskip() {
   function loadtime(){
 
     Swal.fire({
-      html: '<img src="assets/img/loading.gif"><br><b>Will be available at your service soon ...</b>',
+      html: '<img src="assets/img/loading.gif"><br><b>Will be available at your service from 1st September, 2020...</b>',
         allowEscapeKey: true,
         allowOutsideClick: false,
         showCancelButton: false,
