@@ -97,8 +97,8 @@ input:checked + .slider:before {
 <center>
 <h2 id="mcname">Shop Name</h2>
 <h3>Shop Status: Closed &nbsp;&nbsp;&nbsp; 
-<label class="switch">
-  <input type="checkbox" checked>
+<label class="switch" id="checkstatus">
+  <input type="checkbox" checked id="shopstupd" onchange="shopchange(this)">
   <span class="slider"></span>
 </label>
  &nbsp;&nbsp;&nbsp; Opened </h3>
@@ -107,29 +107,24 @@ input:checked + .slider:before {
 <br><br>
 <table class="tab_report">
   <tr>
-    <th>Product</th>
-    <th>Priority</th>
+  	<th>ID</th>
+    <th>Name</th>
     <th>Price</th>
-    <th>In Stock</th>
+    <th>Stock</th>
   </tr>
-  <tbody>
-
-
-
-    <tr>
+  <tbody id="allitems">
+    <!--tr>
     <td>Name 1</td>
     <td>1</td>
     <td>159</td>
-    <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+    <td><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label></td>
   </tr>
   <tr>
     <td>Name 2</td>
     <td>2</td>
     <td>298</td>
     <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
-  </tr>
-
-
+  </tr-->
   </tbody>
 </table>
 </body>
