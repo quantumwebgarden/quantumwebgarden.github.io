@@ -123,6 +123,7 @@ div {
   var res = str.replace("file/d/", "uc?export=view&id=");
   var res = res.replace("open?id=", "uc?export=view&id=");
   var res = res.replace("/view?usp=sharing", "");
+  var res = res.replace("/view?usp=drivesdk", "");
   document.getElementById("pic").value = res;
   document.getElementById("imgshow").src = res;
 }
