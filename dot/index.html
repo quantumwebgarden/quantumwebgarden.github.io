@@ -33,6 +33,7 @@
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
 <script src="all.js"></script>
 <script src="db.js"></script>
+<script src="assets/js/pulltorefresh.js"></script>
 
 </head>
 <body class="page-wrapper" onload="loadtime()">
@@ -450,7 +451,7 @@ function myFunction() {
 <article id="itemlist">
 <section class="productlst" id="foods">
 
-<div class="srtbtn">
+<div class="srtbtn" style="display: none;">
   <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
@@ -469,7 +470,7 @@ function myFunction() {
     
   </ul>
 </div>
-
+<center>No more items to be shown in your area</center>
 </section>
 
 
@@ -478,7 +479,7 @@ function myFunction() {
 
 <section class="productlst" id="medicine" style="display: none;">
 
-<div class="srtbtn">
+<div class="srtbtn" style="display: none;">
   <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
@@ -504,7 +505,7 @@ function myFunction() {
 
 <section class="productlst" id="grocery" style="display: none;">
 
-<div class="srtbtn">
+<div class="srtbtn" style="display: none;">
   <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
@@ -530,7 +531,7 @@ function myFunction() {
 
 <section class="productlst" id="essentials" style="display: none;">
 
-<div class="srtbtn">
+<div class="srtbtn" style="display: none;">
   <!--button>Clear <i class="fa fa-times" aria-hidden="true"></i></button-->
   <button>Price <i class="fa fa-arrow-up" aria-hidden="true"></i></button>
   <button>Price <i class="fa fa-arrow-down" aria-hidden="true"></i></button>

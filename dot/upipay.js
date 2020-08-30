@@ -62,7 +62,7 @@ if (odid == ordid && ordstatus == "22") {
     firebase.database().ref(u + "/cart/" + cartitems[i]).update({typ:"temp"});
     }
     for (var i = shopids.length - 1; i >= 0; i--) {
-          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({orderstatus:ordstatus});
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({orderstatus:ordstatus,paystatus:0});
     }
 
 	Swal.fire({

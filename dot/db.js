@@ -13,15 +13,16 @@ var cntsh = 0;
 var offer = 1;
 var ratg = 1;
 var optc = 1;
+var shopst = ["offline","online"];
 getuid();
 
-console.log(u);
-console.log(elid);
+//console.log(u);
+//console.log(elid);
 var t = "22.1910091";
 var g = "88.1904741";
-var dtimes = ["5 Minutes","10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","45 Minutes","1 Hour","Out of Delivery Area","Shop Closed"];
+var dtimes = ["10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","35 Minutes","40 Minutes","Less than 1 Hour","Out of Delivery Area","Shop Closed","Out of Stock"];
 var ditems = ["foods","medicine","grocery","essentials"];
-var delgb = ["6","7","5","7"];
+var delgb = ["3","3","3","3"];
 var dshorts = ["fds","mdc","grc","est"];
 var utypes = ["GENERAL","PREMIUM","VIP"];
 var ucolors = ["green","blue","orange"];
@@ -125,7 +126,7 @@ var uuphone = snap.child("phone").val();
 var uumail = snap.child("email").val();
 var sltadd = snap.child("sltadd").val();
 var uutype = snap.child("type").val();
-console.log(uuid);
+//console.log(uuid);
 if(uuid == u){
     $("#uname").html(uuname);
     $("#uphone").html(uuphone);
@@ -142,11 +143,11 @@ if(uuid == u){
 }
 
 function uid_add(x,y) {
-    console.log(x + "," + y);
+    //console.log(x + "," + y);
     var rootRef = firebase.database().ref('user/' + x + '/address');
 
 rootRef.on("child_added", snap => {
-console.log(x + "," + y);
+//console.log(x + "," + y);
 var adrid = snap.child("id").val();
 var adrdtl = snap.child("dtl").val();
 var adrpin = snap.child("PIN").val();
@@ -157,10 +158,10 @@ var adrlat = snap.child("lat").val();
 if(adrid == y){
     $("#uaddress").html(adrhometown);
     $("#udtl").html(adrdtl);
-	if(locst == 1){
+	/*if(locst == 1){*/
     t = adrlat;
     g = adrlang;
-	}
+	/*}*/
     upin = adrpin;
 }
 
@@ -247,9 +248,9 @@ function initskip() {
 }
 
   function loadtime(){
-
+/*
     Swal.fire({
-      html: '<img src="assets/img/loading.gif"><br><b>Will be available at your service from 1st September, 2020...</b>',
+      html: '<img src="assets/img/loading.gif"><br><b>Will be available at your service soon ...</b>',
         allowEscapeKey: true,
         allowOutsideClick: false,
         showCancelButton: false,
@@ -257,7 +258,8 @@ function initskip() {
         focusConfirm: false,
         footer: '<p>DOT : Delivery On Time</p>'
         });
-  /*
+        */
+
     var qtload = Math.floor(Math.random() * 4);
     let timerInterval
 Swal.fire({
@@ -281,7 +283,7 @@ Swal.fire({
   },
   onClose: () => {
     clearInterval(timerInterval)
-    console.log(fln + "me");
+    //console.log(fln + "me");
     if(fln == 1){
       document.getElementById("imgc1").src = "assets/banner/imgc1.jpg";
       document.getElementById("imgc2").src = "assets/banner/imgc2.jpg";
@@ -290,12 +292,12 @@ Swal.fire({
     }
   }
 }).then((result) => {
-  /* Read more about handling dismissals below 
+
   if (result.dismiss === Swal.DismissReason.timer && u.includes("Guest")) {
     initskip();
   }
 })
-  */}
+  }
 
 
 function foodshp(){
@@ -319,13 +321,13 @@ if(optcnt == 0){optc = 0;}
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 var shopstatus = snap.child("shopstatus").val();
-if(shopstatus == "offline"){
+if(shopstatus == 0){
   shopoffline[cntsh] = id;
   cntsh++;
 } 
 
 if (x == "ALL") {
-$("#fdsshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Usually prepare foods within ' + processtime + ' minutes</i></span></div><div class="aspect-stat"><div class="all-opinions optc' + optc + '"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#fdsshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopst[shopstatus] + '"></span><br><i>Usually prepare foods within ' + processtime + ' minutes</i></span></div><div class="aspect-stat"><div class="all-opinions optc' + optc + '"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
 optc = 1;
 });
@@ -351,13 +353,13 @@ if(optcnt == 0){optc = 0;}
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 var shopstatus = snap.child("shopstatus").val();
-if(shopstatus == "offline"){
+if(shopstatus == 0){
   shopoffline[cntsh] = id;
   cntsh++;
 } 
 
 if (x == "ALL") {
-$("#mdcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>' + processtime + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count optc' + optc + '">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#mdcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopst[shopstatus] + '"></span><br><i>' + processtime + '</i></span></div><div class="aspect-stat"><div class="all-opinions"><span class="all-opinions-count optc' + optc + '">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
 optc = 1;
 
@@ -385,13 +387,13 @@ if(optcnt == 0){optc = 0;}
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 var shopstatus = snap.child("shopstatus").val();
-if(shopstatus == "offline"){
+if(shopstatus == 0){
   shopoffline[cntsh] = id;
   cntsh++;
 } 
 
 if (x == "ALL") {
-$("#grcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions optc' + optc + '"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#grcshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopst[shopstatus] + '"></span><br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions optc' + optc + '"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
 optc = 1;
 
@@ -419,13 +421,13 @@ if(optcnt == 0){optc = 0;}
 var picthumb = snap.child("picthumb").val();
 var tagsr = snap.child("tagsr").val();
 var shopstatus = snap.child("shopstatus").val();
-if(shopstatus == "offline"){
+if(shopstatus == 0){
   shopoffline[cntsh] = id;
   cntsh++;
 } 
 
 if (x == "ALL") {
-$("#estshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopstatus + '"></span><br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions optc' + optc + '"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
+$("#estshp").append('<div class="aspect-tab"><input id="' + id + '" type="checkbox" class="aspect-input" name="aspect"><label for="' + id + '" class="aspect-label"></label><div class="aspect-content"><div class="aspect-info"><img class="chart-pie" src="' + picthumb + '" width="50px" height="auto"><span class="aspect-name" data-tagshp="' + tagsr + '">' + shopname + ' &nbsp;&nbsp;<img src="assets/img/marker.png" width="15px" height="auto">' + shopaddr + ' &nbsp;<span class="' + shopst[shopstatus] + '"></span><br><i>Delivery available within ' + prct[0] + ' and ' + prct[1] + '</i></span></div><div class="aspect-stat"><div class="all-opinions optc' + optc + '"><span class="all-opinions-count">' + optcnt + '</span><span> opinion</span></div><div><span class="positive-count">' + posopt + '</span><span class="neutral-count">' + neuopt + '</span><span class="negative-count">' + negopt + '</span></div></div></div><div class="aspect-tab-content"><div class="sentiment-wrapper"><div class="productlst"><ul class="products" id="' + id + 'shp"></ul></div></div></div></div>');
 }
 optc = 1;
 
@@ -449,11 +451,12 @@ var shopaddr = snap.child("shopaddr").val();
 var shoplat = snap.child("shoplat").val();
 var shoplang = snap.child("shoplang").val();
 var shopstatus = snap.child("shopstatus").val();
+var stock = snap.child("stock").val();
 var dpincode = snap.child("dpincode").val();
 var dtimechk = distance(shoplat,shoplang,t,g,"K");
 if(dtimechk > Number(delgb[ditems.indexOf("foods")]) || !dpincode.includes(upin)){dtimechk = 8}
-if(shopstatus == "offline"){dtimechk = 9}
-if(shopstatus == "outofstock"){dtimechk = 10}
+if(shopstatus == 0){dtimechk = 9}
+if(stock == 0){dtimechk = 10}
 var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
 var priceshp = snap.child("priceshp").val();
@@ -474,12 +477,17 @@ var rcntvw = snap.child("rcntvw").val();
 var dotpriority = snap.child("dotpri").val();
 
 
-if (x = "ALL") {
+if(shopstatus == 1 && stock == 1 && dtimechk < 8 /*shopstatus == 1 && stock == 1 *//* dtimechk < Number(delgb[ditems.indexOf("foods")]) */) {
 $("#fds").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-rcntvw=\"" + rcntvw + "s\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopid + "\"><h3 onclick=\"sngl(this)\" data-rcntvw=\"" + rcntvw + "s\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopid + "\">" + name + "<b class=\"dt ratg" + ratg + "\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span class=\"offer" + offer + "\">₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart dsb" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\" data-itemtype=\"foods\" onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-dsb=\"" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\" data-itemtype=\"foods\" onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
+
+}
+if(shopstatus == 1){
 $("#" + shopid + "shp").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-rcntvw=\"" + rcntvw + "s\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopid + "\"><h3 onclick=\"sngl(this)\" data-rcntvw=\"" + rcntvw + "s\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopid + "\">" + name + "<b class=\"dt ratg" + ratg + "\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span class=\"offer" + offer + "\">₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart dsb" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycntshp\" data-itemtype=\"foods\" onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-dsb=\"" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vwshp\" data-itemtype=\"foods\" onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtysshp\"> 0 </span></li>");
+
+}
+
 offer = 1;
 ratg = 1;
-}
 
 
 });
@@ -507,7 +515,7 @@ var shopstatus = snap.child("shopstatus").val();
 var dpincode = snap.child("dpincode").val();
 var dtimechk = distance(shoplat,shoplang,t,g,"K");
 if(dtimechk > Number(delgb[ditems.indexOf("medicine")]) || !dpincode.includes(upin)){dtimechk = 8}
-if(shopstatus == "offline"){dtimechk = 9}
+if(shopstatus == 0){dtimechk = 9}
 if(shopstatus == "outofstock"){dtimechk = 10}
 var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
@@ -560,7 +568,7 @@ var shopstatus = snap.child("shopstatus").val();
 var dpincode = snap.child("dpincode").val();
 var dtimechk = distance(shoplat,shoplang,t,g,"K");
 if(dtimechk > Number(delgb[ditems.indexOf("grocery")]) || !dpincode.includes(upin)){dtimechk = 8}
-if(shopstatus == "offline"){dtimechk = 9}
+if(shopstatus == 0){dtimechk = 9}
 if(shopstatus == "outofstock"){dtimechk = 10}
 var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
@@ -614,7 +622,7 @@ var shopstatus = snap.child("shopstatus").val();
 var dpincode = snap.child("dpincode").val();
 var dtimechk = distance(shoplat,shoplang,t,g,"K");
 if(dtimechk > Number(delgb[ditems.indexOf("essentials")]) || !dpincode.includes(upin)){dtimechk = 8}
-if(shopstatus == "offline"){dtimechk = 9}
+if(shopstatus == 0){dtimechk = 9}
 if(shopstatus == "outofstock"){dtimechk = 10}
 var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
@@ -677,7 +685,7 @@ var shopstatus = snap.child("shopstatus").val();
 var dpincode = snap.child("dpincode").val();
 var dtimechk = distance(shoplat,shoplang,t,g,"K");
 if(dtimechk > Number(delgb[ditems.indexOf(itemcat)]) || !dpincode.includes(upin)){dtimechk = 8}
-if(shopstatus == "offline"){dtimechk = 9}
+if(shopstatus == 0){dtimechk = 9}
 if(shopstatus == "outofstock"){dtimechk = 10}
 var dtime = dtimes[dtimechk.toFixed(0)];
 var price = snap.child("price").val();
@@ -837,7 +845,16 @@ function sngl(x) {
 }
 
 function toshowcart() {
-  window.open("cart.html?uid=" + u + "=0=" + t + "=" + g + "=" + locst);
+  if(document.getElementById("cartcntside").innerHTML == "0"){
+    swal("Add at least one item to cart.", {
+        buttons: false,
+        timer: 2500,
+        });
+  }
+    else{
+      window.open("cart.html?uid=" + u + "=0=" + t + "=" + g + "=" + locst);
+    }
+  
 }
 
 function favchkf(x,y) {

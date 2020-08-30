@@ -1,7 +1,7 @@
 
 var latf = "";
 var langf = "";
-var orderID = "";
+var did = "";
 var u = "";
 var firebaseConfig = {
     apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
@@ -17,11 +17,23 @@ var firebaseConfig = {
 
 
       function getLocation() {
-        latf = location.search.substring(1).split("=")[1];
-        langf = location.search.substring(1).split("=")[2];
-        orderID = location.search.substring(1).split("=")[3];
-        u = location.search.substring(1).split("=")[4];
-        initMap();
+        //latf = location.search.substring(1).split("=")[1];
+        //langf = location.search.substring(1).split("=")[2];
+        did = location.search.substring(1).split("=")[1];
+        u = location.search.substring(1).split("=")[2];
+        var rootRef = firebase.database().ref('dboy');
+
+          rootRef.on("child_added", snap => {
+
+          var id = snap.child("id").val();
+          var lastlat = snap.child("lastlat").val();
+          var lastlang = snap.child("lastlang").val();
+          if(id == did){
+            latf = Number(lastlat);
+            langf = Number(lastlang);
+            initMap();
+          }
+        });
       }      
 
       (function(exports) {
@@ -57,15 +69,15 @@ var firebaseConfig = {
             infowindow.open(exports.map, marker);
           });
 
-          var rootRef = firebase.database().ref(u + '/order');
+          var rootRef = firebase.database().ref('dboy');
 
           rootRef.on("child_changed", snap => {
 
-          var id = snap.child("ordid").val();
+          var id = snap.child("id").val();
           var lastlat = snap.child("lastlat").val();
           var lastlang = snap.child("lastlang").val();
 
-          if(id == orderID){
+          if(id == did){
             latf = Number(lastlat);
             langf = Number(lastlang);
             initMap();

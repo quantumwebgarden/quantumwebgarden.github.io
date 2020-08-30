@@ -108,7 +108,14 @@ var allshorts = ['fds','mdc','grc','est'];
 var pntr = "";
 
   function showhide(b) {
-	
+    if(b!="foods"){
+        swal("Will be available soon at your area...", {
+        buttons: false,
+        timer: 2500,
+        });
+    }
+    /*
+
     pntr = allshorts[allitems.indexOf(b)] + "_list";
 
         x = document.querySelectorAll("section.productlst");
@@ -134,6 +141,7 @@ var pntr = "";
         x[i].style.display = "none";
     }
     document.getElementById(allshorts[allitems.indexOf(b)] + "shp").style.display = "block";
+    */
     
   }
 
@@ -179,8 +187,18 @@ function sh_orders(){
 
 function sh_orders_show(){
     //tocountorder();
-    $(".page-wrapper").removeClass("toggled");
+    if(document.getElementById("cartcntside").innerHTML == "0"){
+    swal("Place an ordder to show details", {
+        buttons: false,
+        timer: 2500,
+        });
+  }
+    else{
+      $(".page-wrapper").removeClass("toggled");
     window.open("del.html" + location.search);
+    }
+
+    
 }
 
 function showcart(){
