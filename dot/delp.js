@@ -1,8 +1,8 @@
 window.androidObj = function AndroidClass(){};
 
-var orderID = ""
-var dpid = ""
-
+var orderID = "";
+var dpid = "";
+var shopids = "";
 var backgrounds = ["linear-gradient(to right, #d194ff, #9389ff)","linear-gradient(to right, #7cbfee, #00d0b8)","linear-gradient(to right, #ff77a7, #ff7b7e)"];
 var firebaseConfig = {
     apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
@@ -72,25 +72,28 @@ var did = snap.child("did").val();
 var shopnames = snap.child("shopnames").val().split(",").join("<br>");
 var shopaddrs = snap.child("shopaddrs").val().split(",").join("<br>");
 var totalqty = snap.child("ordqty").val().split(",").reduce((a, b) => Number(a) + Number(b), 0);
+shopids = snap.child("shopids").val().split(",");
 
-if(orderstatus == 11 || orderstatus == 21 || orderstatus == 12 || orderstatus == 22){
+
+
+if(orderstatus == 11 || orderstatus == 22){
     var backg = 'one';
 }
-if(orderstatus == 13 || orderstatus == 23){
+if(orderstatus == 24){
     var backg = 'two';
 }
 if(orderstatus == 19 || orderstatus == 29){
     var backg = 'three';
 }
-if(orderstatus == 11 || orderstatus == 21){
+if(orderstatus == 11 || orderstatus == 22){
     var pickbtn = 'one';
     var delbtn = 'two';
 }
-if(orderstatus == 12 || orderstatus == 22){
+if(orderstatus == 24){
     var pickbtn = 'two';
     var delbtn = 'one';
 }
-if(orderstatus == 13 || orderstatus == 23 || orderstatus == 29 || orderstatus == 19){
+if(orderstatus == 23 || orderstatus == 29 || orderstatus == 19){
     var pickbtn = 'two';
     var delbtn = 'two';
 }
@@ -109,8 +112,11 @@ function calldboy(x){
 function picked(x) {
     suid = x.getAttribute("data-uid");
     sord = x.getAttribute("data-ordid");
-    firebase.database().ref(suid + "/order/" + sord).update({orderstatus:"22"});
-    firebase.database().ref("allorders/" + sord).update({orderstatus:"22"});
+    firebase.database().ref(suid + "/order/" + sord).update({orderstatus:"24"});
+    firebase.database().ref("allorders/" + sord).update({orderstatus:"24"});
+    for (var i = shopids.length - 1; i >= 0; i--) {
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({orderstatus:ordstatus});
+    }
     location.reload();
     /*document.getElementById(sord + "p").style.display = 'none';
     document.getElementById(sord + "d").style.display = 'block';*/
@@ -121,6 +127,9 @@ function delivered(x) {
     sord = x.getAttribute("data-ordid");
     firebase.database().ref(suid + "/order/" + sord).update({orderstatus:"23"});
     firebase.database().ref("allorders/" + sord).update({orderstatus:"23"});
+    for (var i = shopids.length - 1; i >= 0; i--) {
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({orderstatus:ordstatus});
+    }
     location.reload();
     /*document.getElementById(sord + "p").style.display = 'none';
     document.getElementById(sord + "d").style.display = 'none';*/
