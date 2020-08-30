@@ -187,16 +187,15 @@ function sh_orders(){
 
 function sh_orders_show(){
     //tocountorder();
-    if(document.getElementById("cartcntside").innerHTML == "0"){
+    /*if(document.getElementById("cartcntside").innerHTML == "0"){
     swal("Place an ordder to show details", {
         buttons: false,
         timer: 2500,
         });
-  }
-    else{
+  }*/
       $(".page-wrapper").removeClass("toggled");
     window.open("del.html" + location.search);
-    }
+
 
     
 }
