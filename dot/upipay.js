@@ -52,7 +52,7 @@ var shoppays = snap.child("prices").val().split(",");
 var shopitemqtys = snap.child("qtys").val().split(",");
 var dotp = snap.child("dotp").val();
 var shopids = snap.child("shopids").val().split(",");
-
+var shopphones = snap.child("shopphones").val().split(",");
 
 if (odid == ordid && ordstatus == "22") {
 
@@ -63,11 +63,26 @@ if (odid == ordid && ordstatus == "22") {
     }
     for (var i = shopids.length - 1; i >= 0; i--) {
           firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({orderstatus:ordstatus,paystatus:0});
+          //SMS to shopphones;
+          if(!shopitemnames[i].includes("sp2lt")){
+            var msgraw = 'Name - ' + shopitemnames[i] + ', quantity - ' + shopitemqtys[i] + ";";
+          }
+          else{
+            var msgraw = "";
+            var itemsf = shopitemnames[i].split("sp2lt");
+            var qtysf = shopitemqtys[i].split("sp2lt")
+            for (var ij = itemsf.length - 1; ij >= 0; ij--) {
+                var msgraw = msgraw + 'Name: ' + itemsf[ij] + ', quantity: ' + qtysf[ij] + "; ";
+              }
+          }
+          var finalmsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Details as follow: " + msgraw);
+          console.log(finalmsg + " to " + shopphones[i]);
+          document.getElementById("msgonly" + i).src = "http://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=" + shopphones[i] + "&Msg=" + finalmsg;
     }
-
+    
 	Swal.fire({
   title: 'DOT',
-  html: 'Your order has been placed successfully. ' + dmsg[dsts.indexOf(dstatus)] + "<br/><u>Track delivery status from \'My orders\'.</u>",
+  html: 'Your order has been placed successfully. ' + dmsg[dsts.indexOf(dstatus)] + "<br/><u>Track your delivery status from \'My orders\'.</u>",
   icon: 'success',
   showCancelButton: false,
   confirmButtonText: 'Back to Home',
@@ -79,14 +94,12 @@ if (odid == ordid && ordstatus == "22") {
   }
 })
 
-sendsms("order" + ordid);
-
 }
 
 if(odid == ordid && ordstatus == "29"){
 	Swal.fire({
   title: 'DOT',
-  html: 'Sorry, Payment Failed.<br>If amount transacted from your account, please contact DOT Customer Care with ID: \'' + odid + '\'<br>Email: support@deliveryontimedot.com<br>Call us at: +91 8918007407',
+  html: 'Sorry, Payment Failed.<br>If amount debited from your account, please contact DOT Customer Care with ID: \'' + odid + '\'<br>Email: support@deliveryontimedot.com<br>Call us at: +91 8918007407',
   icon: 'error',
   showCancelButton: false,
   confirmButtonText: 'Back to Home',

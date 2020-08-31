@@ -258,8 +258,8 @@ function initskip() {
         focusConfirm: false,
         footer: '<p>DOT : Delivery On Time</p>'
         });
-     /*   
-
+        
+/*
     var qtload = Math.floor(Math.random() * 4);
     let timerInterval
 Swal.fire({
