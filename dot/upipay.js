@@ -86,7 +86,7 @@ sendsms("order" + ordid);
 if(odid == ordid && ordstatus == "29"){
 	Swal.fire({
   title: 'DOT',
-  html: 'Sorry, Payment Failed.<br>If amount transacted from your account, please contact DOT Customer Care with ID: \'' + odid + '\'<br>Email: deliverontime2020@gmail.com<br>Call us at: +91 8768626927',
+  html: 'Sorry, Payment Failed.<br>If amount transacted from your account, please contact DOT Customer Care with ID: \'' + odid + '\'<br>Email: support@deliveryontimedot.com<br>Call us at: +91 8918007407',
   icon: 'error',
   showCancelButton: false,
   confirmButtonText: 'Back to Home',

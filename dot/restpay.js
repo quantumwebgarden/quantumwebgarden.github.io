@@ -77,6 +77,7 @@ rootRef.on("child_added", snap => {
 var id = snap.child("id").val();
 
 var orderstatus = snap.child("orderstatus").val();
+var dtnow = snap.child("dtnow").val();
 var prices = snap.child("prices").val();
 var qtys = snap.child("qtys").val();
 var products = snap.child("products").val();
@@ -100,8 +101,9 @@ var smjq = qtys.reduce(function(a, b){
             }, 0);
 var qtys = qtys + " = " + smjq;
   */
-$("#allitems").append('<tr><td>30-8-2020</td><td>' + id + '</td><td>' + products + '</td><td>' + prices + '</td><td>' + qtys + '</td><td>' + paystatus + '</td></tr>');
-  
+  if(orderstatus == 23){
+$("#allitems").append('<tr><td>' + dtnow + '</td><td>' + id + '</td><td>' + products + '</td><td>' + prices + '</td><td>' + qtys + '</td><td>' + paystatus + '</td></tr>');
+  }
 
 });
 }

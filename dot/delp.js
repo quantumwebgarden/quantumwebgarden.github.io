@@ -52,10 +52,10 @@ var firebaseConfig = {
   var parameters = location.search.substring(1).split("=");
   //orderID = parameters[1];
   dpid = parameters[1];
-  orderdetails(orderID);
+  orderdetails();
 }
   
-  function orderdetails(x) {
+  function orderdetails() {
     var rootRef = firebase.database().ref('allorders');
 
       rootRef.on("child_added", snap => {
@@ -115,7 +115,7 @@ function picked(x) {
     firebase.database().ref(suid + "/order/" + sord).update({orderstatus:"24"});
     firebase.database().ref("allorders/" + sord).update({orderstatus:"24"});
     for (var i = shopids.length - 1; i >= 0; i--) {
-          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({orderstatus:ordstatus});
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + sord).update({orderstatus:"24"});
     }
     location.reload();
     /*document.getElementById(sord + "p").style.display = 'none';
@@ -128,7 +128,7 @@ function delivered(x) {
     firebase.database().ref(suid + "/order/" + sord).update({orderstatus:"23"});
     firebase.database().ref("allorders/" + sord).update({orderstatus:"23"});
     for (var i = shopids.length - 1; i >= 0; i--) {
-          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({orderstatus:ordstatus});
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + sord).update({orderstatus:"23"});
     }
     location.reload();
     /*document.getElementById(sord + "p").style.display = 'none';

@@ -16,6 +16,14 @@ var shoppays = [];
 var shopitemnames = [];
 var shopitemqtys = [];
 var shopgrpids = [];
+var avldboys = [];
+var avldboyr = [];
+var avlphones = [];
+var avlphoner = [];
+var avlnames = [];
+var avlnamer = [];
+var cntdboysit = 0;
+var cntdboyroad = 0;
 var dtimeapprox = "";
 var lstid = "";
 var lstqty = "";
@@ -34,12 +42,13 @@ var udname = "";
 var udimg = "";
 var totalquantity = 0;
 var totalprice = 0;
+var bonusapplied = 0;
 var qtarray = ["Now Loading...","The more you sweat in practice the less you bleed in battle - Michael Jordan","Work hard in silence, let your success be your noise - Frank Ocean","Slow network may create delay","Welcome To DOT: Delivery on Time"];
 var dtimes = ["5 Minutes","10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","45 Minutes","1 Hour","Out of Delivery Area","Shop Closed"];
 var ditems = ["foods","medicine","grocery","essentials"];
-var delgb = ["6","7","5","7"];
-var dchargearray = ["0","3","5","7","10","13","15","20","22","25","30","35"];
-var dhomes = ["","Diamond Harbour","Sarisha","Karanjali"];
+var delgb = ["3","3","3","3"];
+var dchargearray = ["0","7","11","15","19","23"];
+var dhomes = ["","Diamond Harbour","Sarisha","Diamond Harbour to Sarisha","Sarisha to Diamond Harbour"];
 var dsts = ["offline","sit","road"];
 var dmsg = ["","","For Lockdown issues we are working with less staff. It may take longer than usual"];
 var dflag = 0;
@@ -52,6 +61,8 @@ var grandtotalall = 0;
 var finaldid = "";
 var finaldst = "";
 var weighttotal = 0;
+var dtimefinal = 0;
+var qtytotal = 0;
 var firebaseConfig = {
     apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
     authDomain: "quantumdot20.firebaseapp.com",
@@ -63,7 +74,7 @@ var firebaseConfig = {
     measurementId: "G-Y98ZR7S8EQ"
   };
   firebase.initializeApp(firebaseConfig);
-
+var dstatusflag = 0;
 
 window.addEventListener('offline', toOff);
     function toOff(){
@@ -273,13 +284,25 @@ function chkcart(x) {
             var priceshp = snap.child("priceshp").val();
             var weight = snap.child("weight").val();
 
+
+
             if(id == y){
             price = eachprice * z;
             weight = weight * z;
+
             var shppriceall = shpprice * z;
             pricetotal = pricetotal + price;
             weighttotal = weighttotal + weight;
-
+            qtytotal = qtytotal + z;
+            if(dtimefinal < dtimechk){
+              dtimefinal = dtimechk;
+            }
+            console.log(dtimechk);
+            if(dtimechk.toFixed(0) > 7){
+              $("#" + m).addClass("oda");
+              dflag = 1;
+              $("#removeline").addClass("showme");
+            }
             
             if(shopids.includes(shopid)){
               shopgroups[shopids.indexOf(shopid)] = shopgroups[shopids.indexOf(shopid)] + "sp2lt" + y;
@@ -299,17 +322,17 @@ function chkcart(x) {
             cnts+= 1;
               }
             
-
-            
-
             additem(m,price,eachprice,id,name,thumb,z,typ,shopname,dtime);
-
-            var dcharge = Number(dchargecal(m,price,z,dtimechk));
-            dchtotal = dchtotal + dcharge;
+              calculateall();
             
-            calculateall();
         }
         });
+            /*setTimeout(function(){ 
+              var dcharge = Number(dchargecal(m,price,z,dtimechk,weighttotal));
+              dchtotal = dchtotal + dcharge;
+            
+
+            }, 3000);*/
                       
         }
         function additem(timestamp,price,itemeachprice,itemid,itemname,itempic,itemqty,itemtyp,itemshopname,itemdtime){
@@ -325,50 +348,82 @@ function calculateall(argument) {
   var grandtotal = Number(pricetotal) + Number(dchtotal) - Number(discounttotal);
   document.getElementById("itemgrand").innerHTML = "₹ " + grandtotal.toFixed(2);
   grandtotalall = Math.round(grandtotal).toFixed(2);
+
 }
 
-function dchargecal(tm,price,qty,dtime) {
-  var dcr = 0;
-  if(dtime < 7){
-    if(qty < 10 || totalquantity < 10){
-      if (price > 300) {
-        dcr = (Number(dchargearray[0])*qty).toFixed(2);
-      }
-      else if (price > 200) {
-        dcr = (Number(dchargearray[0])*qty).toFixed(2);
-      }
-      else{
-        dcr = (Number(dchargearray[1])*(dtime/qty)).toFixed(2);
-      }
-    }
-    else if(qty < 15 || totalquantity < 15){
-      if (price > 300) {
-        dcr = (Number(dchargearray[1])*dtime).toFixed(2);
-      }
-      else{
-        dcr = (Number(dchargearray[1])*dtime).toFixed(2);
-      }
-    }
-    else{
-      Swal.fire(
+function calculatetotal(){
+  dchargecal(pricetotal,weighttotal,qtytotal,dtimefinal.toFixed(0));
+  calculateall();
+  var bonusload = Math.floor(Math.random() * 4);
+  if(grandtotalall > 220){
+    addbonus();
+  }
+  else if(bonusload == 3){
+    Swal.fire(
   'DOT',
-  'Maximum 10 items can be placed in a single order. Remove some items and try again.',
+  'Order value more than ₹220 will get an bonus item for free.',
+  'info'
+    );
+  }
+  document.getElementById("checkoutbtn").style.display = "block";
+  document.getElementById("calculatebtn").style.display = "none";
+
+}
+
+function dchargecal(pt,wt,qt,dt) {
+  if(dt > 7){
+    Swal.fire(
+  'DOT',
+  'Orders from out of delivery area added. Please remove red marked items and try again.',
   'warning'
-);
-      //Not Deliverable more than 10 items
-    }
+    );
+  }
+  else if(qt > 15){
+    Swal.fire(
+  'DOT',
+  'Maximum of 15 items can be placed in a single order. Please remove some items and try again.',
+  'warning'
+    );
+  }
+  else if(wt > 5000){
+    Swal.fire(
+  'DOT',
+  'More than 5Kg weight. Please remove some heavy weight items and try again.',
+  'warning'
+    );
   }
   else{
-    dflag = 1;
-    $("#" + tm).addClass("oda");
-    dcr = 0;console.log(dcr);
-    $("#removeline").addClass("showme");
-
+    if(pt>300){
+      dchtotal = 0;
+      //addbonus();
+    }
+    else if(pt>220){
+      //addbonus();
+      dchtotal = Number(dchargearray[dt]);
+    }
+    else if(pt<220 && wt>4000){
+      dchtotal = Number(dchargearray[dt]*1.5);
+    }
+    else if(pt<220 && wt<4000){
+      dchtotal = Number(dchargearray[dt]);
+    }
+    console.log(dchtotal);
   }
-
-  return dcr;
+  
 }
 
+function addbonus(){
+  Swal.fire({
+  title: 'DOT',
+  html: 'You got a special bonus offer from DOT for order value more than ₹220 <br><img width="80%" height="auto" src="thumsup.jpg"><br><b>Order more to gain more bonus</b>',
+  allowEscapeKey: true,
+  allowOutsideClick: true,
+  showCancelButton: false,
+  showConfirmButton: true,
+  focusConfirm: true,
+  footer: '<p>DOT : Delivery On Time</p>'
+});
+  }
 function removeitemc(x){
   var ctid = x.getAttribute("data-itemst");
   firebase.database().ref(u + "/cart/" + ctid).update({typ:'temp'});
@@ -476,7 +531,7 @@ if(dflag == 0 && grandtotalall > 0){
 else {
   Swal.fire({
   title: 'Ready to Pay?',
-  text: "Pay Online now. Once accepted, you cannot revert back.",
+  text: "Pay Online now. Once accepted, you cannot revert back. Use Google pay for better reluts with lucky cashbacks.",
   icon: 'info',
   showCancelButton: false,
   confirmButtonColor: '#3085d6',
@@ -514,7 +569,7 @@ function codpay(){
   firebase.database().ref("allorders/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});//2 for Payment POD & 1 for not ready for delivery
   
   for (var i = shopids.length - 1; i >= 0; i--) {
-          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({dtnow:dtnow,paystatus:0,id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:"11"});
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({dimg:udimg,dphone:udphone,dname:udname,dtnow:dtnow,paystatus:0,id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:"11"});
     }
   
   /*
@@ -547,7 +602,7 @@ var uri = "my test.asp?name=ståle&car=saab";
     window.open("index.html" + location.search);
   }
 })
-sendsms("order" + ordid);
+//sendsms("order" + ordid);
 }
 
 function sendsms(x){
@@ -565,7 +620,7 @@ function findDeliveryBoy(){
   position: 'top-end',
   title: 'please wait...',
   showConfirmButton: false,
-  timer: 500
+  timer: 1500
 })
   var rootRef = firebase.database().ref("dboy");
 
@@ -579,33 +634,53 @@ function findDeliveryBoy(){
     var dphone = snap.child("phone").val();
         
 
-    if(dhomes[darea] == uhome){    
+    if(dhomes[darea] == uhome){   
 
-      udname = dname;
-      udphone = dphone;
-      udimg = "blank.png";
+      if(dstatus == "sit"){
+        avldboys[cntdboysit] = did;
+        avlnames[cntdboysit] = dname;
+        avlphones[cntdboysit] = dphone;
+        cntdboysit ++;
+      }
+      else if(dstatus == "road"){
+        avldboyr[cntdboyroad] = did;
+        avlnamer[cntdboyroad] = dname;
+        avlphoner[cntdboyroad] = dphone;
+        cntdboyroad ++;
+      }
 
-    if(dstatus == "offline"){
-       Swal.fire('DOT',
-        'Delivery Boy is not Available right now. We generally supply orders from 8:00 AM to 8:00 PM',
+      }
+    
+  });
+
+    setTimeout(function(){ 
+      if (cntdboysit == 0 && cntdboyroad == 0) {
+      Swal.fire('DOT',
+        'Sorry, Delivery Boy is not Available right now. We generally supply orders from 8:30 AM to 8:30 PM.',
         'info'
         )
     }
-    else if(dstatus == "sit"){
-      finaldid = did;
-      finaldst = dstatus;
-      confirmpay();
+    else{
+      if(cntdboysit > 0){
+        finaldid = avldboys[0];
+        udname = avlnames[0];
+        udphone = avlphones[0];
+        udimg = "blank.png";
+        finaldst = "sit";
+        confirmpay();
+      }
+      else{
+        
+        finaldid = avldboyr[0];
+        udname = avlnamer[0];
+        udphone = avlphoner[0];
+        udimg = "blank.png";
+        finaldst = "road";
+        confirmpay();
+      }
     }
-    else if(dstatus == "road"){
-        //console.log(dname);
-      finaldid = did;
-      finaldst = dstatus;
-      confirmpay();
-    }
-    }
-
-
-  });
+     }, 2000);
+    
 }
 
 function payupi() {
@@ -622,7 +697,7 @@ function payupi() {
     firebase.database().ref("allorders/" + ordid).update({dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});
     
     for (var i = shopids.length - 1; i >= 0; i--) {
-          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({dtnow:dtnow,id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:bcode});
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({dimg:udimg,dphone:udphone,dname:udname,dtnow:dtnow,id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:bcode});
     }
 
   window.open("upipay.html" + location.search + "=" + ordid);
