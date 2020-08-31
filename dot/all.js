@@ -468,6 +468,14 @@ function logoutcall(){
 }
 
 function sharefriends(x){
-    window.androidObj.textToAndroid(x);
+    //window.androidObj.textToAndroid(x);
+    Swal.fire({
+  title: 'DOT: Delivery On Time',
+  html: "<img src=\"dotf.png\"><br><br> Website: <u>www.deliveryontimedot.com</u> <br> Email ID: support@deliveryontimedot.com <br> Technical Support: +91 8918007407 <br> Marketing query: +91 7602888400 <br> For any query contact our customer support.",
+  showCancelButton: false,
+  confirmButtonColor: '#64a8ed',
+  confirmButtonText: 'Okay',
+  footer: 'Quantum Webgarden'
+});
 }
 
