@@ -27,7 +27,8 @@
 }
 
 .aspect-input:checked ~ .aspect-content + .aspect-tab-content {
-  max-height: 3000px;
+  max-height: 1000px;
+  overflow: auto;
 }
 
 .aspect-input:checked ~ .aspect-content:after {
