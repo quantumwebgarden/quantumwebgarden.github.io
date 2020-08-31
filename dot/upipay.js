@@ -53,7 +53,8 @@ var shopitemqtys = snap.child("qtys").val().split(",");
 var dotp = snap.child("dotp").val();
 var shopids = snap.child("shopids").val().split(",");
 var shopphones = snap.child("shopphones").val().split(",");
-
+var shopnames = snap.child("shopnames").val().split(",");
+var udphone = snap.child("dphone").val();
 if (odid == ordid && ordstatus == "22") {
 
   firebase.database().ref("allorders/" + odid).update({orderstatus:ordstatus});
@@ -61,6 +62,12 @@ if (odid == ordid && ordstatus == "22") {
 	for (var i = cartitems.length - 1; i >= 0; i--) {
     firebase.database().ref(u + "/cart/" + cartitems[i]).update({typ:"temp"});
     }
+
+    deliverymsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Shop Name(s): " + shopnames + " with respective Phone Number(s): " + shopphones + ". Check your App and meet or call.")
+
+    document.getElementById("msgonlydp").src = "http://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=" + udphone + "&Msg=" + deliverymsg;
+    
+
     for (var i = shopids.length - 1; i >= 0; i--) {
           firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({orderstatus:ordstatus,paystatus:0});
           //SMS to shopphones;
@@ -79,7 +86,7 @@ if (odid == ordid && ordstatus == "22") {
           console.log(finalmsg + " to " + shopphones[i]);
           document.getElementById("msgonly" + i).src = "http://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=" + shopphones[i] + "&Msg=" + finalmsg;
     }
-    
+
 	Swal.fire({
   title: 'DOT',
   html: 'Your order has been placed successfully. ' + dmsg[dsts.indexOf(dstatus)] + "<br/><u>Track your delivery status from \'My orders\'.</u>",
