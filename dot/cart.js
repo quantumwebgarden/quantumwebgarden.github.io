@@ -26,6 +26,7 @@ var avlnamer = [];
 var cntdboysit = 0;
 var cntdboyroad = 0;
 var dtimeapprox = "";
+var dflagsecond = 0;
 var lstid = "";
 var lstqty = "";
 var u = "";
@@ -355,6 +356,7 @@ function calculateall(argument) {
 }
 
 function calculatetotal(){
+  var dflagsecond = 0
   dchargecal(pricetotal,weighttotal,qtytotal,dtimefinal.toFixed(0));
   calculateall();
   var bonusload = Math.floor(Math.random() * 4);
@@ -368,18 +370,34 @@ function calculatetotal(){
   'info'
     );
   }
-  document.getElementById("checkoutbtn").style.display = "block";
-  document.getElementById("calculatebtn").style.display = "none";
+  if(dflagsecond == 0){
+    document.getElementById("checkoutbtn").style.display = "block";
+    document.getElementById("calculatebtn").style.display = "none";
+  }
+  else{
+    document.getElementById("checkoutbtn").style.display = "none";
+    document.getElementById("calculatebtn").style.display = "block";
+  }
+  
 
 }
 
 function dchargecal(pt,wt,qt,dt) {
-  if(dt > 7){
+  if(pt< 40){
+    Swal.fire(
+  'DOT',
+  'Minimum Order Value Rs. 40 Required.',
+  'warning'
+    );
+    dflagsecond++;
+  }
+  else if(dt > 7){
     Swal.fire(
   'DOT',
   'Orders from out of delivery area added. Please remove red marked items and try again.',
   'warning'
     );
+    dflagsecond++;
   }
   else if(qt > 15){
     Swal.fire(
@@ -387,6 +405,7 @@ function dchargecal(pt,wt,qt,dt) {
   'Maximum of 15 items can be placed in a single order. Please remove some items and try again.',
   'warning'
     );
+    dflagsecond++;
   }
   else if(wt > 5000){
     Swal.fire(
@@ -394,20 +413,21 @@ function dchargecal(pt,wt,qt,dt) {
   'More than 5Kg weight. Please remove some heavy weight items and try again.',
   'warning'
     );
+    dflagsecond++;
   }
   else{
     if(pt>300){
       dchtotal = 0;
       //addbonus();
     }
-    else if(pt>220){
+    else if(pt>200){
       //addbonus();
       dchtotal = Number(dchargearray[dt]);
     }
-    else if(pt<220 && wt>4000){
+    else if(pt<200 && wt>4000){
       dchtotal = Number(dchargearray[dt]*1.5);
     }
-    else if(pt<220 && wt<4000){
+    else if(pt<200 && wt<4000){
       dchtotal = Number(dchargearray[dt]);
     }
     console.log(dchtotal);
@@ -515,7 +535,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 }
 
 function confirmpay() {
-if(dflag == 0 && grandtotalall > 0){
+if(dflag == 0 && grandtotalall > 40){
     if(grandtotalall < 240 && uhome != "Karanjali"){
   Swal.fire({
   title: 'Ready to Pay?',
@@ -561,7 +581,7 @@ else {
 else{
   Swal.fire({
   title: 'DOT',
-  html: 'Check items in your cart. <u>Possible Error</u><br>1. No item in cart. <br>2. Cart include out of delivery items.',
+  html: 'Check items in your cart. <br> <u>Possible Solutions</u><br>1. Add item in your cart. <br>2. Remove items marked with "Out Of Delivery" status.<br>3. Minimum Order amount Rs.40 required.',
   icon: 'error'
 });
 }
