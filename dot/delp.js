@@ -2,7 +2,6 @@ window.androidObj = function AndroidClass(){};
 
 var orderID = "";
 var dpid = "";
-var shopids = "";
 var backgrounds = ["linear-gradient(to right, #d194ff, #9389ff)","linear-gradient(to right, #7cbfee, #00d0b8)","linear-gradient(to right, #ff77a7, #ff7b7e)"];
 var firebaseConfig = {
     apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
@@ -72,8 +71,18 @@ var did = snap.child("did").val();
 var shopnames = snap.child("shopnames").val().split(",").join("<br>");
 var shopaddrs = snap.child("shopaddrs").val().split(",").join("<br>");
 var totalqty = snap.child("ordqty").val().split(",").reduce((a, b) => Number(a) + Number(b), 0);
-shopids = snap.child("shopids").val().split(",");
+var shopids = snap.child("shopids").val();
+var dtnow = snap.child("dtnow").val();
+var timenow = snap.child("timenow").val();
+var products = snap.child("products").val().split(",").join("<br>");
+var products = products.split("sp2lt").join(", ");
+var resqty = snap.child("qtys").val().split(",").join("<br>");
+var resqty = resqty.split("sp2lt").join(", ");
+if(shopids.length > 8){
+ var shopids = shopids.split(",");
+}
 
+console.log(shopids);
 
 
 if(orderstatus == 11 || orderstatus == 22){
@@ -82,7 +91,7 @@ if(orderstatus == 11 || orderstatus == 22){
 if(orderstatus == 24){
     var backg = 'two';
 }
-if(orderstatus == 19 || orderstatus == 29){
+if(orderstatus == 19 || orderstatus == 29 || orderstatus == 28){
     var backg = 'three';
 }
 if(orderstatus == 11 || orderstatus == 22){
@@ -98,7 +107,7 @@ if(orderstatus == 23 || orderstatus == 29 || orderstatus == 19){
     var delbtn = 'two';
 }
 if(dpid == did && orderstatus != 28){
-    $("#allordercard").append('<div class="card card--' + backg + '"><p class="card__number">Order No.: ' + ordid +'</p><center><hr style="width: 50%"></center><br><p class="card__owner"><b>Customer Name: </b> ' + cname + ' </p><p class="card__owner"><b>Contact no. : </b><i onclick="calldboy(\'call' + cphone + '\')">+91 ' + cphone + '</i></p><p class="card__owner"><b>Delivery Address : </b>' + caddress + '</p><br><p class="card__owner"><b>Pickup Shop Name(s) : </b><br>' + shopnames + '</p><b>Respective Pickup Address(es) : </b><br>' + shopaddrs + '</p><div class="card__info"><p class="card__integral"><b>Total Quantity :</b> ' + totalqty +'</p><p class="card__amount"><b>Total Amount: ₹</b>' + ordval + '</p></div><div class="card__info"><p class="card__integral"><b>Payment Status :</b> ' + paymode +'</p><p class="card__amount"><b>OTP: </b> ' + dotp + '</p></div><center><div class="card__info"><p class="card__integral"><button id="' + ordid + 'p" class="opc' + pickbtn + '" data-ordid="' + ordid + '" data-uid="' + cphone + '" onclick="picked(this)">Picked Up</button></p><p class="card__amount"><button id="' + ordid + 'd" class="opc' + delbtn + '" data-ordid="' + ordid + '" data-uid="' + cphone + '" onclick="delivered(this)">Delivered</button></p></div></center></div><br>');
+    $("#allordercard").append('<div class="card card--' + backg + '"><p class="card__number">Order No.: ' + ordid +'</p><center><hr style="width: 50%"></center><br><p class="card__owner"><b>Customer Name: </b> ' + cname + ' </p><p class="card__owner"><b>Contact no. : </b><i onclick="calldboy(\'call' + cphone + '\')">+91 ' + cphone + '</i></p><p class="card__owner"><b>Delivery Address : </b>' + caddress + '</p><br><p class="card__owner"><b>Pickup Shop Name(s) : </b><br>' + shopnames + '</p><b>Respective Pickup Address(es) : </b><br>' + shopaddrs + '</p><b>Respective Item(s) to collect : </b><br>' + products + '</p><b>Respective Quantity(s) to collect : </b><br>' + resqty + '</p><div class="card__info"><p class="card__integral"><b>Total Quantity :</b> ' + totalqty +'</p><p class="card__amount"><b>Total Amount: ₹</b>' + ordval + '</p></div><div class="card__info"><p class="card__integral"><b>Payment Status :</b> ' + paymode +'</p><p class="card__amount"><b>OTP: </b> ' + dotp + '</p></div><div class="card__info"><p class="card__integral"><b>Date :</b> ' + dtnow +'</p><p class="card__amount"><b>Time: </b> ' + timenow + '</p></div><center><div class="card__info"><p class="card__integral"><button id="' + ordid + 'p" class="opc' + pickbtn + '" data-ordid="' + ordid + '" data-uid="' + cphone + '" data-shopids="' + shopids + '" onclick="picked(this)">Picked Up</button></p><p class="card__amount"><button id="' + ordid + 'd" class="opc' + delbtn + '" data-ordid="' + ordid + '" data-uid="' + cphone + '" data-shopids="' + shopids + '" onclick="delivered(this)">Delivered</button></p></div></center></div><br>');
 }
 
 });
@@ -113,11 +122,18 @@ function picked(x) {
     firebase.database().ref("dboy/" + dpid).update({status:"road"});
     suid = x.getAttribute("data-uid");
     sord = x.getAttribute("data-ordid");
+    y = x.getAttribute("data-shopids");
     firebase.database().ref(suid + "/order/" + sord).update({orderstatus:"24"});
     firebase.database().ref("allorders/" + sord).update({orderstatus:"24"});
-    for (var i = shopids.length - 1; i >= 0; i--) {
-          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + sord).update({orderstatus:"24"});
-    }
+    if(y.length > 8){
+      var y = y.split(",");
+      for (var i = y.length - 1; i >= 0; i--) {
+        firebase.database().ref("allshop/" + y[i] + "/orders/" + sord).update({orderstatus:"24"});
+        }
+      }
+      else{
+        firebase.database().ref("allshop/" + y + "/orders/" + sord).update({orderstatus:"24"});
+      }
     location.reload();
     /*document.getElementById(sord + "p").style.display = 'none';
     document.getElementById(sord + "d").style.display = 'block';*/
@@ -127,11 +143,18 @@ function delivered(x) {
   firebase.database().ref("dboy/" + dpid).update({status:"sit"});
     suid = x.getAttribute("data-uid");
     sord = x.getAttribute("data-ordid");
+      y = x.getAttribute("data-shopids");
     firebase.database().ref(suid + "/order/" + sord).update({orderstatus:"23"});
     firebase.database().ref("allorders/" + sord).update({orderstatus:"23"});
-    for (var i = shopids.length - 1; i >= 0; i--) {
-          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + sord).update({orderstatus:"23"});
-    }
+    if(y.length > 8){
+      var y = y.split(",");
+      for (var i = y.length - 1; i >= 0; i--) {
+        firebase.database().ref("allshop/" + y[i] + "/orders/" + sord).update({orderstatus:"23"});
+        }
+      }
+      else{
+        firebase.database().ref("allshop/" + y + "/orders/" + sord).update({orderstatus:"23"});
+      }
     location.reload();
     /*document.getElementById(sord + "p").style.display = 'none';
     document.getElementById(sord + "d").style.display = 'none';*/

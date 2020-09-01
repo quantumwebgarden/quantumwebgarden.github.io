@@ -77,7 +77,7 @@ console.log(user + " - " + ordid);
 if(orderstatus == 11 || orderstatus == 22){
     var backg = 'one';
 }
-if(orderstatus == 24 || orderstatus == 23){
+if(orderstatus == 24){
     var backg = 'two';
 }
 if(orderstatus == 19 || orderstatus == 29 || orderstatus == 28){
@@ -99,7 +99,7 @@ else{
     }
   
 }
-if(orderstatus != 28 || orderstatus != 29){
+if(orderstatus != 28 || orderstatus != 29 || orderstatus == 19){
     $("#allordercard").append('<div class="card card--' + backg + '"><p class="card__number">Order No.: ' + ordid +'</p><center><hr style="width: 50%"></center><br><div class="card__info"><p class="card__amount"><b>OTP: </b> ' + dotp + '</p><p class="card__amount"><b>Delivery Person: </b> ' + dname + ' <u onclick="calldboy(\'call' + dphone + '\')"> +91 ' + dphone + '</u></p><p class="card__amount"><b>Customer: </b> <u onclick="calldboy(\'call' + user + '\')"> +91 ' + user + '</u></p><p class="card__amount"><b>Date: </b> ' + dtnow + '</p></div><br><table class="tab_report"><tr><th>Product</th><th>Quantity</th><th>Price</th></tr><tbody>' + t_body + '</tbody></table><center><div class="card__info"><p class="card__integral"><button class="opc' + pickbtn + '" data-ordid="' + ordid + '" data-uid="' + user + '" onclick="calldboy(' + dphone + ')">Call Delivery Person</button></p></div></center></div>');
 }
 t_body = "";
