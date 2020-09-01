@@ -484,8 +484,8 @@ function pcodecheck(){
        return true;
     }
         
-    if(appliedp == "S19BQW" && u == "9883566844" && pricetotal <= 450 && !puser.includes(u + "splt")){
-      discounttotal = Number(pricetotal*99/100);
+    if(appliedp == "S19BQW" && u == "9883566844" && pricetotal <= 1200 && !puser.includes(u + "splt")){
+      discounttotal = Number(pricetotal*50/100);
        pflag = 1;
        finalpuser = puser;
        chkflg(pflag,appliedp);
@@ -544,7 +544,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 
 function confirmpay() {
 if(dflag == 0 && grandtotalall > 40){
-    if(grandtotalall < 240 && uhome != "Karanjali"){
+    if(grandtotalall < 1000 && uhome != "Karanjali"){
   Swal.fire({
   title: 'Ready to Pay?',
   text: "Choose one of the options below. Once accepted, you cannot revert back.",
