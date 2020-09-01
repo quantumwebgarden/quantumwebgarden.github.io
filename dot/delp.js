@@ -110,7 +110,7 @@ function calldboy(x){
 }
 
 function picked(x) {
-    firebase.database().ref("dboy/" + dpid + ).update({status:"road"});
+    firebase.database().ref("dboy/" + dpid).update({status:"road"});
     suid = x.getAttribute("data-uid");
     sord = x.getAttribute("data-ordid");
     firebase.database().ref(suid + "/order/" + sord).update({orderstatus:"24"});
