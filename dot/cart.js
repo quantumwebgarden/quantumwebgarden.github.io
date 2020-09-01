@@ -476,7 +476,15 @@ function pcodecheck(){
        chkflg(pflag,appliedp);
        return true;
     }
-    if(appliedp == "Q99W" && u == "7074492714" && pricetotal <= 400 && !puser.includes(u + "splt")){
+    if(appliedp == "Q99W" && u == "7074492714" && pricetotal <= 450 && !puser.includes(u + "splt")){
+      discounttotal = Number(pricetotal*99/100);
+       pflag = 1;
+       finalpuser = puser;
+       chkflg(pflag,appliedp);
+       return true;
+    }
+        
+    if(appliedp == "S19BQW" && u == "9883566844" && pricetotal <= 450 && !puser.includes(u + "splt")){
       discounttotal = Number(pricetotal*99/100);
        pflag = 1;
        finalpuser = puser;
