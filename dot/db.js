@@ -859,13 +859,12 @@ function toshowcart() {
 }
 
 function favchkf(x,y) {
+    z = "act";
     zz = "";
-    /*z = "act";
-    
   var n = x.includes(y + "splt");
   if(n == 1){return z;}
-  else{return zz;}*/
-  return zz;
+  else{return zz;}
+  
 }
 
 function fvfd(x) {
