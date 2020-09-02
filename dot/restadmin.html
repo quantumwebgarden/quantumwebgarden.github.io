@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  height: 95vh;
+}
+</style>
+</head>
+<body onload="getuid()">
+<br><br><br><br>
+<center><a href="manager.html"> Admin Home</a></center><br>
+<br><br><br>
+<center><u>Click on tabs for details</u></center><br>
+<center>
+  <b>Home:</b> Shop Dashboard <br>
+  <b>Orders:</b> Order Dashboard<br>
+  <b>Payments:</b> Payment Dashboard<br>
+  <b>New Product:</b> Add New product to shop list.<br><br>
+</center>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Home')">Home</button>
+  <button class="tablinks" onclick="openCity(event, 'Orders')">Orders</button>
+  <button class="tablinks" onclick="openCity(event, 'Payments')">Payments</button>
+  <button class="tablinks" onclick="openCity(event, 'New')">New Product</button>
+</div>
+
+<div id="Home" class="tabcontent">
+  <iframe id="manage" src="" width="100%" height="100%"></iframe>
+</div>
+
+<div id="Orders" class="tabcontent">
+  <iframe id="app" src="" width="100%" height="100%"></iframe>
+</div>
+
+<div id="Payments" class="tabcontent">
+  <iframe id="pay" src="" width="100%" height="100%"></iframe>
+</div>
+<div id="New" class="tabcontent">
+  <iframe id="addnew" src="" width="100%" height="100%"></iframe>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+  getuid();
+}
+</script>
+<script type="text/javascript">
+  function getuid() {
+    var parameters = location.search.substring(1).split("=");
+    mcid = parameters[1];
+    mctype = parameters[2];
+  document.getElementById("manage").src = "restmanage.html?uid=" + mcid + "=" + mctype;
+  document.getElementById("addnew").src ="restnew.html?uid=" + mcid + "=" + mctype;
+  document.getElementById("app").src ="restapp.html?uid=" + mcid + "=" + mctype;
+  document.getElementById("pay").src ="restpayadmin.html?uid=" + mcid + "=" + mctype;
+
+}
+</script>
+</body>
+</html> 
