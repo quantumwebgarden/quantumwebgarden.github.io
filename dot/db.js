@@ -22,7 +22,7 @@ var t = "22.1910091";
 var g = "88.1904741";
 var dtimes = ["10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","35 Minutes","40 Minutes","Less than 1 Hour","Out of Delivery Area","Shop Closed","Out of Stock"];
 var ditems = ["foods","medicine","grocery","essentials"];
-var delgb = ["3","3","3","3"];
+var delgb = ["4","3","3","3"];
 var dshorts = ["fds","mdc","grc","est"];
 var utypes = ["GENERAL","PREMIUM","VIP"];
 var ucolors = ["green","blue","orange"];
@@ -478,7 +478,7 @@ var rcntvw = snap.child("rcntvw").val();
 var dotpriority = snap.child("dotpri").val();
 
 
-if(stock == 1 && ffload < Number(delgb[ditems.indexOf("foods")])) {
+if(ffload < Number(delgb[ditems.indexOf("foods")])) {
 $("#fds").append("<li class=\"dtf" + dtimechk.toFixed(0) + "\"><img src=\"" + thumb + "\" onclick=\"sngl(this)\" data-rcntvw=\"" + rcntvw + "s\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopid + "\"><h3 onclick=\"sngl(this)\" data-rcntvw=\"" + rcntvw + "s\" data-sid=\"" + id + "\" data-stag=\"" + tagsr + "\" data-sname=\"foodsA_9" + shopid + "\">" + name + "<b class=\"dt ratg" + ratg + "\"><span>" + finalrat + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i><br><i class=\"trat\">(" + ratcnt + ")</i></span></b></h3><h4> ₹ " + price + " <span class=\"offer" + offer + "\">₹ " + priceshp + "</span></h4><p class=\"dl_tm\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> &nbsp;" + dtime + "</p><h5>" + shopname + " <span><i class=\"fas fa-map-marker-alt\"></i> " + shopaddr + "</span></h5><p>" + desc + "</p><a onclick=\"fvfd(this)\" class=\"example_fav " + favchk + "\" data-fvl=\"" + favlst + "\" data-itemid=\"foods/" + id + "\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i></a><a class=\"example_dl cd-add-to-cart js-cd-add-to-cart dsb" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + thumb + "\" data-qty=\"0\" id=\"" + id + "qtycnt\" data-itemtype=\"foods\" onclick=\"adc(this)\"><i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"> Add</i></a><a class=\"example_dl_vd\" data-dsb=\"" + dtimechk.toFixed(0) + "\" data-price=\"" + price + "\"  data-itemid=\"" + id + "\" data-itemname=\"" + name + "\" data-pic=\"" + img + "\" data-qty=\"0\" data-shopname=\"" + shopname + "\" data-shoploc=\"" + shopaddr + "\" data-desc=\"" + desc + "\" data-ratings=\"" + finalrat + "\"  id=\"" + id + "vw\" data-itemtype=\"foods\" onclick=\"vw(this)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i> View</a><span class=\"qtymdl\" id=\"" + id + "qtys\"> 0 </span></li>");
 
 }
