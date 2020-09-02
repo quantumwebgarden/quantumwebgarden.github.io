@@ -8,6 +8,7 @@
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
 
 <style type="text/css">
 	body{
@@ -32,11 +33,18 @@
 button{
 	width: 50% !important;
 }
+h1{
+	font-family: "Allerta Stencil", Sans-serif;
+}
 </style>
 </head>
 <body>
-<br><br><br>
+<br>
 <center>
+	
+	<h1>DOT : Delivery On Time</h1>
+	<img src="dotf.png" width="100px" height="auto">
+	<h2>Admin Dashboard</h2>
 <select id="shopadmin">
   <option value="12054892">Gharana</option>
   <option value="12072247">Jisha</option>
@@ -50,9 +58,11 @@ button{
 </select>
 <br><br>
 <button onclick="paystatus()">View / Manage</button>
-<hr><hr><br><hr><hr>
+<hr><hr><br>
+<button onclick="fixshoperror()">Fix Shop Error</button>
+<br><hr><hr>
 <button onclick="deleteguest()">Delete guest user</button>
-<br>
+<br><hr><hr>
 </center>
 <script type="text/javascript">
 function paystatus(){
@@ -85,6 +95,10 @@ if(id.includes("GUser")){
 	firebase.database().ref("user/" + id).remove();
 }
 });
+}
+
+function fixshoperror(){
+	firebase.database().ref("shopfoods/stupd").remove();
 }
 </script>
 </body>

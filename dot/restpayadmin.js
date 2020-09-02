@@ -53,11 +53,13 @@ rootRef.on("child_added", snap => {
 
 var id = snap.child("id").val();
 var shopname = snap.child("shopname").val();
-
+var shareamount = snap.child("shareamount").val();
+var phone = snap.child("phone").val();
 if(id == mcid){
   $("#mcname").html(shopname);
   mcname = shopname;
-  
+  $("#sharep").html("Share: " + shareamount + " %");
+  //$("#callp").html('Phone No.: <u onclick="calldboy(\'call' + phone + '\')">' + phone + '</u>');
   //$("#checkstatus").html('<input type="checkbox" ' + stocker[mcstatus] + ' data-val="' + mcstatus + '" id="shst' + id + '" onclick="shopchange(this)"><span class="slider"></span>');
   getallorders(mcid);
 } 
@@ -91,7 +93,6 @@ if(products.includes("sp2lt")){
 
 var paystatus = snap.child("paystatus").val();
 var payst = stocker[paystatus];
-console.log(id + " - " + paystatus + " - " + payst);
 /*
 var smj = prices.reduce(function(a, b){
             return a + b;
