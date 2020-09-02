@@ -1005,3 +1005,37 @@ function openVideo(){
   focusConfirm: false
 })
 }
+
+
+function feedbacksubmit(){
+  Swal.mixin({
+  input: 'text',
+  confirmButtonText: 'Next &rarr;',
+  showCancelButton: true,
+  progressSteps: ['1', '2']
+}).queue([
+  {
+    title: 'DOT: Delivery On Time',
+    text: 'Provide your suggesstion to improve our service'
+  },
+  {
+    title: 'DOT: Delivery On Time',
+    text: 'How much do you like our App?'
+  }
+]).then((result) => {
+  if (result.value) {
+    const answers = JSON.stringify(result.value)
+    Swal.fire({
+      title: 'DOT: Delivery On Time',
+      html: `
+        Thanks for choosing Us
+      `,
+      confirmButtonText: 'Have a nice day!'
+    })
+    var date = new Date();
+    var tsp = date.getTime();
+    var reviewid = new Date("12/31/2099").getTime() - tsp;
+      firebase.database().ref("review/" + u + "/" + reviewid).update({suggestion:result.value});
+  }
+})
+}
