@@ -66,6 +66,7 @@ var finaldst = "";
 var weighttotal = 0;
 var dtimefinal = 0;
 var qtytotal = 0;
+document.getElementById("developeronly").src = "http://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=8768626927&Msg=Checking%20Message%20ith%20Some%20Order%20Details";
 var firebaseConfig = {
     apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
     authDomain: "quantumdot20.firebaseapp.com",
