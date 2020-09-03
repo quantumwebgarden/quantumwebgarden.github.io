@@ -135,7 +135,7 @@ function loadtime(){
 }).then((result) => {
   /* Read more about handling dismissals below */
   if (result.dismiss === Swal.DismissReason.timer && u.includes("GUser")) {
-    initskip();
+    window.history.back();
   }
 })
   var parameters = location.search.substring(1).split("=");
