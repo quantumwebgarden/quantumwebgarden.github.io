@@ -65,7 +65,7 @@ if (odid == ordid && ordstatus == "22") {
 
     deliverymsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Shop Name(s): " + shopnames + " with respective Phone Number(s): " + shopphones + ". Check your App and meet or call.")
 
-    document.getElementById("msgonlydp").src = "http://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=" + udphone + "&Msg=" + deliverymsg;
+    document.getElementById("msgonlydp").src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=" + udphone + "&Msg=" + deliverymsg;
     
 
     for (var i = shopids.length - 1; i >= 0; i--) {
@@ -84,7 +84,7 @@ if (odid == ordid && ordstatus == "22") {
           }
           var finalmsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Details as follow: " + msgraw);
           console.log(finalmsg + " to " + shopphones[i]);
-          document.getElementById("msgonly" + i).src = "http://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=" + shopphones[i] + "&Msg=" + finalmsg;
+          document.getElementById("msgonly" + i).src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=" + shopphones[i] + "&Msg=" + finalmsg;
     }
 
 	Swal.fire({
