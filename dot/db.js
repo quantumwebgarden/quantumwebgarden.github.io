@@ -254,7 +254,7 @@ function initskip() {
 }
 
   function loadtime(){
-
+/*
     Swal.fire({
       html: '<img src="assets/img/loading.gif"><br><b>Server is under maintenance. We will be back within 10 Minutes...</b>',
         allowEscapeKey: true,
@@ -263,9 +263,9 @@ function initskip() {
         showConfirmButton: false,
         focusConfirm: false,
         footer: '<p>DOT : Delivery On Time</p>'
-        });
+        });*/
         
-/*
+
     var qtload = Math.floor(Math.random() * 4);
     let timerInterval
 Swal.fire({
@@ -302,7 +302,7 @@ Swal.fire({
   if (result.dismiss === Swal.DismissReason.timer && u.includes("GUser")) {
     initskip();
   }
-})*/
+})
   }
 
 
