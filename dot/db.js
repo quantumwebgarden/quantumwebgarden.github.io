@@ -755,7 +755,7 @@ ratg = 1;
 
 function ordchk(){
 var cntord = 0;
-var rootRef = firebase.database().ref(u + '/order');
+var rootRef = firebase.database().ref('vvcart/' + u + '/order');
 
 rootRef.on("child_added", snap => {
 
@@ -918,11 +918,11 @@ function adc(x) {
             var timestamp = date.getTime();
             var cartid = new Date("12/31/2099").getTime() - timestamp;
             if(ids.includes(x.getAttribute('data-itemid'))){
-                firebase.database().ref(u + "/cart/" + tmsts[ids.indexOf(x.getAttribute('data-itemid'))]).update({tmst:tmsts[ids.indexOf(x.getAttribute('data-itemid'))],id: x.getAttribute('data-itemid'),typ:'main',qnty: Number(x.getAttribute('data-qty')) + 1,shptype: x.getAttribute('data-itemtype')});
+                firebase.database().ref("vvcart/" + u + "/cart/" + tmsts[ids.indexOf(x.getAttribute('data-itemid'))]).update({tmst:tmsts[ids.indexOf(x.getAttribute('data-itemid'))],id: x.getAttribute('data-itemid'),typ:'main',qnty: Number(x.getAttribute('data-qty')) + 1,shptype: x.getAttribute('data-itemtype')});
                 //x.setAttribute('data-qty', Number(qtys[ids.indexOf(x.getAttribute('data-itemid'))]) + 1);
             }
             else{
-                firebase.database().ref(u + "/cart/" + cartid).update({tmst:cartid, id: x.getAttribute('data-itemid'),typ:'main', qnty: Number(x.getAttribute('data-qty')) + 1,shptype: x.getAttribute('data-itemtype')});
+                firebase.database().ref("vvcart/" + u + "/cart/" + cartid).update({tmst:cartid, id: x.getAttribute('data-itemid'),typ:'main', qnty: Number(x.getAttribute('data-qty')) + 1,shptype: x.getAttribute('data-itemtype')});
                 //x.setAttribute('data-qty', 1);
             }
 
@@ -934,7 +934,7 @@ function adc(x) {
         }
 function rmv(x) {
             dlt();
-            firebase.database().ref(u + "/cart/" + tmsts[ids.indexOf(x.getAttribute('data-itemid'))]).update({tmst:tmsts[ids.indexOf(x.getAttribute('data-itemid'))],id: x.getAttribute('data-itemid'),typ:'main',qnty: Number(x.getAttribute('data-qty')) - 1});
+            firebase.database().ref("vvcart/" + u + "/cart/" + tmsts[ids.indexOf(x.getAttribute('data-itemid'))]).update({tmst:tmsts[ids.indexOf(x.getAttribute('data-itemid'))],id: x.getAttribute('data-itemid'),typ:'main',qnty: Number(x.getAttribute('data-qty')) - 1});
             x.setAttribute('data-qty', Number(x.getAttribute('data-qty')) - 1);
             if(Number(x.getAttribute('data-qty')) <= 1){
                 document.getElementById('minus' + x.getAttribute('data-itemid')).style.visibility = 'hidden';
@@ -946,7 +946,7 @@ function rmv(x) {
         }
 function dlt() {
             /*
-            var rootRef = firebase.database().ref(u + "/cart/" + tmsts[ids.indexOf(lstid)]).on("child_added", snap => {
+            var rootRef = firebase.database().ref("vvcart/" + u + "/cart/" + tmsts[ids.indexOf(lstid)]).on("child_added", snap => {
 
                 var lmd = snap.child("typ").val();
 
@@ -956,7 +956,7 @@ function dlt() {
             setTimeout(function() { $("#loading_cart").css("display","none");$("#ld_bd").css("display","block"); }, 1000);*/
             document.getElementById('undobtn').classList.remove('cd-cart__undo--visible');
             if(document.querySelectorAll('cd-cart__product--deleted').length>0){
-                firebase.database().ref(u + "/cart/" + tmsts[ids.indexOf(document.querySelectorAll('cd-cart__product--deleted')[0].getElementsByClassName('cd-cart__delete-item')[0].getAttribute('data-id'))]).remove();
+                firebase.database().ref("vvcart/" + u + "/cart/" + tmsts[ids.indexOf(document.querySelectorAll('cd-cart__product--deleted')[0].getElementsByClassName('cd-cart__delete-item')[0].getAttribute('data-id'))]).remove();
                 document.getElementById('undobtn').classList.remove('cd-cart__undo--visible');
             }
             
@@ -995,7 +995,7 @@ function viewrelated(x) {
 }
 
 function tocountorder() {
-  /*firebase.database().ref(u).child("order").on("value", function(snapshot) {
+  /*firebase.database().ref("vvcart/" + u).child("order").on("value", function(snapshot) {
   console.log("There are "+snapshot.numChildren()+" messages");
     })*/
 }
