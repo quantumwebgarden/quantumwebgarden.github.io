@@ -14,6 +14,12 @@ var offer = 1;
 var ratg = 1;
 var optc = 1;
 var shopst = ["offline","online"];
+var loadvariablecnt = 0;
+var loadvariable = ["dotpri","dotprirev","price","priceshp","priceshp","pricerev","name","weight","cat","dad",""];
+var loadvariablefinal = "dotprirev";
+var loadstart = 0;
+var loadend = 8003;
+var loadmoreposition = 0;
 getuid();
 
 //console.log(u);
@@ -436,7 +442,7 @@ optc = 1;
 
 function foodnxt(){
 
-var rootRef = firebase.database().ref('foods').orderByChild('dotpri');
+var rootRef = firebase.database().ref('foods').orderByChild('dotprirev');
 
 rootRef.on("child_added", snap => {
 
