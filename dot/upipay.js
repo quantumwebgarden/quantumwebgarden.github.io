@@ -37,7 +37,7 @@ var firebaseConfig = {
 
 function onchageofpayment(){
 
-var rootRef = firebase.database().ref(u + '/order');
+var rootRef = firebase.database().ref('vvcart/' + u + '/order');
 
 rootRef.on("child_changed", snap => {
 
@@ -60,7 +60,7 @@ if (odid == ordid && ordstatus == "22") {
   firebase.database().ref("allorders/" + odid).update({orderstatus:ordstatus});
 
 	for (var i = cartitems.length - 1; i >= 0; i--) {
-    firebase.database().ref(u + "/cart/" + cartitems[i]).update({typ:"temp"});
+    firebase.database().ref('vvcart/' + u + "/cart/" + cartitems[i]).update({typ:"temp"});
     }
 
     deliverymsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Shop Name(s): " + shopnames + " with respective Phone Number(s): " + shopphones + ". Check your App and meet or call.")
@@ -143,7 +143,7 @@ function savetoDB(response) {
     payment_id : response.razorpay_payment_id
     })
     for (var i = tmsts.length - 1; i >= 0; i--) {
-    firebase.database().ref(u + "/cart/" + tmsts[i]).update({typ:"temp"});
+    firebase.database().ref('vvcart/' + u + "/cart/" + tmsts[i]).update({typ:"temp"});
     }
 
   document.getElementById("successshow").style.display = "block";
