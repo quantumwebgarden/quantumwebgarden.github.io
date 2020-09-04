@@ -361,7 +361,7 @@ function calculatetotal(){
   dchargecal(pricetotal,weighttotal,qtytotal,dtimefinal.toFixed(0));
   calculateall();
   var bonusload = Math.floor(Math.random() * 4);
-  if(grandtotalall > 220){
+  /*if(grandtotalall > 220){
     addbonus();
   }
   else if(bonusload == 3){
@@ -370,7 +370,7 @@ function calculatetotal(){
   'Order value more than ₹220 will get an bonus item for free.',
   'info'
     );
-  }
+  }*/
   if(dflagsecond == 0){
     document.getElementById("checkoutbtn").style.display = "block";
     document.getElementById("calculatebtn").style.display = "none";
