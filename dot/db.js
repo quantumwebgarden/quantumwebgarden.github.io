@@ -436,7 +436,7 @@ optc = 1;
 
 function foodnxt(){
 
-var rootRef = firebase.database().ref('foods').orderByChild('dotprirev');
+var rootRef = firebase.database().ref('foods').orderByChild('dotpri');
 
 rootRef.on("child_added", snap => {
 
