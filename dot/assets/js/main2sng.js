@@ -81,7 +81,7 @@ var lstqty = "";
         };
 
         function chkcart(x) {
-            var rootRef = firebase.database().ref(x + '/cart');
+            var rootRef = firebase.database().ref('vvcart/' + x + '/cart');
 
             rootRef.on("child_added", snap => {
 
@@ -245,7 +245,7 @@ var lstqty = "";
         };
         
         function chkchd(x) {
-            var rootRef = firebase.database().ref(x + '/cart');
+            var rootRef = firebase.database().ref('vvcart/' + x + '/cart');
 
             rootRef.on("child_changed", snap => {
 
@@ -347,7 +347,7 @@ var lstqty = "";
             Util.addClass(product, 'cd-cart__product--deleted');
 
             var ctidtemp = document.querySelectorAll('.cd-cart__product--deleted')[0].getAttribute('data-ctid');
-            firebase.database().ref(u + "/cart/" + ctidtemp).update({typ:'temp'});
+            firebase.database().ref("vvcart/" + u + "/cart/" + ctidtemp).update({typ:'temp'});
 
             //update items count + total price
             updateCartTotal(productTotPrice, false);
@@ -384,7 +384,7 @@ var lstqty = "";
             }, 0);
             document.getElementById('cartcntside').innerText = smj;
 
-            var userRef = firebase.database().ref(u + '/cart/' + ctid).remove();
+            var userRef = firebase.database().ref('vvcart/' + u + '/cart/' + ctid).remove();
                 deletedProduct[0].remove();
             }
         };
@@ -447,7 +447,7 @@ var lstqty = "";
             cartCountItems[0].innerText = quantity;
             cartCountItems[1].innerText = quantity+1;
 
-            firebase.database().ref(u + "/cart/" + tmsts[ids.indexOf(lstid)]).update({typ:'main'});
+            firebase.database().ref("vvcart/" + u + "/cart/" + tmsts[ids.indexOf(lstid)]).update({typ:'main'});
             //console.log(tmsts[ids.indexOf(lstid)] + 'Quick');
             document.getElementById(lstid + "qtys").innerText = lstqty + ' added to cart';
             document.getElementById(lstid + "qtycnt").setAttribute('data-qty', lstqty);
