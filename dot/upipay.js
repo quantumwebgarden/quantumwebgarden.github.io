@@ -58,7 +58,7 @@ var udphone = snap.child("dphone").val();
 if (odid == ordid && ordstatus == "22") {
 
   firebase.database().ref("allorders/" + odid).update({orderstatus:ordstatus});
-
+document.getElementById("developeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=8768626927&Msg=Order%20Arrived%20Online";
 	for (var i = cartitems.length - 1; i >= 0; i--) {
     firebase.database().ref('vvcart/' + u + "/cart/" + cartitems[i]).update({typ:"temp"});
     }
