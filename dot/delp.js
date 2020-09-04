@@ -123,7 +123,7 @@ function picked(x) {
     suid = x.getAttribute("data-uid");
     sord = x.getAttribute("data-ordid");
     y = x.getAttribute("data-shopids");
-    firebase.database().ref(suid + "/order/" + sord).update({orderstatus:"24"});
+    firebase.database().ref("vvcart/" + suid + "/order/" + sord).update({orderstatus:"24"});
     firebase.database().ref("allorders/" + sord).update({orderstatus:"24"});
     if(y.length > 8){
       var y = y.split(",");
@@ -144,7 +144,7 @@ function delivered(x) {
     suid = x.getAttribute("data-uid");
     sord = x.getAttribute("data-ordid");
       y = x.getAttribute("data-shopids");
-    firebase.database().ref(suid + "/order/" + sord).update({orderstatus:"23"});
+    firebase.database().ref("vvcart/" + suid + "/order/" + sord).update({orderstatus:"23"});
     firebase.database().ref("allorders/" + sord).update({orderstatus:"23"});
     if(y.length > 8){
       var y = y.split(",");
