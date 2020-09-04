@@ -103,7 +103,7 @@ function loadtime(){
 
 function chkorders(x) {
 			itemcnt = 0;
-            var rootRef = firebase.database().ref(x + '/order');
+            var rootRef = firebase.database().ref('vvcart/' + x + '/order');
 
             rootRef.on("child_added", snap => {
 
@@ -157,7 +157,7 @@ function chkorders(x) {
 
         });
 
-        var rootRef = firebase.database().ref(x + '/order');
+        var rootRef = firebase.database().ref('vvcart/' + x + '/order');
 
             rootRef.on("child_changed", snap => {
               changeload();
@@ -200,7 +200,7 @@ function cancelorder(x,y,z,sh){
     if(y == "online"){
       firebase.database().ref("refundrequest/" + u + "/" + x).update({ordid:x,user:u,value:z,refundstatus:"pending"});
     }
-    firebase.database().ref(u + "/order/" + x).update({orderstatus:"19"});
+    firebase.database().ref("vvcart/" + u + "/order/" + x).update({orderstatus:"19"});
     firebase.database().ref("allorders/" + x).update({orderstatus:"19"});
     for (var i = shids.length - 1; i >= 0; i--) {
           firebase.database().ref("allshop/" + shids[i] + "/orders/" + x).update({orderstatus:"19"});
