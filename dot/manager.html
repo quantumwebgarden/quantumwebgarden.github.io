@@ -36,6 +36,9 @@ button{
 h1{
 	font-family: "Allerta Stencil", Sans-serif;
 }
+.smallbtn{
+	width: auto!important;
+}
 </style>
 </head>
 <body>
@@ -62,6 +65,16 @@ h1{
 <button onclick="fixshoperror()">Fix Shop Error</button>
 <br><hr><hr>
 <button onclick="deleteguest()">Delete guest user</button>
+<br><hr><hr>
+<button onclick="clearrecent()">Clear Recent View Cache</button>
+<br><hr><hr>
+<select id="dboyid" style="width: 50%">
+  <option value="DP0001">Amio Halder</option>
+  <option value="DP0002">Ajijul Sheikh</option>
+  <option value="DT0001">Rohit Sekh</option>
+  <option value="DT0002">Sudipta Halder</option>
+</select>
+<b>Change Status:</b> <button class="smallbtn" onclick="dboysit()">Ready</button> &nbsp;&nbsp;&nbsp;&nbsp; <button class="smallbtn" onclick="dboyoffline()">Offline</button>
 <br><hr><hr>
 </center>
 <script type="text/javascript">
@@ -100,6 +113,32 @@ if(id.includes("GUser")){
 function fixshoperror(){
 	firebase.database().ref("shopfoods/stupd").remove();
 }
+
+
+function clearrecent(){
+	var rootRef = firebase.database().ref("foods");
+
+rootRef.on("child_added", snap => {
+var id = snap.child("id").val();
+var rcntvw = snap.child("rcntvw").val();
+
+/*if(id.includes("GUser")){*/
+	console.log(id + " - " + rcntvw);
+	//firebase.database().("foods/" + id).update({rcntvw:"splt"});
+/*}*/
+});
+}
+
+function dboysit(){
+	var dboyidf = document.getElementById("dboyid").value;
+	firebase.database().ref("dboy/" + dboyidf).update({status:"sit"});
+}
+
+function dboyoffline(){
+	var dboyidf = document.getElementById("dboyid").value;
+	firebase.database().ref("dboy/" + dboyidf).update({status:"offline"});
+}
+
 </script>
 </body>
 </html>
