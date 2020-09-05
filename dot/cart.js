@@ -50,7 +50,7 @@ var qtarray = ["Now Loading...","The more you sweat in practice the less you ble
 var dtimes = ["5 Minutes","10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","45 Minutes","1 Hour","Out of Delivery Area","Shop Closed"];
 var ditems = ["foods","medicine","grocery","essentials"];
 var delgb = ["4","3","3","3"];
-var dchargearray = ["0","7","11","15","19","23"];
+var dchargearray = ["5","7","11","15","19","23"];
 var dhomes = ["","Diamond Harbour","Sarisha","Diamond Harbour to Sarisha","Sarisha to Diamond Harbour"];
 var dsts = ["offline","sit","road"];
 var dmsg = ["","","For Lockdown issues we are working with less staff. It may take longer than usual"];
@@ -426,9 +426,9 @@ function dchargecal(pt,wt,qt,dt) {
       dchtotal = Number(dchargearray[dt]);
     }
     else if(pt<200 && wt>4000){
-      dchtotal = Number(dchargearray[dt]*1.5);
+      dchtotal = Number(dchargearray[dt] + 7);
     }
-    else if(pt<200 && wt<4000){
+      else{
       dchtotal = Number(dchargearray[dt]);
     }
     console.log(dchtotal);
