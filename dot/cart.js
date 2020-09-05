@@ -45,6 +45,7 @@ var udimg = "";
 var totalquantity = 0;
 var totalprice = 0;
 var bonusapplied = 0;
+var dflagsecond = 0
 var finalpuser = "";
 var qtarray = ["Now Loading...","The more you sweat in practice the less you bleed in battle - Michael Jordan","Work hard in silence, let your success be your noise - Frank Ocean","Slow network may create delay","Welcome To DOT: Delivery on Time"];
 var dtimes = ["5 Minutes","10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","45 Minutes","1 Hour","Out of Delivery Area","Shop Closed"];
@@ -357,20 +358,9 @@ function calculateall(argument) {
 }
 
 function calculatetotal(){
-  var dflagsecond = 0
+  dflagsecond = 0
   dchargecal(pricetotal,weighttotal,qtytotal,dtimefinal.toFixed(0));
   calculateall();
-  var bonusload = Math.floor(Math.random() * 4);
-  /*if(grandtotalall > 220){
-    addbonus();
-  }
-  else if(bonusload == 3){
-    Swal.fire(
-  'DOT',
-  'Order value more than ₹220 will get an bonus item for free.',
-  'info'
-    );
-  }*/
   if(dflagsecond == 0){
     document.getElementById("checkoutbtn").style.display = "block";
     document.getElementById("calculatebtn").style.display = "none";
@@ -379,12 +369,10 @@ function calculatetotal(){
     document.getElementById("checkoutbtn").style.display = "none";
     document.getElementById("calculatebtn").style.display = "block";
   }
-  
-
 }
 
 function dchargecal(pt,wt,qt,dt) {
-  if(pt< 40){
+  if(Number(pt)< 40){
     Swal.fire(
   'DOT',
   'Minimum Order Value Rs. 40 Required.',
@@ -392,7 +380,7 @@ function dchargecal(pt,wt,qt,dt) {
     );
     dflagsecond++;
   }
-  else if(dt > 7){
+  else if(Number(dt) > 7){
     Swal.fire(
   'DOT',
   'Orders from out of delivery area added. Please remove red marked items and try again.',
@@ -400,7 +388,7 @@ function dchargecal(pt,wt,qt,dt) {
     );
     dflagsecond++;
   }
-  else if(qt > 10){
+  else if(Number(qt) > 10){
     Swal.fire(
   'DOT',
   'Maximum of 10 items can be placed in a single order. Please remove some items and try again.',
@@ -408,7 +396,7 @@ function dchargecal(pt,wt,qt,dt) {
     );
     dflagsecond++;
   }
-  else if(wt > 5000){
+  else if(Number(wt) > 5000){
     Swal.fire(
   'DOT',
   'More than 5Kg weight. Please remove some heavy weight items and try again.',
@@ -417,23 +405,13 @@ function dchargecal(pt,wt,qt,dt) {
     dflagsecond++;
   }
   else{
-    if(pt>300){
+    if(Number(pt)>300){
       dchtotal = 0;
-      //addbonus();
     }
-    else if(pt>200){
-      //addbonus();
+    else{
       dchtotal = Number(dchargearray[dt]);
     }
-    else if(pt<200 && wt>4000){
-      dchtotal = Number(dchargearray[dt] + 7);
-    }
-      else{
-      dchtotal = Number(dchargearray[dt]);
-    }
-    console.log(dchtotal);
   }
-  
 }
 
 function addbonus(){
