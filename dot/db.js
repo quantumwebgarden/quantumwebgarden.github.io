@@ -20,12 +20,12 @@ var loadvariablefinal = "dotprirev";
 var loadstart = 0;
 var loadend = 8003;
 var loadmoreposition = 0;
+var t = "00.00";
+var g = "00.00";
 getuid();
 
 //console.log(u);
 //console.log(elid);
-var t = "22.1910091";
-var g = "88.1904741";
 var dtimes = ["10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","35 Minutes","40 Minutes","Less than 1 Hour","Out of Delivery Area","Shop Closed","Out of Stock"];
 var ditems = ["foods","medicine","grocery","essentials"];
 var delgb = ["4","3","3","3"];
@@ -164,10 +164,11 @@ var adrlat = snap.child("lat").val();
 if(adrid == y){
     $("#uaddress").html(adrhometown);
     $("#udtl").html(adrdtl);
-	/*if(locst == 1){*/
+	if(locst == 1){
+    firebase.database().ref("user/" + u + "/address/" + adrid).update({lat:t,lang:g});
     t = adrlat;
     g = adrlang;
-	/*}*/
+	}
     upin = adrpin;
 }
 
