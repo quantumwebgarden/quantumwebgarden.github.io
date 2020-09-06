@@ -48,9 +48,9 @@ var bonusapplied = 0;
 var dflagsecond = 0
 var finalpuser = "";
 var qtarray = ["Now Loading...","The more you sweat in practice the less you bleed in battle - Michael Jordan","Work hard in silence, let your success be your noise - Frank Ocean","Slow network may create delay","Welcome To DOT: Delivery on Time"];
-var dtimes = ["5 Minutes","10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","45 Minutes","1 Hour","Out of Delivery Area","Shop Closed"];
+var dtimes = ["10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","35 Minutes","40 Minutes","Less than 1 Hour","Out of Delivery Area","Shop Closed","Out of Stock"];
 var ditems = ["foods","medicine","grocery","essentials"];
-var delgb = ["4","3","3","3"];
+var delgb = ["3","3","3","3"];
 var dchargearray = ["5","7","11","15","19","23"];
 var dhomes = ["","Diamond Harbour","Sarisha","Diamond Harbour to Sarisha","Sarisha to Diamond Harbour"];
 var dsts = ["offline","sit","road"];
@@ -280,10 +280,12 @@ function chkcart(x) {
             var shopaddr = snap.child("shopaddr").val();
             var shopid = snap.child("shopid").val();
             var shopstatus = snap.child("shopstatus").val();
+                var stock = snap.child("stock").val();
             var dpincode = snap.child("dpincode").val();
             var dtimechk = distance(shoplat,shoplang,ulat,ulang,"K");
               if(dtimechk > Number(delgb[ditems.indexOf(typ)]) || !dpincode.includes(upin)){dtimechk = 8}
-              if(shopstatus == "offline"){dtimechk = 9}
+              if(shopstatus == 0){dtimechk = 9}
+            if(stock == 0){dtimechk = 10}
             var dtime = dtimes[dtimechk.toFixed(0)];
             var price = snap.child("price").val();
             var priceshp = snap.child("priceshp").val();
