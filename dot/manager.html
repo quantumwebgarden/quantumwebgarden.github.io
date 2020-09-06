@@ -74,7 +74,7 @@ h1{
   <option value="DT0001">Rohit Sekh</option>
   <option value="DT0002">Sudipta Halder</option>
 </select>
-<b>Change Status:</b> <button class="smallbtn" onclick="dboysit()">Ready</button> &nbsp;&nbsp;&nbsp;&nbsp; <button class="smallbtn" onclick="dboyoffline()">Offline</button>
+<b>Change Status:</b> <button class="smallbtn" onclick="dboysit()">Change to Ready</button> &nbsp;&nbsp;&nbsp;&nbsp; <button class="smallbtn" onclick="dboyoffline()">Set Offline</button> &nbsp;&nbsp;&nbsp;&nbsp; <button class="smallbtn" onclick="dboydtls()">View Details</button>
 <br><hr><hr>
 </center>
 <script type="text/javascript">
@@ -137,6 +137,10 @@ function dboysit(){
 function dboyoffline(){
 	var dboyidf = document.getElementById("dboyid").value;
 	firebase.database().ref("dboy/" + dboyidf).update({status:"offline"});
+}
+
+function dboydtls(){
+	window.open("delp.html?uid=" + document.getElementById("dboyid").value);
 }
 
 </script>
