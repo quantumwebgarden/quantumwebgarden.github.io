@@ -164,7 +164,7 @@ var adrlat = snap.child("lat").val();
 if(adrid == y){
     $("#uaddress").html(adrhometown);
     $("#udtl").html(adrdtl);
-	if(locst == 1){
+	if(locst == 0){
     firebase.database().ref("user/" + u + "/address/" + adrid).update({lat:t,lang:g});
     t = adrlat;
     g = adrlang;
