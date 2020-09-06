@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="restnewadmin.js"></script>
+
+<style>
+  body{
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+input[type=text], input[type=number], input[type=URL], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button{
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  /*background-color: #f2f2f2;*/
+  padding: 20px;
+}
+</style>
+<body onload="getuid()">
+
+<center>
+<h2 id="mcname">Shop Name</h2>
+<h3>Add New Product to your Store Listing</h3>
+</center>
+<div>
+  <div>
+    <label for="name">Product Name</label>
+    <input type="text" id="name" name="name" placeholder="Product Name...">
+
+    <label for="desc">Product Description</label>
+    <input type="text" id="desc" name="desc" placeholder="Product Description in brief...">
+
+    <label for="category">Category</label>
+    <select id="category" name="category">
+      <option value="Veg">VEG</option>
+      <option value="Non Veg">Non-VEG</option>
+      <option value="Bread">Bread</option>
+      <option value="Dry Cakes">Dry Cakes</option>
+      <option value="Cookies and Biscuits">Cookies &amp; Biscuits</option>
+      <option value="Chocolates">Chocolates</option>
+      <option value="Distributor Cakes">Distributor Cakes</option>
+      <option value="Birthday Cake">Birthday Cake</option>
+      <option value="Pastry">Pastry</option>
+      <option value="Drinks & others">Drinks & Others</option>
+      <option value="Others">Others</option>
+      <option value="Biryani">Biryani</option>
+      <option value="Chap">Chap</option>
+      <option value="Combo">Combo</option>
+      <option value="Soup">Soup</option>
+      <option value="Noodles">Noodles</option>
+      <option value="Chinese">Chinese</option>
+      <option value="Starter">Starter</option>
+      <option value="Indian">Indian</option>
+      <option value="Rice">Rice</option>
+      <option value="Mixed">Mixed</option>
+    </select>
+
+    <!--label for="processtime">Preparation / Packaging time</label>
+    <select id="processtime" name="processtime">
+      <option value="5">5 Minutes</option>
+      <option value="10">10 Minutes</option>
+      <option value="15">15 Minutes</option>
+      <option value="20">20 Minutes</option>
+      <option value="25">25 Minutes</option>
+      <option value="30">30 Minutes</option>
+      <option value="35">35 Minutes</option>
+      <option value="60">1 Hour</option>
+    </select-->
+
+    <label for="price">Product Price (Offer)</label>
+    <input type="number" id="price" name="price" placeholder="Enter Product Price" value="0">
+
+    <label for="dotpri">Main Price</label>
+    <input type="number" id="priceshp" name="priceshp" placeholder="Enter Product Main Price" value="0">
+
+    <label for="price">Approx Weight</label>
+    <input type="number" id="weight" name="weight" placeholder="Enter approx weight (in Gram)" value="0">
+
+    <label for="dotpri">Product Priority</label>
+    <input type="number" id="dotpri" name="dotpri" placeholder="Enter Product priority" value="0">
+
+    
+
+    <!--label for="tagsr">Product Tags</label>
+    <input type="text" id="tagsr" name="tagsr" placeholder="Enter Product Tag" value="0"-->
+    
+    <label for="lname">Product Photo</label>
+        <img src="noimg.jpg" id="imgshow" width="auto" height="200px"><br>
+        <input type="URL" placeholder="Enter Product Link (Google Drive sharing link)" id="pic" name="pic" onchange="chngURL()">
+        <br>
+        <!--div class="inner-wrap">
+        <img id="photo" src="product.jpg" style="height:250px;width:350px;" alt="Choose Product Photo" /> <br>
+        
+        <input type="file" value="upload1" accept="image/png, image/jpeg" id="fileButton1">
+        <input type="text" name="updphoto" id="updphoto" required="true" value="" style="display:none"-->
+    </div>
+
+    
+  
+    <button onclick="chkall()">Submit</button>
+  </div>
+</div>
+<script type="text/javascript">
+  function chngURL() {
+  var str = document.getElementById("pic").value; 
+  var res = str.replace("file/d/", "uc?export=view&id=");
+  var res = res.replace("open?id=", "uc?export=view&id=");
+  var res = res.replace("/view?usp=sharing", "");
+  var res = res.replace("/view?usp=drivesdk", "");
+  document.getElementById("pic").value = res;
+  document.getElementById("imgshow").src = res;
+}
+</script>
+</body>
+</html>
