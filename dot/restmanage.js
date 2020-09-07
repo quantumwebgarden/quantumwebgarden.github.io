@@ -93,7 +93,7 @@ var stockst = snap.child("stock").val();
 var stock = stocker[stockst];
 if(shopid == mcid){
   
-$("#allitems").append('<tr><td>' + id + '</td><td>' + name + '</td><td>' + price + '</td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td></tr>');
+$("#allitems").append('<tr><td>' + id + '</td><td>' + name + '</td><td>' + price + '</td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td><td><button onclick="deleteproduct(\'' + id + '\',\'' + prtype + '\')">Delete</button></td></tr>');
   
 } 
 
@@ -133,4 +133,35 @@ if(shopid == x){
 } 
 
 });
+}
+
+function deleteproduct(x,y){
+
+  Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    firebase.database().ref(y + "/" + x).remove();
+    Swal.fire(
+      'Deleted!',
+      'Your product has been deleted.',
+      'success'
+    )
+    location.reload();
+  }
+})
+  /*
+  var prid = x.id;
+  prid = prid.substring(4,prid.length);
+  var oldst = document.getElementById(x.id).getAttribute("data-val");
+  var newst = Number(1 - Number(oldst)); 
+  console.log(newst);
+  document.getElementById(x.id).setAttribute("data-val", newst);
+  firebase.database().ref(prtype + "/" + prid).update({stock:newst});*/
 }
