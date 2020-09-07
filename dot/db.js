@@ -1124,3 +1124,25 @@ function feedbacksubmit(){
   }
 })
 }
+
+function chngecurrent(){
+  Swal.fire({
+  title: 'DOT: Delivery On Time',
+  text: '',
+  html: 'Enter your Updated Address here : <input type="text" id="updatedaddr" name="updatedaddr">',
+  confirmButtonText:
+    '<i class="fa fa-refresh" aria-hidden="true"></i> <a onclick="updateaddress()"> Update Address</a>',
+  showCancelButton: true,
+  allowOutsideClick: false,
+  focusConfirm: false,
+  cancelButtonText:
+    '<i class="fa fa-times-circle" aria-hidden="true"></i> Not Now',
+    });
+}
+
+function updateaddress(){
+  var adrnew = document.getElementById("updatedaddr").value;
+  console.log("user/" + u + "/address/" + adrfinal + " ---- " + adrnew);
+  //firebase.database().ref("user/" + u + "/address/" + adrfinal).update({dtl:adrnew});
+}
+
