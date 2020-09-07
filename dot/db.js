@@ -1129,7 +1129,7 @@ function chngecurrent(){
   Swal.fire({
   title: 'DOT: Delivery On Time',
   text: '',
-  html: 'Enter your Updated Address here : <input type="text" id="updatedaddr" name="updatedaddr">',
+  html: 'Enter your Updated Address here : <input type="text" id="updatedaddr" name="updatedaddr"><br>Only Current address will be updated',
   confirmButtonText:
     '<i class="fa fa-refresh" aria-hidden="true"></i> <a onclick="updateaddress()"> Update Address</a>',
   showCancelButton: true,
@@ -1142,7 +1142,7 @@ function chngecurrent(){
 
 function updateaddress(){
   var adrnew = document.getElementById("updatedaddr").value;
-  console.log("user/" + u + "/address/" + adrfinal + " ---- " + adrnew);
-  //firebase.database().ref("user/" + u + "/address/" + adrfinal).update({dtl:adrnew});
+  //console.log("user/" + u + "/address/" + adrfinal + " ---- " + adrnew);
+  firebase.database().ref("user/" + u + "/address/" + adrfinal).update({dtl:adrnew});
 }
 
