@@ -20,6 +20,7 @@ var loadvariablefinal = "dotprirev";
 var loadstart = 0;
 var loadend = 8002;
 var loadmoreposition = 0;
+var adrfinal = "";
 var t = "00.00";
 var g = "00.00";
 getuid();
@@ -162,6 +163,7 @@ var adrlang = snap.child("lang").val();
 var adrlat = snap.child("lat").val();
 
 if(adrid == y){
+	adrfinal = adrid;
     $("#uaddress").html(adrhometown);
     $("#udtl").html(adrdtl);
 	if(locst == 0){
