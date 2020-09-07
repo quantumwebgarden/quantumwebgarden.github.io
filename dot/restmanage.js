@@ -88,12 +88,13 @@ rootRef.on("child_added", snap => {
 var id = snap.child("id").val();
 var name = snap.child("name").val();
 var shopid = snap.child("shopid").val();
+var thumb = snap.child("thumb").val();
 var price = snap.child("priceshp").val();
 var stockst = snap.child("stock").val();
 var stock = stocker[stockst];
 if(shopid == mcid){
   
-$("#allitems").append('<tr><td>' + id + '</td><td>' + name + '</td><td>' + price + '</td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td><td><button onclick="deleteproduct(\'' + id + '\',\'' + prtype + '\')">Delete</button></td></tr>');
+$("#allitems").append('<tr><td>' + id + '</td><td>' + name + '</td><td><img src=' + thumb + ' width="150px" height="150px"></td><td>' + price + '</td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td><td><button onclick="deleteproduct(\'' + id + '\',\'' + prtype + '\')">Delete</button></td></tr>');
   
 } 
 
