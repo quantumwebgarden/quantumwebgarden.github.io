@@ -456,22 +456,7 @@ function pcodecheck(){
        finalpuser = puser;
        chkflg(pflag,appliedp);
        return true;
-    }
-    if(appliedp == "Q99W" && u == "7074492714" && pricetotal <= 450 && !puser.includes(u + "splt")){
-      discounttotal = Number(pricetotal*99/100);
-       pflag = 1;
-       finalpuser = puser;
-       chkflg(pflag,appliedp);
-       return true;
-    }
-        
-    if(appliedp == "S19BQW" && u == "9883566844" && pricetotal <= 1200 && !puser.includes(u + "splt")){
-      discounttotal = Number(pricetotal*50/100);
-       pflag = 1;
-       finalpuser = puser;
-       chkflg(pflag,appliedp);
-       return true;
-    }
+    }    
 
   });
     chkflg(pflag,appliedp);
@@ -592,7 +577,7 @@ function codpay(){
     document.getElementById("developeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=8768626927&Msg=Order%20Arrived";
     finalpuser = finalpuser + u + "splt";
     firebase.database().ref("pcodes/" + pcodefinal).update({puser:finalpuser});
-
+    firebase.database().ref("zzdevices/" + u).update({userdevice:getDeviceType()});
     deliverymsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Shop Name(s): " + shopnames + " with respective Phone Number(s): " + shopphones + ". Check your App and meet or call.")
 
     document.getElementById("msgonlydp").src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=" + udphone + "&Msg=" + deliverymsg;
@@ -813,4 +798,19 @@ function savetoDB(response) {
 })
 
 }
+
+const getDeviceType = () => {
+  const ua = navigator.userAgent;
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+    return "tablet";
+  }
+  if (
+    /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+      ua
+    )
+  ) {
+    return "mobile";
+  }
+  return "desktop";
+};
 
