@@ -390,7 +390,7 @@ function dchargecal(pt,wt,qt,dt) {
     );
     dflagsecond++;
   }
-  else if(Number(qt) > 10){
+  else if(Number(qt) > 15){
     Swal.fire(
   'DOT',
   'Maximum of 10 items can be placed in a single order. Please remove some items and try again.',
