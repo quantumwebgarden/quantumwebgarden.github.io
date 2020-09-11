@@ -23,6 +23,9 @@ var loadmoreposition = 0;
 var adrfinal = "";
 var t = "00.00";
 var g = "00.00";
+var adrfinal = "";
+var cndtn = "ffload < Number(delgb[ditems.indexOf(\"foods\")])";
+var productcnt = 0;
 getuid();
 
 //console.log(u);
