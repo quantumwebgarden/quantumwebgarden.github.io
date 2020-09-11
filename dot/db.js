@@ -25,6 +25,7 @@ var t = "00.00";
 var g = "00.00";
 var adrfinal = "";
 var cndtn = "ffload < Number(delgb[ditems.indexOf(\"foods\")])";
+var loactioncheckdialogue = "Finding restaurants nearby...";
 var productcnt = 0;
 getuid();
 
@@ -502,7 +503,7 @@ function loadmore(){
   if(productcnt == 0){
     Swal.fire({
   position: 'top-end',
-  title: 'Sorry, we are not available at your area...',
+  title: loactioncheckdialogue,
   showConfirmButton: false,
   timer: 4000
 })
@@ -576,7 +577,7 @@ ratg = 1;
 loadstart = revpriority;
 
 });
-
+loactioncheckdialogue = "Sorry, we are not available at your area...";
 }
 
 
