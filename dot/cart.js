@@ -509,26 +509,36 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 }
 
 function confirmpay() {
-if(dflag == 0 && grandtotalall > 40){
-    if(grandtotalall < 1000 && uhome != "Karanjali"){
+if(dflag == 0 && grandtotalall > 40 && !u.includes("GUser")){
+    if(grandtotalall < 5000){
   Swal.fire({
   title: 'Ready to Pay?',
-  text: "Choose one of the options below. Once accepted, you cannot revert back.",
+  html: "<p>Choose one of the options below. Once accepted, you cannot revert back.</p>",
   icon: 'info',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#dd3333',
+  cancelButtonColor: '#7d6eeb',
   confirmButtonText: 'Pay Online',
   showCloseButton: true,
   cancelButtonText: 'Cash On Delivery',
   footer: '<a href="javascript:void(0)">Payments are secured and safe</a>'
 }).then((result) => {
   if (result.value) {
-    console.log("Online");
-    payupi();
+
+    Swal.fire({
+  title: 'Sorry...',
+  text: "We are not accepting Online payments right now. Click on Cash On Delivery. You may pay through any upi app like Paytm, GPAY or Phonepay at the time of delivery.",
+  icon: 'info',
+  showCancelButton: false,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#dd3333',
+  confirmButtonText: 'Okay',
+  showCloseButton: true,
+  footer: '<a href="javascript:void(0)">Payments are secured and safe</a>'
+      });
     }
   else if(result.dismiss === Swal.DismissReason.cancel){
-    console.log("COD");
+
     codpay();
   }
 })
@@ -546,8 +556,18 @@ else {
   footer: '<a href="javascript:void(0)">Payments are secured and safe</a>'
 }).then((result) => {
   if (result.value) {
-    console.log("online");
-    payupi();
+
+    Swal.fire({
+  title: 'Sorry...',
+  text: "We are not accepting Online payments right now. Click on Cash On Delivery. You may pay through any upi app like Paytm, GPAY or Phonepay at the time of delivery. Contact Customer Care at: 8768626927 for further details.",
+  icon: 'info',
+  showCancelButton: false,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#dd3333',
+  confirmButtonText: 'Okay',
+  showCloseButton: true,
+  footer: '<a href="javascript:void(0)">Payments are secured and safe</a>'
+      });
   }
 })
 }
@@ -555,7 +575,7 @@ else {
 else{
   Swal.fire({
   title: 'DOT',
-  html: 'Check items in your cart. <br> <u>Possible Solutions</u><br>1. Add item in your cart. <br>2. Remove items marked with "Out Of Delivery" status.<br>3. Minimum Order amount Rs.40 required.',
+  html: 'Check items in your cart. <br> <u>Possible Solutions</u><br>1. Add item in your cart. <br>2. Remove items marked with "Out Of Delivery" status.<br>3. Minimum Order amount Rs.40 required.<br>4. Guest User can\'t place and order',
   icon: 'error'
 });
 }
