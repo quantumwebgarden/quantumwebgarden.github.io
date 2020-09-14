@@ -139,7 +139,7 @@ button {
   margin: 4px 2px;
   cursor: pointer;
 }
-button disabled{
+button:disabled{
 	background-color: #6360e6;
 }
 .opcone{
@@ -166,12 +166,20 @@ button disabled{
 
 <h1 class="menu__title">My Orders</h1>
 
+<audio id="new">
+  <source src="check.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="old">
+  <source src="ding.mp3" type="audio/mpeg">
+</audio>
+
 <svg class="menu__icon" enable-background="new 0 0 129 129" version="1.1" viewBox="0 0 129 129" xmlns="http://www.w3.org/2000/svg"><path d="m88.6 121.3c0.8 0.8 1.8 1.2 2.9 1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8 0l-54 53.9c-1.6 1.6-1.6 4.2 0 5.8l54 53.9z" fill="transparent" /></svg>
 
 </header>
 <br>
 <center onclick="location.reload()"><i class="fa fa-refresh" aria-hidden="true"></i> Click to Refresh Orders <i class="fa fa-refresh" aria-hidden="true"></i></center><br>
-<center onclick="loadstatus()"><i class="fa fa-refresh" aria-hidden="true"></i> Set Load <i class="fa fa-refresh" aria-hidden="true"></i></center><br>
+<center onclick="loadstatus()"><i class="fa fa-refresh" aria-hidden="true"></i> View Live Status <i class="fa fa-refresh" aria-hidden="true"></i></center><br>
 <div class="card-list" id="allordercard">
 
 <!--div class="card card--one">

@@ -17,6 +17,14 @@ var firebaseConfig = {
 
 function loadstatus(){
 	loaded = 1;
+	Swal.fire({
+	title: 'DOT',
+	html: 'Status changed to live',
+	timer: 1000,
+	timerProgressBar: true,
+	allowEscapeKey: false,
+	allowOutsideClick: false,
+});
 }
   function loadingtime() {
   var qtload = Math.floor(Math.random() * 4);
@@ -114,6 +122,30 @@ if(orderstatus == 23 || orderstatus == 29 || orderstatus == 19){
 	}
 	if(loaded == 1){	
     $("#allordercard").insertAdjacentHTML('afterbegin','<div class="card card--' + backg + '"><p class="card__number">Order No.: ' + ordid +'</p><center><hr style="width: 50%"></center><br><p class="card__owner"><b>Customer Name: </b> ' + cname + ' </p><p class="card__owner"><b>Contact no. : </b><i onclick="calldboy(\'call' + cphone + '\')">+91 ' + cphone + '</i></p><p class="card__owner"><b>Delivery Address : </b>' + caddress + '</p><br><p class="card__owner"><b>Delivery Person: </b> ' + dname + ' </p><br><p class="card__owner"><b>Pickup Shop Name(s) : </b><br>' + shopnames + '</p><b>Respective Pickup Address(es) : </b><br>' + shopaddrs + '</p><b>Respective Item(s) to collect : </b><br>' + products + '</p><b>Respective Quantity(s) to collect : </b><br>' + resqty + '</p><div class="card__info"><p class="card__integral"><b>Total Quantity :</b> ' + totalqty +'</p><p class="card__amount"><b>Total Amount: ₹</b>' + ordval + '</p></div><div class="card__info"><p class="card__integral"><b>Payment Status :</b> ' + paymode +'</p><p class="card__amount"><b>OTP: </b> ' + dotp + '</p></div><div class="card__info"><p class="card__integral"><b>Date :</b> ' + dtnow +'</p><p class="card__amount"><b>Time: </b> ' + timenow + '</p></div><center><div class="card__info"><p class="card__integral"><button disabled id="' + ordid + 'p" class="opc' + pickbtn + '" data-ordid="' + ordid + '" data-uid="' + cphone + '" data-shopids="' + shopids + '" onclick="picked(this)">Picked Up</button></p><p class="card__amount"><button disabled id="' + ordid + 'd" class="opc' + delbtn + '" data-ordid="' + ordid + '" data-uid="' + cphone + '" data-shopids="' + shopids + '" onclick="delivered(this)">Delivered</button></p></div></center></div><br>');
+	var xaudio = document.getElementById("new"); 
+	xaudio.play(); 
+	}
+
+});
+
+  }
+  
+  
+  
+  function orderdetailschanged() {
+    var rootRef = firebase.database().ref('allorders');
+
+      rootRef.on("child_changed", snap => {
+
+var ordid = snap.child("ordid").val();
+var orderstatus = snap.child("orderstatus").val();
+var did = snap.child("did").val();
+var dname = snap.child("dname").val();
+var shopnames = snap.child("shopnames").val().split(",").join("<br>");
+
+	if(orderstatus == 23 || orderstatus == 24){	
+    var xold = document.getElementById("old"); 
+	xold.play(); 
 	}
 
 });
