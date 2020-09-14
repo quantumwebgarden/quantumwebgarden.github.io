@@ -94,7 +94,7 @@ var stockst = snap.child("stock").val();
 var stock = stocker[stockst];
 if(shopid == mcid){
   
-$("#allitems").append('<tr><td>' + id + '</td><td>' + name + '</td><td><img src=' + thumb + ' width="150px" height="auto"></td><td>' + price + '</td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td><td><button onclick="deleteproduct(\'' + id + '\',\'' + prtype + '\')">Delete</button></td></tr>');
+$("#allitems").append('<tr><td>' + id + '</td><td>' + name + '</td><td><img src=' + thumb + ' width="150px" height="auto"></td><td>' + price + '</td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td></tr>');//<td><button onclick="deleteproduct(\'' + id + '\',\'' + prtype + '\')">Delete</button></td></tr>');
   
 } 
 
