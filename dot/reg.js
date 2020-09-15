@@ -110,7 +110,7 @@ lat:lat
 }
 
 
-/*
+
 var fbBucketName1 = 'user';
 
         var uploader1 = document.getElementById('uploader1');
@@ -174,7 +174,7 @@ var fbBucketName1 = 'user';
                 });
 
         });
-        */
+        
 		
 		
 function render() {
