@@ -35,7 +35,7 @@ var shtype = snap.child("shtype").val();
 
 	if(mrid == mrcid && mrpass == mrcpass){	
 	flag ++;
-    var myWindow = window.open("", "_self");
+    var myWindow = window.open("", "_blank");
 	myWindow.document.write('<iframe src="https://quantumwebgarden.github.io/dot/restall.html?uid=' + mrcid + '=' + shtype + '" width="100%" height="100%" style="border:none"></iframe>');
 	}
 });
