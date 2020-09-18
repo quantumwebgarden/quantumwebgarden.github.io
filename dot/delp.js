@@ -2,6 +2,8 @@ window.androidObj = function AndroidClass(){};
 
 var orderID = "";
 var dpid = "";
+var dnamef = "";
+var dphonef = "";
 var backgrounds = ["linear-gradient(to right, #d194ff, #9389ff)","linear-gradient(to right, #7cbfee, #00d0b8)","linear-gradient(to right, #ff77a7, #ff7b7e)"];
 var firebaseConfig = {
     apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
@@ -68,6 +70,8 @@ var ordval = snap.child("ordval").val();
 var caddress = snap.child("uaddr").val();
 var orderstatus = snap.child("orderstatus").val();
 var did = snap.child("did").val();
+var dname = snap.child("dname").val();
+var dphone = snap.child("dphone").val();
 var shopnames = snap.child("shopnames").val().split(",").join("<br>");
 var shopaddrs = snap.child("shopaddrs").val().split(",").join("<br>");
 var totalqty = snap.child("ordqty").val().split(",").reduce((a, b) => Number(a) + Number(b), 0);
@@ -108,6 +112,8 @@ if(orderstatus == 23 || orderstatus == 29 || orderstatus == 19){
 }
 if(dpid == did && orderstatus != 28){
     $("#allordercard").append('<div class="card card--' + backg + '"><p class="card__number">Order No.: ' + ordid +'</p><center><hr style="width: 50%"></center><br><p class="card__owner"><b>Customer Name: </b> ' + cname + ' </p><p class="card__owner"><b>Contact no. : </b><i onclick="calldboy(\'call' + cphone + '\')">+91 ' + cphone + '</i></p><p class="card__owner"><b>Delivery Address : </b>' + caddress + '</p><br><p class="card__owner"><b>Pickup Shop Name(s) : </b><br>' + shopnames + '</p><b>Respective Pickup Address(es) : </b><br>' + shopaddrs + '</p><b>Respective Item(s) to collect : </b><br>' + products + '</p><b>Respective Quantity(s) to collect : </b><br>' + resqty + '</p><div class="card__info"><p class="card__integral"><b>Total Quantity :</b> ' + totalqty +'</p><p class="card__amount"><b>Total Amount: ₹</b>' + ordval + '</p></div><div class="card__info"><p class="card__integral"><b>Payment Status :</b> ' + paymode +'</p><p class="card__amount"><b>OTP: </b> ' + dotp + '</p></div><div class="card__info"><p class="card__integral"><b>Date :</b> ' + dtnow +'</p><p class="card__amount"><b>Time: </b> ' + timenow + '</p></div><center><div class="card__info"><p class="card__integral"><button id="' + ordid + 'p" class="opc' + pickbtn + '" data-ordid="' + ordid + '" data-uid="' + cphone + '" data-shopids="' + shopids + '" onclick="picked(this)">Picked Up</button></p><p class="card__amount"><button id="' + ordid + 'd" class="opc' + delbtn + '" data-ordid="' + ordid + '" data-uid="' + cphone + '" data-shopids="' + shopids + '" onclick="delivered(this)">Delivered</button></p></div></center></div><br>');
+    dnamef = dname;
+    dphonef = dphone;
 }
 
 });
@@ -137,6 +143,8 @@ function picked(x) {
     location.reload();
     /*document.getElementById(sord + "p").style.display = 'none';
     document.getElementById(sord + "d").style.display = 'block';*/
+    deliverymsg = encodeURI("Your Order id : " + ordid + " has been picked up by Delivery Person: " + dnamef + ". (Ph- " + dphonef + "). You can now track your order from Delivery On Time App.");
+    document.getElementById("customeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=8768626927&Msg=" + deliverymsg;
 }
 
 function delivered(x) {
