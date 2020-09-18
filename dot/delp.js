@@ -140,12 +140,12 @@ function picked(x) {
       else{
         firebase.database().ref("allshop/" + y + "/orders/" + sord).update({orderstatus:"24"});
       }
+    var customermsg = encodeURI("Your Order id : " + ordid + " has been picked up by Delivery Person: " + dnamef + ". (Ph- " + dphonef + "). You can now track your order from Delivery On Time App.");
+    document.getElementById("customeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=8768626927&Msg=" + customermsg;
     location.reload();
     /*document.getElementById(sord + "p").style.display = 'none';
     document.getElementById(sord + "d").style.display = 'block';*/
-    var customermsg = encodeURI("Your Order id : " + ordid + " has been picked up by Delivery Person: " + dnamef + ". (Ph- " + dphonef + "). You can now track your order from Delivery On Time App.");
-    document.getElementById("customeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=8768626927&Msg=" + customermsg;
-}
+    }
 
 function delivered(x) {
   firebase.database().ref("dboy/" + dpid).update({status:"sit"});
