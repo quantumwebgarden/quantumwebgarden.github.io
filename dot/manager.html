@@ -14,7 +14,7 @@
 	body{
 		background-color: #66add4;
 	}
-	select, button{
+	select, button, input{
 	display: block;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -58,9 +58,6 @@ h1{
   <option value="12916592">Ramkrishna Mistanna Bhandar</option>
   <option value="12970207">Monginis (Diamond Harbour)</option>
   <option value="12977653">Monginis (Sarisha)</option>
-  <option value="12743019">Tejpata</option>
-  <option value="12898901">Mio Amore</option>
-  <option value="12600070">Mio Momo</option>
 </select>
 <br><br>
 <button onclick="paystatus()">View / Manage</button>
@@ -78,6 +75,10 @@ h1{
   <option value="DT0002">Sudipta Halder</option>
 </select>
 <b>Change Status:</b> <button class="smallbtn" onclick="dboysit()">Change to Ready</button> &nbsp;&nbsp;&nbsp;&nbsp; <button class="smallbtn" onclick="dboyoffline()">Set Offline</button> &nbsp;&nbsp;&nbsp;&nbsp; <button class="smallbtn" onclick="dboydtls()">View Details</button>
+<br><hr><hr>
+<input type="text" name="userid" id="userid" style="width:50%" placeholder="Enter Customer Phone number"><br><br>
+<button onclick="cancelorder()">Cancel Order</button>
+<iframe src="" id="userpage" style="display: none;" width="90%" height="500px"></iframe>
 <br><hr><hr>
 </center>
 <script type="text/javascript">
@@ -117,6 +118,11 @@ function fixshoperror(){
 	firebase.database().ref("shopfoods/stupd").remove();
 }
 
+function cancelorder(){
+	var x = document.getElementById("userid").value;
+	document.getElementById("userpage").src="https://quantumwebgarden.github.io/dot/del.html?uid=" + x;
+	document.getElementById("userpage").style.display = "block";
+}
 
 function clearrecent(){
 	var rootRef = firebase.database().ref("foods");
