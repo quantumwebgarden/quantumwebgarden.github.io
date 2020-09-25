@@ -89,7 +89,7 @@ var id = snap.child("id").val();
 var name = snap.child("name").val();
 var shopid = snap.child("shopid").val();
 var thumb = snap.child("thumb").val();
-var price = snap.child("priceshp").val();
+var price = snap.child("price").val();
 var stockst = snap.child("stock").val();
 var stock = stocker[stockst];
 if(shopid == mcid){
