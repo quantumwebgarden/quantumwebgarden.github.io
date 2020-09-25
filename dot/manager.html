@@ -152,7 +152,8 @@ function dboyoffline(){
 }
 
 function dboydtls(){
-	window.open("delp.html?uid=" + document.getElementById("dboyid").value);
+	var myWindow = window.open("", "_blank");
+	myWindow.document.write('<center><br><a href="manager.html"> Admin Home</a></center><br><iframe src="https://quantumwebgarden.github.io/dot/delp.html?uid=' + document.getElementById("dboyid").value + '" width="100%" height="100%" style="border:none"></iframe>');
 }
 
 </script>
