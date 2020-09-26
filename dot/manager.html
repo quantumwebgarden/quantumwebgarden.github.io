@@ -8,8 +8,9 @@
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
-
+<script type="text/javascript" src="manager.js"></script>
 <style type="text/css">
 	body{
 		background-color: #66add4;
@@ -40,8 +41,87 @@ h1{
 	width: auto!important;
 }
 </style>
+<style type="text/css">
+	.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.tab_report {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+  background-color: #895623;
+}
+
+td, th {
+  border: 3px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #acc2e5;
+}
+</style>
 </head>
-<body>
+<body onload="getstatus()">
 <br>
 <center>
 	
@@ -69,15 +149,25 @@ h1{
 <br><hr><hr>
 <button onclick="deleteguest()">Delete guest user</button>
 <br><hr><hr>
+<button onclick="getcurrentuser()">Current registered user count</button>
+<br><hr><hr>
 <button onclick="clearrecent()">Clear Recent View Cache</button>
 <br><hr><hr>
-<select id="dboyid" style="width: 50%">
-  <option value="DP0001">Amio Halder</option>
-  <option value="DP0002">Ajijul Sheikh</option>
-  <option value="DT0001">Rohit Sekh</option>
-  <option value="DT0002">Sudipta Halder</option>
-</select>
-<b>Change Status:</b> <button class="smallbtn" onclick="dboysit()">Change to Ready</button> &nbsp;&nbsp;&nbsp;&nbsp; <button class="smallbtn" onclick="dboyoffline()">Set Offline</button> &nbsp;&nbsp;&nbsp;&nbsp; <button class="smallbtn" onclick="dboydtls()">View Details</button>
+
+
+<p style="font-weight: bold;">Delivery Person Details</p><br>
+<table class="tab_report">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Status</th>
+		<th>View Details</th>
+	</tr>
+	<tbody id="dboytbl">
+		
+	</tbody>
+	
+</table>
 <br><hr><hr>
 <input type="text" name="userid" id="userid" style="width:50%" placeholder="Enter Customer Phone number"><br><br>
 <button onclick="cancelorder()">Cancel Order</button>
@@ -89,7 +179,7 @@ function paystatus(){
   window.open("restadmin.html?uid=" + document.getElementById("shopadmin").value  + "=shopfoods");
 }
 </script>
-<script type="text/javascript">
+<!--script type="text/javascript">
 	var firebaseConfig = {
     apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
     authDomain: "quantumdot20.firebaseapp.com",
@@ -116,6 +206,9 @@ if(id.includes("GUser")){
 }
 });
 }
+
+
+
 
 function fixshoperror(){
 	firebase.database().ref("shopfoods/stupd").remove();
@@ -156,6 +249,26 @@ function dboydtls(){
 	myWindow.document.write('<center><br><a href="manager.html"> Admin Home</a></center><br><iframe src="https://quantumwebgarden.github.io/dot/delp.html?uid=' + document.getElementById("dboyid").value + '" width="100%" height="100%" style="border:none"></iframe>');
 }
 
-</script>
+
+
+var statusall = ["offline","sit","road"];
+var roadstatus = "";
+
+function getstatus(x){
+var rootRef = firebase.database().ref("dboy");
+
+rootRef.on("child_added", snap => {
+var id = snap.child("id").val();
+var status = snap.child("status").val();
+var name = snap.child("name").val();
+if(status == "road"){
+  status = "sit";
+  roadstatus = "On road";
+}
+$("#dboytbl").append('<tr><td>' + id + '</td><td>' + name + '</td><td><label class="switch"><input type="checkbox" ' + statusall.indexOf(status) + ' id="dboyst' + id + '" data-val="' + statusall.indexOf(status) + '" onchange="dboychange(this)"><span class="slider round"></span></label><p style="color:RED">' + roadstatus + '</p></td><td><button id="' + id + '" onclick="dboydtls(this)">Cancel Order</button></td></tr>');
+});
+}
+
+</script-->
 </body>
 </html>

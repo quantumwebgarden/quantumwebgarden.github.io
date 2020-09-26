@@ -1,0 +1,126 @@
+var statusall = ["offline","sit","road"];
+var roadstatus = "";
+var stocker = ["","checked"];
+	var firebaseConfig = {
+    apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
+    authDomain: "quantumdot20.firebaseapp.com",
+    databaseURL: "https://quantumdot20.firebaseio.com",
+    projectId: "quantumdot20",
+    storageBucket: "quantumdot20.appspot.com",
+    messagingSenderId: "1011845585600",
+    appId: "1:1011845585600:web:cdd2e4e8ee38046b262b25",
+    measurementId: "G-Y98ZR7S8EQ"
+  };
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();     
+
+
+function deleteguest(){
+var rootRef = firebase.database().ref("user");
+
+rootRef.on("child_added", snap => {
+var id = snap.child("id").val();
+
+if(id.includes("GUser")){
+	console.log("user/" + id);
+	firebase.database().ref("user/" + id).remove();
+}
+});
+}
+
+
+
+function getstatus(){
+var rootRef = firebase.database().ref("dboy");
+
+rootRef.on("child_added", snap => {
+roadstatus = "";
+var id = snap.child("id").val();
+var status = snap.child("status").val();
+var name = snap.child("name").val();
+if(status == "road"){
+  status = "sit";
+  roadstatus = "On road";
+}
+$("#dboytbl").append('<tr><td>' + id + '</td><td>' + name + '</td><td><label class="switch" id="chk' + id + '"><input type="checkbox" ' + stocker[statusall.indexOf(status)] + ' id="dboyst' + id + '" data-dval="' + statusall.indexOf(status) + '" onchange="dboychange(this)"><span class="slider round"></span><br><br><b style="color:RED">' + roadstatus + '</b></label></td><td><button id="dtls' + id + '" onclick="dboydtls(this)">View Details</button></td></tr>');
+roadstatus = "";
+});
+
+
+
+rootRef.on("child_changed", snap => {
+roadstatus = "";
+var id = snap.child("id").val();
+var status = snap.child("status").val();
+var name = snap.child("name").val();
+if(status == "road"){
+  status = "sit";
+  roadstatus = "On road";
+}
+$("#chk" + id).html('<input type="checkbox" ' + stocker[statusall.indexOf(status)] + ' id="dboyst' + id + '" data-dval="' + statusall.indexOf(status) + '" onchange="dboychange(this)"><span class="slider round"></span><br><br><b style="color:RED">' + roadstatus + '</b>');
+roadstatus = "";
+});
+
+}
+
+function fixshoperror(){
+	firebase.database().ref("shopfoods/stupd").remove();
+}
+
+function cancelorder(){
+	var x = document.getElementById("userid").value;
+	document.getElementById("userpage").src="https://quantumwebgarden.github.io/dot/del.html?uid=" + x;
+	document.getElementById("userpage").style.display = "block";
+}
+
+function clearrecent(){
+	var rootRef = firebase.database().ref("foods");
+
+rootRef.on("child_added", snap => {
+var id = snap.child("id").val();
+var rcntvw = snap.child("rcntvw").val();
+
+	console.log(id + " - " + rcntvw);
+	firebase.database().ref("foods/" + id).update({rcntvw:"splt"});
+
+});
+}
+
+
+function dboychange(x){
+  var dbid = x.id;
+  dbid = dbid.substring(6,dbid.length);
+  dbval = x.getAttribute("data-dval");
+  newdbval = 1 - Number(dbval);
+  console.log(statusall[newdbval] + " - " + dbid);
+  x.setAttribute("data-dval", newdbval);
+  firebase.database().ref("dboy/" + dbid).update({status:statusall[newdbval]});
+}
+
+
+function dboydtls(x){
+  var dbid = x.id;
+  dbid = dbid.substring(4,dbid.length);
+	var myWindow = window.open("", "_self");
+	myWindow.document.write('<center><br><a href="manager.html"> Admin Home</a></center><br><iframe src="https://quantumwebgarden.github.io/dot/delp.html?uid=' + dbid + '" width="100%" height="100%" style="border:none"></iframe>');
+}
+
+
+function getcurrentuser(){
+  var rootRef = firebase.database().ref("users");
+  var str = "";
+rootRef.on("child_added", snap => {
+str = snap.child("allusers").val();
+var res = str.split("splt");
+  console.log(res.length);
+  Swal.fire({
+  title: 'DOT: Delivery On time',
+  html: '<b>Current registered User: ' + res.length + '</b>',//<br> <b>All users are :</b><br>" + res.join("<br>"),
+  icon: 'info',
+  showCancelButton: false,
+  confirmButtonColor: '#3085d6',
+  confirmButtonText: 'Okay!'
+});
+});
+  
+}
