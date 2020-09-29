@@ -9,7 +9,7 @@ var prtype = "";
 var prid = "";
 var today = "";
 var mcstatus = "";
-var mcshare = 10;
+var mcshare = 0;
 var stocker = ["","checked"];
 var payst = ["Unpaid","Paid"];
 
@@ -53,11 +53,11 @@ rootRef.on("child_added", snap => {
 
 var id = snap.child("id").val();
 var shopname = snap.child("shopname").val();
-
+var shareamount = snap.child("shareamount").val();
 if(id == mcid){
   $("#mcname").html(shopname);
   mcname = shopname;
-  
+  mcshare = shareamount;
   //$("#checkstatus").html('<input type="checkbox" ' + stocker[mcstatus] + ' data-val="' + mcstatus + '" id="shst' + id + '" onclick="shopchange(this)"><span class="slider"></span>');
   getallorders(mcid);
 } 
@@ -141,4 +141,55 @@ if(shopid == x){
 } 
 
 });
+}
+
+
+function getduebalance(){
+  var sumall = 0;
+  var percamt = 0;
+  var chkdt = document.getElementById("datetxt").value;
+  var rootRef = firebase.database().ref("allshop/" + mcid + "/orders");
+
+rootRef.on("child_added", snap => {
+
+var id = snap.child("id").val();
+
+var orderstatus = snap.child("orderstatus").val();
+var dtnow = snap.child("dtnow").val();
+var prices = snap.child("prices").val();
+var products = snap.child("products").val();
+
+
+if(products.includes("sp2lt")){
+  prices = snap.child("prices").val().split("sp2lt");
+  //console.log(prices);
+  var smj = prices.reduce(function(a, b){
+            return Number(a) + Number(b);
+            }, 0);
+  //console.log(smj);
+}
+var paystatus = snap.child("paystatus").val();
+var payst = stocker[paystatus];
+
+  if(orderstatus == 23 && chkdt == dtnow){
+    if(products.includes("sp2lt")){
+      var sum = prices.reduce(function(a, b){
+            return Number(a) + Number(b);
+            }, 0);
+      sumall = Number(sumall) + Number(sum);
+    }
+    else{
+      sumall = Number(sumall) + Number(prices);
+    }
+    console.log(sumall);
+    percamt = Number(sumall* Number(100 - Number(mcshare))/100).toFixed(2);
+  }
+
+});
+
+Swal.fire(
+  'DOT',
+  'Sell Amount = ' + sumall + ' And Payment Amount = ' + percamt,
+  'info'
+    );
 }
