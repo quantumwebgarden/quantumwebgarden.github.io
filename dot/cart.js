@@ -291,7 +291,7 @@ function chkcart(x) {
             //var priceshp = snap.child("priceshp").val();
             var weight = snap.child("weight").val();
             var shopphone = snap.child("shopphone").val();
-
+            var shareamount = snap.child("shareamount").val();
 
             if(id == y){
             price = eachprice * z;
