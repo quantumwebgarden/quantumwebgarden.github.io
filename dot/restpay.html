@@ -9,9 +9,26 @@
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="restpay.js"></script>
 <style>
-
+input{
+  display: block;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 70%;
+  background-color: #f5e1ce;
+  padding: 8px;
+  border-radius: 6px;
+  -webkit-border-radius:6px;
+  -moz-border-radius:6px;
+  border: 2px solid #fff;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+  -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+  text-transform: uppercase;
+}
 .tab_report {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -96,7 +113,9 @@ input:checked + .slider:before {
 
 <center>
 <h2 id="mcname">Shop Name</h2>
-
+<br>
+<input type="text" name="datetxt" id="datetxt" placeholder="Enter Date in DD/MM/YYYY format">
+<button onclick="getduebalance()">Retrieve Payment Details</button>
 <br><br>
 </center>
 <br><br>
