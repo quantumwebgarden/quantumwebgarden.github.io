@@ -298,10 +298,10 @@ Swal.fire({
     clearInterval(timerInterval)
     //console.log(fln + "me");
     if(fln == 1){
-      document.getElementById("imgc1").src = "assets/banner/imgc1.jpg";
+      document.getElementById("imgc1").src = "assets/banner/imgc5.png";
       document.getElementById("imgc2").src = "assets/banner/imgc2.jpg";
       document.getElementById("imgc3").src = "assets/banner/imgc1.gif";
-      document.getElementById("imgc4").src = "assets/banner/imgc3.jpg";
+      document.getElementById("imgc4").src = "assets/banner/imgc3.png";
 	    document.getElementById("imgc5").src = "assets/banner/imgc2.gif";
     }
   }
