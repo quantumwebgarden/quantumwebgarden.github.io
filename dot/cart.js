@@ -13,6 +13,7 @@ var shopids = [];
 var dapprox = [];
 var shopgroups = [];
 var shoppays = [];
+var shopofferpays = [];
 var shopitemnames = [];
 var shopitemqtys = [];
 var shopgrpids = [];
@@ -286,8 +287,8 @@ function chkcart(x) {
               if(shopstatus == 0){dtimechk = 9}
             if(stock == 0){dtimechk = 10}
             var dtime = dtimes[dtimechk.toFixed(0)];
-            var price = snap.child("price").val();
-            var priceshp = snap.child("priceshp").val();
+            //var price = snap.child("price").val();
+            //var priceshp = snap.child("priceshp").val();
             var weight = snap.child("weight").val();
             var shopphone = snap.child("shopphone").val();
 
@@ -295,6 +296,9 @@ function chkcart(x) {
             if(id == y){
             price = eachprice * z;
             weight = weight * z;
+                
+            var shpofferprice = Math.round(Number(shpprice - Number(Number(eachprice)*Number(shareamount)/100)));
+            var shpofferpriceall = shpofferprice * z;
 
             var shppriceall = shpprice * z;
             pricetotal = pricetotal + price;
@@ -313,6 +317,7 @@ function chkcart(x) {
             if(shopids.includes(shopid)){
               shopgroups[shopids.indexOf(shopid)] = shopgroups[shopids.indexOf(shopid)] + "sp2lt" + y;
               shoppays[shopids.indexOf(shopid)] = shoppays[shopids.indexOf(shopid)] + "sp2lt" + shppriceall;
+              shopofferpays[shopids.indexOf(shopid)] = shopofferpays[shopids.indexOf(shopid)] + "sp2lt" + shpofferpriceall;
               shopitemnames[shopids.indexOf(shopid)] = shopitemnames[shopids.indexOf(shopid)] + "sp2lt" + name;
               shopitemqtys[shopids.indexOf(shopid)] = shopitemqtys[shopids.indexOf(shopid)] + "sp2lt" + z;
             }
@@ -324,6 +329,7 @@ function chkcart(x) {
             dapprox[cnts] = dtimechk;
             shopgroups[cnts] = y;
             shoppays[cnts] = shppriceall;
+            shopofferpays[cnts] = shpofferpriceall;
             shopitemnames[cnts] = name;
             shopitemqtys[cnts] = z;
             cnts+= 1;
@@ -602,7 +608,7 @@ function codpay(){
     document.getElementById("msgonlydp").src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=" + udphone + "&Msg=" + deliverymsg;
     document.getElementById("developeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=8768626927&Msg=" + deliverymsg + "%20for%20" + udphone + "%20By%20" + u;
   for (var i = shopids.length - 1; i >= 0; i--) {
-          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({dimg:udimg,dphone:udphone,dname:udname,dtnow:dtnow,paystatus:0,id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:"11"});
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({dimg:udimg,dphone:udphone,dname:udname,dtnow:dtnow,paystatus:0,id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],payprice:shopofferpays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:"11"});
           if(!shopitemnames[i].includes("sp2lt")){
             var msgraw = 'Name - ' + shopitemnames[i] + ', quantity - ' + shopitemqtys[i] + ";";
           }
