@@ -161,7 +161,7 @@ var payst = stocker[paystatus];
     }
     console.log(sumall);
     percamt = Number(sumall* Number(100 - Number(mcshare))/100).toFixed(2);
-    firebase.database().ref("zpayshop/" + mcid + "/" + dtnow.split("/").join("-")).update({sellamount:sumall,payamount:percamt});
+    firebase.database().ref("zpayshop/" + mcid + "/" + dtnow.split("/").join("-")).update({sellamount:sumall,payamount:percamt,shid:mcid,paydt:dtnow});
 
   }
 
