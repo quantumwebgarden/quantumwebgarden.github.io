@@ -316,7 +316,7 @@ function chkcart(x) {
             
             if(shopids.includes(shopid)){
               shopgroups[shopids.indexOf(shopid)] = shopgroups[shopids.indexOf(shopid)] + "sp2lt" + y;
-              shoppays[shopids.indexOf(shopid)] = shoppays[shopids.indexOf(shopid)] + "sp2lt" + shppriceall;
+              shoppays[shopids.indexOf(shopid)] = shoppays[shopids.indexOf(shopid)] + "sp2lt" + price;
               shopofferpays[shopids.indexOf(shopid)] = shopofferpays[shopids.indexOf(shopid)] + "sp2lt" + shpofferpriceall;
               shopitemnames[shopids.indexOf(shopid)] = shopitemnames[shopids.indexOf(shopid)] + "sp2lt" + name;
               shopitemqtys[shopids.indexOf(shopid)] = shopitemqtys[shopids.indexOf(shopid)] + "sp2lt" + z;
@@ -328,7 +328,7 @@ function chkcart(x) {
             shopphones[cnts] = shopphone;
             dapprox[cnts] = dtimechk;
             shopgroups[cnts] = y;
-            shoppays[cnts] = shppriceall;
+            shoppays[cnts] = price;
             shopofferpays[cnts] = shpofferpriceall;
             shopitemnames[cnts] = name;
             shopitemqtys[cnts] = z;
