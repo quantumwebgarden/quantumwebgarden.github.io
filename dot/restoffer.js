@@ -92,11 +92,12 @@ var thumb = snap.child("thumb").val();
 var price = snap.child("price").val();
 var stockst = snap.child("stock").val();
 var priceshp = snap.child("priceshp").val();
+var desc = snap.child("desc").val();
 
 var stock = stocker[stockst];
 if(shopid == mcid){
   
-$("#allitems").append('<tr><td>' + id + '</td><td>' + name + '</td><td><img src=' + thumb + ' width="150px" height="auto"></td><td><input type="text" id="priceshp' + id + '" value="' + priceshp + '"></td><td><input type="text" id="price' + id + '" value="' + price + '"><br><br><select id="perc' + id + '" onchange="updateper(this)"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option><option value="20">20%</option><option value="25">25%</option><option value="30">30%</option></select></td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td><td><button onclick="updateproduct(\'' + id + '\',\'' + prtype + '\')">Update</button></td><td><button onclick="deleteproduct(\'' + id + '\',\'' + prtype + '\')">Delete</button></td></tr>');
+$("#allitems").append('<tr><td>' + id + '</td><td>Name: <textarea class="textclass" id="name' + id + '">' + name + '</textarea><br>Description: <textarea class="textclass" id="desc' + id + '">' + desc + '</textarea></td><td><img src=' + thumb + ' width="150px" height="auto"></td><td><input type="text" id="priceshp' + id + '" value="' + priceshp + '"></td><td><input type="text" id="price' + id + '" value="' + price + '"><br><br><select id="perc' + id + '" onchange="updateper(this)"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option><option value="20">20%</option><option value="25">25%</option><option value="30">30%</option></select></td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td><td><button onclick="updateproduct(\'' + id + '\',\'' + prtype + '\')">Update</button></td><td><button onclick="deleteproduct(\'' + id + '\',\'' + prtype + '\')">Delete</button></td></tr>');
   
 } 
 
@@ -165,6 +166,11 @@ function deleteproduct(x,y){
 function updateproduct(x,y){
   var orgprice = document.getElementById("priceshp" + x).value;
   var offerprice = document.getElementById("price" + x).value;
+  var newname = document.getElementById("name" + x).value;
+  var newdesc = document.getElementById("desc" + x).value;
+
+  console.log(newname + " - " + newdesc);
+
   var revprice = 5000 - Number(offerprice);
   if(orgprice < offerprice){
     Swal.fire({
@@ -187,7 +193,7 @@ function updateproduct(x,y){
   confirmButtonText: 'Yes, Update!'
 }).then((result) => {
   if (result.isConfirmed) {
-    firebase.database().ref(y + "/" + x).update({priceshp:orgprice,price:offerprice,pricerev:revprice,priceoffer:offerprice});
+    firebase.database().ref(y + "/" + x).update({name:newname,desc:newdesc,priceshp:orgprice,price:offerprice,pricerev:revprice,priceoffer:offerprice});
     console.log(orgprice + " - " + offerprice + " - " + revprice + " - " + x);
     Swal.fire(
       'Updated!',
