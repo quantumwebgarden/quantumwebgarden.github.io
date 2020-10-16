@@ -93,11 +93,16 @@ var price = snap.child("price").val();
 var stockst = snap.child("stock").val();
 var priceshp = snap.child("priceshp").val();
 var desc = snap.child("desc").val();
-
+var cat = snap.child("cat").val();
+var tagsr = snap.child("tagsr").val();
+var rating = snap.child("rating").val();
+var ratcnt = snap.child("ratcnt").val();
+var dotprirev = snap.child("dotprirev").val();
+var dotpri = snap.child("dotpri").val();
 var stock = stocker[stockst];
 if(shopid == mcid){
   
-$("#allitems").append('<tr><td>' + id + '</td><td>Name: <textarea class="textclass" id="name' + id + '">' + name + '</textarea><br>Description: <textarea class="textclass" id="desc' + id + '">' + desc + '</textarea></td><td><img src=' + thumb + ' width="150px" height="auto"></td><td><input type="text" id="priceshp' + id + '" value="' + priceshp + '"></td><td><input type="text" id="price' + id + '" value="' + price + '"><br><br><select id="perc' + id + '" onchange="updateper(this)"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option><option value="20">20%</option><option value="25">25%</option><option value="30">30%</option></select></td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td><td><button onclick="updateproduct(\'' + id + '\',\'' + prtype + '\')">Update</button></td><td><button onclick="deleteproduct(\'' + id + '\',\'' + prtype + '\')">Delete</button></td></tr>');
+$("#allitems").append('<tr><td>' + id + '</td><td>Name: <textarea class="textclass" id="name' + id + '">' + name + '</textarea><br>Description: <textarea class="textclass" id="desc' + id + '">' + desc + '</textarea><br>Category: <textarea class="textclass" id="cat' + id + '">' + cat + '</textarea><br>Search Tags: <textarea class="textclass" id="tagsr' + id + '">' + tagsr + '</textarea></td><td><img src=' + thumb + ' width="150px" height="auto"></td><td>Rating Count: <input type="text" id="ratcnt' + id + '" value="' + ratcnt + '"><br>Ratings: <input type="text" id="rating' + id + '" value="' + rating + '"><br>Piority: <input type="text" id="dotpri' + id + '" value="' + dotpri + '"></td><td><input type="text" id="priceshp' + id + '" value="' + priceshp + '"></td><td><input type="text" id="price' + id + '" value="' + price + '"><br><br><select id="perc' + id + '" onchange="updateper(this)"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option><option value="20">20%</option><option value="25">25%</option><option value="30">30%</option></select></td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td><td><button onclick="updateproduct(\'' + id + '\',\'' + prtype + '\')">Update</button></td><td><button onclick="deleteproduct(\'' + id + '\',\'' + prtype + '\')">Delete</button></td></tr>');
   
 } 
 
@@ -168,6 +173,12 @@ function updateproduct(x,y){
   var offerprice = document.getElementById("price" + x).value;
   var newname = document.getElementById("name" + x).value;
   var newdesc = document.getElementById("desc" + x).value;
+  var newcat = document.getElementById("cat" + x).value;
+  var newtagsr = document.getElementById("tagsr" + x).value;
+  var newrating = document.getElementById("rating" + x).value;
+  var newratcnt = document.getElementById("ratcnt" + x).value;
+  var newdotpri = document.getElementById("dotpri" + x).value;
+  var newdotprirev = Number(10000 - Number(newdotpri));
 
   console.log(newname + " - " + newdesc);
 
@@ -193,8 +204,8 @@ function updateproduct(x,y){
   confirmButtonText: 'Yes, Update!'
 }).then((result) => {
   if (result.isConfirmed) {
-    firebase.database().ref(y + "/" + x).update({name:newname,desc:newdesc,priceshp:orgprice,price:offerprice,pricerev:revprice,priceoffer:offerprice});
-    console.log(orgprice + " - " + offerprice + " - " + revprice + " - " + x);
+    firebase.database().ref(y + "/" + x).update({name:newname,cat:newcat,tagsr:newtagsr,rating:newrating,ratcnt:newratcnt,dotprirev:newdotprirev,dotpri:newdotpri,desc:newdesc,priceshp:orgprice,price:offerprice,pricerev:revprice,priceoffer:offerprice});
+    console.log(orgprice + " - " + offerprice + " - " + revprice + " - " + x + " - " + newdotpri + " - " + newdotprirev + " - " + newratcnt + " - " + newrating + " - " + newtagsr);
     Swal.fire(
       'Updated!',
       'Your product has been updated.',
