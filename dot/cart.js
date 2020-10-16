@@ -634,9 +634,10 @@ function codpay(){
   document.getElementById("mainbody").style.display = "none";
   Swal.fire({
   title: 'DOT',
-  text: 'Your order has been placed successfully. ' + dmsg[dsts.indexOf(finaldst)],
+  text: 'Your order has been placed successfully. Check order section for details' + dmsg[dsts.indexOf(finaldst)],
   icon: 'success',
   showCancelButton: false,
+  showConfirmButton: false,
   confirmButtonText: 'Back to Home',
   allowEscapeKey: false,
   allowOutsideClick: false,
