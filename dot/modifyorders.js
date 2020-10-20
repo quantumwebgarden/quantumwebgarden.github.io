@@ -134,7 +134,7 @@ if(orderstatus == 23){
   
   
 function deleteproduct(x){
-
+  var customer = document.getElementById("cphone" + x).innerHTML;
   Swal.fire({
   title: 'Are you sure?',
   text: "You won't be able to revert this!",
@@ -146,6 +146,7 @@ function deleteproduct(x){
 }).then((result) => {
   if (result.isConfirmed) {
     firebase.database().ref("allorders/" + x).remove();
+    firebase.database().ref("vvcart/" + customer + "/order/" + x).remove();
     Swal.fire(
       'Deleted!',
       'Your product has been deleted.',
