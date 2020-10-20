@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom Order</title>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="customorder.js"></script>
+
+
+<style type="text/css">
+	body{
+		background-color: #66add4;
+	}
+	select, button, input{
+	display: block;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 80%;
+	padding: 8px;
+	border-radius: 6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border: 2px solid #fff;
+	box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+	-moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+	text-transform: uppercase;
+}
+button{
+	width: 50% !important;
+}
+h1{
+	font-family: "Allerta Stencil", Sans-serif;
+}
+.smallbtn{
+	width: auto!important;
+}
+</style>
+<style type="text/css">
+	.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.tab_report {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+  background-color: #895623;
+}
+
+td, th {
+  border: 3px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #acc2e5;
+}
+</style>
+
+
+</head>
+<body>
+
+
+<br>
+<center>
+	
+	<h1>DOT : Delivery On Time</h1>
+	<img src="dotf.png" width="100px" height="auto">
+	<h2>Custom / Bulk Order Panel</h2>
+<select id="shoplist" onchange="getfoodlist(this)">
+  <option value="12054892">Gharana</option>
+  <option value="12072247">Jisha</option>
+  <option value="12479021">New Hazi (DH)</option>
+  <option value="12555269">Maa Kali Restaurant</option>
+  <option value="12648073">Aasa Biryani House</option>
+  <option value="12705392">Ghosh Sweets</option>
+  <option value="12916592">Ramkrishna Mistanna Bhandar</option>
+  <option value="12970207">Monginis (Diamond Harbour)</option>
+  <option value="12977653">Monginis (Sarisha)</option>
+  <option value="12743019">Tezpata</option>
+  <option value="12898901">Mio Amore</option>
+  <option value="12600070">Mio Momo</option>
+</select>
+<br><br>
+List of Foods available
+<br><br>
+<select id="foodlist" onchange="getfooddetails(this)">
+  <option value="NA" disabled>Select Any one</option>
+</select>
+<br>
+Enter Quantity:
+<br><br>
+<input style="width: 50%" type="number" name="Quantity" id="quantity" placeholder="Enter Quantity" onkeyup="gettotalval(this)">
+<br><br>
+<p id="totalprice">Total Price : &#x20B9;0</p>
+
+<br><br>
+<input style="width: 50%" type="number" name="Quantity" id="quantity" placeholder="Enter Customer Phone Number">
+<br><br>
+<input style="width: 50%" type="number" name="Quantity" id="quantity" placeholder="Enter Delivery Charge">
+<br><br>
+
+Select Delivery Person: 
+<br><br>
+<select id="shopadmin">
+  <option value="DP0001">Amiya Halder</option>
+  <option value="DP0002">Ajijul Sheikh</option>
+  <option value="DT0001">Rohit Rana Sekh</option>
+  <option value="DT0002">Sudipta Halder</option>
+</select>
+<br><br><hr>
+
+
+<button onclick="placeorder()">Place Order</button>
+<br><hr><hr>
+
+
+<img src="dotf.png" width="100px" height="auto">
+<p>Custom / Bulk order placing should be done after aquiring confrmation of availability of product from the Merchant.</p>
+<center>
+
+
+
+</body>
+</html>

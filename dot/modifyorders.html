@@ -106,11 +106,26 @@ input[type="text"]{
 </head>
 <body onload="orderdetails()">
 
-<button style="position: fixed; top: 10px; left: 10px;" onclick="showcalculator()">Percentage Calculator</button>
-<textarea style="position: fixed; top: 50px; left: 10px; width: 250px"> </textarea>
+<div class="links" style="position: fixed; top: 10px; left: 10px;">
+<a class="openpop" href="customorder.html">Get Price</a>
+</div>
+<div class="wrapper">
+    <div class="popup">
+        <iframe src="" style="position: fixed; top: 50px; left: 10px;" width="40%" height="500px" resize="both">
+            <p>Your browser does not support iframes.</p>
+        </iframe>
+<a href="#" class="close" style="position: fixed; top: 60px; left: 15px; color: white; background: #000">X</a>
+
+    </div>
+</div>
+
+<button style="position: fixed; top: 10px; right: 10px;" onclick="showcalculator()">Percentage Calculator</button>
+<!--button style="position: fixed; top: 40px; left: 10px;" onclick="getpriceframe()">Get Price Details</button-->
+<!--a style="position: fixed; top: 40px; left: 10px;" href="customorder.html" target="_blank">Get Price Details</a-->
+<textarea style="position: fixed; top: 40px; right: 10px; width: 250px"> </textarea>
+
 <center>
   <p onclick="location.reload()">Click to refresh</p>
-
 <br><br>
 </center>
 <br><br>
@@ -141,6 +156,21 @@ input[type="text"]{
   </tr-->
   </tbody>
 </table>
+<script>
+	$(document).ready(function () {
+    $(".popup").hide();
+    $(".openpop").click(function (e) {
+        e.preventDefault();
+        $("iframe").attr("src", $(this).attr('href'));
+        $(".links").fadeOut('slow');
+        $(".popup").fadeIn('slow');
+    });
 
+    $(".close").click(function () {
+        $(this).parent().fadeOut("slow");
+        $(".links").fadeIn("slow");
+    });
+});
+</script>
 </body>
 </html>
