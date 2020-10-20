@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Merchant</title>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="modifyorders.js"></script>
+<style>
+
+.textclass{
+  width: 200px!important;
+  height: 50px;
+}
+
+
+
+.tab_report {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+  background-color: #895623;
+}
+
+td, th {
+  border: 3px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #acc2e5;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+input[type="text"]{
+  width: 80px;
+  height: 20px;
+  font-weight: bold;
+}
+</style>
+</head>
+<body onload="orderdetails()">
+
+<button style="position: fixed; top: 10px; left: 10px;" onclick="showcalculator()">Percentage Calculator</button>
+<textarea style="position: fixed; top: 50px; left: 10px; width: 250px"> </textarea>
+<center>
+  <p onclick="location.reload()">Click to refresh</p>
+
+<br><br>
+</center>
+<br><br>
+<table class="tab_report">
+  <tr>
+  			<th>Order ID</th>
+			<th>Customer</th>
+			<th>Delivery person</th>
+			<th>Shop list (, & |)</th>
+			<th>Product List (, & |)</th>
+			<th>Quantity List</th>
+			<th>Price List</th>
+			<th>Update</th>
+			<th>Remove</th>
+  </tr>
+  <tbody id="allorders">
+    <!--tr>
+    <td>Name 1</td>
+    <td>1</td>
+    <td>159</td>
+    <td><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label></td>
+  </tr>
+  <tr>
+    <td>Name 2</td>
+    <td>2</td>
+    <td>298</td>
+    <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+  </tr-->
+  </tbody>
+</table>
+
+</body>
+</html>
