@@ -454,14 +454,39 @@ function pcodecheck(){
     var per = snap.child("per").val();
     var minam = snap.child("minam").val();
     var puser = snap.child("puser").val();
-                
+        
+    var dtn = new Date();
+    var ntn = dtn.getDay();
     if(pid == appliedp && pricetotal >= minam && !puser.includes(u + "splt")){
+       if(appliedp == "BIGDAY" && (ntn == "2" || ntn == "5")){
+        if(shopids.includes("12054892") || shopids.includes("12898901") || shopids.includes("12916592") || shopids.includes("12970207") || shopids.includes("12977653")){
+          per = Math.floor(3 + Math.random() * 3);
+        }
+        else if(shopids.includes("12743019")){
+          per = Math.floor(5 + Math.random() * 4);
+        }
+        else if(shopids.includes("12479021")){
+          per = Math.floor(6 + Math.random() * 7);
+        }
+        else{
+          per = Math.floor(6 + Math.random() * 4);
+        }
+        
+        discounttotal = Number((pricetotal*per/100) + flat);
+       pflag = 1;
+       finalpuser = puser;
+       chkflg(pflag,appliedp);
+       return true;
+       }
+       else{
        discounttotal = Number((pricetotal*per/100)+flat);
        pflag = 1;
        finalpuser = puser;
        chkflg(pflag,appliedp);
        return true;
-    }    
+       }
+       
+    }
 
   });
     chkflg(pflag,appliedp);
