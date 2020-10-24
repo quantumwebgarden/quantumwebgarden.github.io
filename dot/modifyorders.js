@@ -99,14 +99,14 @@ var lnk = "";
 
 
 if(shopids.length < 10){
-  lnk = "<b onclick=\"window.open('modifyshop.html?id=" + shopids + "')\">" + shopnames + "</b>,";
+  lnk = "<b onclick=\"window.open('modifyshoporders.html?id=" + shopids + "')\">" + shopnames + "</b>,";
 }
 else{
  var shopids = shopids.split(",");
  var shopnamessplt = shopnames.split(",");
  console.log(shopids.length);
  for (var i = 0; i < shopids.length; i++) {
-   lnk = lnk +  "<b onclick=\"window.open('modifyshop.html?id=" + shopids[i] + "')\">" + shopnamessplt[i] + "</b>,";
+   lnk = lnk +  "<b onclick=\"window.open('modifyshoporders.html?id=" + shopids[i] + "')\">" + shopnamessplt[i] + "</b>,";
  }
 }
 
