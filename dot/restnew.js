@@ -13,14 +13,14 @@ var mcshare = 10;
 var mcphone = "";
 
 var firebaseConfig = {
-    apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
-    authDomain: "quantumdot20.firebaseapp.com",
-    databaseURL: "https://quantumdot20.firebaseio.com",
-    projectId: "quantumdot20",
-    storageBucket: "quantumdot20.appspot.com",
-    messagingSenderId: "1011845585600",
-    appId: "1:1011845585600:web:cdd2e4e8ee38046b262b25",
-    measurementId: "G-Y98ZR7S8EQ"
+    apiKey: "AIzaSyA7wly3NvCF90pJFs7a9kMBl-eXHJvXYw4",
+    authDomain: "dotqwdtls.firebaseapp.com",
+    databaseURL: "https://dotqwdtls.firebaseio.com",
+    projectId: "dotqwdtls",
+    storageBucket: "dotqwdtls.appspot.com",
+    messagingSenderId: "374863944922",
+    appId: "1:374863944922:web:3025e1648144afe89fd9e3",
+    measurementId: "G-NWB5LL551K"
   };
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();     
