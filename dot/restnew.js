@@ -135,10 +135,11 @@ function mcnewadd(){
 		pricerev:Number(5000 - Number(document.getElementById("price").value)),
 		desc:document.getElementById("desc").value,
 		favlst:"splt",
-		tagsr:document.getElementById("name").value + " " + mcname,
+		tagsr:document.getElementById("name").value + " " + mcname + " " + mcid + " " + document.getElementById("category").value,
 		shopid:mcid,
 		rcntvw:"splt",
 		dotpri:Number(2000 - Number(document.getElementById("dotpri").value)),
+		dotprirev:Number(10000 - Number(2000 - Number(document.getElementById("dotpri").value))),
 		stock:0,
 		weight:Number(document.getElementById("weight").value)
 		});
