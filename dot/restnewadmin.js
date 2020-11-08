@@ -11,7 +11,7 @@ var today = "";
 var mcstatus = "";
 var mcshare = 10;
 var mcphone = "";
-
+var tagsrfinal = "";
 var firebaseConfig = {
     apiKey: "AIzaSyA7wly3NvCF90pJFs7a9kMBl-eXHJvXYw4",
     authDomain: "dotqwdtls.firebaseapp.com",
@@ -112,6 +112,9 @@ function mcnewsave() {
 }
 
 function mcnewadd(){
+	if(document.getElementById("category").value == "Veg"){
+		tagsrfinal = "Veg0";
+	}
 	firebase.database().ref(prtype + "/" + prid).set({
 		id:prid,
 		cat:document.getElementById("category").value,
@@ -135,7 +138,7 @@ function mcnewadd(){
 		pricerev:Number(5000 - Number(document.getElementById("price").value)),
 		desc:document.getElementById("desc").value,
 		favlst:"splt",
-		tagsr:document.getElementById("name").value + " " + mcname + " " + mcid + " " + document.getElementById("category").value,
+		tagsr:document.getElementById("name").value + " " + mcname + " " + mcid + " " + document.getElementById("category").value + tagsrfinal,
 		shopid:mcid,
 		rcntvw:"splt",
 		dotpri:Number(2000 - Number(document.getElementById("dotpri").value)),
