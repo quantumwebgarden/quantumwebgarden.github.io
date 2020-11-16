@@ -379,7 +379,7 @@ function calculatetotal(){
 }
 
 function dchargecal(pt,wt,qt,dt) {
-  if(Number(pt)< 40){
+  if(Number(pt)< 20){
     Swal.fire(
   'DOT',
   'Minimum Order Value Rs. 40 Required.',
