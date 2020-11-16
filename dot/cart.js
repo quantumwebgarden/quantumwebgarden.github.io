@@ -539,7 +539,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 }
 
 function confirmpay() {
-if(dflag == 0 && grandtotalall > 40 && !u.includes("GUser")){
+if(dflag == 0 && grandtotalall > 20 && !u.includes("GUser")){
     if(grandtotalall < 5000){
   Swal.fire({
   title: 'Ready to Pay?',
