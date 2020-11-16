@@ -379,7 +379,7 @@ function calculatetotal(){
 }
 
 function dchargecal(pt,wt,qt,dt) {
-  if(Number(pt)< 20){
+  if(Number(pt)< 10){
     Swal.fire(
   'DOT',
   'Minimum Order Value Rs. 40 Required.',
@@ -539,7 +539,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 }
 
 function confirmpay() {
-if(dflag == 0 && grandtotalall > 20 && !u.includes("GUser")){
+if(dflag == 0 && grandtotalall > 10 && !u.includes("GUser")){
     if(grandtotalall < 5000){
   Swal.fire({
   title: 'Ready to Pay?',
