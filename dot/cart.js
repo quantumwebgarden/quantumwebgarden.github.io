@@ -24,6 +24,7 @@ var avlphones = [];
 var avlphoner = [];
 var avlnames = [];
 var avlnamer = [];
+var shopindividualprice = [];
 var cntdboysit = 0;
 var cntdboyroad = 0;
 var dtimeapprox = "";
@@ -43,13 +44,14 @@ var uadrdtl = "";
 var udphone = "";
 var udname = "";
 var udimg = "";
+var finaltagsr = "";
 var totalquantity = 0;
 var totalprice = 0;
 var bonusapplied = 0;
 var dflagsecond = 0
 var finalpuser = "";
 var qtarray = ["Now Loading...","The more you sweat in practice the less you bleed in battle - Michael Jordan","Work hard in silence, let your success be your noise - Frank Ocean","Slow network may create delay","Welcome To DOT: Delivery on Time"];
-var dtimes = ["10 Minutes","15 Minutes","20 Minutes","25 Minutes","30 Minutes","35 Minutes","40 Minutes","Less than 1 Hour","Out of Delivery Area","Shop Closed","Out of Stock"];
+var dtimes = ["20 Minutes (without Preparation Time)","25 Minutes (without Preparation Time)","30 Minutes (without Preparation Time)","35 Minutes (without Preparation Time)","40 Minutes (without Preparation Time)","50 Minutes (without Preparation Time)","55 Minutes (without Preparation Time)","More than 1 Hour (without Preparation Time)","Out of Delivery Area","Shop Closed","Out of Stock"];
 var ditems = ["foods","medicine","grocery","essentials"];
 var delgb = ["4","3","3","3"];
 var dchargearray = ["7","9","13","17","21","25"];
@@ -260,6 +262,9 @@ function chkcart(x) {
             cnt += 1;
             
         }
+        if(lmd=="temp"){
+          firebase.database().ref('vvcart/' + x + '/cart/' + ctid).remove();
+        }
         });
 
         }
@@ -268,6 +273,8 @@ function chkcart(x) {
             var rootRef = firebase.database().ref(typ);
 
             rootRef.on("child_added", snap => {
+
+            var deliverystatus = "if-status";
 
             var id = snap.child("id").val();
             var eachprice = snap.child("price").val();
@@ -280,12 +287,13 @@ function chkcart(x) {
             var shopaddr = snap.child("shopaddr").val();
             var shopid = snap.child("shopid").val();
             var shopstatus = snap.child("shopstatus").val();
+            var tagsr = snap.child("tagsr").val();
                 var stock = snap.child("stock").val();
             var dpincode = snap.child("dpincode").val();
             var dtimechk = distance(shoplat,shoplang,ulat,ulang,"K");
-              if(dtimechk > Number(delgb[ditems.indexOf(typ)]) || !dpincode.includes(upin)){dtimechk = 8}
-              if(shopstatus == 0){dtimechk = 9}
-            if(stock == 0){dtimechk = 10}
+              if(dtimechk > Number(delgb[ditems.indexOf(typ)]) || !dpincode.includes(upin)){dtimechk = 8; deliverystatus = "else-status";}
+              if(shopstatus == 0){dtimechk = 9; deliverystatus = "else-status";}
+            if(stock == 0){dtimechk = 10; deliverystatus = "else-status";}
             var dtime = dtimes[dtimechk.toFixed(0)];
             //var price = snap.child("price").val();
             //var priceshp = snap.child("priceshp").val();
@@ -320,6 +328,12 @@ function chkcart(x) {
               shopofferpays[shopids.indexOf(shopid)] = shopofferpays[shopids.indexOf(shopid)] + "sp2lt" + shpofferpriceall;
               shopitemnames[shopids.indexOf(shopid)] = shopitemnames[shopids.indexOf(shopid)] + "sp2lt" + name;
               shopitemqtys[shopids.indexOf(shopid)] = shopitemqtys[shopids.indexOf(shopid)] + "sp2lt" + z;
+              if(shopid=="12600070" && tagsr.toLowerCase().includes("combo")){
+                shopindividualprice[shopids.indexOf(shopid)] = Number(shopindividualprice[shopids.indexOf(shopid)]) + 0;
+              }
+              else{
+                shopindividualprice[shopids.indexOf(shopid)] = Number(shopindividualprice[shopids.indexOf(shopid)]) + Number(price);
+              }
             }
               else{
             shopnames[cnts] = shopname;
@@ -330,12 +344,18 @@ function chkcart(x) {
             shopgroups[cnts] = y;
             shoppays[cnts] = price;
             shopofferpays[cnts] = shpofferpriceall;
+            if(shopid=="12600070" && tagsr.toLowerCase().includes("combo")){
+              shopindividualprice[cnts] = 0;
+            }
+            else{
+              shopindividualprice[cnts] = price;
+            }
             shopitemnames[cnts] = name;
             shopitemqtys[cnts] = z;
             cnts+= 1;
               }
             
-            additem(m,price,eachprice,id,name,thumb,z,typ,shopname,dtime);
+            additem(m,price,eachprice,id,name,thumb,z,typ,shopname,dtime,deliverystatus);
               calculateall();
             
         }
@@ -348,8 +368,8 @@ function chkcart(x) {
             }, 3000);*/
                       
         }
-        function additem(timestamp,price,itemeachprice,itemid,itemname,itempic,itemqty,itemtyp,itemshopname,itemdtime){
-          $('#bonusitems').append('<li id="' + timestamp + '" class="item"><div class="item-main cf"><div class="item-block ib-info cf"><img class="product-img" src="' + itempic + '" /><div class="ib-info-meta"><span class="title">' + itemname+ '</span><span class="itemno">' + itemshopname + '</span></div></div><div class="item-block ib-qty"><input type="text" readonly value="' + itemqty + '" class="qty" /><span class="price"><span>x</span> ' + itemeachprice + '</span></div><div class="item-block ib-total-price"><span class="tp-price">₹' + price + '</span></div></div><br><div class="item-foot cf"><div class="if-left"><span class="if-status">' + itemdtime + '</span></div><div class="if-right"><span class="red-link" data-itemst="' + timestamp + '" onclick="removeitemc(this)">REMOVE</span></div></div></li>');
+        function additem(timestamp,price,itemeachprice,itemid,itemname,itempic,itemqty,itemtyp,itemshopname,itemdtime,deliverystatus){
+          $('#bonusitems').append('<li id="' + timestamp + '" class="item"><div class="item-main cf"><div class="item-block ib-info cf"><img class="product-img" src="' + itempic + '" /><div class="ib-info-meta"><span class="title">' + itemname+ '</span><span class="itemno">' + itemshopname + '</span></div></div><div class="item-block ib-qty"><button data-itemst="' + timestamp + '" onclick="updateminus(this)"> - </button> <input type="text" readonly id="itemqty' + timestamp + '" value="' + itemqty + '" class="qty" /> <button data-itemst="' + timestamp + '" onclick="updateplus(this)"> + </button><span class="price"><span>x</span><i id="eachprice' + timestamp + '"> ' + itemeachprice + '</i></span></div><div class="item-block ib-total-price">₹<span class="tp-price" id="price' + timestamp + '">' + price + '</span></div></div><br><div class="item-foot cf"><div class="if-left"><span class="' + deliverystatus + '">' + itemdtime + '</span></div><div class="if-right"><span id="updatebtn' + timestamp + '" style="display:none" class="green-link" data-itemst="' + timestamp + '" onclick="location.reload()">Update Quantity</span> <span class="red-link" id="removebtn' + timestamp + '" data-itemst="' + timestamp + '" onclick="removeitemc(this)">REMOVE</span></div></div></li>');
           totalprice = totalprice + price;
           totalquantity = totalquantity + itemqty;
         }
@@ -390,7 +410,7 @@ function dchargecal(pt,wt,qt,dt) {
   else if(Number(dt) > 7){
     Swal.fire(
   'DOT',
-  'Orders from out of delivery area added. Please remove red marked items and try again.',
+  'Some of your added item(s) are NON-DELIVERABLE now. Please remove them (red marked) items and try again.',
   'warning'
     );
     dflagsecond++;
@@ -439,6 +459,32 @@ function removeitemc(x){
   location.reload();
 }
 
+function updateplus(x){
+  var ctid = x.getAttribute("data-itemst");
+  if(document.getElementById("itemqty" + ctid).value < 50){
+    document.getElementById("itemqty" + ctid).value = Number(document.getElementById("itemqty" + ctid).value) + 1;
+    firebase.database().ref("vvcart/" + u + "/cart/" + ctid).update({qnty:document.getElementById("itemqty" + ctid).value});
+    document.getElementById("price" + ctid).innerHTML = Number(document.getElementById("eachprice" + ctid).innerHTML) * Number(document.getElementById("itemqty" + ctid).value);
+    document.getElementById("updatebtn" + ctid).style.display = "block";
+    document.getElementById("calculatebtn").style.display = "none";
+    document.getElementById("updatebtn").style.display = "block";
+  }
+}
+/*
+  firebase.database().ref("vvcart/" + u + "/cart/" + ctid).update({typ:'temp'});
+  location.reload();*/
+function updateminus(x){
+  var ctid = x.getAttribute("data-itemst");
+  if(document.getElementById("itemqty" + ctid).value > 1){
+    document.getElementById("itemqty" + ctid).value = Number(document.getElementById("itemqty" + ctid).value) - 1;
+    firebase.database().ref("vvcart/" + u + "/cart/" + ctid).update({qnty:document.getElementById("itemqty" + ctid).value});
+    document.getElementById("price" + ctid).innerHTML = Number(document.getElementById("eachprice" + ctid).innerHTML) * Number(document.getElementById("itemqty" + ctid).value);
+    document.getElementById("updatebtn" + ctid).style.display = "block";
+    document.getElementById("calculatebtn").style.display = "none";
+    document.getElementById("updatebtn").style.display = "block";
+  }
+}
+
 function pcodecheck(){
   var pflag = 0;
   discounttotal = 0;
@@ -477,6 +523,16 @@ function pcodecheck(){
        finalpuser = puser;
        chkflg(pflag,appliedp);
        return true;
+       }
+       if(appliedp == "MIO15" && shopids.includes("12600070")){
+        var mioprice = shopindividualprice[shopids.indexOf("12600070")];
+        if(mioprice> 199){
+          discounttotal = Number(mioprice*15/100);
+       pflag = 1;
+       finalpuser = puser;
+       chkflg(pflag,appliedp);
+       return true;
+        }
        }
        else{
        discounttotal = Number((pricetotal*per/100)+flat);
@@ -854,4 +910,3 @@ const getDeviceType = () => {
   }
   return "desktop";
 };
-
