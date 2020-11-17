@@ -468,7 +468,7 @@ strong {
     border-bottom: none;
   }
 }
-@media only screen and (max-width: 130px) {
+@media only screen and (max-width: 530px) {
   .item .item-block.ib-info {
     float: left;
     width: 100%;
