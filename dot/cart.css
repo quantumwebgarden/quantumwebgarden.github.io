@@ -76,6 +76,11 @@ strong {
   cursor: pointer;
   font-weight: bolder;
 }
+.green-link {
+  color: #00a656;
+  cursor: pointer;
+  font-weight: bolder;
+}
 .blue-link:hover {
   color: #223840;
 }
@@ -244,7 +249,10 @@ strong {
   font-weight: 900;
   color: #333;
 }
-
+.item .item-foot .else-status {
+  font-weight: 900;
+  color: #fc0000!important;
+}
 .item .bundle-block {
   padding: 0 0 10px  50px;
   position: relative;
