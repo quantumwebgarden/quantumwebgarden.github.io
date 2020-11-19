@@ -42,7 +42,9 @@ if(status == "road"){
   status = "sit";
   roadstatus = "On road";
 }
+if(status != "deactivated"){
 $("#dboytbl").append('<tr><td>' + id + '</td><td>' + name + '</td><td><label class="switch" id="chk' + id + '"><input type="checkbox" ' + stocker[statusall.indexOf(status)] + ' id="dboyst' + id + '" data-dval="' + statusall.indexOf(status) + '" onchange="dboychange(this)"><span class="slider round"></span><br><br><b style="color:RED">' + roadstatus + '</b></label></td><td><button id="dtls' + id + '" onclick="dboydtls(this)">View Details</button></td></tr>');
+}
 roadstatus = "";
 });
 
