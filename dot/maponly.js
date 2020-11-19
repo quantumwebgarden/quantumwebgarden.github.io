@@ -3,17 +3,17 @@ var latf = "";
 var langf = "";
 var did = "";
 var u = "";
-var firebaseConfig = {
-    apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
-    authDomain: "quantumdot20.firebaseapp.com",
-    databaseURL: "https://quantumdot20.firebaseio.com",
-    projectId: "quantumdot20",
-    storageBucket: "quantumdot20.appspot.com",
-    messagingSenderId: "1011845585600",
-    appId: "1:1011845585600:web:cdd2e4e8ee38046b262b25",
-    measurementId: "G-Y98ZR7S8EQ"
-  };
-  firebase.initializeApp(firebaseConfig);
+// var firebaseConfig = {
+//     apiKey: "AIzaSyCIHNdljOqzWgasMfB2bBZuFVHhof3-SLQ",
+//     authDomain: "quantumdot20.firebaseapp.com",
+//     databaseURL: "https://quantumdot20.firebaseio.com",
+//     projectId: "quantumdot20",
+//     storageBucket: "quantumdot20.appspot.com",
+//     messagingSenderId: "1011845585600",
+//     appId: "1:1011845585600:web:cdd2e4e8ee38046b262b25",
+//     measurementId: "G-Y98ZR7S8EQ"
+//   };
+//   firebase.initializeApp(firebaseConfig);
 
 
       function getLocation() {
