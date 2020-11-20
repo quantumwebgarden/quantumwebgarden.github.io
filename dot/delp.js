@@ -140,9 +140,21 @@ function picked(x) {
       else{
         firebase.database().ref("allshop/" + y + "/orders/" + sord).update({orderstatus:"24"});
       }
-    var customermsg = encodeURI("Your Order id : " + ordid + " has been picked up by Delivery Person: " + dnamef + ". (Ph- " + dphonef + "). You can now track your order from Delivery On Time App.");
-    document.getElementById("customeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTAPP&Phno=8768626927&Msg=" + customermsg;
+    var customermsg = encodeURI("Your Order id : " + sord + " has been picked up by Delivery Person: " + dnamef + ". (Ph- " + dphonef + "). You can now track your order from Delivery On Time App.");
+    document.getElementById("customeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + suid + "&Msg=" + customermsg;
+    Swal.fire({
+  title: 'Delivery On Time',
+  text: "Wait a few seconds and tap on Okay",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Okay'
+}).then((result) => {
+  if (result.isConfirmed) {
     location.reload();
+  }
+})
     /*document.getElementById(sord + "p").style.display = 'none';
     document.getElementById(sord + "d").style.display = 'block';*/
     }
