@@ -524,7 +524,7 @@ function pcodecheck(){
        chkflg(pflag,appliedp);
        return true;
        }
-       if(appliedp == "MIO15"){
+      /* if(appliedp == "MIO15"){
        if(shopids.includes("12600070")){
         var mioprice = shopindividualprice[shopids.indexOf("12600070")];
         if(mioprice> 199){
@@ -536,7 +536,7 @@ function pcodecheck(){
         }
         }
         
-       }
+       }*/
        else{
        discounttotal = Number((pricetotal*per/100)+flat);
        pflag = 1;
