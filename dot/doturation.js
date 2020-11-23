@@ -1,12 +1,12 @@
- var firebaseConfig = {
-    apiKey: "AIzaSyDA23MJlwynuu2oLRUZa0y2BzR_Tmeo3UU",
-    authDomain: "dotqwcontroller.firebaseapp.com",
-    databaseURL: "https://dotqwcontroller.firebaseio.com",
-    projectId: "dotqwcontroller",
-    storageBucket: "dotqwcontroller.appspot.com",
-    messagingSenderId: "444101715169",
-    appId: "1:444101715169:web:cd62821f3b62222bfac3a0",
-    measurementId: "G-Q4Q6F0MZ0B"
+var firebaseConfig = {
+    apiKey: "AIzaSyDYKW6D_NZr_F8kQwWtUkz5G7RZavwUrtg",
+    authDomain: "dotqwbackup1.firebaseapp.com",
+    databaseURL: "https://dotqwbackup1.firebaseio.com",
+    projectId: "dotqwbackup1",
+    storageBucket: "dotqwbackup1.appspot.com",
+    messagingSenderId: "650964876293",
+    appId: "1:650964876293:web:04e0eae6fd1bd681e7706c",
+    measurementId: "G-0QZG8962ZP"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
