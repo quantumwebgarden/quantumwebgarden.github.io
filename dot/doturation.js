@@ -1,12 +1,13 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyA7wly3NvCF90pJFs7a9kMBl-eXHJvXYw4",
-    authDomain: "dotqwdtls.firebaseapp.com",
-    databaseURL: "https://dotqwdtls.firebaseio.com",
-    projectId: "dotqwdtls",
-    storageBucket: "dotqwdtls.appspot.com",
-    messagingSenderId: "374863944922",
-    appId: "1:374863944922:web:3025e1648144afe89fd9e3",
-    measurementId: "G-NWB5LL551K"
+ var firebaseConfig = {
+    apiKey: "AIzaSyDA23MJlwynuu2oLRUZa0y2BzR_Tmeo3UU",
+    authDomain: "dotqwcontroller.firebaseapp.com",
+    databaseURL: "https://dotqwcontroller.firebaseio.com",
+    projectId: "dotqwcontroller",
+    storageBucket: "dotqwcontroller.appspot.com",
+    messagingSenderId: "444101715169",
+    appId: "1:444101715169:web:cd62821f3b62222bfac3a0",
+    measurementId: "G-Q4Q6F0MZ0B"
   };
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();     
+  firebase.analytics();
