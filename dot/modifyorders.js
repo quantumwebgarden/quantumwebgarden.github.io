@@ -164,7 +164,7 @@ function deleteproduct(x){
       'Your product has been deleted.',
       'success'
     )
-    location.reload();
+    //location.reload();
   }
 })
 }
