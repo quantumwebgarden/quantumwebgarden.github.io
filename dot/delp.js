@@ -141,7 +141,7 @@ function picked(x) {
         firebase.database().ref("allshop/" + y + "/orders/" + sord).update({orderstatus:"24"});
       }
     var customermsg = encodeURI("Your Order id : " + sord + " has been picked up by Delivery Person: " + dnamef + ". (Ph- " + dphonef + "). You can now track your order from Delivery On Time App.");
-    document.getElementById("customeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + suid + "&Msg=" + customermsg;
+    document.getElementById("customeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + suid + "&Msg=" + customermsg + "&EntityID=1701159895507169332";
     Swal.fire({
   title: 'Delivery On Time',
   text: "Wait a few seconds and tap on Okay",
