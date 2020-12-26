@@ -689,8 +689,8 @@ function codpay(){
     firebase.database().ref("zzdevices/" + u).update({userdevice:getDeviceType()});
     deliverymsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Shop Name(s): " + shopnames + " with respective Phone Number(s): " + shopphones + ". Check your App and meet or call.")
     
-    document.getElementById("msgonlydp").src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + udphone + "&Msg=" + deliverymsg;
-    document.getElementById("developeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=8768626927&Msg=" + deliverymsg + "%20for%20" + udphone + "%20By%20" + u;
+    document.getElementById("msgonlydp").src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + udphone + "&Msg=" + deliverymsg + "&EntityID=1701159895507169332";
+    document.getElementById("developeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=8768626927&Msg=" + deliverymsg + "%20for%20" + udphone + "%20By%20" + u + "&EntityID=1701159895507169332";
   for (var i = shopids.length - 1; i >= 0; i--) {
           firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({dimg:udimg,dphone:udphone,dname:udname,dtnow:dtnow,paystatus:0,id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],payprice:shopofferpays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:"11"});
           if(!shopitemnames[i].includes("sp2lt")){
@@ -706,7 +706,7 @@ function codpay(){
           }
           var finalmsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Details as follow: " + msgraw);
           console.log(finalmsg + " to " + shopphones[i]);
-          document.getElementById("msgonly" + i).src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + shopphones[i] + "&Msg=" + finalmsg;
+          document.getElementById("msgonly" + i).src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + shopphones[i] + "&Msg=" + finalmsg + "&EntityID=1701159895507169332";
     }
   
 
