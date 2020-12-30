@@ -166,7 +166,7 @@ var uuphone = snap.child("phone").val();
 var uumail = snap.child("email").val();
 var sltadd = snap.child("sltadd").val();
 
-console.log(uuid);
+//console.log(uuid);
 if(uuid == u){
     uname = uuname;
     uphone = uuphone;
@@ -315,7 +315,7 @@ function chkcart(x) {
             if(dtimefinal < dtimechk){
               dtimefinal = dtimechk;
             }
-            console.log(dtimechk);
+            //console.log(dtimechk);
             if(dtimechk.toFixed(0) > 7){
               $("#" + m).addClass("oda");
               dflag = 1;
@@ -506,16 +506,24 @@ function pcodecheck(){
     if(pid == appliedp && pricetotal >= minam && !puser.includes(u + "splt")){
        if(appliedp == "BIGDAY" && (ntn == "3" || ntn == "5")){
         if(shopids.includes("12054892") || shopids.includes("12898901") || shopids.includes("12916592") || shopids.includes("12970207") || shopids.includes("12977653")){
-          per = Math.floor(3 + Math.random() * 3);
+          if(per == 0){
+          	per = Math.floor(3 + Math.random() * 3);
+          }
         }
         else if(shopids.includes("12743019")){
+        	if(per == 0){
           per = Math.floor(5 + Math.random() * 4);
+      }
         }
         else if(shopids.includes("12479021")){
+        	if(per == 0){
           per = Math.floor(6 + Math.random() * 7);
+      }
         }
         else{
+        	if(per == 0){
           per = Math.floor(6 + Math.random() * 4);
+      }
         }
         
         discounttotal = Number((pricetotal*per/100) + flat);
@@ -531,9 +539,11 @@ function pcodecheck(){
        if(shopids.includes("12600070")){
         var mioprice = shopindividualprice[shopids.indexOf("12600070")];
         if(mioprice> 199){
+        	if(per == 0){
         per = Math.floor(3 + Math.random() * 7);
+    		}
         discounttotal = Number((mioprice*per/100)+flat);
-        console.log(per + "-" + discounttotal);
+        //console.log(per + "-" + discounttotal);
        pflag = 1;
        finalpuser = puser;
        chkflg(pflag,appliedp);
@@ -546,7 +556,9 @@ function pcodecheck(){
        if(shopids.includes("12479021")){
         var shindprice = shopindividualprice[shopids.indexOf("12479021")];
         if(shindprice> 199){
-        per = Math.floor(3 + Math.random() * 7);
+        	if(per == 0){
+        per = Math.floor(3 + Math.random() * 8);
+    		}
         discounttotal = Number((shindprice*per/100)+flat);
        pflag = 1;
        finalpuser = puser;
