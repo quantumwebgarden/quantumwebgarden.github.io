@@ -166,7 +166,7 @@ var uuphone = snap.child("phone").val();
 var uumail = snap.child("email").val();
 var sltadd = snap.child("sltadd").val();
 
-//console.log(uuid);
+console.log(uuid);
 if(uuid == u){
     uname = uuname;
     uphone = uuphone;
@@ -315,7 +315,7 @@ function chkcart(x) {
             if(dtimefinal < dtimechk){
               dtimefinal = dtimechk;
             }
-            //console.log(dtimechk);
+            console.log(dtimechk);
             if(dtimechk.toFixed(0) > 7){
               $("#" + m).addClass("oda");
               dflag = 1;
@@ -500,10 +500,11 @@ function pcodecheck(){
     var per = snap.child("per").val();
     var minam = snap.child("minam").val();
     var puser = snap.child("puser").val();
+    var pstatus = snap.child("pstatus").val();
         
     var dtn = new Date();
     var ntn = dtn.getDay();
-    if(pid == appliedp && pricetotal >= minam && !puser.includes(u + "splt")){
+    if(pid == appliedp && pricetotal >= minam && !puser.includes(u + "splt") && pstatus == "ON"){
        if(appliedp == "BIGDAY" && (ntn == "3" || ntn == "5")){
         if(shopids.includes("12054892") || shopids.includes("12898901") || shopids.includes("12916592") || shopids.includes("12970207") || shopids.includes("12977653")){
           if(per == 0){
@@ -535,7 +536,7 @@ function pcodecheck(){
        if(appliedp == "BIGDAY" && (ntn == "0" || ntn == "1" || ntn == "2" || ntn == "4" || ntn == "6")){
        		per = 0;
        }
-       if(appliedp == "MIO15"){
+       if(appliedp == "MIO21"){
        if(shopids.includes("12600070")){
         var mioprice = shopindividualprice[shopids.indexOf("12600070")];
         if(mioprice> 199){
