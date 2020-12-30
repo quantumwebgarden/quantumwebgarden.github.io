@@ -504,7 +504,7 @@ function pcodecheck(){
     var dtn = new Date();
     var ntn = dtn.getDay();
     if(pid == appliedp && pricetotal >= minam && !puser.includes(u + "splt")){
-       if(appliedp == "BIGDAY" && (ntn == "2" || ntn == "5")){
+       if(appliedp == "BIGDAY" && (ntn == "3" || ntn == "5")){
         if(shopids.includes("12054892") || shopids.includes("12898901") || shopids.includes("12916592") || shopids.includes("12970207") || shopids.includes("12977653")){
           per = Math.floor(3 + Math.random() * 3);
         }
@@ -524,11 +524,16 @@ function pcodecheck(){
        chkflg(pflag,appliedp);
        return true;
        }
-      /* if(appliedp == "MIO15"){
+       if(appliedp == "BIGDAY" && (ntn == "0" || ntn == "1" || ntn == "2" || ntn == "4" || ntn == "6")){
+       		per = 0;
+       }
+       if(appliedp == "MIO15"){
        if(shopids.includes("12600070")){
         var mioprice = shopindividualprice[shopids.indexOf("12600070")];
         if(mioprice> 199){
-        discounttotal = Number(mioprice*15/100);
+        per = Math.floor(3 + Math.random() * 7);
+        discounttotal = Number((mioprice*per/100)+flat);
+        console.log(per + "-" + discounttotal);
        pflag = 1;
        finalpuser = puser;
        chkflg(pflag,appliedp);
@@ -536,7 +541,21 @@ function pcodecheck(){
         }
         }
         
-       }*/
+       }
+        if(appliedp == "HAJI20"){
+       if(shopids.includes("12479021")){
+        var shindprice = shopindividualprice[shopids.indexOf("12479021")];
+        if(shindprice> 199){
+        per = Math.floor(3 + Math.random() * 7);
+        discounttotal = Number((shindprice*per/100)+flat);
+       pflag = 1;
+       finalpuser = puser;
+       chkflg(pflag,appliedp);
+       return true;
+        }
+        }
+        
+       }
        else{
        discounttotal = Number((pricetotal*per/100)+flat);
        pflag = 1;
