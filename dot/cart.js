@@ -541,7 +541,7 @@ function pcodecheck(){
         var mioprice = shopindividualprice[shopids.indexOf("12600070")];
         if(mioprice> 199){
         	if(per == 0){
-        per = Math.floor(3 + Math.random() * 7);
+        per = Math.floor(3 + Math.random() * 3);
     		}
         discounttotal = Number((mioprice*per/100)+flat);
         //console.log(per + "-" + discounttotal);
