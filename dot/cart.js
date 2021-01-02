@@ -556,7 +556,7 @@ function pcodecheck(){
         if(appliedp == "HAJI20"){
        if(shopids.includes("12479021")){
         var shindprice = shopindividualprice[shopids.indexOf("12479021")];
-        if(shindprice> 199){
+        if(shindprice>= minam){
         	if(per == 0){
         per = Math.floor(3 + Math.random() * 8);
     		}
