@@ -4,14 +4,10 @@ var deliverytype = "";
 var cls = "";
 var cnt = 0;
 function fldtls() {
-
-    cls = document.getElementById("clsslct").value;
-    producttype =document.getElementById('productslct').value;
-    deliverytype =document.getElementById('deliveryslct').value;
-    $("#clsdtls").html("Details of order placed by students of <b>" +  $("#clsslct option:selected").text() + "</b><br>Sorted by <b>" + $("#productslct option:selected").text() + "</b> and <b>" + $("#deliveryslct option:selected").text() + "</b>");
-    cnt = 0;
     $("#table_body").empty();
-    getAllUser();
+    //fixedData();
+    slctupd();
+    allData();
     }        
 
  var config = {
@@ -26,36 +22,73 @@ function fldtls() {
    };
    firebase.initializeApp(config);            
 
-// function getAllUser(){
-// var rootRef = firebase.database().ref('user');
-// rootRef.on("child_added", snap => {
-//     var userid = snap.child("id").val();
-//     if(snap.child("order").exists()){
-//     console.log(snap.child("order").val());
-//         slctupd(userid);
-//     }
 
+// function fixedData(){
+// var rootRef = firebase.database().ref();
+// rootRef.on("child_added", snap => {
+// var maxAllow = snap.child("maxAllow").val();
+// if(maxAllow != "null"){}
+// $("#maxallowed").val(maxAllow);
 // });
 // }
-function slctupd(){
+function allData(){
 
-var rootRef = firebase.database().ref('item/stationary/');
-
+var rootRef = firebase.database().ref('fees');
 rootRef.on("child_added", snap => {
+var fee = snap.child("fee").val();
+var fine = snap.child("fine").val();
+var id = snap.child("id").val();
+if(id == document.getElementById("clsslct").value){
+$("#fee").val(fee);
+$("#fine").val(fine);
+}
+});
+var rootRef = firebase.database().ref('item/package/BENG');
+rootRef.on("child_added", snap => {
+var books_bag = snap.child("books_bag").val();
+var books_only = snap.child("books_only").val();
+var deliveryCharge = snap.child("deliveryCharge").val();
+var stock = snap.child("stock").val();
+var id = snap.child("id").val();
+if(id == document.getElementById("clsslct").value){
+$("#BENGbooks_bag").val(books_bag);
+$("#BENGbooks_only").val(books_only);
+$("#BENGdeliveryCharge").val(deliveryCharge);
+$("#BENGstock").val(stock);
+}
+});
+var rootRef = firebase.database().ref('item/package/HINDI');
+rootRef.on("child_added", snap => {
+var books_bag = snap.child("books_bag").val();
+var books_only = snap.child("books_only").val();
+var deliveryCharge = snap.child("deliveryCharge").val();
+var stock = snap.child("stock").val();
+var id = snap.child("id").val();
+if(id == document.getElementById("clsslct").value){
+$("#HINDIbooks_bag").val(books_bag);
+$("#HINDIbooks_only").val(books_only);
+$("#HINDIdeliveryCharge").val(deliveryCharge);
+$("#HINDIstock").val(stock);
+}
+});
 
+}
+
+
+
+
+function slctupd(){
+var rootRef = firebase.database().ref('item/stationary/');
+rootRef.on("child_added", snap => {
 var id = snap.child("id").val();
 var name = snap.child("name").val();
 var price = snap.child("price").val();
 var remarks = snap.child("remarks").val();
 var stock = snap.child("stock").val();
-
 var removebtn = '<button onclick="removeStationary(\'' + id + '\')" class="button">Delete Item</button>';
 var updatestock = '<button onclick="updateStock(\'' + id + '\')" class="button">Update Stock</button>'
 $("#table_body").append("<tr id='" + id + "'><td>" + name + "</td><td>" + price + "</td><td>" + remarks + "</td><td><input type=\"number\" id=\"stock" + id + "\" value=\"" + stock + "\"><br>" + updatestock + "</td><td>" + removebtn + "</td></tr>");
-
 });
-
-
 }
 function myFunction() {
   var rowCount = $('#table_body tr').length;
