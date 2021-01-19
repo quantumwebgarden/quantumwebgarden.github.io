@@ -1,0 +1,240 @@
+<html>
+<head>
+
+<title>North Kolkata Public High School</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script>  
+   <!-- <script src="js/tableToExcel.js"></script> -->
+
+<style>
+input[type=text], input[type=number], select {
+  width: 150px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 150px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  padding: 20px;
+}
+#tab_report {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  position: relative;
+}
+
+td, th {
+  border: 3px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #acc2e5;
+}
+</style>
+<style type="text/css">
+input[type=button]{
+  background-color: #6399db;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button {
+  background-color: #6399db;
+  color: black;
+  border: none;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body onload="slctupd()">
+
+<div id="divmnu">
+  <center><h2>North Kolkata Public High School : Data Entry Panel</h2>
+
+    <label for="maxallowed">Maximum Allowed Self Pickup Orders (per day) : &nbsp;</label>
+    <input type="number" id="maxallowed" name="maxallowed">&nbsp;&nbsp;&nbsp;
+    <button onclick="updatemaxallow()" class="button">Update Max allowed Order</button>
+    <br>
+
+    <label for="maxallowed">Self Pickup with COD option service charge: : &nbsp;</label>
+    <input type="number" id="serviceCharge" name="serviceCharge">&nbsp;&nbsp;&nbsp;
+    <button onclick="updateServiceCharge()" class="button">Update Service Charge</button>
+
+
+  <p style="font-size: 17px; font-weight: bold;">Select Class: &nbsp;
+  <select name="clsslct" id="clsslct" style="padding: 10px; width: auto; font-size: 17px; font-family: Raleway; border: 1px solid #aaaaaa;" onchange="">
+    <option value="NI">Class NI</option>
+    <option value="NII">Class NII</option>
+    <option value="KG">Class KG</option>
+    <option value="I">Class I</option>
+    <option value="II">Class II</option>
+    <option value="III">Class III</option>
+    <option value="IV">Class IV</option>
+    <option value="V">Class V</option>
+    <option value="VI">Class VI</option>
+    <option value="VII">Class VII</option>
+    <option value="VIII">Class VIII</option>
+    <option value="IX">Class IX</option>
+    <option value="X">Class X</option>
+    <option value="XI">Class XI</option>
+    <option value="XII">Class XII</option>
+    </select></p>
+    <b>Fees &amp; Fine:</b><br>
+    Fees:
+    <input type="number" id="fee" name="fee">&nbsp;&nbsp;&nbsp;Fine:
+    <input type="number" id="fine" name="fine">&nbsp;&nbsp;&nbsp;
+    <button onclick="updatefees()" class="button">Update Fees & Fine</button>
+    </p>
+    
+    <b>Package Charge & Delivery Charge:</b><br>
+    <table><tr><td colspan="2"><center>
+    <u>Second Language: Bengali</u></center></td></tr>
+    <tr>
+      <td>
+        Package With Bag:
+        <input type="number" id="BENGbooks_bag" name="books_bag">&nbsp;&nbsp;&nbsp;
+      </td>
+      <td>
+        Package Without Bag:
+        <input type="number" id="BENGbooks_only" name="books_only">&nbsp;&nbsp;&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Stock:
+        <input type="number" id="BENGstock" name="stock">&nbsp;&nbsp;&nbsp;
+      </td>
+      <td>
+        Delivery Charge:
+        <input type="number" id="BENGdeliveryCharge" name="deliveryCharge">&nbsp;&nbsp;&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <center>
+        <button onclick="bengPackage()" class="button">Update Package Details</button>
+        </center>
+      </td>
+    </tr>
+    </table>
+    
+    <table><tr><td colspan="2"><center>
+    <u>Second Language: Hindi</u></center></td></tr>
+    <tr>
+      <td>
+        Package With Bag:
+        <input type="number" id="HINDIbooks_bag" name="books_bag">&nbsp;&nbsp;&nbsp;
+      </td>
+      <td>
+        Package Without Bag:
+        <input type="number" id="HINDIbooks_only" name="books_only">&nbsp;&nbsp;&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Stock:
+        <input type="number" id="HINDIstock" name="stock">&nbsp;&nbsp;&nbsp;
+      </td>
+      <td>
+        Delivery Charge:
+        <input type="number" id="HINDIdeliveryCharge" name="deliveryCharge">&nbsp;&nbsp;&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <center>
+        <button onclick="hindiPackage()" class="button">Update Package Details</button>
+        </center>
+      </td>
+    </tr>
+    </table>
+    <p style="font-size: 21px; text-decoration: underline;" id="stationary">Stationary Item</p>
+    <br><br>
+    <b>Add new Item to Stationary List</b><br>
+    Name: <input type="text" id="itemName" name="Name">&nbsp;&nbsp;&nbsp;
+    Price: <input type="number" id="itemPrice" name="Price">&nbsp;&nbsp;&nbsp;
+    Remarks: <input type="text" id="itemRemarks" name="Remarks" Placeholder="e.g.- Quantity : 1">&nbsp;&nbsp;&nbsp;
+    Stock: <input type="number" id="itemStock" value="0" name="Stock">&nbsp;&nbsp;&nbsp;
+    <button onclick="addStationary()" class="button">Add Item</button>
+    </center>
+</div>
+<table id="tab_report">
+
+  <tr>
+    <th colspan="4" scope="colgroup">Item Information</th>
+    <th colspan="1" scope="colgroup">Action</th>
+  </tr>
+  
+     <tr>
+<th>	Item Name	</th>
+<th>	Item Price	</th>
+<th>	Remarks	</th>
+<th>  Stock </th>
+
+<th>  Remove </th>
+
+    </tr>
+   
+   <tbody id="table_body">
+	
+   </tbody>
+   
+     <tr>
+
+<th>  Item Name </th>
+<th>  Item Price  </th>
+<th>  Remarks </th>
+<th>  Stock </th>
+
+<th>  Remove </th>
+
+    </tr>
+    <tr>
+    <th colspan="4" scope="colgroup">Item Information</th>
+    <th colspan="1" scope="colgroup">Action</th>
+  	</tr>
+   
+</table>
+<input type="button" onclick="myFunction()" value="Get Item Count">
+<div id="rowscnt"></div><br><br>
+<input type="button" onclick="tableToExcel('tab_report', 'Data Table')" value="Generate Report and Export to Excel">
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script src="user.js"></script>
+</html>
