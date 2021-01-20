@@ -59,43 +59,47 @@ var deliveryaddress = snap.child("deliveryAddress").val();
 var phone = snap.child("phone").val();
 var pincode = snap.child("PINCode").val();
 var orderdate = "21/01/2021";
-
-var updbtn = '<button onclick="" class="button">Update Order</button>';
-var removebtn = '<button onclick="" class="button">Delete Order</button>';
-
+var orderStatus = snap.child("orderStatus").val();
+var deliveryDate = snap.child("deliveryDate").val();
+var updbtn = 'Current Status: ' + orderStatus + '<br><select name="status" id="orderStatus' + x + orderid +'"><option value="NA" disabled selected>Select Status</option><option value="Order Dispatched">Order Dispatched</option><option value="Order Packed (Ready for Self Pickup)">Order Packed (Ready for Self Pickup)</option><option value="Order Delivered">Order Delivered</option></select><br><button onclick="updateOrder(\'' + orderid + '\',\'' + x + '\')" class="button">Update Order</button>';
+var removebtn = '<button onclick="removeOrder(\'' + orderid + '\',\'' + x + '\')" class="button">Delete Order</button>';
+var dldesc = dltype
+if(dltype == "Self Pickup"){
+    dldesc = dltype + "<br>Current Pickup Date: " + deliveryDate + "<br><input type=\"date\" id=\"deliveryDate" + orderid + x + "\" value=\"" + deliveryDate + "\"><br><button onclick=\"updateDate(\'" + orderid + "\',\'" + x + "\')\" class=\"button\">Update Pickup Date</button>"
+}
 if(cls == "ALL"){
     if(producttype == "ALL"){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dltype + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dltype + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
     }
     else if(prtype == producttype){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dltype + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dltype + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
     }
 }
 else if(cls == stdclass){
     if(producttype == "ALL"){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dltype + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dltype + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
     }
     else if(prtype == producttype){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dltype + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dltype + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
     }
 }
@@ -106,4 +110,21 @@ else if(cls == stdclass){
 function myFunction() {
   var rowCount = $('#table_body tr').length;
 $("#rowscnt").text("Total No. of order placed with selected category = " + rowCount +"");
+}
+
+function updateOrder(x,y){
+    firebase.database().ref("user/" + y + "/order/" + x).update({orderStatus:document.getElementById("orderStatus" + y + x).value});
+    if(document.getElementById("orderStatus" + y + x).value == "Order Delivered"){
+        updateStock(x,y);
+    }
+}
+function removeOrder(x,y) {
+    firebase.database().ref("user/" + y + "/order/" + x).remove();
+    document.getElementById("tr" + y + x).style.display = "none";
+}
+function updateStock(x,y) {
+    firebase.database().ref("user/" + y + "/order/" + x).update({orderStatus:document.getElementById("orderStatus" + y + x).value});
+}
+function updateDate(x,y){
+    firebase.database().ref("user/" + y + "/order/" + x).update({deliveryDate:document.getElementById("deliveryDate" + x + y).value});
 }
