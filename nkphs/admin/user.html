@@ -76,6 +76,66 @@ input[type=button]{
   margin: 4px 2px;
   cursor: pointer;
 }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
 </style>
 
 </head>
@@ -112,6 +172,7 @@ input[type=button]{
     <option value="XI">Class XI</option>
     <option value="XII">Class XII</option>
     </select></p>
+    
     <b>Fees &amp; Fine:</b><br>
     Fees:
     <input type="number" id="fee" name="fee">&nbsp;&nbsp;&nbsp;Fine:
@@ -122,6 +183,11 @@ input[type=button]{
     <b>Package Charge & Delivery Charge:</b><br>
     <table><tr><td colspan="2"><center>
     <u>Second Language: Bengali</u></center></td></tr>
+    <tr>
+    <td colspan="2"><center>Status<br>
+    <input type="checkbox" id="BENGready"></center>
+    </td>
+    </tr>
     <tr>
       <td>
         Package With Bag:
@@ -150,9 +216,67 @@ input[type=button]{
       </td>
     </tr>
     </table>
+    <i><h3><button onclick="getAllBook('BENG')" class="button">View Book List</button></h3></i>
+        <fieldset id="Bengnewbook" style="display: none;">
+        (ID/ Sl no. should not be same of any of the below list)<br>
+      ID/Sl no.: <input type="number" id="BENGnewbookid" name="id">&nbsp;&nbsp;&nbsp;
+      Name: <input type="text" id="BENGnewbookname" name="name">&nbsp;&nbsp;&nbsp;<br>
+      Subject: <input type="text" id="BENGnewbooksub" name="sub">&nbsp;&nbsp;&nbsp;
+      Price: <input type="number" id="BENGnewbookprice" name="price">&nbsp;&nbsp;&nbsp;
+      Quantity: <input type="number" id="BENGnewbookquantity" name="quantity">&nbsp;&nbsp;&nbsp;
+      <br>
+      <button onclick="addNewBook('BENG')" class="button">Add New Book</button>
+
+    </fieldset>
+    <table id="BENG_report" style="display: none;">
+
+  <tr>
+    <th colspan="5" scope="colgroup">Book Information</th>
+    <th colspan="2" scope="colgroup">Action</th>
+  </tr>
+  
+     <tr>
+<th>  ID </th>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+
+<th>  Update </th>
+<th>  Remove </th>
+
+    </tr>
+   
+   <tbody id="BENG_body">
+  
+   </tbody>
+   
+     <tr>
+
+<th>  ID </th>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+
+<th>  Update </th>
+<th>  Remove </th>
+
+    </tr>
+    <tr>
+    <th colspan="5" scope="colgroup">Book Information</th>
+    <th colspan="2" scope="colgroup">Action</th>
+    </tr>
+   
+</table><br><br>
     
     <table><tr><td colspan="2"><center>
     <u>Second Language: Hindi</u></center></td></tr>
+    <tr>
+    <td colspan="2"><center>Status<br>
+    <input type="checkbox" id="HINDIready"></center>
+    </td>
+    </tr>
     <tr>
       <td>
         Package With Bag:
@@ -181,6 +305,61 @@ input[type=button]{
       </td>
     </tr>
     </table>
+    <br>
+    <i><h3><button onclick="getAllBook('HINDI')" class="button">View Book List</button></h3></i>
+    <fieldset id="Hindinewbook" style="display: none;">
+      (ID/ Sl no. should not be same of any of the below list)<br>
+      ID/Sl no.: <input type="number" id="HINDInewbookid" name="id">&nbsp;&nbsp;&nbsp;
+      Name: <input type="text" id="HINDInewbookname" name="name">&nbsp;&nbsp;&nbsp;<br>
+      Subject: <input type="text" id="HINDInewbooksub" name="sub">&nbsp;&nbsp;&nbsp;
+      Price: <input type="number" id="HINDInewbookprice" name="price">&nbsp;&nbsp;&nbsp;
+      Quantity: <input type="number" id="HINDInewbookquantity" name="quantity">&nbsp;&nbsp;&nbsp;
+      <br>
+      <button onclick="addNewBook('HINDI')" class="button">Add New Book</button>
+
+    </fieldset>
+    <table id="HINDI_report" style="display: none;">
+
+  <tr>
+    <th colspan="5" scope="colgroup">Book Information</th>
+    <th colspan="2" scope="colgroup">Action</th>
+  </tr>
+  
+     <tr>
+<th>  ID </th>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+
+<th>  Update </th>
+<th>  Remove </th>
+
+    </tr>
+   
+   <tbody id="HINDI_body">
+  
+   </tbody>
+   
+     <tr>
+
+<th>  ID </th>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+
+<th>  Update </th>
+<th>  Remove </th>
+
+    </tr>
+    <tr>
+    <th colspan="5" scope="colgroup">Book Information</th>
+    <th colspan="2" scope="colgroup">Action</th>
+    </tr>
+   
+</table>
+<br><br>
     <p style="font-size: 21px; text-decoration: underline;" id="stationary">Stationary Item</p>
     <br><br>
     <b>Add new Item to Stationary List</b><br>
