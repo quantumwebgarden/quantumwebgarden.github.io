@@ -10,18 +10,35 @@
 </style>
 </head>
 
-<body>
+<body onload="getAllBook('HINDI','KG')">
 <h1 align="center">KG</h1>
-<table border="2px" style="width: 100%">
-	<tr ><th>Subject</th><th>Book List</th><th>Quantity</th><th>Rate</th><th>Price</th></tr>
-	<tr>
-		<td rowspan="4">English</td><td>YOUNG SCOLAR- THE LEARNING TREE  BOOK 1</td><td>1</td><td>325.00</td><td>325.00</td></tr>
-		<tr><td>YOUNG SCOLAR- WORK BOOK - BOOK 1</td><td>1</td><td>220.00</td><td>220.00</td></tr>
-		<tr><td>LCURSIVE WRITING [ENGLISH HAND WRITING]
-</td><td>1</td><td>200.00</td><td>200.00</td></tr><tr><td>ACTIVITY BOOK- KG</td><td>1</td><td>240.00</td><td>240.00</td></tr>
-<tr><td rowspan="2">Maths</td><td>START UP MATHEMATICS - 1</td><td>1</td><td>305.00</td><td>305.00</td></tr>
-<tr><td>TABLE BOOK</td><td>1</td><td>75.00</td><td>75.00</td></tr><tr><td>COMPUTER</td><td>COMPUTER (LETS LEARN COMPUTER)</td><td>1</td><td>100.00</td><td>100.00</td></tr><tr><td>SCIENCE/GK</td><td>SCIENCE FOR THE YOUNG SCHOOLAR - INTRODUCTORY</td><td>1</td><td>220.00</td><td>220.00</td></tr><tr><td>DRAWING</td><td>FUN WITH COLOURS- B</td><td>1</td><td>150.00</td><td>150.00</td></tr><tr><td rowspan="2">HINDI</td><td>SANCHITA - 1
-</td><td>1</td><td>340.00</td><td>340.00</td></tr><tr><td>LEARN WITH FUN- HINDI- FOR KG</td><td>1</td><td>140.00</td><td>140.00</td></tr><tr><td rowspan="3">EXERCISE COPIES:</td><td>FOUR LINE - 80 PAGES</td><td>1</td><td>32.00</td><td>64.00</td></tr><tr><td>SINGLE LINE - 80 PAGES</td><td>1</td><td>32.00</td><td>32.00</td></tr><tr><td>BIG SQUARE- 80 PAGES</td><td>1</td><td>32.00</td><td>32.00</td></tr><tr><td>STATI0NARY:</td><td>SCHOOL BAG (Optional)</td><td>1</td><td>400.00</td><td>400.00</td></tr>
+<table id="table_report" border="2px" style="width: 100%">
+<tr>
+    <th colspan="4" scope="colgroup">Book List</th>
+  </tr>
+  
+    <tr>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+    </tr>
+<tbody id="table_body"></tbody>
+    <tr>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+    </tr>
+    <tr>
+    <th colspan="4" scope="colgroup">Book List</th>
+    </tr>
 </table>
 </body>
+
+<Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script> 
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script src="getlist.js"></script>
 </html>

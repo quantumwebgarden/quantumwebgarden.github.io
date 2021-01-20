@@ -10,11 +10,35 @@
 </style>
 </head>
 
-<body>
+<body onload="getAllBook('BENG','X')">
 <h1 align="center">X</h1>
-<table border="2px" style="width: 100%">
-<tr ><th>Subject</th><th>Book List</th><th>Quantity</th><th>Rate</th><th>Price</th></tr><tr><td>English</td><td>BLISS- X</td><td>1</td><td>35.00</td><td>35.00</td></tr><tr><td rowspan="2">BENGALI<td>KONI</td><td>1</td><td>40.00</td><td>40.00</td></tr><TR><TD>SAHITYA SANCHAY</Td><td>1</td><td>50.00</td><td>50.00</td></tr><tr><td rowspan="3">EXERCISE COPIES:<td>BIG WHITE</td><td>9</td><td>50.00</td><td>450.00</td></tr><tr><td>TEST SINGLE LINE 40 PAGE</td><td>1</td><td>20.00</td><td>20.00</td></tr><TR><TD>GRAPH COPY 
-</Td><td>1</td><td>20.00</td><td>20.00</td></TD></TR><tr><td>STATI0NARY:</td><td>SCHOOL BAG</td><td>1</td><td>500.00</td><td>500.00</td></tr>
+<table id="table_report" border="2px" style="width: 100%">
+<tr>
+    <th colspan="4" scope="colgroup">Book List</th>
+  </tr>
+  
+    <tr>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+    </tr>
+<tbody id="table_body"></tbody>
+    <tr>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+    </tr>
+    <tr>
+    <th colspan="4" scope="colgroup">Book List</th>
+    </tr>
 </table>
 </body>
+
+<Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script> 
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script src="getlist.js"></script>
 </html>

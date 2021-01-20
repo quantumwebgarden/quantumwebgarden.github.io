@@ -10,20 +10,35 @@
 </style>
 </head>
 
-<body>
+<body onload="getAllBook('BENG','NI')">
 <h1 align="center">NI</h1>
-<table border="2px" style="width: 100%">
-	<tr ><th>Subject</th><th>Book List</th><th>Quantity</th><th>Rate</th><th>Price</th></tr>
-	<tr>
-		<td rowspan="4">English</td><td>The Alphabet Book</td><td>1</td><td>195.00</td><td>195.00</td></tr>
-		<tr><td>English Capital Letter</td><td>1</td><td>295.00</td><td>295.00</td></tr>
-		<tr><td>LEARN WITH FUN - ENGLISH - FOR N-I
-</td><td>1</td><td>150.00</td><td>150.00</td></tr><tr><td>ACTIVITY BOOK FOR N- I</td><td>1</td><td>225.00</td><td>225.00</td></tr>
-<tr><td rowspan="2">Maths</td><td>MY BOOK OF NUMBERS 1 - 50
-</td><td>1</td><td>89.00</td><td>89.00</td></tr>
-		<tr><td>LEARN WITH FUN - MATHS - FOR N-I
-</td><td>1</td><td>150.00</td><td>150.00</td></tr><tr><td>EVS</td><td>ENVIRONMENTAL STUDIES FOR N-I
-</td><td>1</td><td>140.00</td><td>140.00</td></tr><tr><td>DRAWING</td><td>FUN WITH COLOURS- a</td><td>1</td><td>155.00</td><td>155.00</td></tr><tr><td>BENGAI</td><td>LEARN WITH FUN - BENGALI - FOR N-I</td><td>1</td><td>110.00</td><td>110.00</td></tr><tr><td rowspan="3">EXERCISE COPIES:</td><td>FOUR LINE - 80 PAGES</td><td>1</td><td>32.00</td><td>32.00</td></tr><tr><td>SINGLE LINE - 80 PAGES</td><td>1</td><td>32.00</td><td>32.00</td></tr><tr><td>BIG SQUARE- 80 PAGES</td><td>1</td><td>32.00</td><td>32.00</td></tr><tr><td>STATI0NARY:</td><td>SCHOOL BAG (Optional)</td><td>1</td><td>400.00</td><td>400.00</td></tr>
+<table id="table_report" border="2px" style="width: 100%">
+<tr>
+    <th colspan="4" scope="colgroup">Book List</th>
+  </tr>
+  
+    <tr>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+    </tr>
+<tbody id="table_body"></tbody>
+    <tr>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+    </tr>
+    <tr>
+    <th colspan="4" scope="colgroup">Book List</th>
+    </tr>
 </table>
 </body>
+
+<Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script> 
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script src="getlist.js"></script>
 </html>

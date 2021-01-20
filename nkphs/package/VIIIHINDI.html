@@ -10,16 +10,35 @@
 </style>
 </head>
 
-<body>
+<body onload="getAllBook('HINDI','VIII')">
 <h1 align="center">VIII</h1>
-<table border="2px" style="width: 100%">
-<tr ><th>Subject</th><th>Book List</th><th>Quantity</th><th>Rate</th><th>Price</th></tr><tr><td rowspan="2">English</td><td>DAFODILS-8</td><td>1</td><td>360.00</td><td>360.00</td></tr><td>ENGLISH LANGUAGE (HIGH SCHOOL GRAMMAR- WREN & MARTIN)
-</td><td>1</td><td>420.00</td><td>420.00</td></tr><tr><td>Maths</td><td>SCHOOL MATHEMATICS - 8</td><td>1</td><td>195.00</td><td>195.00</td></tr><tr><td>PHYSICS</td><td>PHYSICS- 8
-</td><td>1</td><td>410.00</td><td>410.00</td></tr><tr><td>CHEMISTRY
-</td><td>CHEMISTRY-8</td><td>1</td><td>415.00</td><td>415.00</td></tr><tr><td>BIOLOGY</td><td>BIOLOGY-8</td><td>1</td><td>325.00</td><td>325.00</td></tr><tr><td>COMPUTER</td><td>LOGIX -8</td><td>1</td><td>399.00</td><td>399.00</td></tr><tr><td>HISTORY</td><td>HISTORY AND CIVICS-8</td><td>1</td><td>445.00</td><td>445.00</td></tr><tr><td rowspan="2">GEOGRAPHY
-</td><td>SCHOOL GEOGRAPHY - 8</td><td>1</td><td>160.00</td><td>160.00</td></tr>
-<tr><td>SCHOOL GEOGRAPHY- DESKWORK- 8</td><td>1</td><td>150.00</td><td>150.00</td></tr><tr><td rowspan="2">HINDI<td>HINDI GRAMMAR - NAB TARANG - 8</td><td>1</td><td>370.00</td><td>370.00</td></tr><TR><TD>HINDI (MANTHAN -8 )</Td><td>1</td><td>349.00</td><td>349.00</td></TD></TR><tr><td rowspan="2">EXERCISE COPIES:<td>BIG WHITE</td><td>11</td><td>50.00</td><td>550.00</td></tr><TR><TD>GRAPH COPY 
-</Td><td>1</td><td>20.00</td><td>20.00</td></TD></TR><tr><td>STATI0NARY:</td><td>SCHOOL BAG (OPTIONAL)</td><td>1</td><td>500.00</td><td>500.00</td></tr>
+<table id="table_report" border="2px" style="width: 100%">
+<tr>
+    <th colspan="4" scope="colgroup">Book List</th>
+  </tr>
+  
+    <tr>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+    </tr>
+<tbody id="table_body"></tbody>
+    <tr>
+<th>  Subject </th>
+<th>  Name </th>
+<th>  Price  </th>
+<th>  Quantity </th>
+    </tr>
+    <tr>
+    <th colspan="4" scope="colgroup">Book List</th>
+    </tr>
 </table>
 </body>
+
+<Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script> 
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script src="getlist.js"></script>
 </html>
