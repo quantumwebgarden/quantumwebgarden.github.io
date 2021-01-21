@@ -31,7 +31,7 @@ var rootRef = firebase.database().ref('user');
 rootRef.on("child_added", snap => {
     var userid = snap.child("id").val();
     if(snap.child("order").exists()){
-    console.log(snap.child("order").val());
+    //console.log(snap.child("order").val());
         slctupd(userid);
     }
 
@@ -117,14 +117,43 @@ function updateOrder(x,y){
     if(document.getElementById("orderStatus" + y + x).value == "Order Delivered"){
         updateStock(x,y);
     }
+Swal.fire(
+  'NKPHS',
+  "Order Details Updated",
+  'success'
+);
 }
 function removeOrder(x,y) {
+        Swal.fire({
+  title: 'Are you sure?',
+  text: "Order details will be permanently removed.",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, remove'
+}).then((result) => {
+  if (result.isConfirmed) {
     firebase.database().ref("user/" + y + "/order/" + x).remove();
     document.getElementById("tr" + y + x).style.display = "none";
+    Swal.fire(
+      'Removed!',
+      'Order Details removed permanently.',
+      'success'
+    )
+  }
+})
+
+    
 }
 function updateStock(x,y) {
     firebase.database().ref("user/" + y + "/order/" + x).update({orderStatus:document.getElementById("orderStatus" + y + x).value});
 }
 function updateDate(x,y){
     firebase.database().ref("user/" + y + "/order/" + x).update({deliveryDate:document.getElementById("deliveryDate" + x + y).value});
+Swal.fire(
+  'NKPHS',
+  "Order Self Pickup Date Updated",
+  'success'
+);
 }
