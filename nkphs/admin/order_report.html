@@ -114,10 +114,10 @@ input[type=button]{
      <tr>
 <th>	Order ID	</th>
 
-<th>	Name	</th>
+<th>	Name	<br><input type="text" id="nameInput" onkeyup="searchName()" placeholder="Search for names.." title="Type a name"></th>
 <th>	Class	</th>
 <th>	Section	</th>
-<th>	Roll	</th>
+<th>	Roll	<br><input type="number" id="rollInput" onkeyup="searchRoll()" placeholder="Search by Roll no..." title="Type a Roll"></th>
 
 <th>  Order Date  </th>
 <th>  Product Type  </th>
@@ -132,7 +132,7 @@ input[type=button]{
 <th>  Phone  </th>
 <th>  PIN Code  </th>
 
-<th>  Update </th>
+<th>  Update <br><select name="status" id="statusInput" onchange="searchStatus()"><option value="NA" disabled selected>Select Status</option><option value="Placed">Order Plcaed</option><option value="Dispatched">Order Dispatched</option><option value="Packed">Order Packed (Ready for Self Pickup)</option><option value="Delivered">Order Delivered</option><option value="Wrong">Something Went Wrong</option></select></th>
 <th>  Remove </th>
 
     </tr>

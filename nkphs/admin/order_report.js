@@ -3,6 +3,8 @@ var producttype = "";
 var deliverytype = "";
 var cls = "";
 var cnt = 0;
+var statusArray = ["Placed","Packed","Dispatched","Delivered","Wrong"];
+var statusArrayDuplicate = ["Order Placed","Order Packed (Ready for Self Pickup)","Order Dispatched","Order Delivered","Something Went Wrong"]
 function fldtls() {
 
     cls = document.getElementById("clsslct").value;
@@ -63,43 +65,44 @@ var orderStatus = snap.child("orderStatus").val();
 var deliveryDate = snap.child("deliveryDate").val();
 var updbtn = 'Current Status: ' + orderStatus + '<br><select name="status" id="orderStatus' + x + orderid +'"><option value="NA" disabled selected>Select Status</option><option value="Order Dispatched">Order Dispatched</option><option value="Order Packed (Ready for Self Pickup)">Order Packed (Ready for Self Pickup)</option><option value="Order Delivered">Order Delivered</option></select><br><button onclick="updateOrder(\'' + orderid + '\',\'' + x + '\')" class="button">Update Order</button>';
 var removebtn = '<button onclick="removeOrder(\'' + orderid + '\',\'' + x + '\')" class="button">Delete Order</button>';
-var dldesc = dltype
+var dldesc = dltype;
+var statusShort = statusArray[statusArrayDuplicate.indexOf(orderStatus)];
 if(dltype == "Self Pickup"){
     dldesc = dltype + "<br>Current Pickup Date: " + deliveryDate + "<br><input type=\"date\" id=\"deliveryDate" + orderid + x + "\" value=\"" + deliveryDate + "\"><br><button onclick=\"updateDate(\'" + orderid + "\',\'" + x + "\')\" class=\"button\">Update Pickup Date</button>"
 }
 if(cls == "ALL"){
     if(producttype == "ALL"){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
     }
     else if(prtype == producttype){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
     }
 }
 else if(cls == stdclass){
     if(producttype == "ALL"){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
     }
     else if(prtype == producttype){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + orderdate + "</td><td>" + prtype + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td><b>" + dldesc + "</b></td><td>" + deliveryaddress + "</td><td>" + phone + "</td><td>" + pincode + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
         }
     }
 }
@@ -156,4 +159,59 @@ Swal.fire(
   "Order Self Pickup Date Updated",
   'success'
 );
+}
+
+function searchName() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("nameInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tab_report");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+function searchRoll() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("rollInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tab_report");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+function searchStatus() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("statusInput").value;
+  console.log(input);
+  table = document.getElementById("table_body");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+     console.log(tr[i]);
+        if(tr[i].getAttribute("class") == input){
+            tr[i].style.display = "";
+        }
+        else{
+            tr[i].style.display = "none";
+        }
+    }
+
 }
