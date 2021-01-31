@@ -145,7 +145,7 @@ function removeOrder(x,y) {
   confirmButtonText: 'Yes, remove'
 }).then((result) => {
   if (result.isConfirmed) {
-    firebase.database().ref("user/" + y + "/order/" + x).remove();
+    firebase.database().ref("user/" + y + "/fees/" + x).remove();
     document.getElementById("tr" + y + x).style.display = "none";
     Swal.fire(
       'Removed!',
