@@ -2,6 +2,7 @@ window.androidObj = function AndroidClass(){};
 
 var removedItem,
 sum = 0;
+var dextra=0;
 var cnt = 0;
 var cnts = 0;
 var ids = [];
@@ -323,6 +324,7 @@ function chkcart(x) {
             }
             
             if(shopids.includes(shopid)){
+              dextra=dextra+0;
               shopgroups[shopids.indexOf(shopid)] = shopgroups[shopids.indexOf(shopid)] + "sp2lt" + y;
               shoppays[shopids.indexOf(shopid)] = shoppays[shopids.indexOf(shopid)] + "sp2lt" + price;
               shopofferpays[shopids.indexOf(shopid)] = shopofferpays[shopids.indexOf(shopid)] + "sp2lt" + shpofferpriceall;
@@ -336,6 +338,7 @@ function chkcart(x) {
               }
             }
               else{
+             dextra=dextra+3;
             shopnames[cnts] = shopname;
             shopaddrs[cnts] = shopaddr;
             shopids[cnts] = shopid;
@@ -436,7 +439,7 @@ function dchargecal(pt,wt,qt,dt) {
       dchtotal = 0;
     }
     else{
-      dchtotal = Number(dchargearray[dt]);
+      dchtotal = Number(Number(dchargearray[dt])+dextra);
     }
   }
 }
