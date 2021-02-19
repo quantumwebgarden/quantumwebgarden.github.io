@@ -2,6 +2,7 @@ window.androidObj = function AndroidClass(){};
 
 var removedItem,
 sum = 0;
+var dextra=0;
 var cnt = 0;
 var cnts = 0;
 var ids = [];
@@ -336,6 +337,7 @@ function chkcart(x) {
               }
             }
               else{
+             dextra=dextra+1;
             shopnames[cnts] = shopname;
             shopaddrs[cnts] = shopaddr;
             shopids[cnts] = shopid;
@@ -436,7 +438,7 @@ function dchargecal(pt,wt,qt,dt) {
       dchtotal = 0;
     }
     else{
-      dchtotal = Number(dchargearray[dt]);
+      dchtotal = Number(Number(dchargearray[dt])+Number(dextra-1));
     }
   }
 }
