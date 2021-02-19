@@ -337,7 +337,7 @@ function chkcart(x) {
               }
             }
               else{
-             dextra=dextra+1;
+             dextra=dextra+2;
             shopnames[cnts] = shopname;
             shopaddrs[cnts] = shopaddr;
             shopids[cnts] = shopid;
@@ -438,7 +438,7 @@ function dchargecal(pt,wt,qt,dt) {
       dchtotal = 0;
     }
     else{
-      dchtotal = Number(Number(dchargearray[dt])+Number(dextra-1));
+      dchtotal = Number(Number(dchargearray[dt])+Number(dextra-2));
     }
   }
 }
