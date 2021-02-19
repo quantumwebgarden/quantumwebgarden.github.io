@@ -436,7 +436,7 @@ function dchargecal(pt,wt,qt,dt) {
       dchtotal = 0;
     }
     else{
-      dchtotal = Number(Number(dchargearray[dt])+dextra);
+      dchtotal = Number(dchargearray[dt]);
     }
   }
 }
