@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script>  
-   <script src="tableToExcel.js"></script>
+   <!--script src="tableToExcel.js"></script-->
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <style>
@@ -58,6 +58,7 @@ input[type=button]{
 
   <p style="font-size: 17px; font-weight: bold;">Select Class : &nbsp;
   <select name="clsslct" id="clsslct" style="padding: 10px; width: auto; font-size: 17px; font-family: Raleway; border: 1px solid #aaaaaa;" onchange="fldtls()">
+    <option value="ALL"> All Class </option>
     <option value="NI">Class NI</option>
     <option value="NII">Class NII</option>
     <option value="KG">Class KG</option>
@@ -78,6 +79,7 @@ input[type=button]{
 
     <b style="font-size: 17px; font-weight: bold;">Select Month : &nbsp;</b>
     <select name="monthslct" id="monthslct" style="padding: 10px; width: auto; font-size: 17px; font-family: Raleway; border: 1px solid #aaaaaa;" onchange="fldtls()">
+      <option value="ALL">ALL</option>
     <option value="January">January</option>
     <option value="February">February</option>
     <option value="March">March</option>
@@ -122,7 +124,7 @@ input[type=button]{
 
 <th>  Amount Paid </th>
 <th>  Payment Method  </th>
-<th>  Payment ID  </th>
+<th>  Payment ID  <br><input type="number" id="paymentIDInput" onkeyup="searchPaymentID()" placeholder="Search by Payment ID" title="Type Payment ID"></th>
 
 <th>  Update <br></th>
 <th>  Remove </th>

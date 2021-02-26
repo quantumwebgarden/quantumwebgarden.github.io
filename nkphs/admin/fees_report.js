@@ -2,13 +2,15 @@ var cnt = 0;
 var monthtype = "";
 var cls = "";
 var cnt = 0;
-var paid = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[]],[[]],[[]],[[]],[[]],[[]],[[],[],[]],[[],[],[]]];
+//var paid = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[]],[[]],[[]],[[]],[[]],[[]],[[],[],[]],[[],[],[]]];
+var paid = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
 var classes = ["NI","NII","KG","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
 
 var statusArray = ["Pending","Review","Approved","Cancelled","Wrong"];
-var statusArrayDuplicate = ["Pending","Under Review","Fees Approved","Cancelled","Something Went Wrong"]
+var statusArrayDuplicate = ["Pending","Under Review","Fees Approved","Cancelled","Something Went Wrong"];
 function fldtls() {
-    paid = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[]],[[]],[[]],[[]],[[]],[[]],[[],[],[]],[[],[],[]]];
+    //paid = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[]],[[]],[[]],[[]],[[]],[[]],[[],[],[]],[[],[],[]]];
+    paid = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
     cls = document.getElementById("clsslct").value;
     monthtype =document.getElementById('monthslct').value;
     $("#clsdtls").html("Details of fees paid by students of <b>" +  $("#clsslct option:selected").text() + "</b><br>Sorted by <b>" + $("#monthslct option:selected").text() + " Month</b>");
@@ -77,13 +79,42 @@ if(section == "B"){
   sec = 1;
 }
 
-
-if(stdclass == cls){
-    if(monthtype == orderdescription){
+if(cls == "ALL"){
+    if(monthtype == "ALL"){
       if(stdclass != null)
-      paid[classes.indexOf(stdclass)][sec].push(roll);
+        if(orderStatus == "Approved")
+      paid[classes.indexOf(stdclass)].push(roll);
+    console.log(roll + "-" + stdclass);
         $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + phone + "</td><td>" + orderdate + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
     }
+    else{
+      if(monthtype == orderdescription){
+      if(stdclass != null)
+        if(orderStatus == "Approved")
+      paid[classes.indexOf(stdclass)].push(roll);
+    console.log(roll + "-" + stdclass);
+        $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + phone + "</td><td>" + orderdate + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+    }
+    }
+}
+
+if(stdclass == cls){
+   if(monthtype == "ALL"){
+      if(stdclass != null)
+        if(orderStatus == "Approved")
+      paid[classes.indexOf(stdclass)].push(roll);
+    console.log(roll + "-" + stdclass);
+        $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + phone + "</td><td>" + orderdate + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+    }
+    else{
+      if(monthtype == orderdescription){
+      if(stdclass != null)
+        if(orderStatus == "Approved")
+      paid[classes.indexOf(stdclass)].push(roll);
+    console.log(roll + "-" + stdclass);
+        $("#table_body").append("<tr class=" + statusShort + " id=tr" + x + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + section + "</td><td>" + roll + "</td><td>" + phone + "</td><td>" + orderdate + "</td><td>" + orderdescription + "</td><td><b>" + price + "</td><td>" + paymentmethod + "</b></td><td>" + paymentID + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+    }
+  }
 }
 });
 
@@ -96,25 +127,23 @@ function unpaidList() {
   rootRef.on("child_added", snap => {
   var clsid = snap.child("id").val();
   if(clsid == cls){
-    if(paid[classes.indexOf(cls)].length > 1){
-    var studentsA = snap.child("A").val();
-    var studentsB = snap.child("B").val();
-    for (var i = 1; i <= studentsA; i++) {
-        if(!paid[classes.indexOf(clsid)][0].includes(i))
-          $("#unpaid_table").append("<tr><td>" + clsid + "</td><td>A</td><td>" + i + "</td></tr>")
-       }
-    for (var i = 1; i <= studentsB; i++) {
-        if(!paid[classes.indexOf(clsid)][1].includes(i))
-          $("#unpaid_table").append("<tr><td>" + clsid + "</td><td>B</td><td>" + i + "</td></tr>")
-       }
-  }
-  else{
+  //   if(paid[classes.indexOf(cls)].length > 1){
+  //   var studentsA = snap.child("A").val();
+  //   var studentsB = snap.child("B").val();
+  //   for (var i = 1; i <= studentsA; i++) {
+  //       if(!paid[classes.indexOf(clsid)][0].includes(i))
+  //         $("#unpaid_table").append("<tr><td>" + clsid + "</td><td>A</td><td>" + i + "</td></tr>")
+  //      }
+  //   for (var i = 1; i <= studentsB; i++) {
+  //       if(!paid[classes.indexOf(clsid)][1].includes(i))
+  //         $("#unpaid_table").append("<tr><td>" + clsid + "</td><td>B</td><td>" + i + "</td></tr>")
+  //      }
+  // }
     var studentsNA = snap.child("NA").val();
     for (var i = 1; i <= studentsNA; i++) {
-        if(!paid[classes.indexOf(clsid)][0].includes(i))
+        if(!paid[classes.indexOf(cls)].includes(i.toString()))
           $("#unpaid_table").append("<tr><td>" + clsid + "</td><td>NA</td><td>" + i + "</td></tr>")
        }
-    }
   }
   
     
@@ -177,6 +206,26 @@ function searchName() {
     }       
   }
 }
+
+function searchPaymentID() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("paymentIDInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tab_report");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[10];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
 
 function searchRoll() {
   var input, filter, table, tr, td, i, txtValue;

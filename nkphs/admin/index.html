@@ -16,13 +16,18 @@
   cursor: pointer;
 }
 </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="passchk.js"></script>
 </head>
-<body>
-<center>
-	<h1>North Kolkata Public High School</h1>
-	<button onclick="window.open('order_report.html')" class="button">Order Report Panel</button>
+<body onload="adminpass()">
+<center><img id="passchkimg" src="lock.jpg" alt="Admin Access Key"></center>
+<div id="passchk">
+  <center>
+  <h1>North Kolkata Public High School</h1>
+  <button onclick="window.open('order_report.html')" class="button">Order Report Panel</button>
   <button onclick="window.open('fees_report.html')" class="button">Fees Report Panel</button>
-	<button onclick="window.open('user.html')" class="button">Data Entry Panel</button>
+  <button onclick="window.open('user.html')" class="button">Data Entry Panel</button>
 </center>
+</div>
 </body>
 </html>
