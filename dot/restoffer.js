@@ -102,7 +102,7 @@ var dotpri = snap.child("dotpri").val();
 var stock = stocker[stockst];
 if(shopid == mcid){
   
-$("#allitems").append('<tr><td>' + id + '</td><td>Name: <textarea class="textclass" id="name' + id + '">' + name + '</textarea><br>Description: <textarea class="textclass" id="desc' + id + '">' + desc + '</textarea><br>Category: <textarea class="textclass" id="cat' + id + '">' + cat + '</textarea><br>Search Tags: <textarea class="textclass" id="tagsr' + id + '">' + tagsr + '</textarea></td><td><img src=' + thumb + ' width="150px" height="auto"></td><td>Rating Count: <input type="text" id="ratcnt' + id + '" value="' + ratcnt + '"><br>Ratings: <input type="text" id="rating' + id + '" value="' + rating + '"><br>Piority: <input type="text" id="dotpri' + id + '" value="' + dotpri + '"></td><td><input type="text" id="priceshp' + id + '" value="' + priceshp + '"></td><td><input type="text" id="price' + id + '" value="' + price + '"><br><br><select id="perc' + id + '" onchange="updateper(this)"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option><option value="20">20%</option><option value="25">25%</option><option value="30">30%</option></select></td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td><td><button onclick="updateproduct(\'' + id + '\',\'' + prtype + '\')">Update</button></td><td><button onclick="deleteproduct(\'' + id + '\',\'' + prtype + '\')">Delete</button></td></tr>');
+$("#allitems").append('<tr><td>' + id + '</td><td>Name: <textarea class="textclass" id="name' + id + '">' + name + '</textarea><br>Description: <textarea class="textclass" id="desc' + id + '">' + desc + '</textarea><br>Category: <textarea class="textclass" id="cat' + id + '">' + cat + '</textarea><br>Search Tags: <textarea class="textclass" id="tagsr' + id + '">' + tagsr + '</textarea></td><td><img src=' + thumb + ' id="oldimg' + id + '" width="150px" height="auto"><br><input type="text" id="imgthumb' + id + '" value="' + thumb + '"></td><td>Rating Count: <input type="text" id="ratcnt' + id + '" value="' + ratcnt + '"><br>Ratings: <input type="text" id="rating' + id + '" value="' + rating + '"><br>Piority: <input type="text" id="dotpri' + id + '" value="' + dotpri + '"></td><td><input type="text" id="priceshp' + id + '" value="' + priceshp + '"></td><td><input type="text" id="price' + id + '" value="' + price + '"><br><br><select id="perc' + id + '" onchange="updateper(this)"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option><option value="20">20%</option><option value="25">25%</option><option value="30">30%</option></select></td><td><label class="switch"><input type="checkbox" ' + stock + ' id="prst' + id + '" data-val="' + stockst + '" onchange="productchange(this)"><span class="slider round"></span></label></td><td><button onclick="updateproduct(\'' + id + '\',\'' + prtype + '\')">Update</button></td><td><button onclick="deleteproduct(\'' + id + '\',\'' + prtype + '\')">Delete</button></td></tr>');
   
 } 
 
@@ -179,6 +179,8 @@ function updateproduct(x,y){
   var newratcnt = document.getElementById("ratcnt" + x).value;
   var newdotpri = document.getElementById("dotpri" + x).value;
   var newdotprirev = Number(10000 - Number(newdotpri));
+  var newthumb = document.getElementById("imgthumb" + x).value;
+  document.getElementById("oldimg" + x).src = newthumb;
 
   console.log(newname + " - " + newdesc);
 
@@ -204,7 +206,7 @@ function updateproduct(x,y){
   confirmButtonText: 'Yes, Update!'
 }).then((result) => {
   if (result.isConfirmed) {
-    firebase.database().ref(y + "/" + x).update({name:newname,cat:newcat,tagsr:newtagsr,rating:newrating,ratcnt:newratcnt,dotprirev:newdotprirev,dotpri:newdotpri,desc:newdesc,priceshp:orgprice,price:offerprice,pricerev:revprice,priceoffer:offerprice});
+    firebase.database().ref(y + "/" + x).update({name:newname,cat:newcat,tagsr:newtagsr,rating:newrating,ratcnt:newratcnt,dotprirev:newdotprirev,dotpri:newdotpri,desc:newdesc,priceshp:orgprice,price:offerprice,pricerev:revprice,priceoffer:offerprice,thumb:newthumb});
     console.log(orgprice + " - " + offerprice + " - " + revprice + " - " + x + " - " + newdotpri + " - " + newdotprirev + " - " + newratcnt + " - " + newrating + " - " + newtagsr);
     Swal.fire(
       'Updated!',
