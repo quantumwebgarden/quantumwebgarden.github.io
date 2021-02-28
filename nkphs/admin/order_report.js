@@ -41,7 +41,7 @@ rootRef.on("child_added", snap => {
 }
 function slctupd(x){
 
-var rootRef = firebase.database().ref('user/' + x + '/order');
+var rootRef = firebase.database().ref('user/' + x + '/order').orderBy("orderID");
 
 rootRef.on("child_added", snap => {
 
