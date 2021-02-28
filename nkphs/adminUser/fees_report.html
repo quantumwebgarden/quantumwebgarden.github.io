@@ -1,0 +1,190 @@
+<html>
+<head>
+
+<title>North Kolkata Public High School</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script>  
+   <script src="tableToExcel.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<style>
+#tab_report, #unpaid_table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  position: relative;
+}
+
+td, th {
+  border: 3px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #acc2e5;
+}
+</style>
+<style type="text/css">
+input[type=button]{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+<div id="divmnu">
+  <center><h2>North Kolkata Public High School : Fees Payment Report</h2>
+
+  <p style="font-size: 17px; font-weight: bold;">Select Class : &nbsp;
+  <select name="clsslct" id="clsslct" style="padding: 10px; width: auto; font-size: 17px; font-family: Raleway; border: 1px solid #aaaaaa;" onchange="fldtls()">
+    <option value="ALL"> All Class </option>
+    <option value="NI">Class NI</option>
+    <option value="NII">Class NII</option>
+    <option value="KG">Class KG</option>
+    <option value="I">Class I</option>
+    <option value="II">Class II</option>
+    <option value="III">Class III</option>
+    <option value="IV">Class IV</option>
+    <option value="V">Class V</option>
+    <option value="VI">Class VI</option>
+    <option value="VII">Class VII</option>
+    <option value="VIII">Class VIII</option>
+    <option value="IX">Class IX</option>
+    <option value="X">Class X</option>
+    <option value="XI">Class XI</option>
+    <option value="XII">Class XII</option>
+    </select></p>
+
+
+    <b style="font-size: 17px; font-weight: bold;">Select Month : &nbsp;</b>
+    <select name="monthslct" id="monthslct" style="padding: 10px; width: auto; font-size: 17px; font-family: Raleway; border: 1px solid #aaaaaa;" onchange="fldtls()">
+      <option value="ALL">ALL</option>
+    <option value="January">January</option>
+    <option value="February">February</option>
+    <option value="March">March</option>
+    <option value="April">April</option>
+    <option value="May">May</option>
+    <option value="June">June</option>
+    <option value="July">July</option>
+    <option value="August">August</option>
+    <option value="September">September</option>
+    <option value="October">October</option>
+    <option value="November">November</option>
+    <option value="December">December</option>
+    </select> &nbsp;
+
+
+    <br><br>
+    <p style="font-size: 21px; text-decoration: underline;" id="clsdtls">Details of fees paid by students of <b>Class NI</b><br>Sorted by <b> January Month</b></p>
+    <br><br>
+    </center>
+</div>
+<table id="tab_report">
+
+  <tr>
+  	<th colspan="1" scope="colgroup">Fees ID</th>
+    <th colspan="5" scope="colgroup">Student Information</th>
+    <th colspan="2" scope="colgroup">Fees Details</th>   
+    <th colspan="3" scope="colgroup">Payment Details</th>
+    <th colspan="2" scope="colgroup">Fees Status</th>
+  </tr>
+  
+     <tr>
+<th>	Fees ID	</th>
+
+<th>	Name	<br><input type="text" id="nameInput" onkeyup="searchName()" placeholder="Search for names.." title="Type a name"></th>
+<th>	Class	</th>
+<th>	Section	</th>
+<th>	Roll	<br><input type="number" id="rollInput" onkeyup="searchRoll()" placeholder="Search by Roll no..." title="Type a Roll"></th>
+<th>  Phone  </th>
+
+<th>  Fees Payment Date  </th>
+<th>  Month  </th>
+
+<th>  Amount Paid </th>
+<th>  Payment Method  </th>
+<th>  Payment ID  <br><input type="number" id="paymentIDInput" onkeyup="searchPaymentID()" placeholder="Search by Payment ID" title="Type Payment ID"></th>
+
+<th>  Update <br></th>
+<th>  Remove </th>
+<!-- <select name="status" id="statusInput" onchange="searchStatus()"><option value="NA" disabled selected>Select Status</option><option value="Pending">Pending</option><option value="Under Review">Under Review</option><option value="Approved">Fees Approved</option><option value="Cancelled">Cancelled</option><option value="Something Went Wrong">Something Went Wrong</option></select> -->
+    </tr>
+   
+   <tbody id="table_body">
+	
+   </tbody>
+   
+     <tr>
+
+<th>  Fees ID </th>
+
+<th>  Name  </th>
+<th>  Class </th>
+<th>  Section </th>
+<th>  Roll  </th>
+<th>  Phone  </th>
+
+<th>  Fees Payment Date  </th>
+<th>  Month  </th>
+
+<th>  Amount Paid </th>
+<th>  Payment Method  </th>
+<th>  Payment ID  </th>
+
+<th>  Update </th>
+<th>  Remove </th>
+
+    </tr>
+    <tr>
+    <th colspan="1" scope="colgroup">Fees ID</th>
+    <th colspan="5" scope="colgroup">Student Information</th>
+    <th colspan="2" scope="colgroup">Fees Details</th>   
+    <th colspan="3" scope="colgroup">Payment Details</th>
+    <th colspan="2" scope="colgroup">Fees Status</th>
+  	</tr>
+   
+</table>
+
+<input type="button" onclick="unpaidList()" value="Get Unpaid student list">
+<p>List of Students - fees unpaid</p>
+<table>
+  <tr>
+    <th>Class</th>
+    <th>Section</th>
+    <th>Roll</th>
+  </tr>
+  <tbody id="unpaid_table">
+    
+  </tbody>
+</table>
+<input type="button" onclick="myFunction()" value="Get Order Count">
+<div id="rowscnt"></div><br><br>
+<input type="button" onclick="tableToExcel('tab_report', 'Data Table')" value="Generate Report and Export to Excel">
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script src="fees_report.js"></script>
+</html>
