@@ -254,3 +254,16 @@ function searchStatus() {
     }
 
 }
+
+
+
+function newEntry(){
+var d = new Date();
+  var nID = d.getTime();
+    firebase.database().ref("user/T5zQxAiodFMdpmz888kEKBhfzzb2/fees/" + nID).update({orderID:nID,name:document.getElementById("stdname").value,class:document.getElementById("stdclass").value,roll:document.getElementById("stdroll").value,price:document.getElementById("stdamount").value,order_date:document.getElementById("stddate").value,description:document.getElementById("stdmonth").value,paymentMethod:document.getElementById("stdmethod").value});
+Swal.fire(
+  'NKPHS',
+  "Fees Details added",
+  'success'
+);
+}

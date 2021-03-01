@@ -36,6 +36,14 @@ input[type=button]{
   margin: 4px 2px;
   cursor: pointer;
 }
+input[type=text]{
+  border: 1px solid black;
+  color: black;
+  padding: 6px 12px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 .button {
   background-color: #4CAF50;
   border: none;
@@ -53,8 +61,30 @@ input[type=button]{
 </head>
 <body>
 
+
+
 <div id="divmnu">
+
   <center><h2>North Kolkata Public High School : Fees Payment Report</h2>
+
+<div id="newentry">
+<center>
+
+<p><b>Manual Cash Payment Entry</b></p>
+<input type="text" id="stdname" placeholder="Enter Student Name">
+<input type="text" id="stdclass" placeholder="Enter Class">
+<input type="text" id="stdroll" placeholder="Enter Roll">
+<br>
+<input type="text" id="stdamount" placeholder="Enter Amount">
+<input type="text" id="stddate" placeholder="Enter Payment Date">
+<input type="text" id="stdmonth" placeholder="Enter Month">
+<br>
+<input type="text" id="stdmethod" placeholder="Enter Payment Method" Value="Cash Payment at School"><br>
+<input type="button" id="stdsubmit"  Value="Submit" onclick="newEntry()"><br>
+</center>
+</div>
+
+
 
   <p style="font-size: 17px; font-weight: bold;">Select Class : &nbsp;
   <select name="clsslct" id="clsslct" style="padding: 10px; width: auto; font-size: 17px; font-family: Raleway; border: 1px solid #aaaaaa;" onchange="fldtls()">
@@ -103,7 +133,7 @@ input[type=button]{
 <table id="tab_report">
 
   <tr>
-  	<th colspan="1" scope="colgroup">Fees ID</th>
+    <th colspan="1" scope="colgroup">Fees ID</th>
     <th colspan="5" scope="colgroup">Student Information</th>
     <th colspan="2" scope="colgroup">Fees Details</th>   
     <th colspan="3" scope="colgroup">Payment Details</th>
