@@ -721,7 +721,7 @@ function codpay(){
     finalpuser = finalpuser + u + "splt";
     firebase.database().ref("pcodes/" + pcodefinal).update({puser:finalpuser});
     firebase.database().ref("zzdevices/" + u).update({userdevice:getDeviceType()});
-    deliverymsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Shop Name(s): " + shopnames + " with respective Phone Number(s): " + shopphones + ". Check your App and meet or call.")
+    deliverymsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Check order section.")
     
     document.getElementById("msgonlydp").src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + udphone + "&Msg=" + deliverymsg + "&EntityID=1701159895507169332&TemplateID=0000000000";
     document.getElementById("developeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=8768626927&Msg=" + deliverymsg + "%20for%20" + udphone + "%20By%20" + u + "&EntityID=1701159895507169332&TemplateID=0000000000";
@@ -738,7 +738,7 @@ function codpay(){
                 var msgraw = msgraw + 'Name: ' + itemsf[ij] + ', quantity: ' + qtysf[ij] + "; ";
               }
           }
-          var finalmsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Details as follow: " + msgraw);
+          var finalmsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Check Order Section.);
           console.log(finalmsg + " to " + shopphones[i]);
           document.getElementById("msgonly" + i).src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + shopphones[i] + "&Msg=" + finalmsg + "&EntityID=1701159895507169332&TemplateID=0000000000";
     }
