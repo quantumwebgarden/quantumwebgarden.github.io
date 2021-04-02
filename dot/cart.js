@@ -738,7 +738,7 @@ function codpay(){
                 var msgraw = msgraw + 'Name: ' + itemsf[ij] + ', quantity: ' + qtysf[ij] + "; ";
               }
           }
-          var finalmsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Check Order Section.);
+          var finalmsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Check Order Section.");
           console.log(finalmsg + " to " + shopphones[i]);
           document.getElementById("msgonly" + i).src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + shopphones[i] + "&Msg=" + finalmsg + "&EntityID=1701159895507169332&TemplateID=0000000000";
     }
