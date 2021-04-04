@@ -724,7 +724,7 @@ function codpay(){
     deliverymsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Check order section.")
     
     document.getElementById("msgonlydp").src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + udphone + "&Msg=" + deliverymsg + "&EntityID=1701159895507169332&TemplateID=1707159911273765417";
-    document.getElementById("developeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=8768626927&Msg=" + deliverymsg + "%20for%20" + udphone + "%20By%20" + u + "&EntityID=1701159895507169332&TemplateID=1707159911273765417";
+    document.getElementById("developeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=8768626927&Msg=" + deliverymsg + "&EntityID=1701159895507169332&TemplateID=1707159911273765417";
   for (var i = shopids.length - 1; i >= 0; i--) {
           firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({dimg:udimg,dphone:udphone,dname:udname,dtnow:dtnow,paystatus:0,id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],payprice:shopofferpays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:"11"});
           if(!shopitemnames[i].includes("sp2lt")){
