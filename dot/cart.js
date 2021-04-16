@@ -434,7 +434,7 @@ function dchargecal(pt,wt,qt,dt) {
     dflagsecond++;
   }
   else{
-    if(Number(pt)>300){
+    if(Number(pt)>399){
       dchtotal = 0;
     }
     else{
