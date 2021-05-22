@@ -16,6 +16,7 @@ var shopgroups = [];
 var shoppays = [];
 var shopofferpays = [];
 var shopitemnames = [];
+var shopitemdesc = [];
 var shopitemqtys = [];
 var shopgrpids = [];
 var shopphones = [];
@@ -301,7 +302,8 @@ function chkcart(x) {
             var weight = snap.child("weight").val();
             var shopphone = snap.child("shopphone").val();
             var shareamount = snap.child("shareamount").val();
-
+            var orderdescription = snap.child("desc").val();
+                
             if(id == y){
             price = eachprice * z;
             weight = weight * z;
@@ -329,6 +331,7 @@ function chkcart(x) {
               shopofferpays[shopids.indexOf(shopid)] = shopofferpays[shopids.indexOf(shopid)] + "sp2lt" + shpofferpriceall;
               shopitemnames[shopids.indexOf(shopid)] = shopitemnames[shopids.indexOf(shopid)] + "sp2lt" + name;
               shopitemqtys[shopids.indexOf(shopid)] = shopitemqtys[shopids.indexOf(shopid)] + "sp2lt" + z;
+                shopitemdesc[shopids.indexOf(shopid)] = shopitemdesc[shopids.indexOf(shopid)] + "sp2lt" + orderdescription;
               if(shopid=="12600070" && tagsr.toLowerCase().includes("combo")){
                 shopindividualprice[shopids.indexOf(shopid)] = Number(shopindividualprice[shopids.indexOf(shopid)]) + 0;
               }
@@ -345,6 +348,7 @@ function chkcart(x) {
             dapprox[cnts] = dtimechk;
             shopgroups[cnts] = y;
             shoppays[cnts] = price;
+                  shopitemdesc[cnts] = orderdescription;
             shopofferpays[cnts] = shpofferpriceall;
             if(shopid=="12600070" && tagsr.toLowerCase().includes("combo")){
               shopindividualprice[cnts] = 0;
@@ -715,8 +719,8 @@ function codpay(){
   var ordid = new Date("12/31/2099").getTime() - timestamp;
   var dtnow = date.getDate() + "/" + Number(date.getMonth()+1) + "/" + date.getFullYear();
   var timenow = date.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ":" + date.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  firebase.database().ref("vvcart/" + u + "/order/" + ordid).update({shopphones:shopphones.toString(),dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});//2 for Payment POD & 1 for not ready for delivery
-  firebase.database().ref("allorders/" + ordid).update({shopphones:shopphones.toString(),dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});//2 for Payment POD & 1 for not ready for delivery
+  firebase.database().ref("vvcart/" + u + "/order/" + ordid).update({shopphones:shopphones.toString(),dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),orderDescription:shopitemdesc.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});//2 for Payment POD & 1 for not ready for delivery
+  firebase.database().ref("allorders/" + ordid).update({shopphones:shopphones.toString(),dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),orderDescription:shopitemdesc.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});//2 for Payment POD & 1 for not ready for delivery
     
     finalpuser = finalpuser + u + "splt";
     firebase.database().ref("pcodes/" + pcodefinal).update({puser:finalpuser});
@@ -726,7 +730,7 @@ function codpay(){
     document.getElementById("msgonlydp").src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + udphone + "&Msg=" + deliverymsg + "&EntityID=1701159895507169332&TemplateID=1707159911273765417";
     //document.getElementById("developeronly").src ="https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=8768626927&Msg=" + deliverymsg + "&EntityID=1701159895507169332&TemplateID=1707159911273765417";
   for (var i = shopids.length - 1; i >= 0; i--) {
-          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({dimg:udimg,dphone:udphone,dname:udname,dtnow:dtnow,paystatus:0,id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],payprice:shopofferpays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:"11"});
+          firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({dimg:udimg,dphone:udphone,dname:udname,dtnow:dtnow,paystatus:0,id:ordid,productids:shopgroups[i],products:shopitemnames[i],orderDescription:shopitemdesc[i],prices:shoppays[i],payprice:shopofferpays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:"11"});
           if(!shopitemnames[i].includes("sp2lt")){
             var msgraw = 'Name - ' + shopitemnames[i] + ', quantity - ' + shopitemqtys[i] + ";";
           }
