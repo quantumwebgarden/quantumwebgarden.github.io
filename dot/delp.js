@@ -92,7 +92,7 @@ if(shopids.length > 8){
  var shopids = shopids.split(",");
 }
 
-console.log(shopids);
+//console.log(shopids);
 
 
 if(orderstatus == 11 || orderstatus == 22){
