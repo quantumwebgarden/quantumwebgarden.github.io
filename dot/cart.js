@@ -438,12 +438,12 @@ function dchargecal(pt,wt,qt,dt) {
     dflagsecond++;
   }
   else{
-    if(Number(pt)>399){
-      dchtotal = 0;
-    }
-    else{
+    //if(Number(pt)>399){
+    //  dchtotal = 0;
+    //}
+    //else{
       dchtotal = Number(Number(dchargearray[dt])+Number(dextra-2));
-    }
+    //}
   }
 }
 
