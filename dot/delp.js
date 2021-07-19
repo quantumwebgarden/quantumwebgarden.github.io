@@ -131,12 +131,14 @@ function calldboy(x){
 }
 
 function picked(x) {
+  var date = new Date();
+  var timenow = date.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ":" + date.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     firebase.database().ref("dboy/" + dpid).update({status:"road"});
     suid = x.getAttribute("data-uid");
     sord = x.getAttribute("data-ordid");
     y = x.getAttribute("data-shopids");
     firebase.database().ref("vvcart/" + suid + "/order/" + sord).update({orderstatus:"24"});
-    firebase.database().ref("allorders/" + sord).update({orderstatus:"24"});
+    firebase.database().ref("allorders/" + sord).update({orderstatus:"24",picked:timenow});
     if(y.length > 8){
       var y = y.split(",");
       for (var i = y.length - 1; i >= 0; i--) {
@@ -166,12 +168,14 @@ function picked(x) {
     }
 
 function delivered(x) {
+  var date = new Date();
+  var timenow = date.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ":" + date.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
   firebase.database().ref("dboy/" + dpid).update({status:"sit"});
     suid = x.getAttribute("data-uid");
     sord = x.getAttribute("data-ordid");
       y = x.getAttribute("data-shopids");
     firebase.database().ref("vvcart/" + suid + "/order/" + sord).update({orderstatus:"23"});
-    firebase.database().ref("allorders/" + sord).update({orderstatus:"23"});
+    firebase.database().ref("allorders/" + sord).update({orderstatus:"23",delivered:timenow});
     if(y.length > 8){
       var y = y.split(",");
       for (var i = y.length - 1; i >= 0; i--) {
