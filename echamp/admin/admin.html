@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Echamp Admin Panel</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="icon" href="../logo.png" type="image/png" sizes="16x16">
+<!-- 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<style type="text/css">
+ul.tabs {
+  margin: 0;
+  padding: 0;
+  float: left;
+  list-style: none;
+  height: 32px;
+  border-bottom: 1px solid #333;
+  width: 100%;
+}
+
+ul.tabs li {
+  float: left;
+  margin: 0;
+  cursor: pointer;
+  padding: 0px 21px;
+  height: 31px;
+  line-height: 31px;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  border-bottom: 1px solid #333;
+  background-color: #666;
+  color: #fff;
+  position: relative;
+}
+
+.tab_last { border-right: 1px solid #333; }
+
+ul.tabs li:hover {
+  background-color: #ccc;
+  color: #333;
+}
+
+ul.tabs li.active {
+  background-color: #fff;
+  color: #333;
+  border-bottom: 1px solid #fff;
+  display: block;
+}
+
+.tab_container {
+  
+  border-top: none;
+  clear: both;
+  float: left;
+  width: 100%;
+  background: #fff;
+}
+
+.tab_content {
+  padding: 20px;
+  display: none;
+}
+
+.tab_drawer_heading { display: none; }
+
+@media screen and (max-width: 480px) {
+  .tabs {
+    display: none;
+  }
+  .tab_drawer_heading {
+    background-color: #ccc;
+    color: #fff;
+    border-top: 1px solid #333;
+    margin: 0;
+    padding: 5px 20px;
+    display: block;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .d_active {
+    background-color: #666;
+    color: #fff;
+  }
+}
+</style>
+<style type="text/css">
+
+table{
+  margin:20px auto;
+  text-align:center;
+  background:#fff;
+  border:4px solid dodgerblue;
+  padding:2px;
+}
+tr{
+  width: 100%;
+}
+th, td{
+  border:2px solid dodgerblue;
+  background:#fff;
+  cursor:default;
+  padding:3px;
+}
+.butonlar{
+  cursor:pointer;
+  background:red;
+  color:white;
+  text-align:center;
+  outline:none;
+  border:none;
+  padding:10px 20px;
+  font-weight:bolder;
+  border-radius:4px;
+}
+    </style>
+    <style>
+input[type=text], input[type=date], input[type=number], input[type=time], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  min-width: 100px;
+}
+
+input[type=button], input[type=reset] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=button]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+</style>
+</head>
+<body onload="ongoingDetails()">
+<center>
+  <img src="../logo.png" width="100" height="100">
+</center>
+
+<h1 align="center">Echamp Admin Panel</h1>	
+
+<h3>Dashboard</h3>
+
+
+<ul class="tabs">
+  <li class="active" rel="tab1">Add new match</li>
+  <li rel="tab2">All Match</li>
+  <li rel="tab3">Match Result</li>
+  <li rel="tab4">Settings</li>
+</ul>
+<div class="tab_container">
+  <h3 class="d_active tab_drawer_heading" rel="tab1">Tab 1</h3>
+  <div id="tab1" class="tab_content">
+  <h2>Add new Match</h2>
+<div>
+  <form>
+    <label for="matchname">Match Name</label>
+    <input type="text" id="matchname" name="matchname" placeholder="Enter Match Name">
+
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" name="amount" placeholder="Enter Amount">
+
+    <label for="matchtype">Match Type</label>
+    <select id="matchtype" name="matchtype">
+      <option value="solo">Solo</option>
+      <option value="duo">Duo</option>
+      <option value="squad">Squad</option>
+    </select>
+
+    <label for="matchdate">Date</label>
+    <input type="date" id="matchdate" name="matchdate" placeholder="Enter Match Date">
+
+    <label for="matchtime">Match Time</label>
+    <input type="time" id="matchtime" name="matchtime" placeholder="Enter Match Time">
+
+    <label for="roomid">Room ID</label>
+    <input type="text" id="roomid" name="roomid" placeholder="Enter Match Room ID">
+
+    <label for="roompass">Password</label>
+    <input type="text" id="roompass" name="roompass" placeholder="Enter Match Room Password">
+
+    <input type="button" value="Submit" onclick="savematch()">
+    <input type="reset" value="Clear">
+  </form>
+</div>
+  </div>
+  <!-- #tab1 -->
+  <h3 class="tab_drawer_heading" rel="tab2">Tab 2</h3>
+  <div id="tab2" class="tab_content">
+  <h2>All Match Details</h2>
+    
+
+  <table>
+    <tr>
+      <th>Match ID</th>
+      <th>Match Name</th>
+      <th>Match Type</th>
+      <th>Match Date</th>
+      <th>Match Time</th>
+      <th>Amount</th>
+      <th>Room ID</th>
+      <th>Room Password</th>
+      <th>Match Details</th>
+      <th>Update</th>
+      <th>Remove</th>
+    </tr>
+    <tbody id="allMatch">
+      
+    </tbody>
+  </table>
+
+  <h3>Player Details</h3>
+  <table>
+    <tr>
+      <th>Match Id</th>
+      <th>Player ID</th>
+      <th>Player Name</th>
+      <th>Position</th>
+      <th>Reward Amount</th>
+      <th>UPI ID</th>
+      <th>Update</th>
+      <th>Remove</th>
+    </tr>
+    <tbody id="allPlayer">
+      
+    </tbody>
+  </table>
+
+
+  </div>
+  <!-- #tab2 -->
+  <h3 class="tab_drawer_heading" rel="tab3">Tab 3</h3>
+  <div id="tab3" class="tab_content">
+  <h2>Match Result</h2>
+    
+  </div>
+  <!-- #tab3 -->
+  <h3 class="tab_drawer_heading" rel="tab4">Tab 4</h3>
+  <div id="tab4" class="tab_content">
+  <h2>Settings</h2>
+    <p>More setting about admin panel</p>
+  </div>
+  <!-- #tab4 --> 
+</div>
+<!-- .tab_container -->
+</div>
+
+<script type="text/javascript">
+ // tabbed content
+    // http://www.entheosweb.com/tutorials/css/tabs.asp
+    $(".tab_content").hide();
+    $(".tab_content:first").show();
+
+  /* if in tab mode */
+    $("ul.tabs li").click(function() {
+    
+      $(".tab_content").hide();
+      var activeTab = $(this).attr("rel"); 
+      $("#"+activeTab).fadeIn();    
+    
+      $("ul.tabs li").removeClass("active");
+      $(this).addClass("active");
+
+    $(".tab_drawer_heading").removeClass("d_active");
+    $(".tab_drawer_heading[rel^='"+activeTab+"']").addClass("d_active");
+    
+    });
+  /* if in drawer mode */
+  $(".tab_drawer_heading").click(function() {
+      
+      $(".tab_content").hide();
+      var d_activeTab = $(this).attr("rel"); 
+      $("#"+d_activeTab).fadeIn();
+    
+    $(".tab_drawer_heading").removeClass("d_active");
+      $(this).addClass("d_active");
+    
+    $("ul.tabs li").removeClass("active");
+    $("ul.tabs li[rel^='"+d_activeTab+"']").addClass("active");
+    });
+  
+  
+  /* Extra class "tab_last" 
+     to add border to right side
+     of last tab */
+  $('ul.tabs li').last().addClass("tab_last");
+  
+</script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script type="text/javascript" src="admin.js"></script>
+
+
+    
+
+</body>
+</html>
