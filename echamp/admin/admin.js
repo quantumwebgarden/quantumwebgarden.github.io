@@ -57,7 +57,7 @@ var updbtn = '<input type="button" onclick="updatematch(\'' + matchId + '\')" va
 var removebtn = '<input type="button" onclick="removematch(\'' + matchId + '\')" value="Remove Match Details">';
 var matchDetails = '<input type="button" onclick="detailedmatch(\'' + matchId + '\')" value="View Match Details">';
 
-$("#allMatch").append('<tr id="matchId' + matchId + '"><td class="backg" id="backgound' + matchId + '">' + matchId + '</td><td>' + matchName + '</td><td>' + matchType + '</td><td>' + matchDate + '</td><td>' + matchTime + '</td><td>' + amount + '</td><td>' + joined + '</td><td><input type="text" id="roomId' + matchId + '" value="' + roomId + '"></td><td><input type="text" id="roomPassword' + matchId + '" value="' + password + '"></td><td><input type="number" id="matchVisible' + matchId + '" value="' + visible + '"></td><td>' + matchDetails + '</td><td>' + updbtn + '</td><td>' + removebtn + '</td></tr>')
+$("#allMatch").append('<tr id="matchId' + matchId + '"><td class="backg" id="backgound' + matchId + '">' + matchId + '</td><td>' + matchName + '</td><td>' + matchType + '</td><td><input type="date" id="matchDate' + matchId + '" value="' + matchDate + '"></td><td><input type="time" id="matchTime' + matchId + '" value="' + matchTime + '"></td><td>' + amount + '</td><td>' + joined + '</td><td><input type="text" id="roomId' + matchId + '" value="' + roomId + '"></td><td><input type="text" id="roomPassword' + matchId + '" value="' + password + '"></td><td><input type="number" id="matchVisible' + matchId + '" value="' + visible + '"></td><td>' + matchDetails + '</td><td>' + updbtn + '</td><td>' + removebtn + '</td></tr>')
 
 });
 
@@ -96,7 +96,7 @@ function updatematch(x){
   confirmButtonText: 'Yes, Update!'
 }).then((result) => {
   if (result.isConfirmed) {
-  	firebase.database().ref("freefire/match/" + x).update({roomId:document.getElementById("roomId" + x).value,password:document.getElementById("roomPassword" + x).value,visible:document.getElementById("matchVisible" + x).value});
+  	firebase.database().ref("freefire/match/" + x).update({roomId:document.getElementById("roomId" + x).value,password:document.getElementById("roomPassword" + x).value,visible:document.getElementById("matchVisible" + x).value,matchDate:document.getElementById("matchDate" + x).value,matchTime:document.getElementById("matchTime" + x).value});
     Swal.fire(
       'Updated!',
       'Match Details has been updated.',
@@ -192,7 +192,7 @@ function updateUser(x,y){
   if(Number(document.getElementById("walletAdd" + x).value)>0){
     Swal.fire({
   title: 'Are you sure?',
-  text: "Wallet Balance will be updated",
+  text: "Amount will be added to Wallet Balance",
   icon: 'quetion',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
@@ -205,7 +205,29 @@ function updateUser(x,y){
     firebase.database().ref("user/" + x + "/walletTransaction/" + timestamp).update({approvalRefNo:"FF_Admin",orderAmountRequested:document.getElementById("walletAdd" + x).value,orderId:timestamp,status:"Confirmed"});
     Swal.fire(
       'Updated!',
-      'Player Details has been updated.',
+      'Wallet Balance has been updated.',
+      'success'
+    )
+  }
+})
+  }
+  else if (Number(document.getElementById("walletAdd" + x).value)<0) {
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "Amount will be withdrawn from Wallet Balance",
+  icon: 'quetion',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Update!'
+}).then((finalResult) => {
+  if (finalResult.isConfirmed) {
+    var timestamp = getCurrentDate();
+    firebase.database().ref("user/" + x).update({ffPay:Number(y) + Number(document.getElementById("walletAdd" + x).value)});
+    firebase.database().ref("user/" + x + "/walletTransaction/" + timestamp).update({approvalRefNo:"FF_Admin",orderAmountRequested:document.getElementById("walletAdd" + x).value,orderId:timestamp + "_Withdraw",status:"Confirmed"});
+    Swal.fire(
+      'Updated!',
+      'Wallet Balance has been updated.',
       'success'
     )
   }
@@ -262,4 +284,35 @@ function removeplayer(x,y){
     document.getElementById("playerID" + playerId + x).style.display = "none";
   }
 })
+}
+
+
+function getWithdrawRequest() {
+var rootRef = firebase.database().ref("withdrawRequest");
+
+rootRef.on("child_added", snap => {
+  var playerId = snap.child("requestedUserId").val();
+  getRequestDetails(playerId);
+});
+}
+
+function getRequestDetails(x) {
+  var rootRef = firebase.database().ref("withdrawRequest/" + x);
+
+rootRef.on("child_added", snap => {
+  var amountRequest = snap.child("orderAmountRequested").val();
+  var playerId = snap.child("playerId").val();
+  var playerName = snap.child("playerName").val();
+  var playerUPI = snap.child("playerUPI").val();
+  var requestDate = snap.child("requestDate").val();
+  var status = snap.child("status").val();
+  var withdrawId = snap.child("withdrawId").val();
+  var playerPhone = snap.child("playerPhone").val();
+  
+  //var updbtn = '<input type="button" onclick="updateRequest(\'' + playerId + '\',\'' + withdrawId + '\')" value="Update Request">';
+  //var removebtn = '<input type="button" onclick="removeRequest(\'' + playerId + '\',\'' + withdrawId + '\')" value="Remove Request">';
+
+$("#allWithdrawRequest").append('<tr id="withdrawId' + x + withdrawId + '"><td>' + playerName + '</td><td>' + playerPhone + '</td><td>' + playerUPI + '</td><td>' + amountRequest + '</td><td>' + requestDate + '</td></tr>');
+
+});
 }

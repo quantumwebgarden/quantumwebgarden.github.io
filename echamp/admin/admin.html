@@ -154,7 +154,7 @@ div {
 
 </style>
 </head>
-<body onload="ongoingDetails(),getAllPlayerDetails()">
+<body onload="ongoingDetails(),getAllPlayerDetails(),getWithdrawRequest()">
 <center>
   <img src="logo.jpeg" width="100" height="100">
 </center>
@@ -168,7 +168,7 @@ div {
   <li class="active" rel="tab1">Add new match</li>
   <li rel="tab2">All Match</li>
   <li rel="tab3">All Players</li>
-  <li rel="tab4">Settings</li>
+  <li rel="tab4">Withdraw Request</li>
 </ul>
 <div class="tab_container">
   <h3 class="d_active tab_drawer_heading" rel="tab1">Tab 1</h3>
@@ -276,8 +276,20 @@ div {
   <!-- #tab3 -->
   <h3 class="tab_drawer_heading" rel="tab4">Tab 4</h3>
   <div id="tab4" class="tab_content">
-  <h2>Settings</h2>
-    <p>More setting about admin panel</p>
+  <h2>Withdraw Request</h2>
+    <h3>Request Details</h3>
+  <table>
+    <tr>
+      <th>Player Name</th>
+      <th>Phone No.</th>
+      <th>UPI ID</th>
+      <th>Requested Amount</th>
+      <th>Requeted Time</th>
+    </tr>
+    <tbody id="allWithdrawRequest">
+      
+    </tbody>
+  </table>
   </div>
   <!-- #tab4 --> 
 </div>
