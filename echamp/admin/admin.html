@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>FF Custom Admin Panel</title>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="icon" href="logo.jpeg" type="image/png" sizes="16x16">
-<!-- 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <meta charset="utf-8">
+  <title>FF Custom Admin Panel</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="icon" href="logo.jpeg" type="image/png" sizes="16x16">
+<!--  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style type="text/css">
 ul.tabs {
@@ -159,7 +159,7 @@ div {
   <img src="logo.jpeg" width="100" height="100">
 </center>
 
-<h1 align="center">FF Custom Tournament Admin Panel</h1>	
+<h1 align="center">FF Custom Tournament Admin Panel</h1>  
 
 <h3>Dashboard</h3>
 
@@ -189,6 +189,11 @@ div {
       <option value="squad">Squad</option>
     </select>
 
+    <label for="prizeType">Prize Pool</label>
+    <select id="prizeType" name="prizeType">
+      <option value="925704282214">Pool60</option>
+    </select>
+
     <label for="matchdate">Date</label>
     <input type="date" id="matchdate" name="matchdate" placeholder="Enter Match Date">
 
@@ -204,6 +209,28 @@ div {
     <input type="button" value="Submit" onclick="savematch()">
     <input type="reset" value="Clear">
   </form>
+<br><br>
+  <h2>Add Prize Pool</h2>
+
+  <form>
+    <label for="matchname">Pool Name</label>
+    <input type="text" id="poolName" placeholder="Enter Pool Name">
+
+    <label for="amount">1st Prize</label>
+    <input type="number" id="1stAmount" placeholder="Enter Amount">
+    <label for="amount">2nd Prize</label>
+    <input type="number" id="2ndAmount" placeholder="Enter Amount">
+    <label for="amount">3rd Prize</label>
+    <input type="number" id="3rdAmount" placeholder="Enter Amount">
+    <label for="amount">4th to 7th Prize</label>
+    <input type="number" id="4thTo7thAmount" placeholder="Enter Amount">
+    <label for="amount">Per Kill Bonus</label>
+    <input type="number" id="perKillAmount" placeholder="Enter Amount">
+
+    <input type="button" value="Submit" onclick="savePrize()">
+    <input type="reset" value="Clear">
+  </form>
+
 </div>
   </div>
   <!-- #tab1 -->
@@ -284,7 +311,7 @@ div {
       <th>Phone No.</th>
       <th>UPI ID</th>
       <th>Requested Amount</th>
-      <th>Requeted Time</th>
+      <th>Requested Time</th>
     </tr>
     <tbody id="allWithdrawRequest">
       
