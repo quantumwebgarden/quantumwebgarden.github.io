@@ -140,7 +140,7 @@ var minam = snap.child("minam").val();
 var per = snap.child("per").val();
 var puser = snap.child("puser").val();
 
-$("#tab_code").append('<tr><td>' + id + '</td><td><input type="number" value="' + flat +'" id="flat' + id + '"></td><td><input type="number" value="' + per +'" id="per' + id + '"></td><td><input type="number" value="' + minam +'" id="minam' + id + '"></td><td><textarea id="puser' + id + '">' + puser.split("splt") +'</textarea><br>Used by: ' + puser.split("splt").length + '</td><td><button onclick="updatecode(\'' + id + '\')">Update</button><br><button onclick="removecode(\'' + id + '\')">Remove</button></td></tr>');
+$("#tab_code").append('<tr><td>' + id + '</td><td><input type="number" value="' + flat +'" id="flat' + id + '"></td><td><input type="number" value="' + per +'" id="per' + id + '"></td><td><input type="number" value="' + minam +'" id="minam' + id + '"></td><td><textarea id="puser' + id + '">' + puser.split("st") +'</textarea><br>Used by: ' + puser.split("st").length + '</td><td><button onclick="updatecode(\'' + id + '\')">Update</button><br><button onclick="removecode(\'' + id + '\')">Remove</button></td></tr>');
 
 	//firebase.database().ref("foods/" + id).update({pricerev:pricenew});
   //firebase.database().ref("user/" + id).remove();
