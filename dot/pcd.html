@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="doturation.js"></script>
+	<title>DOT</title>
+<style type="text/css">
+	
+.textclass{
+  width: 200px!important;
+  height: 50px;
+}
+
+
+
+.tab_report {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+  background-color: #895623;
+}
+
+td, th {
+  border: 3px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #acc2e5;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+input[type="text"]{
+  width: 80px;
+  height: 20px;
+  font-weight: bold;
+}
+</style>
+</head>
+<body onload="getpcodes()">
+<table>
+	<tr>
+		<th>Code</th>
+		<th>Flat</th>
+		<th>Percentage</th>
+		<th>Minimum Amount</th>
+		<th>Users</th>
+		<th>Action</th>
+	</tr>
+	<tbody id="tab_code">
+		
+	</tbody>
+</table>
+<script>
+	var cnt = 0;
+// var firebaseConfig = {
+//     apiKey: "AIzaSyA7wly3NvCF90pJFs7a9kMBl-eXHJvXYw4",
+//     authDomain: "dotqwdtls.firebaseapp.com",
+//     databaseURL: "https://dotqwdtls.firebaseio.com",
+//     projectId: "dotqwdtls",
+//     storageBucket: "dotqwdtls.appspot.com",
+//     messagingSenderId: "374863944922",
+//     appId: "1:374863944922:web:3025e1648144afe89fd9e3",
+//     measurementId: "G-NWB5LL551K"
+//   };
+//   firebase.initializeApp(firebaseConfig);
+//   firebase.analytics();     
+var cnt = 0;
+function getpcodes(){
+var rootRef = firebase.database().ref("pcodes");
+rootRef.on("child_added", snap => {
+var id = snap.child("id").val();
+var flat = snap.child("flat").val();
+var minam = snap.child("minam").val();
+var per = snap.child("per").val();
+var puser = snap.child("puser").val();
+
+$("#tab_code").append('<tr><td>' + id + '</td><td><input type="number" value="' + flat +'" id="flat' + id + '"></td><td><input type="number" value="' + per +'" id="per' + id + '"></td><td><input type="number" value="' + minam +'" id="minam' + id + '"></td><td><textarea id="puser' + id + '">' + puser.split("splt") +'</textarea><br>Used by: ' + puser.split("splt").length + '</td><td><button onclick="updatecode(\'' + id + '\')">Update</button><br><button onclick="removecode(\'' + id + '\')">Remove</button></td></tr>');
+
+	//firebase.database().ref("foods/" + id).update({pricerev:pricenew});
+  //firebase.database().ref("user/" + id).remove();
+  cnt++;
+});
+rootRef.on("child_changed", snap => {
+var chid = snap.child("id").val();
+	Swal.fire({
+  title: chid,
+  text: "Changed now",
+  icon: 'warning',
+  showCancelButton: false,
+  confirmButtonColor: '#3085d6',
+  confirmButtonText: 'Okay'
+})
+});
+}
+</script>
+</body>
+</html>
