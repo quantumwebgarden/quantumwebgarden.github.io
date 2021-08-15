@@ -122,7 +122,7 @@ input:checked + .slider:before {
 <br><br>
 </center>
 <br><br>
-<table class="tab_report">
+<table class="tab_report" id="data_report">
   <tr>
     <th>Date</th>
   	<th>Order ID</th>
@@ -147,6 +147,10 @@ input:checked + .slider:before {
   </tbody>
 </table>
   <br><br>
-  <input type="button" onclick="tableToExcel('tab_report', 'Data Table')" value="Generate Report and Export to Excel">
+  <script>
+  var parameters = location.search.substring(1).split("=");
+    mcid = parameters[1];
+  </script>
+  <input type="button" onclick="tableToExcel('data_report', mcid)" value="Generate Report and Export to Excel">
 </body>
 </html>
