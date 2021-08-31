@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "594716830917",
+    "project_id": "editcapturedimage",
+    "storage_bucket": "editcapturedimage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594716830917:android:94f5ca62d0680b6c8c14ac",
+        "android_client_info": {
+          "package_name": "com.quantumwebgarden.editcapturedimage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594716830917-nhd5rn8s84f9746v868kqgfs3japmcm3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_hOgH1Ck9jOnLJYBoZ-n9jaBCudagjHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "594716830917-nhd5rn8s84f9746v868kqgfs3japmcm3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
