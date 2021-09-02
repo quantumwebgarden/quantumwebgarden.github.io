@@ -384,7 +384,7 @@ function calculateall(argument) {
   document.getElementById("itemsub").innerHTML = "₹ " + pricetotal.toFixed(2);
   document.getElementById("itemdc").innerHTML = "₹ " + dchtotal.toFixed(2);
   document.getElementById("itemdisc").innerHTML = "₹ " + discounttotal.toFixed(2);
-  var grandtotal = Number(pricetotal) + Number(dchtotal) - Number(discounttotal) - Number(Number(pricetotal)*(10/100));
+  var grandtotal = Number(pricetotal) + Number(dchtotal) - Number(discounttotal);
   document.getElementById("itemgrand").innerHTML = "₹ " + grandtotal.toFixed(2);
   grandtotalall = Math.round(grandtotal).toFixed(2);
 
