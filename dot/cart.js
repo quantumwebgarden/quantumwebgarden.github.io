@@ -819,8 +819,8 @@ function findDeliveryBoy(){
     setTimeout(function(){ 
       if (cntdboysit == 0 && cntdboyroad == 0) {
       Swal.fire('DOT',
-        'Sorry, Delivery Boy is not Available right now. We generally supply orders from 8:30 AM to 8:30 PM.',
-        'info'
+        'Sorry, Thanks for your support for the last one year long, but today we are unavailable at your service. From tomorrow we will be back again.
+                'info'
         )
     }
     else{
