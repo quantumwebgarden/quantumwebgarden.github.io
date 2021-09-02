@@ -819,7 +819,7 @@ function findDeliveryBoy(){
     setTimeout(function(){ 
       if (cntdboysit == 0 && cntdboyroad == 0) {
       Swal.fire('DOT',
-        'Sorry, Thanks for your support for the last one year long, but today we are unavailable at your service. From tomorrow we will be back again.
+        'Sorry, Thanks for your support for the last one year long, but today we are unavailable at your service. From tomorrow we will be back again.',
                 'info'
         )
     }
