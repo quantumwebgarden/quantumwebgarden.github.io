@@ -819,7 +819,7 @@ function findDeliveryBoy(){
     setTimeout(function(){ 
       if (cntdboysit == 0 && cntdboyroad == 0) {
       Swal.fire('DOT',
-        'Sorry, Thanks for your support for the last one year long, but today we are unavailable at your service. From tomorrow we will be back again.',
+        'Sorry, Due to lockdown issue we are working with less staff. Generally we are available from 8:30 AM to 8:30 PM',
                 'info'
         )
     }
