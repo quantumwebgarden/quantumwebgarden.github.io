@@ -726,7 +726,7 @@ function codpay(){
 
     finalpuser = finalpuser + u + "splt";
     firebase.database().ref("pcodes/" + pcodefinal).update({puser:finalpuser});
-    firebase.database().ref("zzdevices/" + u).update({userdevice:getDeviceType()});
+    //firebase.database().ref("zzdevices/" + u).update({userdevice:getDeviceType()});
 
     deliverymsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Check order section.")
     
