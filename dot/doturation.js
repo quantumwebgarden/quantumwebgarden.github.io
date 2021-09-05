@@ -19,6 +19,17 @@ var firebaseConfig = {
     appId: "1:650964876293:web:04e0eae6fd1bd681e7706c",
     measurementId: "G-0QZG8962ZP"
   };
+
+// var firebaseConfig = {
+//     apiKey: "AIzaSyCsgr-fVJ23Dzs1WDMidx8wpSDlxy-fkR0",
+//     authDomain: "dotthird.firebaseapp.com",
+//     databaseURL: "https://dotthird-default-rtdb.firebaseio.com",
+//     projectId: "dotthird",
+//     storageBucket: "dotthird.appspot.com",
+//     messagingSenderId: "921362901698",
+//     appId: "1:921362901698:web:4c768ef2b2c304127a695b",
+//     measurementId: "G-45RF2SQ7VP"
+// };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
