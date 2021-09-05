@@ -21,12 +21,14 @@ var shopitemqtys = [];
 var shopgrpids = [];
 var shopphones = [];
 var avldboys = [];
+var avlOrderCount = [];
 var avldboyr = [];
 var avlphones = [];
 var avlphoner = [];
 var avlnames = [];
 var avlnamer = [];
 var shopindividualprice = [];
+var finalAvlOrderCount = 0;
 var cntdboysit = 0;
 var cntdboyroad = 0;
 var dtimeapprox = "";
@@ -68,6 +70,7 @@ var flagpch = 0;
 var pcodefinal = "";
 var grandtotalall = 0;
 var finaldid = "";
+var orderCount = 0;
 var finaldst = "";
 var weighttotal = 0;
 var dtimefinal = 0;
@@ -97,7 +100,6 @@ window.addEventListener('offline', toOff);
       document.getElementById('nonet').style.display = "block";
       document.getElementById('allnet').style.display = "none";
       $('body').addClass('overlay');
-      
     }
 window.addEventListener('online', toOn);
     function toOn(){
@@ -109,8 +111,6 @@ window.addEventListener('online', toOn);
         });
       location.reload();
     }
-
-
 
 function loadtime(){
   var qtload = Math.floor(Math.random() * 4);
@@ -722,9 +722,12 @@ function codpay(){
   firebase.database().ref("vvcart/" + u + "/order/" + ordid).update({shopphones:shopphones.toString(),dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),orderDescription:shopitemdesc.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});//2 for Payment POD & 1 for not ready for delivery
   firebase.database().ref("allorders/" + ordid).update({shopphones:shopphones.toString(),dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"cod",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:"11",ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),orderDescription:shopitemdesc.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});//2 for Payment POD & 1 for not ready for delivery
     
+    firebase.database().ref("dboy/" + finaldid).update({orderCount:finalAvlOrderCount});
+
     finalpuser = finalpuser + u + "splt";
     firebase.database().ref("pcodes/" + pcodefinal).update({puser:finalpuser});
     firebase.database().ref("zzdevices/" + u).update({userdevice:getDeviceType()});
+
     deliverymsg = encodeURI("New Order with Order id : " + ordid + " has been placed. Check order section.")
     
     document.getElementById("msgonlydp").src = "https://nimbusit.biz/api/SmsApi/SendSingleApi?UserID=ammar11860&Password=dliu2330DL&SenderID=DOTDHS&Phno=" + udphone + "&Msg=" + deliverymsg + "&EntityID=1701159895507169332&TemplateID=1707159911273765417";
@@ -779,6 +782,7 @@ function backtohome() {
 }
 
 function findDeliveryBoy(){
+  totalOrderCount = 0;
   Swal.fire({
   position: 'top-end',
   title: 'please wait...',
@@ -795,52 +799,98 @@ function findDeliveryBoy(){
     var dcount = snap.child("dcount").val();
     var dname = snap.child("name").val();
     var dphone = snap.child("phone").val();
-        
+    var orderCount = snap.child("orderCount").val();
 
-    if(dhomes[darea] == uhome){   
 
-      if(dstatus == "sit"){
-        avldboys[cntdboysit] = did;
-        avlnames[cntdboysit] = dname;
-        avlphones[cntdboysit] = dphone;
-        cntdboysit ++;
-      }
-      else if(dstatus == "road"){
-        avldboyr[cntdboyroad] = did;
-        avlnamer[cntdboyroad] = dname;
-        avlphoner[cntdboyroad] = dphone;
-        cntdboyroad ++;
+
+    if(dhomes[darea] == uhome){  
+      if(dstatus == "sit" || dstatus == "road"){
+        avlOrderCount[totalOrderCount] = orderCount; 
+        avldboys[totalOrderCount] = did;
+        avlnames[totalOrderCount] = dname;
+        avlphones[totalOrderCount] = dphone;
+        totalOrderCount++;
       }
 
+      // if(dstatus == "sit"){
+      //   avldboys[cntdboysit] = did;
+      //   avlnames[cntdboysit] = dname;
+      //   avlphones[cntdboysit] = dphone;
+      //   cntdboysit ++;
+      // }
+      // else if(dstatus == "road"){
+      //   avldboyr[cntdboyroad] = did;
+      //   avlnamer[cntdboyroad] = dname;
+      //   avlphoner[cntdboyroad] = dphone;
+      //   cntdboyroad ++;
+      // }
+      
       }
     
   });
 
     setTimeout(function(){ 
-      if (cntdboysit == 0 && cntdboyroad == 0) {
+    //   if (cntdboysit == 0 && cntdboyroad == 0) {
+    //   Swal.fire('DOT',
+    //     'Sorry, Due to lockdown issue we are working with less staff. Generally we are available from 8:30 AM to 8:30 PM',
+    //             'info'
+    //     )
+    // }
+    // else{
+    //   if(cntdboysit > 0){
+    //     finaldid = avldboys[0];
+    //     udname = avlnames[0];
+    //     udphone = avlphones[0];
+    //     udimg = "blank.png";
+    //     finaldst = "sit";
+    //     confirmpay();
+    //   }
+    //   else{
+        
+    //     finaldid = avldboyr[0];
+    //     udname = avlnamer[0];
+    //     udphone = avlphoner[0];
+    //     udimg = "blank.png";
+    //     finaldst = "road";
+    //     confirmpay();
+    //   }
+    // }
+
+    if (totalOrderCount == 0) {
       Swal.fire('DOT',
         'Sorry, Due to lockdown issue we are working with less staff. Generally we are available from 8:30 AM to 8:30 PM',
                 'info'
         )
     }
     else{
-      if(cntdboysit > 0){
+      if(avlOrderCount[0] < avlOrderCount[1]){
         finaldid = avldboys[0];
         udname = avlnames[0];
         udphone = avlphones[0];
         udimg = "blank.png";
-        finaldst = "sit";
+        finalAvlOrderCount = avlOrderCount[0];
         confirmpay();
+        //console.log(avldboys[0]);
+      }
+      else if(avlOrderCount[0] > avlOrderCount[1]){
+        finaldid = avldboys[1];
+        udname = avlnames[1];
+        udphone = avlphones[1];
+        udimg = "blank.png";
+        finalAvlOrderCount = avlOrderCount[1];
+        confirmpay();
+        //console.log(avldboys[1]);
       }
       else{
-        
-        finaldid = avldboyr[0];
-        udname = avlnamer[0];
-        udphone = avlphoner[0];
+        finaldid = avldboys[0];
+        udname = avlnames[0];
+        udphone = avlphones[0];
         udimg = "blank.png";
-        finaldst = "road";
+        finalAvlOrderCount = avlOrderCount[0];
         confirmpay();
+        //console.log(avldboys[0]);
       }
+      //console.log(avlOrderCount);
     }
      }, 2000);
     
@@ -858,7 +908,8 @@ function payupi() {
     var ordid = new Date("12/31/2099").getTime() - timestamp;
     firebase.database().ref("vvcart/" + u + "/order/" + ordid).update({shopphones:shopphones.toString(),dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});
     firebase.database().ref("allorders/" + ordid).update({shopphones:shopphones.toString(),dtimeapprox:dtimeapprox,dlat:ulat,dlang:ulang,dcharge:dchtotal,discount:discounttotal,dimg:udimg,dphone:udphone,dname:udname,uname:uname,uaddr:uadrdtl,timenow:timenow,dtnow:dtnow,dotp:dotp,shopids:shopids.toString(),shopnames:shopnames.toString(),shopaddrs:shopaddrs.toString(),cartids:tmsts.toString(),dstatus:finaldst,did:finaldid,ordhome:uhome,ordpay:"online",orduid:u,ordid:ordid,ordval:grandtotalall,orditems:ids.toString(),ordqty:qtys.toString(),orderstatus:bcode,ordpcode:pcodefinal,productids:shopgroups.toString(),products:shopitemnames.toString(),prices:shoppays.toString(),qtys:shopitemqtys.toString()});
-    
+    firebase.database().ref("dboy/" + finaldid).update({orderCount:finalAvlOrderCount});
+
     for (var i = shopids.length - 1; i >= 0; i--) {
           firebase.database().ref("allshop/" + shopids[i] + "/orders/" + ordid).update({dimg:udimg,dphone:udphone,dname:udname,dtnow:dtnow,id:ordid,productids:shopgroups[i],products:shopitemnames[i],prices:shoppays[i],qtys:shopitemqtys[i],dotp:dotp,user:u,orderstatus:bcode});
     }
