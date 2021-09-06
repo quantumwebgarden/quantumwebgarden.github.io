@@ -14,7 +14,11 @@ var stocker = ["","checked"];
 //   firebase.initializeApp(firebaseConfig);
 //   firebase.analytics();     
 
+var ipAddress = "";
 
+$.get("https://ipinfo.io", function(response) {
+            ipAddress = response.ip;
+        }, "json")
 function deleteguest(){
 var rootRef = firebase.database().ref("user");
 
@@ -97,6 +101,12 @@ function dboychange(x){
   console.log(statusall[newdbval] + " - " + dbid);
   x.setAttribute("data-dval", newdbval);
   firebase.database().ref("dboy/" + dbid).update({status:statusall[newdbval]});
+  var date = new Date();
+  var timestamp = date.getTime();
+  var chnageId = new Date("12/31/2099").getTime() - timestamp;
+  var dtnow = date.getDate() + "/" + Number(date.getMonth()+1) + "/" + date.getFullYear();
+  var timenow = date.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ":" + date.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  firebase.database().ref("dboy/" + dbid + "/lastchanges/" + chnageId).update({changedBy:ipAddress,chnageId:chnageId,dateNow:dtnow,timeNow:timenow,status:statusall[newdbval]});
 }
 
 
