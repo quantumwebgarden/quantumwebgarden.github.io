@@ -103,6 +103,15 @@ input[type="text"]{
 </style>
 </head>
 <body onload="getpcodes()">
+<h2>Delivery Boy Reset</h2>
+<select id="dboyreset">
+  <option value="DP0005">Abir</option>
+  <option value="DT0005">Ajijul</option>
+  <option value="DP0001">Amio</option>
+  <option value="DT0004">Pritam</option>
+</select>
+<button onclick="resetDboy()">Reset order Count</button>
+<h2>Promocode List</h2>
 <table>
 	<tr>
 		<th>Code</th>
@@ -118,6 +127,15 @@ input[type="text"]{
 	</tbody>
 </table>
 <script>
+function resetDboy() {
+  var dboyId = document.getElementById("dboyreset").value
+  firebase.database().ref("dboy/" + dboyId).update({orderCount:0});
+    Swal.fire(
+      'Updated!',
+      'Order Count Reset Done.',
+      'success'
+    )
+}
 	var cnt = 0;
 // var firebaseConfig = {
 //     apiKey: "AIzaSyA7wly3NvCF90pJFs7a9kMBl-eXHJvXYw4",
