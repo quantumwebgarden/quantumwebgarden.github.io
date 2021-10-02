@@ -106,7 +106,7 @@ function dboychange(x){
   var chnageId = new Date("12/31/2099").getTime() - timestamp;
   var dtnow = date.getDate() + "/" + Number(date.getMonth()+1) + "/" + date.getFullYear();
   var timenow = date.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ":" + date.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  firebase.database().ref("dboy/" + dbid + "/lastchanges/" + chnageId).update({changedBy:ipAddress,chnageId:chnageId,dateNow:dtnow,timeNow:timenow,status:statusall[newdbval]});
+  //firebase.database().ref("dboy/" + dbid + "/lastchanges/" + chnageId).update({changedBy:ipAddress,chnageId:chnageId,dateNow:dtnow,timeNow:timenow,status:statusall[newdbval]});
 }
 
 
