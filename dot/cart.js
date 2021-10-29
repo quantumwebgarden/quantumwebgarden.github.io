@@ -405,10 +405,10 @@ function calculatetotal(){
 }
 
 function dchargecal(pt,wt,qt,dt) {
-  if(Number(pt)< 40){
+  if(Number(pt)< 50){
     Swal.fire(
   'DOT',
-  'Minimum Order Value Rs. 40 Required.',
+  'Minimum Order Value Rs. 50 Required.',
   'warning'
     );
     dflagsecond++;
@@ -702,7 +702,7 @@ else {
 else{
   Swal.fire({
   title: 'DOT',
-  html: 'Check items in your cart. <br> <u>Possible Solutions</u><br>1. Add item in your cart. <br>2. Remove items marked with "Out Of Delivery" status.<br>3. Minimum Order amount Rs.40 required.<br>4. Guest User can\'t place and order',
+  html: 'Check items in your cart. <br> <u>Possible Solutions</u><br>1. Add item in your cart. <br>2. Remove items marked with "Out Of Delivery" status.<br>3. Minimum Order amount Rs.50 required.<br>4. Guest User can\'t place and order',
   icon: 'error'
 });
 }
