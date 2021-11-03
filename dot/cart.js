@@ -442,7 +442,7 @@ function dchargecal(pt,wt,qt,dt) {
     //  dchtotal = 0;
     //}
     //else{
-      dchtotal = Number(Number(dchargearray[dt])+Number(dextra-2));
+      dchtotal = Number(Number(dchargearray[dt])+Number(dextra-3));
     //}
   }
 }
