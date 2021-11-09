@@ -53,7 +53,7 @@ var backgrounds = ["linear-gradient(to right, #d194ff, #9389ff)","linear-gradien
   var parameters = location.search.substring(1).split("=");
   //orderID = parameters[1];
   dpid = parameters[1];
-    if(dpid != DP0005)
+    if(dpid != "DP0005")
   orderdetails();
 }
   
