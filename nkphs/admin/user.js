@@ -38,7 +38,7 @@ $("#fee").val(fee);
 $("#fine").val(fine);
 }
 });
-var rootRef = firebase.database().ref('item/package/BENG');
+var rootRef = firebase.database().ref('item/adminPackage/BENG');
 rootRef.on("child_added", snap => {
 var books_bag = snap.child("books_bag").val();
 var books_only = snap.child("books_only").val();
@@ -60,7 +60,7 @@ else{
 //getBengBook("BNEG",id);
 }
 });
-var rootRef = firebase.database().ref('item/package/HINDI');
+var rootRef = firebase.database().ref('item/adminPackage/HINDI');
 rootRef.on("child_added", snap => {
 var books_bag = snap.child("books_bag").val();
 var books_only = snap.child("books_only").val();
@@ -89,8 +89,8 @@ var cnt = 0;
 var totalprice = 0;
 var y = document.getElementById("clsslct").value;
 $("#" + x + "_body").empty();
-var rootRef = firebase.database().ref("item/package/"+ x + "/" + y + "/books");
-console.log("item/package/"+ x + "/" + y + "/books");
+var rootRef = firebase.database().ref("item/adminPackage/"+ x + "/" + y + "/books");
+console.log("item/adminPackage/"+ x + "/" + y + "/books");
 rootRef.on("child_added", snap => {
 var id = snap.child("id").val();
 var sub = snap.child("sub").val();
@@ -232,7 +232,7 @@ function bengPackage() {
     } else {
     ready = 0;
     }
-    firebase.database().ref("item/package/BENG/" + document.getElementById("clsslct").value).update({books_bag:document.getElementById("BENGbooks_bag").value,books_only:document.getElementById("BENGbooks_only").value,deliveryCharge:document.getElementById("BENGdeliveryCharge").value,stock:document.getElementById("BENGstock").value,ready:ready});
+    firebase.database().ref("item/adminPackage/BENG/" + document.getElementById("clsslct").value).update({books_bag:document.getElementById("BENGbooks_bag").value,books_only:document.getElementById("BENGbooks_only").value,deliveryCharge:document.getElementById("BENGdeliveryCharge").value,stock:document.getElementById("BENGstock").value,ready:ready});
     Swal.fire(
       'Updated!',
       'Package Details Updated.',
@@ -259,7 +259,7 @@ function hindiPackage() {
     } else {
     ready = 0;
     }
-    firebase.database().ref("item/package/HINDI/" + document.getElementById("clsslct").value).update({books_bag:document.getElementById("HINDIbooks_bag").value,books_only:document.getElementById("HINDIbooks_only").value,deliveryCharge:document.getElementById("HINDIdeliveryCharge").value,stock:document.getElementById("HINDIstock").value,ready:ready});
+    firebase.database().ref("item/adminPackage/HINDI/" + document.getElementById("clsslct").value).update({books_bag:document.getElementById("HINDIbooks_bag").value,books_only:document.getElementById("HINDIbooks_only").value,deliveryCharge:document.getElementById("HINDIdeliveryCharge").value,stock:document.getElementById("HINDIstock").value,ready:ready});
 
     Swal.fire(
       'Updated!',
@@ -346,7 +346,7 @@ function updateBook(x,y,z){
   confirmButtonText: 'Yes, Update'
 }).then((result) => {
   if (result.isConfirmed) {
-    firebase.database().ref("item/package/" + y + "/" + z + "/books/" + x).update({price:document.getElementById("price" + x + "splt" + y + "splt" + z).value,name:document.getElementById("name" + x + "splt" + y + "splt" + z).value,sub:document.getElementById("sub" + x + "splt" + y + "splt" + z).value,quantity:document.getElementById("quantity" + x + "splt" + y + "splt" + z).value});
+    firebase.database().ref("item/adminPackage/" + y + "/" + z + "/books/" + x).update({price:document.getElementById("price" + x + "splt" + y + "splt" + z).value,name:document.getElementById("name" + x + "splt" + y + "splt" + z).value,sub:document.getElementById("sub" + x + "splt" + y + "splt" + z).value,quantity:document.getElementById("quantity" + x + "splt" + y + "splt" + z).value});
     Swal.fire(
       'Updated!',
       'Book Details Updated.',
@@ -366,7 +366,7 @@ Swal.fire({
   confirmButtonText: 'Yes, Remove'
 }).then((result) => {
   if (result.isConfirmed) {
-    firebase.database().ref("item/package/" + y + "/" + z + "/books/" + x).remove();
+    firebase.database().ref("item/adminPackage/" + y + "/" + z + "/books/" + x).remove();
     document.getElementById("package" + x + y).style.display = "none";
     Swal.fire(
       'Removed!',
@@ -391,7 +391,7 @@ Swal.fire({
 }).then((result) => {
   if (result.isConfirmed) {
 
-    firebase.database().ref("item/package/" + x + "/" + y + "/books/" + document.getElementById(x + "newbookid").value).update({id:document.getElementById(x + "newbookid").value,price:document.getElementById(x + "newbookprice").value,name:document.getElementById(x + "newbookname").value,sub:document.getElementById(x + "newbooksub").value,quantity:document.getElementById(x + "newbookquantity").value});
+    firebase.database().ref("item/adminPackage/" + x + "/" + y + "/books/" + document.getElementById(x + "newbookid").value).update({id:document.getElementById(x + "newbookid").value,price:document.getElementById(x + "newbookprice").value,name:document.getElementById(x + "newbookname").value,sub:document.getElementById(x + "newbooksub").value,quantity:document.getElementById(x + "newbookquantity").value});
     Swal.fire(
       'Updated!',
       'New Item Added.',
