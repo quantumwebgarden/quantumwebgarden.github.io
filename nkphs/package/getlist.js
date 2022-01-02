@@ -20,8 +20,8 @@ var sub = snap.child("sub").val();
 var name = snap.child("name").val();
 var price = snap.child("price").val();
 var quantity = snap.child("quantity").val();
-
+if(y == "NI" || y == "NII" || y == "KG"){
 $("#table_body").append("<tr id='package" + id + x + "'><td>" + sub + "</td><td>" + name + "</td><td>" + price + "</td><td>" + quantity + "</td></tr>");
-
+}
 });
 }
