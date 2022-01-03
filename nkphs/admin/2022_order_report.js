@@ -53,7 +53,7 @@ var ucode = snap.child("orderedBy").val();
 var orderdate = snap.child("order_date").val();
 var orderStatus = snap.child("orderStatus").val();
 var deliveryDate = snap.child("deliveryDate").val();
-var phoneUpdate = '<input id="phone' + orderid + '" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" /><br><input type="button" value="Update Phone" class="button" onclick="updatePhone(\'' + orderid + '\',\'' + stdclass + '\',\'' + roll + '\')">';
+var phoneUpdate = '<input id="phone' + orderid + '" value="' + phone + '" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" /><br><input type="button" value="Update Phone" class="button" onclick="updatePhone(\'' + orderid + '\',\'' + stdclass + '\',\'' + roll + '\')">';
 var updbtn = 'Current Status: ' + orderStatus + '<br><select name="status" id="orderStatus' + orderid + '"><option value="NA" disabled selected>Select Status</option><option value="Order Packed (Ready for Self Pickup)">Order Packed (Ready for Self Pickup)</option><option value="Order Delivered">Order Delivered</option></select><br><button onclick="updateOrder(\'' + orderid + '\',\'' + stdclass + '\',\'' + roll + '\')" class="button">Update Order</button>';
 var removebtn = '<button onclick="removeOrder(\'' + orderid + '\',\'' + stdclass + '\',\'' + roll + '\')" class="button">Delete Order</button>';
 var dldesc = dltype;
