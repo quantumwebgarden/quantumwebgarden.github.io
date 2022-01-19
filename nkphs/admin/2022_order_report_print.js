@@ -38,6 +38,7 @@ cnt ++;
 var orderid = snap.child("orderID").val();
 var name = snap.child("name").val().replace("Name: ", "");
 var stdclass = snap.child("stdClass").val();
+var second_language = snap.child("SL").val();
 var section = snap.child("section").val();
 var roll  = snap.child("roll").val();
 var prtype = snap.child("productType").val();
@@ -62,36 +63,36 @@ if(dltype == "Self Pickup"){
 if(cls == "ALL"){
     if(producttype == "ALL"){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + " - " + second_language + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + " - " + second_language + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
         }
     }
     else if(prtype == producttype){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + " - " + second_language + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + " - " + second_language + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
         }
     }
 }
 else if(cls == stdclass){
     if(producttype == "ALL"){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + " - " + second_language + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + " - " + second_language + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
         }
     }
     else if(prtype == producttype){
         if(deliverytype == "ALL"){
-            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + " - " + second_language + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
         }
         else if(dltype == deliverytype){
-            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
+            $("#table_body").append("<tr class=" + statusShort + " id=tr" + orderid +"><td>" + orderid + "</td><td>" + name + "</td><td>" + stdclass + "</td><td>" + roll + "</td><td>" + orderdescription + " - " + second_language + "</td><td><b>" + price + "</b></td><td>" + phone + "</td></tr>");
         }
     }
 }
