@@ -559,9 +559,9 @@ function pcodecheck(){
         }
         
        }
-        if(appliedp == "HAJI20"){
-       if(shopids.includes("12479021")){
-        var shindprice = shopindividualprice[shopids.indexOf("12479021")];
+        if(appliedp == "MK5"){
+       if(shopids.includes("12067498")){
+        var shindprice = shopindividualprice[shopids.indexOf("12067498")];
         if(shindprice>= minam){
         	if(per == 0){
         per = Math.floor(3 + Math.random() * 8);
