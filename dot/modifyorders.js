@@ -2,6 +2,7 @@ window.androidObj = function AndroidClass(){};
 var loaded = 0;
 var orderID = "";
 var dpid = "";
+var counterID = 0;
 var backgrounds = ["linear-gradient(to right, #d194ff, #9389ff)","linear-gradient(to right, #7cbfee, #00d0b8)","linear-gradient(to right, #ff77a7, #ff7b7e)"];
 // var firebaseConfig = {
 //     apiKey: "AIzaSyA7wly3NvCF90pJFs7a9kMBl-eXHJvXYw4",
@@ -98,7 +99,7 @@ var pcode = snap.child("ordpcode").val();
 var prices = snap.child("prices").val().split("sp2lt").join(" | ");
 
 var lnk = "";
-
+counterID++;
 
 if(shopids.length < 10){
   lnk = "<b onclick=\"window.open('modifyshoporders.html?id=" + shopids + "')\">" + shopnames + "</b>,";
