@@ -858,7 +858,7 @@ function findDeliveryBoy(){
 
     if (totalOrderCount == 0) {
       Swal.fire('DOT',
-        'Sorry, Due to lockdown issue we are working with less staff. Generally we are available from 8:30 AM to 8:30 PM',
+        'Sorry, Due to lockdown issue we are working with less staff. Generally we are available from 10:00 AM to 9:00 PM',
                 'info'
         )
     }
