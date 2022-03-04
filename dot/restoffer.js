@@ -88,7 +88,7 @@ rootRef.on("child_added", snap => {
 var id = snap.child("id").val();
 var name = snap.child("name").val();
 var shopid = snap.child("shopid").val();
-var thumb = snap.child("thumb").val();
+var thumb = snap.child("img").val();
 var price = snap.child("price").val();
 var stockst = snap.child("stock").val();
 var priceshp = snap.child("priceshp").val();
@@ -206,7 +206,7 @@ function updateproduct(x,y){
   confirmButtonText: 'Yes, Update!'
 }).then((result) => {
   if (result.isConfirmed) {
-    firebase.database().ref(y + "/" + x).update({name:newname,cat:newcat,tagsr:newtagsr,rating:newrating,ratcnt:newratcnt,dotprirev:newdotprirev,dotpri:newdotpri,desc:newdesc,priceshp:orgprice,price:offerprice,pricerev:revprice,priceoffer:offerprice,thumb:newthumb});
+    firebase.database().ref(y + "/" + x).update({name:newname,cat:newcat,tagsr:newtagsr,rating:newrating,ratcnt:newratcnt,dotprirev:newdotprirev,dotpri:newdotpri,desc:newdesc,priceshp:orgprice,price:offerprice,pricerev:revprice,priceoffer:offerprice,img:newthumb});
     console.log(orgprice + " - " + offerprice + " - " + revprice + " - " + x + " - " + newdotpri + " - " + newdotprirev + " - " + newratcnt + " - " + newrating + " - " + newtagsr);
     Swal.fire(
       'Updated!',
