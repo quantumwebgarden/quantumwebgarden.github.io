@@ -10,7 +10,6 @@ var flag = 0 ;
 //     appId: "1:374863944922:web:3025e1648144afe89fd9e3",
 //     measurementId: "G-NWB5LL551K"
 //   };
-//   firebase.initializeApp(firebaseConfig);
 
 
 function loginmerchant() {
