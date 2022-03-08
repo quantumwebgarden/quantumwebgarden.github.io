@@ -13,15 +13,8 @@ var flag = 0 ;
 
 
 function loginmerchant() {
-	Swal.fire({
-  title: 'DOT',
-  html: '<img width="80%" height="auto" src="https://quantumwebgarden.github.io/dot/assets/img/loading.gif"><br>',
-  timer: 3000,
-  timerProgressBar: true,
-  allowEscapeKey: false,
-  allowOutsideClick: false,
-		});
-		
+
+document.write("Please Wait...");	
 	var mrid = document.getElementById("merchantid").value;
 	var mrpass = document.getElementById("merchantpass").value;
     var rootRef = firebase.database().ref('allshop');
@@ -41,12 +34,8 @@ var shtype = snap.child("shtype").val();
 });
 setTimeout(function(){
 		if(flag==0){
-			Swal.fire({
-				title: 'DOT',
-				html: 'Wrong User Id or Password',
-				allowEscapeKey: false,
-				allowOutsideClick: false,
-		});
+		alert("Wrong Passowrd");
+		location.reload();
 		} 
 	}, 3000);
   }
