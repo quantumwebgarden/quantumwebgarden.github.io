@@ -35,6 +35,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="js/merchantlogin.js"></script>
 <script src="../../dot/doturation.js"></script>
+<style>
+border: 5px outset red;
+  border-radius: 25px;
+  background-color: lightblue;    
+  text-align: center;
+display:none;
+</style>
 </head>
 <body>
 	
@@ -66,8 +73,12 @@
 							Remember me
 						</label>
 					</div-->
+					
+					<div id="loadDiv" class="myDiv">
+  						<h2>Please Wait...</h2>
+					</div>
 
-					<div class="container-login100-form-btn">
+					<div id="loadBtn" class="container-login100-form-btn">
 						<p class="login100-form-btn" onclick="loginmerchant()">
 							Login
 						</p>
