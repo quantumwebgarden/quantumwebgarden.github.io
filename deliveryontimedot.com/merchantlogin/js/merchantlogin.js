@@ -34,7 +34,6 @@ var shtype = snap.child("shtype").val();
 	
 	}
 });
-document.write("Please Wait...");
 setTimeout(function(){
 		if(flag==0){
 		alert("Wrong Passowrd");
