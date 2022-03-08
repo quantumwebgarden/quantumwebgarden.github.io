@@ -13,6 +13,10 @@ var flag = 0 ;
 
 
 function loginmerchant() {	
+	
+	document.getElementById("loadDiv").style.display="block";
+	document.getElementById("loadBtn").style.display="none";
+	
 	var mrid = document.getElementById("merchantid").value;
 	var mrpass = document.getElementById("merchantpass").value;
     var rootRef = firebase.database().ref('allshop');
@@ -34,7 +38,8 @@ document.write("Please Wait...");
 setTimeout(function(){
 		if(flag==0){
 		alert("Wrong Passowrd");
-		location.reload();
+		document.getElementById("loadDiv").style.display="none";
+		document.getElementById("loadBtn").style.display="block";
 		} 
 	}, 3000);
   }
