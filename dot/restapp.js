@@ -21,35 +21,36 @@ var backgrounds = ["linear-gradient(to right, #d194ff, #9389ff)","linear-gradien
   function loadingtime() {
   var qtload = Math.floor(Math.random() * 4);
     let timerInterval;
-  Swal.fire({
-  title: 'DOT',
-  html: '<img width="80%" height="auto" src="assets/img/loading.gif"><br>',
-  timer: 2000,
-  timerProgressBar: true,
-  allowEscapeKey: false,
-  allowOutsideClick: false,
-  onBeforeOpen: () => {
-    Swal.showLoading()
-    timerInterval = setInterval(() => {
-      const content = Swal.getContent()
-      if (content) {
-        const b = content.querySelector('b')
-        if (b) {
-          //b.textContent = Swal.getTimerLeft()
-        }
-      }
-    }, 100)
-  },
-  onClose: () => {
-    clearInterval(timerInterval);
-    //document.getElementById("mainbody").style.display = "block";
-  }
-}).then((result) => {
-  /* Read more about handling dismissals below 
-  if (result.dismiss === Swal.DismissReason.timer) {
-    initskip();
-  }*/
-})
+  document.getElementById("loadDiv").style.display="block";
+//   Swal.fire({
+//   title: 'DOT',
+//   html: '<img width="80%" height="auto" src="assets/img/loading.gif"><br>',
+//   timer: 2000,
+//   timerProgressBar: true,
+//   allowEscapeKey: false,
+//   allowOutsideClick: false,
+//   onBeforeOpen: () => {
+//     Swal.showLoading()
+//     timerInterval = setInterval(() => {
+//       const content = Swal.getContent()
+//       if (content) {
+//         const b = content.querySelector('b')
+//         if (b) {
+//           //b.textContent = Swal.getTimerLeft()
+//         }
+//       }
+//     }, 100)
+//   },
+//   onClose: () => {
+//     clearInterval(timerInterval);
+//     //document.getElementById("mainbody").style.display = "block";
+//   }
+// }).then((result) => {
+//   /* Read more about handling dismissals below 
+//   if (result.dismiss === Swal.DismissReason.timer) {
+//     initskip();
+//   }*/
+// })
   var parameters = location.search.substring(1).split("=");
   mcID = parameters[1];
   orderdetails(mcID);
@@ -105,7 +106,7 @@ if(orderstatus != 28 || orderstatus != 29 || orderstatus == 19){
 t_body = "";
 
 });
-
+document.getElementById("loadDiv").style.display="none";
   }
 
   /*function getstatus(ordid) {
