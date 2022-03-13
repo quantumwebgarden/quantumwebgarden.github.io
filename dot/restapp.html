@@ -165,7 +165,13 @@ tr:nth-child(even) {
   background-color: #acc2e5;
 }
 
-
+.myDiv{
+border: 5px outset red;
+  border-radius: 25px;
+  background-color: lightblue;    
+  text-align: center;
+display:none;
+	}
 </style>
 
 <script>
@@ -192,6 +198,12 @@ tr:nth-child(even) {
 <br>
 <center onclick="location.reload()"><i class="fa fa-refresh" aria-hidden="true"></i> Click to Refresh Orders <i class="fa fa-refresh" aria-hidden="true"></i></center><br>
 <div class="card-list" id="allordercard">
+  
+  
+  <div id="loadDiv" class="myDiv">
+    <br><br><br>
+  						<h2>Please Wait...</h2>
+					</div>
 
 <!--div class="card card--one">
 <p class="card__number">Order No.: 123456789012345</p>
