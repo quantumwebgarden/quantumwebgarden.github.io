@@ -8,6 +8,7 @@ var mctype = "";
 var prtype = "";
 var prid = "";
 var today = "";
+var todays = "";
 var mcstatus = "";
 var mcshare = 0;
 var stocker = ["","checked"];
@@ -37,6 +38,13 @@ function getuid() {
 	var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
 	var yyyy = date.getFullYear();
 	today = mm + '/' + dd + '/' + yyyy;
+	
+	var dds = String(date.getDate());
+	var mms = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyys = date.getFullYear();
+	todays = dds + '/' + mms + '/' + yyyys;
+	
+	document.getElementById("datetxt").value = todays;
     var timestamp = date.getTime();
     prid = new Date("12/31/2099").getTime() - timestamp;
 	getmcdtls(mctype,mcid);
@@ -115,7 +123,7 @@ function paychange(x){
   prid = prid.substring(4,prid.length);
   var oldst = document.getElementById(x.id).getAttribute("data-val");
   var newst = Number(1 - Number(oldst)); 
-  console.log(newst);
+  //console.log(newst);
   document.getElementById(x.id).setAttribute("data-val", newst);
   //console.log("allshop/" + mcid + "/orders/" + prid);
   firebase.database().ref("allshop/" + mcid + "/orders/" + prid).update({paystatus:newst});
