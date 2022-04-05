@@ -40,7 +40,7 @@ function getuid() {
 	today = mm + '/' + dd + '/' + yyyy;
 	
 	var dds = String(date.getDate());
-	var mms = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var mms = String(date.getMonth() + 1); //January is 0!
 	var yyyys = date.getFullYear();
 	todays = dds + '/' + mms + '/' + yyyys;
 	
