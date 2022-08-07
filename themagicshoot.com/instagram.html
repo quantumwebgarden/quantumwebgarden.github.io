@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script>
+<link href='//fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+        <script src="assets/tms/insta.js"></script>
+<link rel="stylesheet" type="text/css" href="assets/tms/insta.css">
+
+</head>
+<body>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-164284162-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-164284162-1');
+</script>
+
+<!--
+<div id="overlay" class="overlay" onclick="off()">
+  <div id="imgsh">
+  	<img id="imgshsrc" max-width="80%" height="auto" src="">
+
+  </div>
+</div>
+-->
+<div id="overlay1" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="off1()">&times;</a>
+  <div class="overlay-content">
+    <img id="imgshsrc1" style="margin: 0 auto; object-fit: scale-down;" width="80%" height="500" src="assets/images/logo.png">
+    <br>
+    <p id="tdtls1" style="color: white; font-family: 'Lato', sans-serif; font-size: 26px;">Caption</p>
+    <br>
+  </div>
+</div>
+
+<div id="overlay2" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="off2()">&times;</a>
+  <div class="overlay-content">
+    <iframe style="background-color: #FFFFFF;" id="imgshsrc2" width="80%" height="400" src="assets/images/blank.jpg" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br>
+    <p id="tdtls2" style="color: white; font-family: 'Lato', sans-serif; font-size: 26px;">Caption</p>
+    <br>
+  </div>
+</div>
+
+<header>
+
+	<div class="container">
+
+		<div class="profile">
+
+			<div class="profile-image">
+
+				<img src="assets/images/sandeep.JPG" width="152px" alt="">
+
+			</div>
+
+			<div class="profile-user-settings">
+
+				<h1 class="profile-user-name">sandeepkumarfilms</h1>
+
+
+				<!--button class="btn profile-edit-btn">Upload New Posts</button>
+
+				<button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button-->
+
+			</div>
+<!--
+			<div class="profile-stats">
+
+				<ul>
+					<li><span class="profile-stat-count">164</span> Posts</li>
+					<li><span class="profile-stat-count">188</span> Visitors</li>
+					<li><span class="profile-stat-count">26</span> Images</li>
+					<li><span class="profile-stat-count">46</span> Videos</li>
+				</ul>
+
+			</div>
+-->
+			<div class="profile-bio">
+
+				<p><span class="profile-real-name">Sandeep Kumar Films</span> is a private instagram clone of Sandeep Kumar Films.</p>
+        		<p id="lnk"><a style="margin: 4px;" href="https://www.facebook.com/sandeepkumarfilms/" class="fa fa-facebook" target="_blank"></a><a href="https://www.facebook.com/sandeepkumarfilms/" class="lnk" target="_blank">facebook.com/sandeepkumarfilms</a></p>
+				<p></p>
+				<p id="lnk"><a style="margin: 4px;" href="https://www.youtube.com/user/sandeepnet00" class="fa fa-youtube" target="_blank"></a><a href="https://www.youtube.com/user/sandeepnet00" class="lnk" target="_blank">youtube.com/user/sandeepnet00</a></p>
+				<p id="lnk"><a style="margin: 4px;" href="https://www.instagram.com/sandeepkumarfilms/" class="fa fa-instagram" target="_blank"></a><a href="https://www.instagram.com/sandeepkumarfilms/" class="lnk" target="_blank">instagram.com/sandeepkumarfilms</a></p>
+
+			</div>
+
+		</div>
+		<!-- End of profile section -->
+
+	</div>
+	<!-- End of container -->
+
+</header>
+
+
+
+
+<div class="ctntr">
+	<div class="sr">
+
+
+  <div class="cd">
+  <img src="assets/images/sandeep.JPG" alt="Sandeep" style="width:100%">
+  <div class="cr">
+    <h4><b>Sandeep</b></h4> 
+    
+  </div>
+</div>
+<div class="cd">
+  <img src="assets/images/kusum.JPG" alt="Kusumr" style="width:100%">
+  <div class="cr">
+    <h4><b>Kusum</b></h4> 
+    
+  </div>
+</div>
+<div class="cd">
+  <img src="assets/images/tushar.jpg" alt="Tushar" style="width:100%">
+  <div class="cr">
+    <h4><b>Tushar</b></h4> 
+    
+  </div>
+</div>
+<div class="cd">
+  <img src="assets/images/sanju.JPG" alt="Sanju" style="width:100%">
+  <div class="cr">
+    <h4><b>Sanju</b></h4> 
+    
+  </div>
+</div>
+<div class="cd">
+  <img src="assets/images/shanu.jpg" alt="Shanu" style="width:100%">
+  <div class="cr">
+    <h4><b>Shanu</b></h4> 
+     
+  </div>
+</div>
+
+
+
+</div>
+</div>
+
+
+<main>
+
+	<div class="container">
+
+		<div class="gallery" id="galinsta">
+
+
+<!--📷
+			<div class="gallery-item" tabindex="0">
+				<img src="assets/images/album1.jpeg" class="gallery-image" alt="">
+				<div class="gallery-item-info" onclick="imgfr()">
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+				<video width="100%" height="200" controls src="assets/images/test.mp4"></video>
+				<div class="gallery-item-type">
+					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
+				</div>
+				<div class="gallery-item-info" onclick="vdofr()">
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 47</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
+					</ul>
+				</div>
+			</div>
+-->
+
+
+		</div>
+		<!-- End of gallery -->
+
+		<div id="ldr" class="loader"><img src="assets/images/loading.gif" width="250px" height="auto"></div>
+
+	</div>
+	<!-- End of container -->
+</main>
+<!--
+</body>
+</html>
+<!--
+https://drive.google.com/open?id=1j7gxA9gcgytbjIsDsi6xGLHoa3SeYKuT
+
+https://drive.google.com/uc?export=view&id=1j7gxA9gcgytbjIsDsi6xGLHoa3SeYKuT
+
+https://drive.google.com/file/d/1j7gxA9gcgytbjIsDsi6xGLHoa3SeYKuT/view
+
+<iframe src="https://drive.google.com/file/d/1j7gxA9gcgytbjIsDsi6xGLHoa3SeYKuT/preview" width="640" height="480"></iframe>
+-->

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>  
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+input[type=url]{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=button] {
+  background-color: #588ad1;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body onload="appidset()">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-164284162-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-164284162-1');
+</script>
+
+<center>
+<h2>The Magic Shoot || Admin Panel</h2>
+<p>Upload New Image or Video to Private Instagram</p>
+</center>
+<div class="container">
+  <form id="instagram">
+
+    <div class="row">
+      <div class="col-25">
+        <label for="dtype">Select Media Type</label>
+      </div>
+      <div class="col-75">
+        <select id="dtype" name="dtype" onchange="chktype(this.value)">
+          <option value="" disabled="disabled" selected="selected">-- Choose Any One --</option>
+          <option value="Video">Youtube Video</option>
+          <option value="Gvideo">Google Drive Video</option>
+          <option value="Image">Google Drive Image</option>
+          <option value="Audio" disabled="disabled">Audio</option>
+        </select>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function chktype(x){
+        if(x == "Video"){
+          document.getElementById("yl").style.display = "block";
+          document.getElementById("gl").style.display = "none";
+          document.getElementById("upd").style.display = "none";
+          document.getElementById("yshow").style.display = "block";
+          document.getElementById("imgshow").style.display = "none";
+        }
+        else if(x == "Gvideo"){
+          document.getElementById("yl").style.display = "none";
+          document.getElementById("gl").style.display = "block";
+          document.getElementById("upd").style.display = "none";
+          document.getElementById("yshow").style.display = "block";
+          document.getElementById("imgshow").style.display = "none";
+        }
+        else{
+          document.getElementById("yl").style.display = "none";
+          document.getElementById("gl").style.display = "none";
+          document.getElementById("upd").style.display = "block";
+          document.getElementById("yshow").style.display = "none";
+          document.getElementById("imgshow").style.display = "block";
+        }
+      }
+    </script>
+
+    <div class="row" id="yl" style="display: none;">
+      <div class="col-25">
+        <label for="ylnk">Enter Youtube Link</label>
+      </div>
+      <div class="col-75">
+        <input type="url" id="ylnk" name="ylnk" placeholder="Enter Youtube Video Link / Youtube Video ID only" onchange="ylchk()">
+      </div>
+    </div>
+
+    <div class="row" id="gl" style="display: none;">
+      <div class="col-25">
+        <label for="glnk">Enter Google Drive Video Link</label>
+      </div>
+      <div class="col-75">
+        <input type="url" id="glnk" name="glnk" placeholder="Enter Google Drive Video Link" onchange="glchk()">
+      </div>
+    </div>
+
+    <div class="row" id="upd" style="display: none;">
+      <div class="col-25">
+        <label for="ylnk">Enter Goolge Drive Image Link</label>
+      </div>
+      <div class="col-75">
+        <input type="url" id="dlnk" name="dlnk" placeholder="Enter Google Drive sharing Link" onchange="chngURL()">
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function ylchk(){
+        var str = document.getElementById("ylnk").value;
+        document.getElementById("ulnk").value = "https://www.youtube.com/embed/" + str.substr(str.length - 11);
+        document.getElementById("yshow").src = document.getElementById("ulnk").value;
+      }
+      function glchk(){
+        var str = document.getElementById("glnk").value;
+        var res = str.replace("open?id=", "file/d/");
+        document.getElementById("ulnk").value = res + "/preview";
+        document.getElementById("yshow").src = document.getElementById("ulnk").value;
+      }
+    </script>
+
+
+    <script type="text/javascript">
+      function chngURL() {
+        var str = document.getElementById("dlnk").value; 
+        var res = str.replace("file/d/", "uc?export=view&id=");
+        var res = res.replace("open?id=", "uc?export=view&id=");
+        var res = res.replace("/view?usp=sharing", "");
+        document.getElementById("ulnk").value = res;
+        document.getElementById("imgshow").src = res;
+      }
+    </script>
+
+        
+      <center>
+        <br>
+        <img style="display: none; width:430px; height: auto;" id="imgshow" src="image.png" alt="Choose your photo" /> <br>
+        <iframe style="display: none; width: 430px; height: 245px;" id="yshow" src="https://www.youtube.com/embed/"></iframe><br><br>
+      </center>
+
+
+      <div class="row">
+      <div class="col-25">
+        <label for="cap">Caption</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="cap" name="cap" placeholder="Ente Caption here (if any)">
+      </div>
+    </div>
+
+
+        
+        <!--
+    <div class="row" id="upd" style="display: none;">
+      <div class="col-25">
+        <label for="ylnk">Upload Document File (Accepts - PDF, Image, Word, Excel, Powerpoint, Plaintext)</label>
+      </div>
+      <div class="col-75">
+        
+        <progress value="0" max="100" id="uploader1">0%</progress>
+        <input type="file" value="upload1" accept="image/*,.xlsx,.xls,.doc,.docx,.ppt,.pptx,.txt,.pdf,.mp4" id="fileButton1">
+        <p id="updcmpl" style="display:none;">Upload Completed.</p>
+      </div>
+    </div>
+  -->
+
+
+    <input type="text" name="ulnk" id="ulnk" required="true" value="" style="display:none">
+    <input type="text" name="insid" id="insid" required="true" value="" style="display:none">
+
+    
+    <br>
+    <div class="row">
+      <input id="submitmain" type="submit" value="Upload">
+    </div>
+  </form>
+
+
+  <div class="button" id="thankyou" style="display:none; font-size:25px">
+    <center><br><br>
+    <p><strong>Good job! Instagram Upload have Successfully completed.</strong></p><br>
+      <a href="../themagicshoot/instagram.html" target="_blank"><input type="button" value="View updated private Instagram"></a><br><br>
+      <a href="instadmin.html"><input type="button" value="Upload more"></a><br>
+    </center>
+  </div>
+
+</div>
+<script src="instadmin.js"></script>
+<!--
+</body>
+</html>
