@@ -15,6 +15,92 @@
 let urlString = window.location.href;
 var parameters = location.search.substring(1).split("=");
 
+
+function getAllProduct() {
+var rootRef = firebase.database().ref('items');
+
+rootRef.on("child_added", snap => {
+
+var id = snap.child("id").val();
+var name = snap.child("name").val();
+var qty = snap.child("quantity").val();
+var rate = snap.child("rate").val();
+var rateUpdate = "<button class='upd' onclick='updateRate(" + id + ")'>Update Rate</button>";
+var qtyUpdate = "<button class='upd' onclick='updateQty(" + id + ")'>Update Stock</button>";
+var removeItem = "<button class='rmv' onclick='removeItem(" + id + ")'>Remove Item</button>";
+cntid++;
+  $("#stockReport").append('<tr id="item' + id + '"><td>' + id + '</td><td>' + name + '</td><td><input type="number" id="irate' + id + '" value="' + rate + '"><br>' + rateUpdate + '</td><td><input type="number" id="iqty' + id + '" value="' + qty + '"><br>' + qtyUpdate + '</td><td>' + removeItem + '</td></tr>');
+  });
+}
+
+function removeItem(x){
+  Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    firebase.database().ref("items/" + x).remove();
+    Swal.fire(
+      'Deleted!',
+      'Your product has been deleted.',
+      'success'
+    )
+    document.getElementById('item' + x).style.display="none";
+  }
+})
+}
+
+function updateRate(x){
+  Swal.fire({
+  title: 'Are you sure?',
+  text: "Your item details will be updated.",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, update it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    firebase.database().ref("items/" + x).update({rate:document.getElementById('irate' + x).value});
+    Swal.fire(
+      'Updated!',
+      'Your item details has been updated.',
+      'success'
+    )
+    //document.getElementById('irate' + x).style.display="none";
+  }
+})
+}
+
+
+function updateQty(x){
+  Swal.fire({
+  title: 'Are you sure?',
+  text: "Your item details will be updated.",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, update it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    firebase.database().ref("items/" + x).update({quantity:document.getElementById('iqty' + x).value});
+    Swal.fire(
+      'Updated!',
+      'Your item details has been updated.',
+      'success'
+    )
+    //document.getElementById('irate' + x).style.display="none";
+  }
+})
+}
+
+
 function getRangeOrder() {
 var rootRef = firebase.database().ref('orders');
 
@@ -43,7 +129,7 @@ var finalLine=line + endLine;
 var removeLine = "<button class='rmv' onclick='removeOrder(" + orderId + ")'>Remove</button>";
   
 if(new Date(parameters[1]).getTime()<new Date(orderTimings).getTime() && Number(new Date(parameters[2]).getTime())+Number(86400000)>new Date(orderTimings).getTime()){
-$("#orderReport").append('<tr><td><u>' + orderId + '</u></td><td><b>' + orderDate + '<br>' + orderTime + '</b></td><td><b>' + custName + '<br>(' + custPhone + ')</b></td><td>' + finalLine + '</td><td>' + removeLine + '</td></tr>');
+$("#orderReport").append('<tr id="order' + orderId + '"><td><u>' + orderId + '</u></td><td><b>' + orderDate + '<br>' + orderTime + '</b></td><td><b>' + custName + '<br>(' + custPhone + ')</b></td><td>' + finalLine + '</td><td>' + removeLine + '</td></tr>');
 }
 });
 
@@ -75,7 +161,7 @@ var endLine = "<tr class='lastTr'><td colspan='2'>Total: </td><td>" + quantityTo
    }
 var finalLine=line + endLine;
 var removeLine = "<button class='rmv' onclick='removeOrder(" + orderId + ")'>Remove</button>";
-  $("#orderReport").append('<tr><td><u>' + orderId + '</u></td><td><b>' + orderDate + '<br>' + orderTime + '</b></td><td><b>' + custName + '<br>(' + custPhone + ')</b></td><td>' + finalLine + '</td><td>' + removeLine + '</td></tr>');
+  $("#orderReport").append('<tr id="order' + orderId + '"><td><u>' + orderId + '</u></td><td><b>' + orderDate + '<br>' + orderTime + '</b></td><td><b>' + custName + '<br>(' + custPhone + ')</b></td><td>' + finalLine + '</td><td>' + removeLine + '</td></tr>');
 });
 
 }
@@ -175,7 +261,7 @@ if(new Date(parameters[1]).getTime()<new Date(orderTimings).getTime() && Number(
       'Your product has been deleted.',
       'success'
     )
-    location.reload();
+    document.getElementById('order' + x).style.display="none";
   }
 })
 }
