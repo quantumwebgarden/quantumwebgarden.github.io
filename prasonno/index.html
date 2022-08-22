@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+.frm {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password], input[type=date] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding: 25px;
+}
+p.rsw {
+  float: left;
+  color: red;
+  padding-top: 16px;
+  padding: 25px;
+  display: none;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f2a5e7;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 40%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.button {
+  position: relative;
+  background-color: #4CAF50;
+  border: none;
+  font-size: 22px;
+  color: #FFFFFF;
+  padding: 12px;
+  width: 180px;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btn {
+  position: relative;
+  background-color: #4CAF50;
+  border: none;
+  font-size: 18px;
+  color: #FFFFFF;
+  padding: 10px;
+  width: auto;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 15px;
+  margin: 5px;
+}
+.btn a{
+  color: white;
+  text-decoration: none;
+}
+
+.button:after {
+  content: "";
+  background: #f1f1f1;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+</style>
+</head>
+<body>
+
+<h2>Monginis Prasonno Dashboard</h2>
+
+<div id="loginFrm" class="frm">
+  <div class="imgcontainer">
+    <img src="qw.png" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" id="upass" placeholder="Enter Password" name="psw" required>
+        
+    <button type="submit" onclick="login()">Login</button>
+    
+    <p class="rsw" id="loginResult">Incorrect Credential</p><br><br>
+  </div>
+    <span class="psw">Powered by <a target="_blank" href="https://quantumwebgarden.in">Quantum Webgarden</a></span>
+</div>
+<div id="dashboard" style="display:none;">
+<p>Detailed Report</p>
+
+<div class="row">
+
+  <div class="column">
+    <div class="card">
+      <h3>Check Order Report</h3>
+      <p><button class="btn"><a href="stockReport.html" target="_blank">Update Details</a></button></p>
+      <p><button class="btn"><a href="itemReport.html" target="_blank">Print Details</a></button></p>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <h3>Check Order Report</h3>
+      <p><button class="btn"><a href="allOrder.html" target="_blank">All Orders</a></button></p>
+      <p>
+        <button class="btn"><a id="todayOrder" target="_blank">Today</a></button>
+        <button class="btn"><a id="yesterdayOrder" target="_blank">Yesterday</a></button>
+        <button class="btn" onclick="getRange('Order')">Select Range</button>
+      </p>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <h3>Check Sale Report</h3>
+      <p><button class="btn"><a href="allSale.html" target="_blank">All Sale</a></button></p>
+      <p>
+        <button class="btn"><a id="todaySale" target="_blank">Today</a></button>
+        <button class="btn"><a id="yesterdaySale" target="_blank">Yesterday</a></button>
+        <button class="btn" onclick="getRange('Sale')">Select Range</button>
+      </p>
+    </div>
+  </div>
+  
+  <!-- <div class="column">
+    <div class="card">
+      <h3>Card 4</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div> -->
+</div>
+</div>
+
+<script type="text/javascript">
+  function login(){
+    if(window.btoa(document.getElementById("upass").value) == "bW5nMjI="){
+      document.getElementById("loginFrm").style.display = "none";
+      document.getElementById("loginResult").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+    }
+    else{
+      document.getElementById("loginResult").style.display = "block";
+      document.getElementById("dashboard").style.display = "none";
+    }
+  }
+</script>
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Select Range</h2>
+    </div>
+    <div class="modal-body">
+      <center>
+      <p>
+        <label>Start date:</label>
+        <input type="date" id="startDate"></p>
+      <p>
+        <label>End date:</label>
+        <input type="date" id="endDate"></p>
+      <button id="finalRange" class="button" range="" onclick="rangeSet(this)">Set Range</button>
+      </center>
+    </div>
+    <div class="modal-footer">
+      <h3></h3>
+    </div>
+  </div>
+
+</div>
+</body>
+<script>
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+var today=("0" + (Number(new Date().getMonth()) + 1)).slice(-2) + "-" + ("0" + (Number(new Date().getDate()))).slice(-2) + "-" + new Date().getFullYear();
+var yesterday=("0" + (Number(new Date().getMonth()) + 1)).slice(-2) + "-" + ("0" + (Number(new Date().getDate()) - 1)).slice(-2) + "-" + new Date().getFullYear();
+document.getElementById("todayOrder").href="rangeOrder.html?range=" + today + "=" + today;
+document.getElementById("yesterdayOrder").href="rangeOrder.html?range=" + yesterday + "=" + yesterday;
+
+document.getElementById("todaySale").href="rangeSale.html?range=" + today + "=" + today;
+document.getElementById("yesterdaySale").href="rangeSale.html?range=" + yesterday + "=" + yesterday;
+
+function getRange(x){
+  modal.style.display = "block";
+  document.getElementById("finalRange").setAttribute("range", x);
+}
+function rangeSet(x){
+  var startDate = document.getElementById("startDate").value;
+  var endDate = document.getElementById("endDate").value;
+  if(new Date(startDate).getTime()<new Date(endDate).getTime()){
+    var url = "range" + x.getAttribute("range") + ".html?range=" + startDate + "=" + endDate;
+  window.open(url, "_blank");
+  }
+  else{
+    alert("Start Date should be earlier than End Date");
+  }
+  
+}
+</script>
+</html>

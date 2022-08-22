@@ -33,6 +33,20 @@ cntid++;
   });
 }
 
+function getAllItems() {
+var rootRef = firebase.database().ref('items');
+
+rootRef.on("child_added", snap => {
+
+var id = snap.child("id").val();
+var name = snap.child("name").val();
+var qty = snap.child("quantity").val();
+var rate = snap.child("rate").val();
+  $("#itemReport").append('<tr><td>' + id + '</td><td>' + name + '</td><td>' + rate + '</td><td>' + qty + '</td></tr>');
+  });
+}
+
+
 function removeItem(x){
   Swal.fire({
   title: 'Are you sure?',
