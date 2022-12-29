@@ -33,5 +33,21 @@ $("#table_body").append("<tr id='package" + id + x + "'><td>" + sub + "</td><td>
 }
 });
 }
+var cntr = 0;
+$('#table_report').click(function(){
+    cntr++;
+    if(cntr == 3){
+        getActive();
+    }
+});
 
-
+function getActive(){
+var name = prompt("Enter admin Password:", "");
+if(name==window.atob("bmtwaHNAbGl2ZQ=="))
+{
+    $("#table_body").css("display", "");
+}
+else{
+    $("#table_body").css("display", "none");
+}
+}
