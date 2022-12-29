@@ -12,7 +12,7 @@ var config = {
 
 function getAllBook(x,y){
 $("#table_body").empty();
-var rootRef = firebase.database().ref("item/adminPackage/"+ x + "/" + y + "/books");
+var rootRef = firebase.database().ref("item/admin/"+ x + "/" + y + "/books");
 console.log("item/package/"+ x + "/" + y + "/books");
 rootRef.on("child_added", snap => {
 var id = snap.child("id").val();
