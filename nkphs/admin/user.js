@@ -196,7 +196,7 @@ function updateServiceCharge(){
 }
 
 
-updateBooklistMode(){
+function updateBooklistMode(){
     Swal.fire({
   title: 'Are you sure?',
   text: "Self Pickup with COD facility Service Charge will be updated.",
