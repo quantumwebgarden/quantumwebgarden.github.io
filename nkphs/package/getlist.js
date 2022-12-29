@@ -9,10 +9,18 @@ var config = {
     measurementId: "G-BQCBG9T67D"
    };
    firebase.initializeApp(config);   
+getAccess()
+function getAccess(){
+var rootRef = firebase.database().ref("admin/booklist");
+rootRef.on("child_added", snap => {
+var type = snap.child("type").val();
+    $("#table_body").css("display", type);
+});
+}
 
 function getAllBook(x,y){
 $("#table_body").empty();
-var rootRef = firebase.database().ref("item/admin/"+ x + "/" + y + "/books");
+var rootRef = firebase.database().ref("item/adminPackage/"+ x + "/" + y + "/books");
 console.log("item/package/"+ x + "/" + y + "/books");
 rootRef.on("child_added", snap => {
 var id = snap.child("id").val();
@@ -25,3 +33,5 @@ $("#table_body").append("<tr id='package" + id + x + "'><td>" + sub + "</td><td>
 }
 });
 }
+
+
