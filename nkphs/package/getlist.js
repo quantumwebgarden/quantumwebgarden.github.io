@@ -48,6 +48,6 @@ if(name==window.atob("bmtwaHNAbGl2ZQ=="))
     $("#table_body").css("display", "");
 }
 else{
-    $("#table_body").css("display", "none");
+    
 }
 }
