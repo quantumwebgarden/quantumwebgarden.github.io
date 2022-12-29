@@ -151,7 +151,16 @@ input:checked + .slider:before {
     <label for="maxallowed">Self Pickup with COD option service charge: : &nbsp;</label>
     <input type="number" id="serviceCharge" name="serviceCharge">&nbsp;&nbsp;&nbsp;
     <button onclick="updateServiceCharge()" class="button">Update Service Charge</button>
-
+  
+	  
+	  
+    <p style="font-size: 17px; font-weight: bold;">Book List Mode: &nbsp;
+    <select id="booklistMode" style="padding: 10px; width: auto; font-size: 17px; font-family: Raleway; border: 1px solid #aaaaaa;" onchange="allData()">
+    <option value=" ">Live</option>
+    <option value="none">Admin</option>
+    </select>
+	  <button onclick="updateBooklistMode()" class="button">Update Booklist Status</button>
+	  </p>
 
   <p style="font-size: 17px; font-weight: bold;">Select Class: &nbsp;
   <select name="clsslct" id="clsslct" style="padding: 10px; width: auto; font-size: 17px; font-family: Raleway; border: 1px solid #aaaaaa;" onchange="allData()">
