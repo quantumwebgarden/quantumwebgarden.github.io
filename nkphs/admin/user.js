@@ -194,7 +194,19 @@ function updateServiceCharge(){
 })
     
 }
-
+getAccess()
+function getAccess(){
+var rootRef = firebase.database().ref("admin/booklist");
+rootRef.on("child_added", snap => {
+var type = snap.child("type").val();
+    if(type==" "){
+        $("#currentBookListStatus").html("Current Status: <b>Admin Only</b>");
+    }
+    else{
+        $("#currentBookListStatus").html("Current Status: <b>Live</b>");
+    }    
+});
+}
 
 function updateBooklistMode(){
     Swal.fire({
@@ -207,6 +219,8 @@ function updateBooklistMode(){
   confirmButtonText: 'Yes, Update'
 }).then((result) => {
   if (result.isConfirmed) {
+      var chval = document.getElementById("booklistMode").value;
+      $("#currentBookListStatus").html("Current Status: <b>" + chval + "</b>");
     firebase.database().ref("admin/booklist/live").update({type:document.getElementById("booklistMode").value});
     Swal.fire(
       'Updated!',
