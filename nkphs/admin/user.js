@@ -194,6 +194,30 @@ function updateServiceCharge(){
 })
     
 }
+
+
+updateBooklistMode(){
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "Self Pickup with COD facility Service Charge will be updated.",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Update'
+}).then((result) => {
+  if (result.isConfirmed) {
+    firebase.database().ref("admin/booklist/live").update({type:document.getElementById("booklistMode").value});
+    Swal.fire(
+      'Updated!',
+      'Book List View Mode updated.',
+      'success'
+    )
+  }
+})
+    
+}
+
 function updatefees() {
     Swal.fire({
   title: 'Are you sure?',
