@@ -10,10 +10,12 @@ var config = {
    };
    firebase.initializeApp(config);   
 getAccess()
+var ctr = "";
 function getAccess(){
 var rootRef = firebase.database().ref("admin/booklist");
 rootRef.on("child_added", snap => {
 var type = snap.child("type").val();
+    ctr = type;
     $("#table_body").css("display", type);
 });
 }
@@ -36,13 +38,14 @@ $("#table_body").append("<tr id='package" + id + x + "'><td>" + sub + "</td><td>
 var cntr = 0;
 $('#table_report').click(function(){
     cntr++;
-    if(cntr == 3){
+    if(cntr == 3 && ctr!=" "){
         getActive();
     }
 });
 
 function getActive(){
 var name = prompt("Enter admin Password:", "");
+
 if(name==window.atob("bmtwaHNAbGl2ZQ=="))
 {
     $("#table_body").css("display", "");
