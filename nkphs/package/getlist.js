@@ -10,17 +10,17 @@ var config = {
    };
    firebase.initializeApp(config);   
 getAccess()
-var ctr = "";
+var classOpen = "";
 function getAccess(){
 var rootRef = firebase.database().ref("admin/booklist");
 rootRef.on("child_added", snap => {
-var type = snap.child("type").val();
-    ctr = type;
-    $("#table_body").css("display", type);
+classOpen = snap.child("classes").val();
 });
 }
 
 function getAllBook(x,y){
+var classRequest = y + ",";
+document.getElementsByTagName('h1')[0].innerHTML=y;
 $("#table_body").empty();
 var rootRef = firebase.database().ref("item/adminPackage/"+ x + "/" + y + "/books");
 console.log("item/package/"+ x + "/" + y + "/books");
@@ -30,7 +30,7 @@ var sub = snap.child("sub").val();
 var name = snap.child("name").val();
 var price = snap.child("price").val();
 var quantity = snap.child("quantity").val();
-if(y == "NI" || y == "NII" || y == "KG" || y == "I" || y == "II" || y == "III" || y == "IV" || y == "V" || y == "VI" || y == "VII" || y == "VIII" || y == "IX" || y == "X"){
+if(classOpen.indexOf(classRequest)>-1){
 $("#table_body").append("<tr id='package" + id + x + "'><td>" + sub + "</td><td>" + name + "</td><td>" + price + "</td><td>" + quantity + "</td></tr>");
 }
 });
@@ -39,7 +39,7 @@ var cntr = 0;
 $('#table_report').click(function(){
     cntr++;
     if(cntr == 3 && ctr!=" "){
-        getActive();
+        //getActive();
     }
 });
 
