@@ -198,20 +198,16 @@ getAccess()
 function getAccess(){
 var rootRef = firebase.database().ref("admin/booklist");
 rootRef.on("child_added", snap => {
-var type = snap.child("type").val();
-    if(type==" "){
-        $("#currentBookListStatus").html("Current Status: <b>Live</b>");
-    }
-    else{
-        $("#currentBookListStatus").html("Current Status: <b>Admin</b>");
-    }    
+var type = snap.child("classes").val();
+    $("#currentBookListStatus").html("Currently Available to classes: <b>" + type + "</b>"); 
+    $("#bookViewer").val(type); 
 });
 }
 
 function updateBooklistMode(){
     Swal.fire({
   title: 'Are you sure?',
-  text: "Self Pickup with COD facility Service Charge will be updated.",
+  text: "Book list will be viewed for the Classes inside.",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
@@ -219,12 +215,12 @@ function updateBooklistMode(){
   confirmButtonText: 'Yes, Update'
 }).then((result) => {
   if (result.isConfirmed) {
-      var chval = $("#booklistMode option:selected").text();
-      $("#currentBookListStatus").html("Current Status: <b>" + chval + "</b>");
-    firebase.database().ref("admin/booklist/live").update({type:document.getElementById("booklistMode").value});
+      var chval = $("#bookViewer").val();
+      $("#currentBookListStatus").html("Currently Available to classes: <b>" + chval + "</b>");
+    firebase.database().ref("admin/booklist/live").update({classes:document.getElementById("bookViewer").value});
     Swal.fire(
       'Updated!',
-      'Book List View Mode updated.',
+      'Book List View Enabled class list updated.',
       'success'
     )
   }
