@@ -154,14 +154,11 @@ input:checked + .slider:before {
   
 	  
 	  
-    <p style="font-size: 17px; font-weight: bold;">Book List Mode: &nbsp;
-    <select id="booklistMode" style="padding: 10px; width: auto; font-size: 17px; font-family: Raleway; border: 1px solid #aaaaaa;" onchange="allData()">
-    <option value=" ">Live</option>
-    <option value="none">Admin</option>
-    </select>
-	  <button onclick="updateBooklistMode()" class="button">Update Booklist Status</button>
+    <p style="font-size: 17px; font-weight: bold;">Open Book List For: &nbsp;
+    <input type="text" id="bookViewer" name="bookViewer">&nbsp;&nbsp;&nbsp;
+	  <button onclick="updateBooklistMode()" class="button">Update Class List</button>
 	  </p>
-	  <p id="currentBookListStatus">Current Satus: </p>
+	  <p id="currentBookListStatus">Currently Available to classes: </p>
 
   <p style="font-size: 17px; font-weight: bold;">Select Class: &nbsp;
   <select name="clsslct" id="clsslct" style="padding: 10px; width: auto; font-size: 17px; font-family: Raleway; border: 1px solid #aaaaaa;" onchange="allData()">
