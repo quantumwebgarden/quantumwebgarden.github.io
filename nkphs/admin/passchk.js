@@ -1,6 +1,6 @@
 function adminpass() {
   document.getElementById("passchk").style.display = "none";
-  swal("Nprth Kolkata Public High School","Enter Admin Password Here:", {
+  swal("North Kolkata Public High School","Enter Admin Password Here:", {
     content: {
     element: "input",
     attributes: {
