@@ -46,6 +46,7 @@ var deliveryCharge = snap.child("deliveryCharge").val();
 var stock = snap.child("stock").val();
 var id = snap.child("id").val();
 var ready = snap.child("ready").val();
+    console.log(books_bag + books_only + " - beng")
 if(id == document.getElementById("clsslct").value){
 $("#BENGbooks_bag").val(books_bag);
 $("#BENGbooks_only").val(books_only);
@@ -68,6 +69,7 @@ var deliveryCharge = snap.child("deliveryCharge").val();
 var stock = snap.child("stock").val();
 var id = snap.child("id").val();
 var ready = snap.child("ready").val();
+    console.log(books_bag + books_only + " - hindi")
 if(id == document.getElementById("clsslct").value){
 $("#HINDIbooks_bag").val(books_bag);
 $("#HINDIbooks_only").val(books_only);
